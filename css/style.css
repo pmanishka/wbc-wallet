@@ -133,7 +133,7 @@ body .container {
    /*  margin-left: 15%; */
 }
 .mainpage-section {
-    margin-bottom: 35px;
+    margin-bottom: 40px;
 }
 .mainpage-section img{
 	width:100%;
@@ -222,7 +222,7 @@ input[type="button"].red-button {
 #topbar {
     background: #086a79;
     color: #fff;
-    padding: 18px 15px;
+    padding: 20px 15px;
     font-weight: 600;
 }
 .registertop {
