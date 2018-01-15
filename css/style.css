@@ -186,7 +186,7 @@ input[type="button"].red-button {
     padding: 15px 13px;
     /* border-bottom: 1px solid #999 !important; */
     border: 0px;
-    width: 77%;
+    width: 80%;
     font-size: 17px;
 }
 .input-field input::placeholder {
@@ -284,4 +284,5 @@ input[type="button"].red-button {
 		margin-left:1%;
 		padding:30px 115px; 
 	}
+	.input-field input{width:100%;}
 }
