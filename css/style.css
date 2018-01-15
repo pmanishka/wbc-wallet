@@ -175,7 +175,7 @@ input[type="button"].red-button {
     text-align: center;
 }
 .input-field {
-    padding: 10px;
+    padding: 10px 18px;
     margin-top: 10px;
 }
 .input-field input {
