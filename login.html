@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>World Bank of Cryptocurrencies</title>
+<link rel="stylesheet" type="text/css" href="css/style.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="js/jquery.min.js"></script>
+
+<script>
+var contentType ="application/x-www-form-urlencoded; charset=utf-8";
+if(window.XDomainRequest){contentType = "text/plain";}
+jQuery.support.cors = true;
+
+jQuery( document ).ready(function() {
+	
+	jQuery('input[name="submit"]').click(function(){
+		var user_id=jQuery("#emailid").val();
+		var password=jQuery("#password").val();
+		
+		$.ajax({
+		  //url: "https://4xwin.com/MobileApp/login",
+		  url: "http://10.0.0.66/Regular/cryptocurrency/api/login",
+		  type: 'POST',
+		  data: {q:'checklogin',user_id:user_id,password:password}, 
+		  crossDomain: true,   
+		  success: function(data) {
+			//called when successful
+			//alert('Login Successfully');
+			if(data['status'] == 1)
+			{
+				window.location='test.html';
+			}else{
+				alert('Login Failed');
+			}
+		  },
+		  error: function() {
+			alert('Error');
+			//called when there is an error
+			//console.log(message);
+		  }
+		});
+	});
+		
+});
+
+</script>
+</head>
+<body>
+
+<div id="main_wrapper">
+	<div class="main-container">
+	<div id="top_header">
+		<div class="logo">
+			<div class="logo-img"><img src="images/gif_logo.gif"></div>
+			<div class="logo-text">World Bank of Cryptocurrencies</div>
+		</div>
+	</div>
+	<div class="container">
+		<div class="darkblue-button"><span>Login to your Account</span></div>
+		<div class="login-form">
+			<form method="post">
+				<div class="input-field">
+					<input type="text" name="emailid" id="emailid" placeholder="Email Id or Card no"/>
+				</div>
+				<div class="input-field">
+					<input type="password" name="password" id="password" placeholder="Password"/>
+				</div>
+				<div class="forgot-password">
+					<span>Forgot Password</span>
+				</div>
+				<div class="input-button red-button">
+					<input type="button" name="submit" value="Login"/>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+</body>
+</html>

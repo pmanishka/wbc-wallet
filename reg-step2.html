@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>World Bank of Cryptocurrencies</title>
+<link rel="stylesheet" type="text/css" href="css/style.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="js/jquery.min.js"></script>
+
+<script>
+var contentType ="application/x-www-form-urlencoded; charset=utf-8";
+if(window.XDomainRequest){contentType = "text/plain";}
+jQuery.support.cors = true;
+
+jQuery( document ).ready(function() {
+	
+	jQuery('input[name="submit"]').click(function(){
+		jQuery('.green-button').hide();
+		jQuery('.congratulations-msg').show();
+		jQuery('.congratulations-msg .next').click(function(){
+			window.location.href = 'reg-step2.html';
+		});
+	});
+		
+});
+
+</script>
+</head>
+<body>
+
+<div id="main_wrapper">
+	<div class="main-container">
+	<div id="topbar">
+		Step 2
+	</div>
+	<div id="top_header">
+		<div class="logo">
+			<div class="logo-img"><img src="images/gif_logo.gif"></div>
+			<div class="logo-text">World Bank of Cryptocurrencies</div>
+		</div>
+	</div>
+	<div class="container">
+		<div class="registertop">
+			2. Mobile Verification
+		</div>
+		<div class="register-form">
+			<form method="post">
+				<div class="input-field">
+					<label>Enter Mobile Verification</label>
+					<input type="text" name="mobileno" id="mobileno" placeholder="Enter Mobile Verification"/>
+				</div>
+				<div class="congratulations-msg" style="display:none;">
+					<div class="msg">
+						<img src="images/done.png"/><br/>
+						Congratulations! <br/> Username is available
+					</div>
+					<div class="red-button">
+						<input type="button" class="next" name="submit" value="Next Step"/>
+					</div>
+				</div>
+				<div class="input-button green-button">
+					<input type="button" name="submit" value="Check Availability"/>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+</body>
+</html>

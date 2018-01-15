@@ -1,0 +1,286 @@
+@charset "utf-8";
+/* CSS Document */
+
+
+
+@import url('https://fonts.googleapis.com/css?family=Roboto+Condensed');
+
+*{ margin:0px; padding:0px; box-sizing:border-box; font-family: 'Roboto Condensed', sans-serif;}
+a{ text-decoration:none;}
+img{border:none;}
+.clr{ clear:both; margin:0px; padding:0px;}
+h1,h2,h3,h4,h5,h6,h7,p,span{ margin:0px; padding:0px;}
+body {margin: 0; padding: 0; background: #f4f4f4;font-family: 'Roboto Condensed', sans-serif;}
+
+input{ outline:none;}
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    color: #9a9a9a;
+}
+::-moz-placeholder { /* Firefox 19+ */
+    color: #9a9a9a;
+}
+:-ms-input-placeholder { /* IE 10+ */
+    color: #9a9a9a;
+}
+:-moz-placeholder { /* Firefox 18- */
+    color: #9a9a9a;
+}
+input[type="button"], input[type="submit"]{
+	cursor:pointer;
+}
+input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {  }
+@-webkit-keyframes autofill {
+    to {
+        color: #666;
+        background: transparent;
+    }
+}
+
+input:-webkit-autofill {
+    -webkit-animation-name: autofill;
+    -webkit-animation-fill-mode: both;
+}
+
+
+.wrapper.phonepage {
+    position: relative;
+}
+.wrapper {    max-width: 600px;    height: auto;    display: inline-block;    width: 100%;    margin: 0 auto;    background: #000;    float: none; }
+/* #main_wrapper
+{
+	width:100%;
+	height:100%;
+	margin:0px;
+	padding:0px;
+	overflow: hidden;
+} */
+.main-container {
+    max-width: 600px;
+    background: #000;
+}
+body .container {
+    float: left;
+    width: 100%;
+	padding:40px 0 50px 0;
+	overflow:hidden;
+}
+#top_header {
+    box-sizing: border-box;
+    float: left;
+    width: 100%;
+	background:#000;
+}
+/* #main_wrapper {
+    min-height: 650px;
+    background: #000;
+} */
+.logo{
+	float: left;
+    width: 100%;
+    border-bottom: 1px solid #fff;
+    padding: 15px 50px;
+}
+.logo .logo-img {
+    max-height: 75px;
+    float: left;
+    text-align: right;
+    width: 28%;
+}
+.logo .logo-img img{
+	height:100%;
+	max-height:75px;
+}
+.logo .logo-text {
+    color: #d9fae2;
+    float: left;
+    padding-top: 30px;
+    padding-left: 11px;
+    font-weight: bold;
+    font-size: 16px;
+    letter-spacing: 0.2px;
+    text-align: left;
+    width: 72%;
+}
+.container {
+    float: left;
+    width: 100%;
+    background: #000;
+    padding: 20px;
+    box-sizing: border-box;
+}
+/* --------- Home Page Style -----------*/
+.homewrapper {
+    text-align: center;
+    padding: 50px 0;
+    margin-bottom: 113px;
+}
+.mainpage-section .homewrapper img {
+    width: 50%;
+}
+.home-text {
+    /* text-align: center; */
+    color: #fff;
+    padding: 10px;
+}
+/* --------- Main Page Style -----------*/
+.darkblue-button1 {
+    text-align: center;
+    box-sizing: border-box;
+    background: url(../images/advertis.png) no-repeat center;
+    /* margin: 0 auto; */
+    padding: 30px 120px;
+    color: #fff;
+   /*  margin-left: 15%; */
+}
+.mainpage-section {
+    margin-bottom: 15px;
+}
+.mainpage-section img{
+	width:100%;
+	height:100%;
+	margin-bottom:30px;
+	margin-top: 3px;
+}
+input[type="button"].red-button {
+    border: 0px;
+    color: #fff;
+    padding: 31px 123px;
+    font-size: 17px;
+    font-weight: 600;
+}
+.account {
+    color: #fff;
+    text-align: center;
+    margin: 15px 0 0 0;
+    font-size: 15px;
+    font-weight: 600;
+}
+.account span a {
+    color: #fff;
+}
+/* --------- Login Page -----------*/
+.login-form {
+    text-align: center;
+    margin-top: 40px;
+}
+.darkblue-button {
+    text-align: center;
+    box-sizing: border-box;
+    background: url(../images/dark_blue.png) no-repeat center;
+	padding: 30px;
+}
+.darkblue-button span {
+    color: #fff;
+    text-align: center;
+}
+.input-field {
+    padding: 10px;
+    margin-top: 10px;
+}
+.input-field input {
+    box-shadow: inset 1px 0px 16px #d2caa6;
+    background: #16120C;
+    border-radius: 5px;
+    color: #ddd;
+    padding: 15px 13px;
+    border-bottom: 1px solid #999 !important;
+    border: 0px;
+    width: 90%;
+	font-size: 17px;
+}
+.input-field input::placeholder {
+    color: #9a9a9a;
+}
+.span-field {
+    color: #eee;
+    font-size: 12px;
+    text-align: center;
+}
+.red-button {
+    margin-top: 25px;
+    background: url('../images/dark_red.png') no-repeat center;
+}
+.red-button input[type="button"] {
+    background: none;
+    border: 0;
+    color: #fff;
+    font-size: 17px;
+	padding: 30px;
+}
+.forgot-password {
+    text-align: right;
+    margin-right: 32px;
+    margin-top: 10px;
+}
+.forgot-password span {
+    color: #fff;
+    text-align: right;
+    font-size: 15px;
+}
+.darkblue-button1 a{color:#fff;}
+/*------- Register Page --------*/
+#topbar {
+    background: #086a79;
+    color: #fff;
+    padding: 18px 15px;
+    font-weight: 600;
+}
+.registertop {
+    color: #fff;
+    border-bottom: 1px solid #fff;
+    padding-bottom: 20px;
+    text-align: center;
+    font-weight: 600;
+}
+.register-form {
+    text-align: center;
+    margin-top: 40px;
+}
+.register-form .input-button {
+    margin-top: 110px;
+    margin-bottom: 40px;
+}
+.green-button {
+    margin-top: 25px;
+    background: url('../images/dark_green.png') no-repeat center;
+}
+.green-button input[type="button"] {
+    background: none;
+    border: 0;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 600;   
+	padding: 30px;
+}
+.congratulations-msg .msg span {
+    color: #aefd36;
+}
+.congratulations-msg {
+    margin-top: 60px;
+	margin-bottom:15px
+}
+.congratulations-msg .msg img {
+    width: 25px;
+}
+.error-msg .msg{color:#C6482A;}
+.dummy-text {
+    color: #fff;
+}
+.user-avalibility-msg{
+	color:#fff;
+}
+
+/*------- Media Screen --------*/
+
+@media screen and (max-width: 480px) {
+    .logo {
+		float: left;
+		width: 100%;
+		border-bottom: 1px solid #fff;
+		padding: 10px 27px;
+	}
+	.darkblue-button1{
+		margin-left:1%;
+		padding:30px 115px; 
+	}
+}

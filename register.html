@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>World Bank of Cryptocurrencies</title>
+<link rel="stylesheet" type="text/css" href="css/style.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="js/jquery.min.js"></script>
+
+<script>
+var contentType ="application/x-www-form-urlencoded; charset=utf-8";
+if(window.XDomainRequest){contentType = "text/plain";}
+jQuery.support.cors = true;
+
+jQuery( document ).ready(function() {
+	
+	jQuery('input[name="submit"]').click(function(){
+		var username=jQuery("#username").val();
+		
+			
+		if(jQuery("#username").val() != ''){
+		//alert(username);
+			//jQuery('.green-button').hide();
+			//jQuery('.congratulations-msg').show();
+			jQuery('.user-avalibility-msg').append('');
+			jQuery('.user-avalibility-msg').hide();
+		
+			$.ajax({
+			  url: "http://10.0.0.66/Regular/cryptocurrency/api",
+			  type: 'POST',
+			  data: {q:'registerName',username:username}, 
+			  crossDomain: true,   
+			  success: function(data) {
+				alert(data);
+				/*alert('success');
+				jQuery('.user-avalibility-msg').append('Username is available');
+				jQuery('.green-button').hide();
+				jQuery('.congratulations-msg').show();*/
+			  },
+			  error: function() {
+				 alert('failed');
+				/*jQuery('.user-avalibility-msg').append('Error');
+				jQuery('.green-button').show();
+				jQuery('.congratulations-msg').hide();
+				jQuery('.error-msg').hide();*/
+			  }
+			});
+		
+		}else {
+			jQuery('.user-avalibility-msg').append('Username should not be blank');
+			jQuery('.green-button').show();
+			jQuery('.congratulations-msg').hide();
+		}
+	});
+		
+});
+
+</script>
+</head>
+<body>
+
+<div id="main_wrapper">
+	<div class="main-container">
+	<div id="topbar">
+		Step 1
+	</div>
+	<div id="top_header">
+		<div class="logo">
+			<div class="logo-img"><img src="images/gif_logo.gif"></div>
+			<div class="logo-text">World Bank of Cryptocurrencies</div>
+		</div>
+	</div>
+	<div class="container">
+		<div class="registertop">
+			1. Enter Username
+		</div>
+		<div class="register-form">
+			<form method="post">
+				<div class="input-field">
+					<input type="text" name="username" id="username" placeholder="User Name"/>
+				</div>
+				<div class="user-avalibility-msg"></div>
+				<div class="congratulations-msg" style="display:none;">
+					<div class="msg">
+						<img src="images/done.png"/><br/>
+						<span>Congratulations! <br/> Username is available</span>
+					</div>
+					<div class="red-button">
+						<input type="button" class="next" name="submit" value="Next Step"/>
+					</div>
+				</div>
+				<div class="error-msg" style="display:none;">
+					<div class="msg">
+						Username is already available
+					</div>
+				</div>
+				<div class="input-button green-button">
+					<input type="button" name="submit" value="Check Availability"/>
+				</div>
+			</form>
+			
+		</div>
+	</div>
+</div>
+</body>
+</html>
