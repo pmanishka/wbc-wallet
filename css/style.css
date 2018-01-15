@@ -70,7 +70,7 @@ body .container {
     width: 100%;
 	background:#000;
 }
-.loading{color:#fff;}
+.loading{color:#fff; text-align:center;}
 /* #main_wrapper {
     min-height: 650px;
     background: #000;
