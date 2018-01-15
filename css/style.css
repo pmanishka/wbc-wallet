@@ -61,7 +61,7 @@ input:-webkit-autofill {
 body .container {
     float: left;
     width: 100%;
-	padding:48px 0 50px 0;
+	padding:47px 0 50px 0;
 	overflow:hidden;
 }
 #top_header {
@@ -179,15 +179,15 @@ input[type="button"].red-button {
     margin-top: 10px;
 }
 .input-field input {
-    box-shadow: inset 1px 0px 16px #d2caa6;
-    background: #16120C;
-    border-radius: 5px;
+    /* box-shadow: inset 1px 0px 16px #d2caa6; */
+    background: url(../images/edit_text_back.png) no-repeat;
+    /* border-radius: 5px; */
     color: #ddd;
     padding: 15px 13px;
-    border-bottom: 1px solid #999 !important;
+    /* border-bottom: 1px solid #999 !important; */
     border: 0px;
-    width: 90%;
-	font-size: 17px;
+    width: 77%;
+    font-size: 17px;
 }
 .input-field input::placeholder {
     color: #9a9a9a;
