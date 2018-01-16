@@ -85,7 +85,7 @@ body .container {
     max-height: 75px;
     float: left;
     text-align: right;
-    width: 28%;
+    width: 26%;
 }
 .logo .logo-img img{
 	height:100%;
@@ -100,7 +100,7 @@ body .container {
     font-size: 16px;
     letter-spacing: 0.2px;
     text-align: left;
-    width: 72%;
+    width: 74%;
 }
 .container {
     float: left;
@@ -333,7 +333,7 @@ input[type="button"].red-button {
 }
 @media screen and (min-width: 320px) and (max-width: 350px) {
 	.logo {
-		padding: 18px 10px;
+		padding: 12px 10px;
 	}
 	.logo .logo-text{
 		font-size:15px;
