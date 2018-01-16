@@ -180,12 +180,9 @@ input[type="button"].red-button {
     margin-top: 10px;
 }
 .input-field input {
-    /* box-shadow: inset 1px 0px 16px #d2caa6; */
     background: url(../images/edit_text_back1.png) no-repeat center;
-    /* border-radius: 5px; */
     color: #ddd;
     padding: 15px 15px;
-    /* border-bottom: 1px solid #999 !important; */
     border: 0px;
     width: 100%;
     font-size: 17px;
@@ -200,7 +197,7 @@ input[type="button"].red-button {
 }
 .red-button {
     margin-top: 25px;
-    background: url('../images/dark_red.png') no-repeat center;
+    background: url(../images/dark_red.png) no-repeat center;
 }
 .red-button input[type="button"] {
     background: none;
@@ -319,7 +316,7 @@ input[type="button"].red-button {
 	}
 }
 
-@media screen and (max-width: 360px) {
+@media screen and (min-width: 351x) and (max-width: 360px) {
 	.logo{padding:18px 0px;}
 	.input-field input{
 		max-width:100%;
@@ -332,7 +329,7 @@ input[type="button"].red-button {
 		max-width:90%;
 	}
 }
-@media screen and (max-width: 350px) {
+@media screen and (min-width: 320px) and (max-width: 350px) {
 	.input-field input {
 		background: url(../images/edit_text_back.png) no-repeat;
 		color: #ddd;
@@ -363,4 +360,22 @@ input[type="button"].red-button {
 	.forgot-password{
 		max-width:95%;
 	}
+}
+@media screen and (max-width: 309px) {
+	.logo{padding:18px 0px;}
+	.input-field input {
+		background: url(../images/edit_text_back-small.png) no-repeat;
+		color: #ddd;
+		padding: 15px 13px;
+		border: 0px;
+		width: 100%;
+		font-size: 17px;
+	}
+	.input-field {
+		padding: 10px 4%;
+	}
+	.logo .logo-text{
+		font-size:14px;
+	}
+	.forgot-password{max-width:95%;}
 }
