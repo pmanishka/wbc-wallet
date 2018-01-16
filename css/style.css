@@ -175,7 +175,7 @@ input[type="button"].red-button {
     text-align: center;
 }
 .input-field {
-	padding: 10px 99px;
+	padding: 10px 58px;
     margin-top: 10px;
 }
 .input-field input {
@@ -186,7 +186,7 @@ input[type="button"].red-button {
     padding: 15px 15px;
     /* border-bottom: 1px solid #999 !important; */
     border: 0px;
-    width: 89%;
+    width: 100%;
     font-size: 17px;
 }
 .input-field input::placeholder {
@@ -274,6 +274,30 @@ input[type="button"].red-button {
 
 /*------- Media Screen --------*/
 
+@media screen and (max-width: 420px) {
+    .logo {
+		float: left;
+		width: 100%;
+		border-bottom: 1px solid #fff;
+		padding: 10px 27px;
+	}
+	.darkblue-button1{
+		margin-left:1%;
+		padding:30px 115px; 
+	}
+	.input-field input{width:100%; padding: 15px 8%;}
+	.input-field {
+		padding: 10px 5px;
+	}
+	.forgot-password {
+		max-width: 95%;
+	}
+}
+@media screen and (max-width: 491px) {
+	.forgot-password {
+		max-width: 86%;
+	}
+}
 @media screen and (max-width: 480px) {
     .logo {
 		float: left;
@@ -285,10 +309,28 @@ input[type="button"].red-button {
 		margin-left:1%;
 		padding:30px 115px; 
 	}
-	.input-field input{width:100%; padding: 15px 20px;}
-	.input-field{padding:10px 17px;}
+	.input-field input{width:100%; padding: 15px 8%;}
+	.input-field {
+		padding: 10px 32px;
+	}
+	.forgot-password {
+		max-width: 89%;
+	}
 }
+
 @media screen and (max-width: 360px) {
+	.input-field input{
+		max-width:100%;
+		background: url(../images/edit_text_back.png) no-repeat;
+	}
+	.input-field {
+		padding: 10px 25px;
+	}
+	.forgot-password{
+		max-width:90%;
+	}
+}
+@media screen and (max-width: 350px) {
 	.input-field input {
 		background: url(../images/edit_text_back.png) no-repeat;
 		color: #ddd;
