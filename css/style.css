@@ -79,7 +79,7 @@ body .container {
 	float: left;
     width: 100%;
     border-bottom: 1px solid #fff;
-    padding: 18px 50px;
+    padding: 18px 0px;
 }
 .logo .logo-img {
     max-height: 75px;
@@ -291,7 +291,7 @@ input[type="button"].red-button {
 		max-width: 97% !important;
 	}
 }
-@media screen and (min-width: 421px) and (max-width: 491px) {
+@media screen and (min-width: 481px) and (max-width: 491px) {
 	.forgot-password {
 		max-width: 86%;
 	}
@@ -317,7 +317,9 @@ input[type="button"].red-button {
 }
 
 @media screen and (min-width: 351x) and (max-width: 360px) {
-	.logo{padding:18px 0px;}
+	.logo{
+		padding:18px 0px;
+	}
 	.input-field input{
 		max-width:100%;
 		background: url(../images/edit_text_back.png) no-repeat;
