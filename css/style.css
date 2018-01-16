@@ -61,7 +61,7 @@ input:-webkit-autofill {
 body .container {
     float: left;
     width: 100%;
-	padding:50px 0 80px 0;
+	padding:48px 0 70px 0;
 	overflow:hidden;
 }
 #top_header {
@@ -134,7 +134,7 @@ body .container {
    /*  margin-left: 15%; */
 }
 .mainpage-section {
-    margin-bottom: 30px;
+    margin-bottom: 40px;
 }
 .mainpage-section img{
 	width:100%;
@@ -222,7 +222,7 @@ input[type="button"].red-button {
 #topbar {
     background: #086a79;
     color: #fff;
-    padding: 18px 0;
+    padding: 20px 0;
     font-weight: 600;
 }
 .registertop {
