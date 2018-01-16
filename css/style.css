@@ -61,7 +61,7 @@ input:-webkit-autofill {
 body .container {
     float: left;
     width: 100%;
-	padding:40px 0 50px 0;
+	padding:50px 0 80px 0;
 	overflow:hidden;
 }
 #top_header {
@@ -89,7 +89,7 @@ body .container {
 }
 .logo .logo-img img{
 	height:100%;
-	max-height:65px;
+	max-height:58px;
 }
 .logo .logo-text {
     color: #d9fae2;
@@ -134,7 +134,7 @@ body .container {
    /*  margin-left: 15%; */
 }
 .mainpage-section {
-    margin-bottom: 40px;
+    margin-bottom: 30px;
 }
 .mainpage-section img{
 	width:100%;
@@ -152,7 +152,7 @@ input[type="button"].red-button {
 .account {
     color: #fff;
     text-align: center;
-    margin: 15px 0 0 0;
+    margin: 20px 0 0 0;
     font-size: 15px;
     font-weight: 600;
 }
@@ -222,7 +222,7 @@ input[type="button"].red-button {
 #topbar {
     background: #086a79;
     color: #fff;
-    padding: 20px 15px;
+    padding: 18px 0;
     font-weight: 600;
 }
 .registertop {
