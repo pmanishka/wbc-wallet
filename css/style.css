@@ -61,7 +61,7 @@ input:-webkit-autofill {
 body .container {
     float: left;
     width: 100%;
-	padding:47px 0 50px 0;
+	padding:40px 0 50px 0;
 	overflow:hidden;
 }
 #top_header {
@@ -343,6 +343,22 @@ input[type="button"].red-button {
 	}
 	.input-field {
 		padding: 10px 10px;
+	}
+	.forgot-password{
+		max-width:95%;
+	}
+}
+@media screen and (min-width: 310px) and (max-width: 319px) {
+	.input-field input {
+		background: url(../images/edit_text_back.png) no-repeat;
+		color: #ddd;
+		padding: 15px 13px;
+		border: 0px;
+		width: 100%;
+		font-size: 17px;
+	}
+	.input-field {
+		padding: 10px 6px;
 	}
 	.forgot-password{
 		max-width:95%;
