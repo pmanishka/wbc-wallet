@@ -330,6 +330,12 @@ input[type="button"].red-button {
 	}
 }
 @media screen and (min-width: 320px) and (max-width: 350px) {
+	.logo {
+		padding: 18px 10px;
+	}
+	.logo .logo-text{
+		font-size:15px;
+	}
 	.input-field input {
 		background: url(../images/edit_text_back.png) no-repeat;
 		color: #ddd;
