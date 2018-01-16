@@ -163,6 +163,7 @@ input[type="button"].red-button {
 .login-form {
     text-align: center;
     margin-top: 40px;
+	margin-bottom: 36px;
 }
 .darkblue-button {
     text-align: center;
@@ -175,7 +176,7 @@ input[type="button"].red-button {
     text-align: center;
 }
 .input-field {
-	padding: 10px 58px;
+	padding: 10px 20%;
     margin-top: 10px;
 }
 .input-field input {
