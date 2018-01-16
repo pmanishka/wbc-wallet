@@ -176,7 +176,7 @@ input[type="button"].red-button {
     text-align: center;
 }
 .input-field {
-	padding: 10px 20%;
+	padding: 10px 12%;
     margin-top: 10px;
 }
 .input-field input {
@@ -212,7 +212,7 @@ input[type="button"].red-button {
 .forgot-password {
     text-align: right;
     margin-top: 10px;
-    max-width: 79%;
+    max-width: 84%;
     width: 100%;
 }
 .forgot-password span {
@@ -275,7 +275,7 @@ input[type="button"].red-button {
 
 /*------- Media Screen --------*/
 
-@media screen and (max-width: 420px) {
+@media screen and (min-width: 361px) and (max-width: 420px) {
     .logo {
 		float: left;
 		width: 100%;
@@ -291,15 +291,15 @@ input[type="button"].red-button {
 		padding: 10px 5px;
 	}
 	.forgot-password {
-		max-width: 95%;
+		max-width: 97% !important;
 	}
 }
-@media screen and (max-width: 491px) {
+@media screen and (min-width: 421px) and (max-width: 491px) {
 	.forgot-password {
 		max-width: 86%;
 	}
 }
-@media screen and (max-width: 480px) {
+@media screen and (min-width: 421px) and (max-width: 480px) {
     .logo {
 		float: left;
 		width: 100%;
