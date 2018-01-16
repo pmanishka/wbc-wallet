@@ -285,10 +285,10 @@ input[type="button"].red-button {
 	}
 	.input-field input{
 		max-width:100%;
-		background: url(../images/edit_text_back.png) no-repeat;
+		background: url(../images/edit_text_back-med.png) no-repeat;
 	}
 	.input-field {
-		padding: 10px 25px;
+		padding: 3px 13px;
 	}
 	.forgot-password{
 		max-width:90%;
