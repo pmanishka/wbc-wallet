@@ -254,20 +254,27 @@ input[type="button"].red-button {
     margin-top: 40px;
 }
 .register-form .input-button {
-    margin-top: 110px;
+    margin-top: 85px;
     margin-bottom: 40px;
+}
+.inner-page .input-field {
+    width: 93%;
+    margin-left: 15px;
 }
 .green-button {
     margin-top: 25px;
     background: url('../images/dark_green.png') no-repeat center;
 }
+.inner-page .input-field.username {
+	margin-top: -10px;
+}
 .green-button input[type="button"] {
     background: none;
     border: 0;
     color: #fff;
-    font-size: 15px;
-    font-weight: 600;   
-	padding: 30px;
+    font-size: 17px;
+    font-weight: 500;
+    padding: 27px;
 }
 .congratulations-msg .msg span {
     color: #aefd36;
