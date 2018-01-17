@@ -58,6 +58,9 @@ input:-webkit-autofill {
     max-width: 600px;
     background: #000;
 }
+body{
+	background:#000;
+}
 body .container {
     float: left;
     width: 100%;
@@ -228,17 +231,23 @@ input[type="button"].red-button {
 .darkblue-button1 a{color:#fff; text-align:center;}
 /*------- Register Page --------*/
 #topbar {
-    background: #086a79;
-    color: #fff;
-    padding: 20px 0;
-    font-weight: 600;
+	background: #086a79;
+	color: #fff;
+	padding: 20px 20px;
+	/* font-weight: 600; */
+	font-size: 20px;
 }
 .registertop {
-    color: #fff;
-    border-bottom: 1px solid #fff;
-    padding-bottom: 20px;
-    text-align: center;
-    font-weight: 600;
+    color: #d9fae2;
+	border-bottom: 1px solid #fff;
+	padding-bottom: 15px;
+	text-align: center;
+	font-size: 19px;
+	margin-top: -10px;
+}
+.inner-page #topbar{
+	padding:15px 20px;
+	margin-bottom: 9px;
 }
 .register-form {
     text-align: center;
@@ -277,7 +286,75 @@ input[type="button"].red-button {
 .user-avalibility-msg{
 	color:#fff;
 }
+.mobile-input-field #mobileno {
+    width: 100%;
+    background: transparent;
+    border-bottom: 1px solid #fff;
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    font-size: 21px;
+    padding: 4px 3px;
+	color:#fff;
+	text-align:center;
+}
+.mobilecode {
+	width: 12%;
+	float: left;
+	padding: 0;
+}
+.mobile-input-field {
+    width: 60%;
+    float: left;
+}
+.mobilecode input {
+    background: transparent;
+    color: #fff;
+    border-bottom: 1px solid #fff;
+    border-left: 0;
+    border-right: 0;
+    border-top: 0;
+    font-size: 21px;
+    padding: 4px 3px;
+    width:100%;
+}
+.mobile-label{
+	margin-bottom:30px;
+}
+.mobile-label label {
+	color: #fff;
+	font-size: 17px;
+}
+.verification-text {
+	color: #fff;
+	font-size: 11px;
+	text-align: right;
+	width: 79%;
+	float: left;
+	margin-top: 5px;
+}
 
+.register-form .input-button.arrow-button {
+
+    float: left;
+    width: 11%;
+    margin: 0px;
+    background: #fff;
+    padding: 4px;
+    margin-left: 20px;
+
+}
+.mobile-verify {
+    width: 98%;
+    margin: 10px 8%;
+}
+.arrow-button input {
+    background: url('../images/next_arrow.png') no-repeat;
+    border: 0;
+    color: transparent;
+    font-size: 22px;
+    width: 100%;
+}
 /*------- Media Screen --------*/
 @media screen and (max-width: 360px) and (min-width: 351px) {
 	.logo{

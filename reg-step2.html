@@ -27,7 +27,7 @@ jQuery( document ).ready(function() {
 </head>
 <body>
 
-<div id="main_wrapper">
+<div id="main_wrapper" class="inner-page">
 	<div class="main-container">
 	<div id="topbar">
 		Step 2
@@ -44,21 +44,22 @@ jQuery( document ).ready(function() {
 		</div>
 		<div class="register-form">
 			<form method="post">
-				<div class="input-field">
+				<div class="mobile-label">
 					<label>Enter Mobile Verification</label>
-					<input type="text" name="mobileno" id="mobileno" placeholder="Enter Mobile Verification"/>
 				</div>
-				<div class="congratulations-msg" style="display:none;">
-					<div class="msg">
-						<img src="images/done.png"/><br/>
-						Congratulations! <br/> Username is available
+				<div class="mobile-verify">
+					<div class="mobilecode">
+						<input type="text" readonly value="+91"/>
 					</div>
-					<div class="red-button">
-						<input type="button" class="next" name="submit" value="Next Step"/>
+					<div class="mobile-input-field">
+						<input type="text" name="mobileno" id="mobileno"/>
 					</div>
+					<div class="input-button arrow-button">
+						<input type="button" name="submit" value="Check Availability"/>
+					</div>	
 				</div>
-				<div class="input-button green-button">
-					<input type="button" name="submit" value="Check Availability"/>
+				<div class="verification-text">
+					For your verification and update.
 				</div>
 			</form>
 		</div>
