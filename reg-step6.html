@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>World Bank of Cryptocurrencies</title>
+<link rel="stylesheet" type="text/css" href="css/style.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="js/jquery.min.js"></script>
+
+<script>
+var contentType ="application/x-www-form-urlencoded; charset=utf-8";
+if(window.XDomainRequest){contentType = "text/plain";}
+jQuery.support.cors = true;
+
+jQuery( document ).ready(function() {
+	
+	jQuery('input[name="submit"]').click(function(){
+		window.location='reg-step6.html';
+	});
+		
+});
+
+</script>
+</head>
+<body>
+
+<div id="main_wrapper" class="inner-page">
+	<div class="main-container">
+	<div id="topbar">
+		<img src="images/back_arrow.png"/>Step 5
+	</div>
+	<div id="top_header">
+		<div class="logo">
+			<div class="logo-img"><img src="images/gif_logo.gif"></div>
+			<div class="logo-text">World Bank of Cryptocurrencies</div>
+		</div>
+	</div>
+	
+	<div class="container">
+		<div class="registertop">
+			Enter Security PIN
+		</div>
+		
+		<div class="register-form reg-step4">
+			<form method="post">
+				<div class="otp-textbox"><input class="otp-input" name="otp-verify"/></div>
+				<div class="green-button">
+					<input type="button" class="next" name="submit" value="Don't Remember PIN"/>
+				</div>
+			</form>
+			
+		</div>
+	</div>
+</div>
+</body>
+</html>

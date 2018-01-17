@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>World Bank of Cryptocurrencies</title>
+<link rel="stylesheet" type="text/css" href="css/style.css">
+<link rel="stylesheet" href="css/jquery.mmenu.all.css" />
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="js/jquery.min.js"></script>
+<script src="js/jquery.mmenu.all.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$('nav#menu').mmenu();
+	});
+</script>
+<script>
+var contentType ="application/x-www-form-urlencoded; charset=utf-8";
+if(window.XDomainRequest){contentType = "text/plain";}
+jQuery.support.cors = true;
+
+jQuery( document ).ready(function() {
+	jQuery('.otp-verify').hide();
+	jQuery('.arrow-button input[name="submit"]').click(function(){
+		var mobileno = jQuery('.mobileno').val();
+		if(mobileno != '')
+		{
+			jQuery('.otp-verify').show();
+		}
+		jQuery('.otp-resend').click(function(){
+			window.location.href = 'reg-step3.html';
+		});
+	});
+		
+});
+
+</script>
+</head>
+<body>
+
+<div id="main_wrapper" class="inner-page">
+	<div class="main-container">
+	<div id="topbar" class="navigation">
+		
+			<div class="header">
+				<a href="#menu"><span></span></a>
+			</div>
+			<nav id="menu">
+				<ul>
+					<li><a href="#"><img src="images/home.png"> Home</a></li>
+					<li><a href="#"><img src="images/home.png"> Digi Card</a></li>
+					<li><a href="#contact"><img src="images/setting.png"> Setting</a></li>
+
+					<li class="Divider">Communicate</li>
+					<li><a href="advanced.html"><img src="images/setting.png"> Support</a></li>
+				</ul>
+			</nav>
+		<div class="header-card">Digi Card</div>
+		<div class="notification"><img src="images/notification_title_menu.png"/></div>
+	</div>
+	<div class="container">
+		<div class="registertop">
+			2. Mobile Verification
+		</div>
+		<div class="register-form">
+			<form method="post">
+				<div class="mobile-label">
+					<label>Enter Mobile Verification</label>
+				</div>
+				<div class="mobile-verify">
+					<div class="mobilecode">
+						<input type="text" readonly value="+91"/>
+					</div>
+					<div class="mobile-input-field">
+						<input type="text" name="mobileno" id="mobileno"/>
+					</div>
+					<div class="input-button arrow-button">
+						<input type="button" name="submit" value="Check Availability"/>
+					</div>	
+				</div>
+				<div class="verification-text">
+					For your verification and update.
+				</div>
+				<div class="otp-verify">
+					<div class="otp-msg">OTP is send to given number <span class="mobileresult"></span></div>
+					<div class="otp-textbox"><input class="otp-input" name="otp-verify"/></div>
+					<div class="otp-resend"><img src="images/refresh.png">Resend OTP</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+</body>
+</html>

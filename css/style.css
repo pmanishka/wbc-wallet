@@ -478,6 +478,49 @@ input[type="button"].red-button {
 .register-form.reg-step4 .input-field {
 	padding: 3px 12px;
 }
+
+
+/* ------------  Header Menu -------------*/
+nav:not(.mm-menu)
+{
+	display: none;
+}
+.header {
+	float: left;
+}
+.header a
+{
+	display: block;
+	width: 42px;
+	height: 18px;
+	padding: 3px 11px;
+}
+#topbar.navigation {
+	width: 100%;
+	float: left;
+}
+.header-card {
+	margin-left: 21px;
+	float: left;
+	width: 56%;
+}
+.header a:before,
+.header a:after
+{
+	content: '';
+	display: block;
+	background: #fff;
+	height: 2px;
+}
+.header a span
+{
+	background: #fff;
+	display: block;
+	height: 2px;
+	margin: 6px 0;
+}
+			
+			
 /*------- Media Screen --------*/
 @media screen and (max-width: 360px) and (min-width: 351px) {
 	.logo{

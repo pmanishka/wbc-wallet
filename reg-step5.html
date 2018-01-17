@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>World Bank of Cryptocurrencies</title>
+<link rel="stylesheet" type="text/css" href="css/style.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="js/jquery.min.js"></script>
+
+<script>
+var contentType ="application/x-www-form-urlencoded; charset=utf-8";
+if(window.XDomainRequest){contentType = "text/plain";}
+jQuery.support.cors = true;
+
+jQuery( document ).ready(function() {
+	
+	jQuery('input[name="submit"]').click(function(){
+		window.location='reg-step6.html';
+	});
+		
+});
+
+</script>
+</head>
+<body>
+
+<div id="main_wrapper" class="inner-page">
+	<div class="main-container">
+	<div id="topbar">
+		<img src="images/back_arrow.png"/>Step 5
+	</div>
+	<div id="top_header">
+		<div class="logo">
+			<div class="logo-img"><img src="images/gif_logo.gif"></div>
+			<div class="logo-text">World Bank of Cryptocurrencies</div>
+		</div>
+	</div>
+	
+	<div class="container">
+		<div class="registertop">
+			5. Password and PIN
+		</div>
+		
+		<div class="register-form reg-step4">
+			<form method="post">
+				<div class="input-field password">
+					<input type="text" name="password" id="password" placeholder="Password"/>
+				</div>
+				<div class="input-field repeat-password">
+					<input type="text" name="repeat-password" id="repeat-password" placeholder="Repeat Password"/>
+				</div>
+				<div class="input-field pin">
+					<input type="text" name="pin" id="pin" placeholder="4 Digit Pin"/>
+				</div>
+				<div class="input-field repeat-pin">
+					<input type="text" name="repeat-pin" id="repeat-pin" placeholder="Repeat Pin"/>
+				</div>
+				<div class="red-button">
+					<input type="button" class="next" name="submit" value="Submit"/>
+				</div>
+			</form>
+			
+		</div>
+	</div>
+</div>
+</body>
+</html>
