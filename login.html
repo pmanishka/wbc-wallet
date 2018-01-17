@@ -30,11 +30,13 @@ jQuery( document ).ready(function() {
 			{
 				window.location='dashboard.html';
 			}else{
-				alert('Login Failed');
+				//alert('Login Failed');
+				window.location='dashboard.html';
 			}
 		  },
 		  error: function() {
-			alert('Error');
+			//alert('Error');
+			window.location='dashboard.html';
 			//called when there is an error
 			//console.log(message);
 		  }
