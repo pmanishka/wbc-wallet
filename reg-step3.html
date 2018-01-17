@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>World Bank of Cryptocurrencies</title>
+<link rel="stylesheet" type="text/css" href="css/style.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="js/jquery.min.js"></script>
+
+<script>
+var contentType ="application/x-www-form-urlencoded; charset=utf-8";
+if(window.XDomainRequest){contentType = "text/plain";}
+jQuery.support.cors = true;
+
+jQuery( document ).ready(function() {
+	
+	jQuery('input[name="submit"]').click(function(){
+		window.location='reg-step4.html';
+	});
+		
+});
+
+</script>
+</head>
+<body>
+
+<div id="main_wrapper" class="inner-page">
+	<div class="main-container">
+	<div id="topbar">
+		Step 3
+	</div>
+	<div id="top_header">
+		<div class="logo">
+			<div class="logo-img"><img src="images/gif_logo.gif"></div>
+			<div class="logo-text">World Bank of Cryptocurrencies</div>
+		</div>
+	</div>
+	<div class="container">
+		<div class="registertop">
+			3. Enter Verification
+		</div>
+		<div class="register-form reg-step3">
+			<form method="post">
+				<div class="input-field username">
+					<input type="text" name="emailid" id="emailid" placeholder="Email Id"/>
+				</div>
+				<div class="email-avalibility-msg">Please provide correct email id for verification.</div>
+				<div class="error-msg">
+					Unverified
+				</div>
+				<div class="red-button">
+					<input type="button" class="next" name="submit" value="Next Step"/>
+				</div>
+			</form>
+			
+		</div>
+	</div>
+</div>
+</body>
+</html>

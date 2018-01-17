@@ -12,11 +12,14 @@ if(window.XDomainRequest){contentType = "text/plain";}
 jQuery.support.cors = true;
 
 jQuery( document ).ready(function() {
-	
-	jQuery('input[name="submit"]').click(function(){
-		jQuery('.green-button').hide();
-		jQuery('.congratulations-msg').show();
-		jQuery('.congratulations-msg .next').click(function(){
+	jQuery('.otp-verify').hide();
+	jQuery('.arrow-button input[name="submit"]').click(function(){
+		var mobileno = jQuery('.mobileno').val();
+		if(mobileno != '')
+		{
+			jQuery('.otp-verify').show();
+		}
+		jQuery('.otp-resend').click(function(){
 			window.location.href = 'reg-step3.html';
 		});
 	});

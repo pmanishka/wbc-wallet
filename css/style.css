@@ -374,7 +374,7 @@ input[type="button"].red-button {
 .otp-textbox .otp-input {
 	background: transparent;
 	border: 0;
-	width: 73%;
+	width: 86%;
 	color: #fff;
 	text-align: center;
 	letter-spacing: 45px;
@@ -403,6 +403,80 @@ input[type="button"].red-button {
 }
 .otp-resend img {
     width: 60%;
+}
+.email-avalibility-msg {
+	font-size: 12px;
+	text-transform: capitalize;
+}
+.reg-step3 .error-msg {
+	color: #de5130;
+	font-size: 15px;
+	font-weight: bold;
+	margin-top: 35px;
+}
+.reg-step3 .red-button{
+	margin-top:5px;
+}
+.aadharcard-scanner {
+	width: 100%;
+	float: left;
+	text-align: center;
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+.register-form.reg-step3 {
+	float: left;
+	width: 100%;
+}
+.aadharcard-scanner .scan-text {
+	color: #99cc00;
+	font-weight: bold;
+	font-size: 18px;
+	margin-left: 10px;
+	margin-top: 20px;
+	width: 57%;
+	float: left;
+	text-align: left;
+}
+.scan-img {
+	width: 39%;
+	float: left;
+	text-align: right;
+}
+
+.or {
+	position: relative;
+	width: 100%;
+	float: left;
+}
+.or-text {
+	/* z-index: 999; */
+	max-width: 35px;
+	border: 1px solid #000;
+	color: #de5130;
+	padding: 9px;
+	border-radius: 50%;
+	position: absolute;
+	bottom: -17px;
+	left: 43%;
+	font-size: 12px;
+	background: #000;
+}
+#topbar img {
+	width: 20px;
+	margin-right: 40px;
+}
+.or-line {
+	border-bottom: 1px solid #fff;
+	width: 100%;
+}
+.register-form.reg-step4 {
+	width: 100%;
+	float: left;
+	margin-top: 20px;
+}
+.register-form.reg-step4 .input-field {
+	padding: 3px 20px;
 }
 /*------- Media Screen --------*/
 @media screen and (max-width: 360px) and (min-width: 351px) {

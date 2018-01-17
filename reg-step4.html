@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>World Bank of Cryptocurrencies</title>
+<link rel="stylesheet" type="text/css" href="css/style.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="js/jquery.min.js"></script>
+
+<script>
+var contentType ="application/x-www-form-urlencoded; charset=utf-8";
+if(window.XDomainRequest){contentType = "text/plain";}
+jQuery.support.cors = true;
+
+jQuery( document ).ready(function() {
+	
+	jQuery('input[name="submit"]').click(function(){
+		window.location='reg-step5.html';
+	});
+		
+});
+
+</script>
+</head>
+<body>
+
+<div id="main_wrapper" class="inner-page">
+	<div class="main-container">
+	<div id="topbar">
+		<img src="images/back_arrow.png"/>Step 4
+	</div>
+	<div id="top_header">
+		<div class="logo">
+			<div class="logo-img"><img src="images/gif_logo.gif"></div>
+			<div class="logo-text">World Bank of Cryptocurrencies</div>
+		</div>
+	</div>
+	<div class="inner-container">
+		<div class="aadharcard-scanner">
+			<div class="scan-img"><img src="images/scan_aadhar.png"/></div>
+			<div class="scan-text">Scan Aadhar Card</div>
+		</div>
+		<div class="or">
+			<div class="or-line"></div>
+			<div class="or-text">OR</div>
+		</div>
+		<div class="register-form reg-step4">
+			<form method="post">
+				<div class="input-field fullname">
+					<input type="text" name="emailid" id="emailid" placeholder="Your Full Name"/>
+				</div>
+				<div class="input-field dob">
+					<input type="text" name="dob" id="dob" placeholder="Dob"/>
+				</div>
+				<div class="input-field address">
+					<input type="text" name="address" id="address" placeholder="Address"/>
+				</div>
+				<div class="input-field city">
+					<input type="text" name="city" id="city" placeholder="City"/>
+				</div>
+				<div class="input-field state">
+					<input type="text" name="state" id="state" placeholder="State"/>
+				</div>
+				<div class="input-field country">
+					<input type="text" name="country" id="country" placeholder="Country"/>
+				</div>
+				<div class="input-field postalcode">
+					<input type="text" name="postalcode" id="postalcode" placeholder="Postal code(Pin)"/>
+				</div>
+				<div class="red-button">
+					<input type="button" class="next" name="submit" value="Next Step"/>
+				</div>
+			</form>
+			
+		</div>
+	</div>
+</div>
+</body>
+</html>
