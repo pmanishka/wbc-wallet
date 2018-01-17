@@ -258,8 +258,7 @@ input[type="button"].red-button {
     margin-bottom: 40px;
 }
 .inner-page .input-field {
-    width: 93%;
-    margin-left: 15px;
+    width: 100%;
 }
 .green-button {
     margin-top: 25px;
