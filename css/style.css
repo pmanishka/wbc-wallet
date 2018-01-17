@@ -60,6 +60,7 @@ input:-webkit-autofill {
 }
 body{
 	background:#000;
+	color: #fff;
 }
 body .container {
     float: left;
@@ -265,7 +266,7 @@ input[type="button"].red-button {
     background: url('../images/dark_green.png') no-repeat center;
 }
 .inner-page .input-field.username {
-	margin-top: -10px;
+	margin-top: -2px;
 }
 .green-button input[type="button"] {
     background: none;
@@ -360,6 +361,48 @@ input[type="button"].red-button {
     color: transparent;
     font-size: 23px;
     width: 100%;
+}
+.otp-verify {
+	width: 100%;
+	float: left;
+	margin-top: 40px;
+}
+.otp-verify .otp-msg {
+    color: #ff0000;
+    font-size: 16px;
+}
+.otp-textbox .otp-input {
+	background: transparent;
+	border: 0;
+	width: 73%;
+	color: #fff;
+	text-align: center;
+	letter-spacing: 45px;
+	font-size: 28px;
+	padding: 0 21px;
+}
+.otp-textbox {
+    margin-top: 18px;
+}
+.otp-textbox::after {
+	content: "_________ _________ _________ ________";
+	line-height: 1em;
+	width: 100%;
+	float: left;
+	clear: both;
+}
+.otp-resend {
+	width: 100%;
+	margin-top: 30px;
+	max-width: 28%;
+	display: inline-block;
+	color: #5cc953;
+	font-weight: 600;
+	font-size: 15px;
+	letter-spacing: 0.7px;
+}
+.otp-resend img {
+    width: 60%;
 }
 /*------- Media Screen --------*/
 @media screen and (max-width: 360px) and (min-width: 351px) {
