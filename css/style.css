@@ -229,7 +229,7 @@ input[type="button"].red-button {
     margin-top: 25px;
     background: url(../images/dark_red.png) no-repeat center;
 	background-size: 350px 112px;
-	padding-right:50px;
+	
 }
 .red-button input[type="button"] {
     background: none;
@@ -241,7 +241,7 @@ input[type="button"].red-button {
 .forgot-password {
     text-align: right;
     margin-top: 10px;
-    max-width: 79%;
+    max-width: 77%;
     width: 100%;
 }
 .forgot-password span {
