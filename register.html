@@ -15,35 +15,36 @@ jQuery( document ).ready(function() {
 	
 	jQuery('input[name="submit"]').click(function(){
 		var username=jQuery("#username").val();
-		
+		jQuery('.user-avalibility-msg').empty();
 			
 		if(jQuery("#username").val() != ''){
-		//alert(username);
 			//jQuery('.green-button').hide();
 			//jQuery('.congratulations-msg').show();
 			jQuery('.user-avalibility-msg').append('');
 			jQuery('.user-avalibility-msg').hide();
 		
 			$.ajax({
-			  url: "http://10.0.0.66/Regular/cryptocurrency/api",
+			  url: "http://10.0.0.66/Regular/cryptocurrency/api/registerName",
 			  type: 'POST',
 			  data: {q:'registerName',username:username}, 
 			  crossDomain: true,   
 			  success: function(data) {
-				alert(data);
-				/*alert('success');
-				jQuery('.user-avalibility-msg').append('Username is available');
-				jQuery('.green-button').hide();
-				jQuery('.congratulations-msg').show();*/
-				window.location='reg-step2.html';
+				//alert(data);
+				if(data['status'] == 1)
+				{
+					jQuery('.user-avalibility-msg').append('Username is available');
+					jQuery('.green-button').hide();
+					jQuery('.congratulations-msg').show();
+					window.location='reg-step2.html';
+				}else{
+					//alert('Login Failed');
+					jQuery('.user-avalibility-msg').append('Username is not available');
+					jQuery('.green-button').show();
+					jQuery('.congratulations-msg').hide();
+				}
 			  },
 			  error: function() {
 				 alert('failed');
-				/*jQuery('.user-avalibility-msg').append('Error');
-				jQuery('.green-button').show();
-				jQuery('.congratulations-msg').hide();
-				jQuery('.error-msg').hide();*/
-				window.location='reg-step2.html';
 			  }
 			});
 		

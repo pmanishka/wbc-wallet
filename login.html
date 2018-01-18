@@ -3,6 +3,7 @@
 <head>
 <title>World Bank of Cryptocurrencies</title>
 <link rel="stylesheet" type="text/css" href="css/style.css">
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="js/jquery.min.js"></script>
 
@@ -18,27 +19,25 @@ jQuery( document ).ready(function() {
 		var password=jQuery("#password").val();
 		
 		$.ajax({
-		  url: "https://4xwin.com/MobileApp/login",
-		  //url: "http://10.0.0.66/Regular/cryptocurrency/api/login",
+		  //url: "https://4xwin.com/MobileApp/login",
+		  url: "http://10.0.0.66/Regular/cryptocurrency/api/login",
 		  type: 'POST',
 		  data: {q:'checklogin',user_id:user_id,password:password}, 
 		  crossDomain: true,   
 		  success: function(data) {
-			//called when successful
+
 			//alert('Login Successfully');
 			if(data['status'] == 1)
 			{
+				//alert('Login Success');
 				window.location='dashboard.html';
 			}else{
-				//alert('Login Failed');
-				window.location='dashboard.html';
+				alert('Login Failed');
+				//window.location='dashboard.html';
 			}
 		  },
 		  error: function() {
-			//alert('Error');
-			window.location='dashboard.html';
-			//called when there is an error
-			//console.log(message);
+			alert('Error');
 		  }
 		});
 	});

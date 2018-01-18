@@ -89,16 +89,20 @@ body .container {
     width: 100%;
     border-bottom: 1px solid #fff;
     padding: 14px 0px;
+	
 }
 .logo .logo-img {
     max-height: 75px;
     float: left;
     text-align: right;
     width: 24%;
+	
+	
 }
 .logo .logo-img img{
 	height:100%;
 	max-height:50px;
+
 }
 .logo .logo-text {
     color: #d9fae2;
@@ -110,6 +114,8 @@ body .container {
     letter-spacing: 0.2px;
     text-align: left;
     width: 76%;
+	font-family:Sans-Serif Condensed;
+	
 }
 .container {
     float: left;
@@ -134,11 +140,14 @@ body .container {
     /* text-align: center; */
     color: #fff;
     padding: 10px;
-	font-size:15px;
+	font-size:14px;
 }
 .home-text-main {
     color: #fff;
-    font-size: 27px;
+    font-size: 30px;
+	font-family:Sans-Serif Condensed;
+	font-weight:bold;
+	
 }
 /* --------- Main Page Style -----------*/
 .darkblue-button1 {
@@ -148,6 +157,8 @@ body .container {
     /* margin: 0 auto; */
     padding: 30px 0px;
     color: #fff;
+	font-family:Sans-Serif Condensed;
+
    /*  margin-left: 15%; */
 }
 .mainpage-section {
@@ -187,6 +198,7 @@ input[type="button"].red-button {
     box-sizing: border-box;
     background: url(../images/dark_blue.png) no-repeat center;
 	padding: 30px;
+	
 }
 .darkblue-button span {
     color: #fff;
@@ -239,7 +251,7 @@ input[type="button"].red-button {
 #topbar {
 	background: #086a79;
 	color: #fff;
-	padding: 20px 20px;
+	padding: 10px 10px;
 	/* font-weight: 600; */
 	font-size: 20px;
 }
@@ -448,7 +460,10 @@ input[type="button"].red-button {
 	float: left;
 	text-align: right;
 }
-
+#topbar img {
+	width: 20px;
+	margin-right: 40px;
+}
 .or {
 	position: relative;
 	width: 100%;
@@ -466,10 +481,6 @@ input[type="button"].red-button {
 	left: 43%;
 	font-size: 12px;
 	background: #000;
-}
-#topbar img {
-	width: 20px;
-	margin-right: 40px;
 }
 .or-line {
 	border-bottom: 1px solid #ccc;
@@ -579,7 +590,8 @@ nav:not(.mm-menu)
 	margin-right: 25px;
 }
 .profile-menu .mm-listitem img {
-    margin-right: 21px;
+	margin-right: 21px;
+	width: 28px;
 }
 
 
@@ -628,11 +640,11 @@ nav:not(.mm-menu)
 	color: #fff;
 	border: 0;
 	padding: 10px;
-	font-size: 18px;
+	font-size: 17px;
 	width: 46%;
 }
 .w3-container {
-	padding: 10px;
+    padding: 10px 30px;
 }
 .ptxt{
 	font-family:Roboto;
@@ -670,6 +682,29 @@ nav:not(.mm-menu)
 }
 .setting-panel a{
 	color:#fff;
+}
+.trans {
+	position: relative;
+	width: 100%;
+	float: left;
+	margin-top: 20px;
+	margin-bottom: 40px;
+}
+.trans-text {
+	/* z-index: 999; */
+	max-width: 50%;
+	border: 1px solid #000;
+	color: #fff;
+	padding: 9px;
+	position: absolute;
+	bottom: -18px;
+	left: 31%;
+	font-size: 14px;
+	background: #000;
+}
+.trans-line {
+	border-bottom: 1px solid #737373;
+	width: 100%;
 }
 
 /*------- Media Screen --------*/
