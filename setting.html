@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>World Bank of Cryptocurrencies</title>
+<link rel="stylesheet" type="text/css" href="css/style.css">
+<link rel="stylesheet" href="css/jquery.mmenu.all.css" />
+<link href="css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+<link href="css/font-awesome.css" rel="stylesheet">
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="js/jquery.min.js"></script>
+<script src="js/jquery.mmenu.all.js"></script>
+<script type="text/javascript">
+$(function() {
+	$('nav#menu').mmenu();
+	$( "nav#menu .mm-panels" ).addClass( "profile-menu" );
+});
+
+</script>
+<script>
+var contentType ="application/x-www-form-urlencoded; charset=utf-8";
+if(window.XDomainRequest){contentType = "text/plain";}
+jQuery.support.cors = true;
+
+</script>
+</head>
+<body>
+
+<div id="main_wrapper" class="inner-page">
+	<div class="main-container">
+	<div id="topbar" class="navigation">
+		
+			<div class="header">
+				<a href="#menu"><span></span></a>
+			</div>
+			<nav id="menu">
+				<ul>
+					
+					<li class="menutop">
+						<span class="profile-icon">P</span>
+						<span class="name">Priyanka</span>
+						<span class="email">p.grover@intouchgroup.in<label class="verify">Unverified</label></span>
+						
+					</li>
+					
+					<li><a href="#"><i class="fa fa-home fa-flip-horizontal fa-2x"></i>  <span style="font-family:Roboto-Medium; ">Home</span></a></li>
+					<li><a href="#"><img src="images/prepaid-card-in-a-hand.png">  <span>Digi Card</span></a></li>
+					<li><a href="#contact"><i class="fa fa-cog fa-2x" aria-hidden="true"></i> <span>Setting</span></a></li>
+
+					<li class="Divider">Communicate</li>
+					<li><a href="advanced.html"><i class="fa fa-cog fa-2x" aria-hidden="true"></i>  Support</a></li>
+				</ul>
+			</nav>
+		<div class="header-card">Setting</div>
+		<div class="notification"><img src="images/notification_title_menu.png"/></div>
+	</div>
+	<div class="dashboard-container">
+		<div class="spanel">
+			<div class="setting-panel">
+				<div class="txt"><a href="update-profile.html">Update Your Profile</a></div>
+				<div class="icon"><a href="update-profile.html"><img src="images/user_white.png"></a></div>
+			</div>
+		</div>
+		<div class="spanel">
+		<div class="setting-panel">
+			<div class="txt">General Settings</div>
+			<div class="icon"><img src="images/setting.png"></div>
+		</div>
+		</div>
+		<div class="spanel">
+		<div class="setting-panel">
+			<div class="txt">Frequently Asked Questions</div>
+			<div class="icon"><img src="images/faq.png"></div>
+		</div>
+		</div>
+		<div class="spanel">
+		<div class="setting-panel">
+			<div class="txt">About App</div>
+			<div class="icon"><img src="images/i_icon.png"></div>
+		</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>

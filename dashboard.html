@@ -4,15 +4,19 @@
 <title>World Bank of Cryptocurrencies</title>
 <link rel="stylesheet" type="text/css" href="css/style.css">
 <link rel="stylesheet" href="css/jquery.mmenu.all.css" />
-
+<link href="css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+<link href="css/font-awesome.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Roboto:700" rel="stylesheet">
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="js/jquery.min.js"></script>
 <script src="js/jquery.mmenu.all.js"></script>
 <script type="text/javascript">
-	$(function() {
-		$('nav#menu').mmenu();
-	});
+$(function() {
+	$('nav#menu').mmenu();
+	$( "nav#menu .mm-panels" ).addClass( "profile-menu" );
+});
+
 </script>
 <script>
 var contentType ="application/x-www-form-urlencoded; charset=utf-8";
@@ -47,12 +51,53 @@ jQuery( document ).ready(function() {
 			</div>
 			<nav id="menu">
 				<ul>
-					<li><a href="#"><img src="images/home.png"> Home</a></li>
-					<li><a href="#"><img src="images/home.png"> Digi Card</a></li>
-					<li><a href="#contact"><img src="images/setting.png"> Setting</a></li>
-
+					
+					<li class="menutop">
+						<span class="profile-icon">P</span>
+						<span class="name">Priyanka</span>
+						<span class="email">
+						<span>p.grover@intouchgroup.in</span>
+						<span class="verify">Unverified</span></span>
+						
+					</li>
+					
+					<li class="tbl">
+					<table>
+						<tr>
+							<td class="picon"><img src="images/home.png"></td>
+							<td>&nbsp;&nbsp;&nbsp;</td>
+							<td class="ptxt">Home</td>
+						</tr>
+					</table>
+					</li>
+					<li class="tbl">
+					<table>
+						<tr>
+							<td class="picon"><img src="images/prepaid-card-in-a-hand.png"></td>
+							<td>&nbsp;&nbsp;&nbsp;</td>
+							<td class="ptxt">Digi Card</td>
+						</tr>
+					</table>
+					</li>
+					<li class="tbl">
+					<table>
+						<tr>
+							<td class="picon"><img src="images/setting2.png"></td>
+							<td>&nbsp;&nbsp;&nbsp;</td>
+							<td class="ptxt">Setting</td>
+						</tr>
+					</table>
+					</li>
 					<li class="Divider">Communicate</li>
-					<li><a href="advanced.html"><img src="images/setting.png"> Support</a></li>
+					<li class="tbl">
+					<table>
+						<tr>
+							<td class="picon"><img src="images/support.png"></td>
+							<td>&nbsp;&nbsp;&nbsp;</td>
+							<td class="ptxt">Support</td>
+						</tr>
+					</table>
+					</li>
 				</ul>
 			</nav>
 		<div class="header-card">Digi Card</div>

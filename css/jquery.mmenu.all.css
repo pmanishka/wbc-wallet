@@ -252,8 +252,7 @@
     top: 0;
     left: 0;
     right: 0;
-    opacity: 1;
-    transition: opacity .4s ease
+	background:#000;
 }
 
 .mm-navbar>* {
@@ -419,7 +418,7 @@
 
 .mm-menu .mm-navbar a,
 .mm-menu .mm-navbar>* {
-    color: rgba(0, 0, 0, .3)
+    color: #fff;
 }
 
 .mm-menu .mm-btn:after,
