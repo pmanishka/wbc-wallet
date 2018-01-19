@@ -916,3 +916,19 @@ nav:not(.mm-menu)
 	}
 	.forgot-password{max-width:95%;}
 }
+
+/*-----   Dashboard ---------------*/
+
+
+.digi{
+	text-align:left;
+	    margin-left: 27px;
+    margin-top: -33px;
+    font-size: 13px;
+	
+}
+.digi-num{
+	font-size: 31px;
+    margin-left: 52px;
+	
+}
