@@ -12,12 +12,15 @@ if(window.XDomainRequest){contentType = "text/plain";}
 jQuery.support.cors = true;
 
 
-jQuery( document ).ready(function() {
+jQuery(document).ready(function() {
+var username = localStorage.getItem("username");
+//alert(username);
+
 	jQuery('.otp-verify').hide();
 	jQuery('.arrow-button input[name="submit"]').click(function(){
 		var mobile = jQuery('#mobileno').val();
 		jQuery('.mobileresult').empty();
-
+		//var otpres= '';
 			$.ajax({
 			  url: "http://10.0.0.66/Regular/cryptocurrency/api/registerationMobileVerification",
 			  type: 'POST',
@@ -26,17 +29,31 @@ jQuery( document ).ready(function() {
 			  success: function(data) {
 				if(data['status'] == 1)
 				{
+					var otpval= (data['otp']);
+					
 					jQuery('.otp-verify').show();
 					jQuery('.mobileresult').append(mobile);
-			
+					//jQuery('#mobileno').attr("value="+mobile)
+					var otpres = jQuery('input[name="otp-verify"]').val();
+					
+					jQuery('input[name="otp-verify"]').change(function() {
+						var otpres = jQuery('input[name="otp-verify"]').val();
+						if(otpres == otpval){
+							window.location='reg-step3.html';
+						}else{
+							alert('Please check otp again else resend otp');
+						}
+					});
+					
 				}else{
 					alert('verification failed');
 				}
 			  },
 			  error: function() {
-				 alert('failed');
+				 alert('Failed');
 			  }
 		});
+		//alert(otpres);
 			
 	});
 		
@@ -71,10 +88,10 @@ jQuery( document ).ready(function() {
 						<input type="text" readonly value="+91"/>
 					</div>
 					<div class="mobile-input-field">
-						<input type="text" name="mobileno" id="mobileno"/>
+						<input type="text" name="mobileno" id="mobileno" maxlength="10"/>
 					</div>
 					<div class="input-button arrow-button">
-						<input type="button" name="submit" value="Check Availability"/>
+						<input type="button" name="submit" value="Send OTP"/>
 					</div>	
 				</div>
 				<div class="verification-text">
@@ -82,7 +99,7 @@ jQuery( document ).ready(function() {
 				</div>
 				<div class="otp-verify">
 					<div class="otp-msg">OTP is send to given number <span class="mobileresult"></span></div>
-					<div class="otp-textbox"><input class="otp-input" name="otp-verify"/></div>
+					<div class="otp-textbox"><input class="otp-input" type="password" name="otp-verify" maxlength="4"/></div>
 					<div class="otp-resend"><img src="images/refresh.png">Resend OTP</div>
 				</div>
 			</form>

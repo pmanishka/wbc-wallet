@@ -11,22 +11,28 @@ var contentType ="application/x-www-form-urlencoded; charset=utf-8";
 if(window.XDomainRequest){contentType = "text/plain";}
 jQuery.support.cors = true;
 
+
+
+
 jQuery( document ).ready(function() {
+	jQuery('.edit-username').hide();
+	jQuery('.userfailed').hide();
+	
 	
 	jQuery('input[name="submit"]').click(function(){
 	
 		var username=jQuery("#username").val();
 		
-		
-		
 		jQuery('.user-avalibility-msg').empty();
 			
 		if(jQuery("#username").val() != ''){
+		//alert('notblank');
 		
 			jQuery('.inputerror-msg').hide();
 			jQuery('.user-avalibility-msg').append('');
 			jQuery('.user-avalibility-msg').hide();
 			jQuery('.error-msg').hide();
+			
 		
 			$.ajax({
 			  url: "http://10.0.0.66/Regular/cryptocurrency/api/registerName",
@@ -37,26 +43,54 @@ jQuery( document ).ready(function() {
 				//alert(data);
 				if(data['status'] == 1)
 				{
+					jQuery('.userfailed').hide();
 					jQuery('.inputerror-msg').hide();
 					jQuery('.green-button').hide();
 					jQuery('.congratulations-msg').show();
+					
+					jQuery('.usersuccess').addClass('update');
+					jQuery('.edit-username').show();
+					
+					jQuery('.edit-username').click(function(){
+						jQuery('.edit-username').hide();
+						jQuery('#username').focus();
+						jQuery('.congratulations-msg').hide();
+						jQuery('.green-button').show();
+					});
+					
 					jQuery('.error-msg').hide();
+					localStorage.setItem('username', username);
+					//return false;
 					jQuery('.red-button input[name="submit"]').click(function(){
 						window.location='reg-step2.html';
+						
 					});
 				}else{
+				
+					
+					
 					jQuery('.inputerror-msg').hide();
 					jQuery('.error-msg').show();
 					jQuery('.green-button').show();
 					jQuery('.congratulations-msg').hide();
+					jQuery('.edit-username').hide();
 				}
 			  },
 			  error: function() {
-				 //alert('failed');
+
+				 
 			  }
 			});
 		
 		}else {
+		//alert('blank');
+			jQuery('#username').focus(function(){
+				jQuery('.usersuccess').removeClass('errmsg');
+				jQuery('.inputerror-msg').hide();
+				jQuery('.userfailed').hide();
+			});
+			jQuery('.usersuccess').addClass('errmsg');
+			jQuery('.userfailed').show();
 			jQuery('.inputerror-msg').show();
 			jQuery('.green-button').show();
 			jQuery('.congratulations-msg').hide();
@@ -86,13 +120,19 @@ jQuery( document ).ready(function() {
 		</div>
 		<div class="register-form">
 			<form method="post">
-				<div class="input-field">
-					<input type="text" name="username" id="username" placeholder="User Name"/>
+				<div class="usersuccess">
+					<div class="input-field">
+						<input required type="text" name="username" id="username" placeholder="User Name" />
+					</div>
+					<div class="edit-username">
+						<img src="images/edit_username.png"/>
+					</div>
+					<div class="userfailed">
+						<img src="images/erroralert.png"/>
+					</div>
 				</div>
 				<div class="inputerror-msg" style="display:none;">
-					<div class="msg">
-						Please Enter User Name
-					</div>
+					Please Enter User Name
 				</div>
 				<div class="congratulations-msg" style="display:none;">
 					<div class="msg">
@@ -105,7 +145,12 @@ jQuery( document ).ready(function() {
 				</div>
 				<div class="error-msg" style="display:none;">
 					<div class="msg">
-						Username is already available
+						<img src="images/error.png" height="85px" width="85px">
+						<br>
+						<br>
+						SORRY !
+						<br>
+						USERNAME IS ALREADY TAKEN TRY NEW.
 					</div>
 				</div>
 				<div class="input-button green-button">

@@ -10,11 +10,30 @@
 var contentType ="application/x-www-form-urlencoded; charset=utf-8";
 if(window.XDomainRequest){contentType = "text/plain";}
 jQuery.support.cors = true;
+var username = localStorage.getItem("username");
+var email = localStorage.getItem("email");
 
-jQuery( document ).ready(function() {
+jQuery(document).ready(function() {
 	
-	jQuery('input[name="submit"]').click(function(){
+	jQuery('.red-button input[name="submit"]').click(function(){
+		var fullname = jQuery('#fullname').val();
+		var dob = jQuery('#dob').val();
+		var address = jQuery('#address').val();
+		var city = jQuery('#city').val();
+		var state = jQuery('#state').val();
+		var country = jQuery('#country').val();
+		var postalcode = jQuery('#postalcode').val();
+		
+		var fullname = localStorage.setItem("fullname");
+		var dob = localStorage.setItem("dob");
+		var address = localStorage.setItem("address");
+		var city = localStorage.setItem("city");
+		var state = localStorage.setItem("state");
+		var country = localStorage.setItem("country");
+		var postalcode = localStorage.setItem("postalcode");
+		
 		window.location='reg-step5.html';
+			
 	});
 		
 });
@@ -46,7 +65,7 @@ jQuery( document ).ready(function() {
 		<div class="register-form reg-step4">
 			<form method="post">
 				<div class="input-field fullname">
-					<input type="text" name="emailid" id="emailid" placeholder="Your Full Name"/>
+					<input type="text" name="fullname" id="fullname" placeholder="Your Full Name"/>
 				</div>
 				<div class="input-field dob">
 					<input type="text" name="dob" id="dob" placeholder="Dob"/>
