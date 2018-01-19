@@ -208,7 +208,7 @@ input[type="button"].red-button {
 .input-field {
 	padding: 10px 19%;
     margin-top: 10px;
-	margin-bottom: 75px;
+	/* margin-bottom: 75px; */
 }
 .input-field input {
     background: url(../images/edit_text_back1.png) no-repeat center;
@@ -260,6 +260,23 @@ input[type="button"].red-button {
 	/* font-weight: 600; */
 	font-size: 20px;
 }
+
+.input-field_r {
+	padding: 10px 19%;
+    margin-top: 10px;
+	margin-bottom: 75px;
+}
+.input-field_r input {
+    background: url(../images/edit_text_back1.png) no-repeat center;
+    color: #ddd;
+    padding: 15px 15px;
+    border: 0px;
+    width: 100%;
+    font-size: 17px;
+}
+.input-field_r input::placeholder {
+    color: #9a9a9a;
+}
 .registertop {
     color: #d9fae2;
 	border-bottom: 1px solid #fff;
@@ -287,7 +304,7 @@ input[type="button"].red-button {
     width: 100%;
 }
 .green-button {
-    margin-top: 25px;
+    margin-top: 280px;
     background: url('../images/dark_green.png') no-repeat center;
 }
 .inner-page .input-field.username {
@@ -359,8 +376,8 @@ font-family:Sans-Serif Condensed;
     width: 20px;
 }
 .inputerror-msg:after {
-   bottom: 7%;
-    left: 33.5%;
+   bottom: 33%;
+    left: 30.10%;
     border: solid transparent;
     content: " ";
     position: absolute;
@@ -426,7 +443,7 @@ font-family:Sans-Serif Condensed;
 .register-form .input-button.arrow-button {
 
     float: left;
-    width: 6%;
+    width: 9%;
     margin: 0px;
     background: #fff;
     padding: 4px;
@@ -462,12 +479,13 @@ font-family:Sans-Serif Condensed;
 	letter-spacing: 45px;
 	font-size: 28px;
 	padding: 0 21px;
+	margin-left:50px;
 }
 .otp-textbox {
     margin-top: 18px;
 }
 .otp-textbox::after {
-	content: "_________ _________ _________ ________";
+	content: "________ ________ ________ _______";
 	line-height: 1em;
 	width: 100%;
 	float: left;
@@ -496,6 +514,7 @@ font-family:Sans-Serif Condensed;
 	font-size: 15px;
 	font-weight: bold;
 	margin-top: 35px;
+	text-align:center;
 }
 .reg-step3 .red-button{
 	margin-top:5px;
@@ -529,6 +548,7 @@ font-family:Sans-Serif Condensed;
 #topbar img {
 	width: 20px;
 	margin-right: 40px;
+	margin-left:40px;
 }
 .or {
 	position: relative;
@@ -559,6 +579,9 @@ font-family:Sans-Serif Condensed;
 }
 .register-form.reg-step4 .input-field {
 	padding: 3px 12px;
+}
+.reg-step3 .red-button{
+	margin-top:5px;
 }
 
 

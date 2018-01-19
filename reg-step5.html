@@ -6,20 +6,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="js/jquery.min.js"></script>
 
-<script>
-var contentType ="application/x-www-form-urlencoded; charset=utf-8";
-if(window.XDomainRequest){contentType = "text/plain";}
-jQuery.support.cors = true;
 
-jQuery( document ).ready(function() {
-	
-	jQuery('input[name="submit"]').click(function(){
-		window.location='reg-step6.html';
-	});
-		
-});
-
-</script>
 </head>
 <body>
 
@@ -41,26 +28,107 @@ jQuery( document ).ready(function() {
 		</div>
 		
 		<div class="register-form reg-step4">
-			<form method="post">
+			<form method="post" id="setpassword" action="">
 				<div class="input-field password">
-					<input type="text" name="password" id="password" placeholder="Password"/>
+					<input type="text" name="password" id="password" class="password" placeholder="Password"/>
+					<span class="validate-error"></span>
 				</div>
-				<div class="input-field repeat-password">
-					<input type="text" name="repeat-password" id="repeat-password" placeholder="Repeat Password"/>
+				<div class="input-field cpassword">
+					<input type="text" name="repeat-password" class="password_confirm" id="password_confirm" placeholder="Repeat Password"/>
+					<span class="validate-error"></span>
 				</div>
 				<div class="input-field pin">
-					<input type="text" name="pin" id="pin" placeholder="4 Digit Pin"/>
+					<input type="text" name="pin" id="pin" class="pin" placeholder="4 Digit Pin" minlength="4" maxlength="4" />
+					<span class="validate-error"></span>
 				</div>
-				<div class="input-field repeat-pin">
-					<input type="text" name="repeat-pin" id="repeat-pin" placeholder="Repeat Pin"/>
+				<div class="input-field cpin">
+					<input type="text" name="repeat-pin" class=" cpin" id="cpin" placeholder="Repeat Pin" minlength="4" maxlength="4"/>
+					<span class="validate-error"></span>
 				</div>
 				<div class="red-button">
-					<input type="button" class="next" name="submit" value="Submit"/>
+					<input type="button" class="next" id="passSubmit" name="submit" value="Submit"/>
 				</div>
 			</form>
 			
 		</div>
 	</div>
 </div>
+
+
+<script>
+var contentType ="application/x-www-form-urlencoded; charset=utf-8";
+if(window.XDomainRequest){contentType = "text/plain";}
+jQuery.support.cors = true;
+
+jQuery( document ).ready(function() {
+
+	$("#passSubmit").click(function () {
+	
+	jQuery('.password .validate-error').empty('');
+	jQuery('.cpassword .validate-error').empty('');
+	jQuery('.pin .validate-error').empty('');
+	jQuery('.cpin .validate-error').empty('');
+	
+		var password = $("#password").val();
+		var confirmPassword = $("#password_confirm").val();
+		var pin = $("#pin").val();
+		var cpin = $("#cpin").val();
+		
+		if (password != '') {
+			if (password != confirmPassword) {
+				jQuery('.cpassword .validate-error').append('Passwords do not match');
+				return false;
+			}
+		}else{
+			jQuery('.password .validate-error').append('Password should not be blank');
+		}
+		
+		if (pin != '') {
+			if (pin != cpin) {
+				jQuery('.cpin .validate-error').append('Pin do not match');
+				return false;
+			}
+		}else{
+			jQuery('.pin .validate-error').append('Pin should not be blank');
+		}
+		
+		var username = localStorage.getItem("username");
+		var email = localStorage.getItem("email");
+		var fullname = localStorage.getItem("fullname");
+		var dob = localStorage.getItem("dob");
+		var address = localStorage.getItem("address");
+		var city = localStorage.getItem("city");
+		var state = localStorage.getItem("state");
+		var country = localStorage.getItem("country");
+		var postalcode = localStorage.getItem("postalcode");
+		
+		var jsonArray = [];
+		jQuery("#setpassword").serializeArray();
+		console.log(jsonArray);
+		
+		/*$.ajax({
+			  url: "http://10.0.0.66/Regular/cryptocurrency/api/userRegistrationData",
+			  type: 'POST',
+			  data: {q:'registrationData',username:username,email:email,fullname:fullname,dob:dob,address:address,city:city,state:state,country:country,postalcode:postalcode}, 
+			  crossDomain: true,   
+			  success: function(data) {
+				if(data['status'] == 1)
+				{
+					alert('Register Successfully');
+					window.location='reg-step4.html';
+				}else{
+					alert('Registeration Failed');
+				}
+			  },
+			  error: function() {
+				alert('Failed');
+			  }
+		});*/
+		
+		//return true;
+    });
+		
+});
+</script>
 </body>
 </html>
