@@ -17,43 +17,18 @@ jQuery( document ).ready(function() {
 	jQuery('.arrow-button input[name="submit"]').click(function(){
 		var mobile = jQuery('#mobileno').val();
 		jQuery('.mobileresult').empty();
-		//alert(mobile);
-		
+
 			$.ajax({
 			  url: "http://10.0.0.66/Regular/cryptocurrency/api/registerationMobileVerification",
 			  type: 'POST',
 			  data: {q:'verify_mobile',mobile:mobile}, 
 			  crossDomain: true,   
 			  success: function(data) {
-				//alert(data);
 				if(data['status'] == 1)
 				{
 					jQuery('.otp-verify').show();
 					jQuery('.mobileresult').append(mobile);
-					jQuery('.otp-resend').click(function(){
-						$.ajax({
-					  url: "http://10.0.0.66/Regular/cryptocurrency/api/registerationMobileVerification",
-					  type: 'POST',
-					  data: {q:'verify_mobile',mobile:mobile}, 
-					  crossDomain: true,   
-					  success: function(data) {
-						//alert(data);
-						if(data['status'] == 1)
-						{
-							jQuery('.otp-verify').show();
-							jQuery('.mobileresult').append(mobile);
-							jQuery('.otp-resend').click(function(){
-								//window.location.href = 'reg-step3.html';
-							});
-						}else{
-							alert('verification failed');
-						}
-					  },
-					  error: function() {
-						 alert('failed');
-					  }
-					});
-					});
+			
 				}else{
 					alert('verification failed');
 				}
@@ -61,12 +36,8 @@ jQuery( document ).ready(function() {
 			  error: function() {
 				 alert('failed');
 			  }
-			});
-			//jQuery('.otp-verify').show();
-		
-		/*jQuery('.otp-resend').click(function(){
-			window.location.href = 'reg-step3.html';
-		});*/
+		});
+			
 	});
 		
 });
