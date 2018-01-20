@@ -548,8 +548,8 @@ font-family:Sans-Serif Condensed;
 }
 #topbar img {
 	width: 20px;
-	margin-right: 40px;
-	margin-left:40px;
+	margin-right: 0px;
+	margin-left:30px;
 }
 .or {
 	position: relative;
@@ -936,6 +936,9 @@ nav:not(.mm-menu)
 
 
 /* -------------------- forgot password ----------------------*/
+
+
+
 .pass-rec {
     text-align: center;
     box-sizing: border-box;
@@ -954,7 +957,7 @@ nav:not(.mm-menu)
 	font-size: 17px;
 }
 .mobile-input-field_p #mobileno {
-    width: 100%;
+    width: 85%;
     background: transparent;
     border-bottom: 1px solid #fff;
     border-top: 0;
@@ -978,7 +981,7 @@ nav:not(.mm-menu)
 .mobilecode_p input {
     background: transparent;
     color: #fff;
-    border-bottom: 1px solid #fff;
+    border-bottom: 1px solid #ccc;
     border-left: 0;
     border-right: 0;
     border-top: 0;
@@ -991,15 +994,31 @@ nav:not(.mm-menu)
     width: 56%;
     margin: 30px 30%;
 }
-.pass-otp_p {
+/* .pass-otp_p {
     text-align: center;
     box-sizing: border-box;
     background: url(../images/dark_voilet.png) no-repeat center;
 	padding: 87px;
-	background-size: 350px 106px;
+	background-size: 300px 106px;
 	margin-top:45px;
 	margin-bottom:0px;
+} */.send-otp {
+    margin-top: 25px;
+ background: url(../images/dark_voilet.png) no-repeat center;
+	background-size: 224px 82px;
+	margin-top:23px;
+	margin-bottom:30px;
+	padding: 30px;
+	text-align: center;
 }
+.send-otp input[type="button"] {
+    background: none;
+    border: 0;
+    color: #fff;
+    font-size: 17px;
+	padding: 30px;
+}
+
 .or_p {
 	position: relative;
 	width: 100%;
@@ -1021,7 +1040,8 @@ nav:not(.mm-menu)
 }
 .or-line_p {
 	border-bottom: 1px solid #ccc;
-	width: 100%;
+	width: 93%;
+	margin-left:10px;
 	  
 }
 .email-label_p{
@@ -1036,7 +1056,7 @@ nav:not(.mm-menu)
 .email-input-field_p #email {
     width: 100%;
     background: transparent;
-    border-bottom: 1px solid #fff;
+    border-bottom: 1px solid #ccc;
     border-top: 0;
     border-left: 0;
     border-right: 0;
@@ -1050,12 +1070,94 @@ nav:not(.mm-menu)
     width: 60%;
     float: left;
 }
-.pass-reset {
+/* .pass-reset {
     text-align: center;
     box-sizing: border-box;
     background: url(../images/dark_red.png) no-repeat center;
 	padding: 30px;
-	background-size: 350px 106px;
+	background-size: 300px 106px;
 	margin-top:104px;
 	margin-bottom:30px;
+} */
+.pass-reset {
+    margin-top: 25px;
+ background: url(../images/dark_red.png) no-repeat center;
+ 
+	background-size: 224px 82px;
+	margin-top:23px;
+	margin-bottom:30px;
+	padding: 30px;
+	text-align: center;
+}
+.pass-reset input[type="button"] {
+    background: none;
+    border: 0;
+    color: #fff;
+    font-size: 17px;
+	padding: 30px;
+}
+
+
+/* -------------------support ----------------------*/
+.input-field_s {
+	padding: 10px 19%;
+    margin-top: 10px;
+	/* margin-bottom: 75px; */
+}
+.input-field_s input {
+    background: url(../images/edit_text_back1.png) no-repeat center;
+    color: #ddd;
+    padding: 15px 15px;
+    border: 0px;
+    width: 100%;
+    font-size: 17px;
+	
+}
+.input-field_s input::placeholder {
+    color: #9a9a9a;
+}
+
+body .container_s {
+    float: left;
+    width: 100%;
+	padding:0px 0 82px 0;
+	overflow:hidden;
+}
+.container_s {
+    float: left;
+    width: 100%;
+    background: #000;
+    padding: 20px;
+    box-sizing: border-box;
+}
+.loadpage .container_s{
+padding:48px 0 30px 0 !important;
+}
+/*----------------------------- change password -----------------------------------------*/
+.password-key {
+	width: 12%;
+	float: left;
+	padding: 0;
+}
+.password-key-input-field {
+    width: 60%;
+    float: left;
+}
+.password-key input {
+    background: transparent;
+    color: #fff;
+    border-bottom: 1px solid #fff;
+    border-left: 0;
+    border-right: 0;
+    border-top: 0;
+    font-size: 21px;
+    padding: 4px 3px;
+    width:100%;
+}
+.password-label{
+	margin-bottom:30px;
+}
+.password-label label {
+	color: #fff;
+	font-size: 17px;
 }

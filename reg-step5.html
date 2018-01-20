@@ -26,7 +26,7 @@
 		<div class="registertop">
 			5. Password and PIN
 		</div>
-		<div id="qrcode"></div>
+		
 		<div class="register-form reg-step4">
 			<form method="post" id="setpassword" action="">
 				<div class="input-field password">
@@ -61,7 +61,20 @@ if(window.XDomainRequest){contentType = "text/plain";}
 jQuery.support.cors = true;
 
 jQuery( document ).ready(function() {
-jquery('#qrcode').qrcode("this plugin is great");
+
+var adhar_card_no = "";
+
+function buildUrl(adhar_card_no)
+{
+    var host = "http://auth.uidai.gov.in";
+    var version = 1.6;
+    var aua = "";
+    var asalk = "";
+    var uid = str_split($adhar_card_no);
+    var url =  host+"/"+version+"/"+aua+"/"+uid[0]+"/"+uid[1]+"/"+asalk;
+    alert(url);
+}
+
 	jQuery("input[name='submit']").click(function () {
 	
 	jQuery('.password .validate-error').empty('');

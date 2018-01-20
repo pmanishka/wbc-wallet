@@ -3,8 +3,6 @@
 <head>
 <title>World Bank of Cryptocurrencies</title>
 <link rel="stylesheet" type="text/css" href="css/style.css">
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="js/jquery.min.js"></script>
 </head>
 <body>
@@ -13,37 +11,105 @@
 			<div class="pass-rec">
 			<span>Password Recovery</span>
 			</div>
-			<div class="mobile-label_p">
-					<label>Enter Registered Mobile Number</label>
-			</div>
-			<div class="mobile-verify_p">
-				<div class="mobilecode_p">
-					<input type="text" readonly value="+91"/>
+			<form id="recover-by-mobile">
+				<div class="mobile-label_p">
+						<label>Enter Registered Mobile Number</label>
 				</div>
-				<div class="mobile-input-field_p">
-					<input type="text" name="mobileno" id="mobileno" maxlength="10"/>
+				<div class="mobile-verify_p">
+					<div class="mobilecode_p">
+						<input type="text" readonly value="+91"/>
+					</div>
+					<div class="mobile-input-field_p">
+						<input type="text" name="mobileno" id="mobileno" maxlength="10"/>
+					</div>
 				</div>
-			</div>
-			<div class="pass-otp_p">
-				<span>Send OTP</span>
-			</div>
+				<div class="send-otp">
+				<input type="button" name="submit" value="Send OTP"/>
+				</div>
+			</form>
 			<div class="or_p">
 			<div class="or-line_p"></div>
 			<div class="or-text_p">OR</div>
 		</div>
+		<form id="recover-by-email">
 		<div class="email-label_p">
-					<label>Enter Registered Email id</label>
+			<label>Enter Registered Email id</label>
 		</div>
 		<div class="email-input-field_p">
 			<input type="text" name="email" id="email"/>
 		</div>
 		<div class="pass-reset">
-			<span>Reset Password</span>
+		<input type="button" name="submit" value="Reset Password"/>
 		</div>
-				
+		</form>		
 			
 
 </div>
 </div>
+
+<script>
+var contentType ="application/x-www-form-urlencoded; charset=utf-8";
+if(window.XDomainRequest){contentType = "text/plain";}
+jQuery.support.cors = true;
+
+jQuery( document ).ready(function() {
+
+	// Reset by mobile
+	jQuery('.pass-reset input[name="submit"]').click(function(){
+		var mobileno=jQuery("#mobileno").val();
+		//alert(mobileno);
+		
+		$.ajax({
+		  //url: "https://4xwin.com/MobileApp/login",
+		  url: "http://10.0.0.66/Regular/cryptocurrency/api/requestForgetPasswordOnMobile",
+		  type: 'POST',
+		  data: {q:'otp',mobile:mobileno}, 
+		  crossDomain: true,   
+		  success: function(data) {
+		  //alert(data);
+		    if(data['status'] == 1)
+			{
+				//alert('Login Success');
+				window.location='login.html';
+			}else{
+				//alert('Failed');
+				//window.location='dashboard.html';
+			}
+		  },
+		  error: function() {
+			alert('Error');
+		  }
+		});
+	});
+	
+	// Reset by email
+	jQuery('.pass-reset input[name="submit"]').click(function(){
+		var email=jQuery("#email").val();
+		
+		$.ajax({
+		  //url: "https://4xwin.com/MobileApp/login",
+		  url: "http://10.0.0.66/Regular/cryptocurrency/api/requestForgetPasswordOnEmail",
+		  type: 'POST',
+		  data: {q:'otp',email:email}, 
+		  crossDomain: true,   
+		  success: function(data) {
+		  //alert(data);
+		    if(data['status'] == 1)
+			{
+				//alert('Login Success');
+				window.location='login.html';
+			}else{
+				alert('Failed');
+				//window.location='dashboard.html';
+			}
+		  },
+		  error: function() {
+			alert('Error');
+		  }
+		});
+	});
+		
+});
+</script>
 </body>
 </html>
