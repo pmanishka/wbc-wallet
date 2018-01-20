@@ -20,9 +20,11 @@ var email = localStorage.getItem("email");
 //$("#dop").datepicker();
 
 jQuery(document).ready(function() {
-	jQuery("#dop").datepicker();
-	/*jQuery('.red-button input[name="submit"]').click(function(){
-		var fullname = jQuery('#fullname').val();
+
+	//jQuery("#dop").datepicker();
+	jQuery('.red-button input[name="submit"]').click(function(){
+	
+		var fname = jQuery('#fullname').val();
 		var dob = jQuery('#dob').val();
 		var address = jQuery('#address').val();
 		var city = jQuery('#city').val();
@@ -30,17 +32,18 @@ jQuery(document).ready(function() {
 		var country = jQuery('#country').val();
 		var postalcode = jQuery('#postalcode').val();
 		
-		var fullname = localStorage.setItem("fullname");
-		var dob = localStorage.setItem("dob");
-		var address = localStorage.setItem("address");
-		var city = localStorage.setItem("city");
-		var state = localStorage.setItem("state");
-		var country = localStorage.setItem("country");
-		var postalcode = localStorage.setItem("postalcode");
+		localStorage.setItem('fullname', fname);
+		localStorage.setItem("dob", dob);
+		localStorage.setItem("address", address);
+		localStorage.setItem("city", city);
+		localStorage.setItem("state", state);
+		localStorage.setItem("country", country);
+		localStorage.setItem("postalcode", postalcode);
+		
 		
 		window.location='reg-step5.html';
 			
-	});*/
+	});
 		
 });
 

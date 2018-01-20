@@ -33,7 +33,8 @@ var username = localStorage.getItem("username");
 					
 					jQuery('.otp-verify').show();
 					jQuery('.mobileresult').append(mobile);
-					//jQuery('#mobileno').attr("value="+mobile)
+					localStorage.setItem('mobile', mobile);
+					
 					var otpres = jQuery('input[name="otp-verify"]').val();
 					
 					jQuery('input[name="otp-verify"]').change(function() {

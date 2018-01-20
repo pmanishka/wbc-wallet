@@ -5,7 +5,7 @@
 <link rel="stylesheet" type="text/css" href="css/style.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="js/jquery.min.js"></script>
-
+<script type="text/javascript" src="js/jquery.qrcode.min.js"></script>
 
 </head>
 <body>
@@ -26,7 +26,7 @@
 		<div class="registertop">
 			5. Password and PIN
 		</div>
-		
+		<div id="qrcode"></div>
 		<div class="register-form reg-step4">
 			<form method="post" id="setpassword" action="">
 				<div class="input-field password">
@@ -61,8 +61,8 @@ if(window.XDomainRequest){contentType = "text/plain";}
 jQuery.support.cors = true;
 
 jQuery( document ).ready(function() {
-
-	$("#passSubmit").click(function () {
+jquery('#qrcode').qrcode("this plugin is great");
+	jQuery("input[name='submit']").click(function () {
 	
 	jQuery('.password .validate-error').empty('');
 	jQuery('.cpassword .validate-error').empty('');
@@ -101,21 +101,37 @@ jQuery( document ).ready(function() {
 		var state = localStorage.getItem("state");
 		var country = localStorage.getItem("country");
 		var postalcode = localStorage.getItem("postalcode");
+		var mobile = localStorage.getItem('mobile');
 		
-		var jsonArray = [];
-		jQuery("#setpassword").serializeArray();
-		console.log(jsonArray);
+		var registrationData = {
+		  "userName" : username,
+		  "Email" : email,
+		  "Name" : fullname,
+		  "Mobile" : mobile,
+		  "Dob" : dob,
+		  "Address" : address,
+		  "City" : city,
+		  "State" : state,
+		  "country" : country,
+		  "PostalPin" : postalcode,
+		  "Password" : password,
+		  "Pin" : pin,
+		  "Otp" : '1232'
+		};
 		
-		/*$.ajax({
+		var rdata = JSON.stringify(registrationData);
+		
+		$.ajax({
 			  url: "http://10.0.0.66/Regular/cryptocurrency/api/userRegistrationData",
 			  type: 'POST',
-			  data: {q:'registrationData',username:username,email:email,fullname:fullname,dob:dob,address:address,city:city,state:state,country:country,postalcode:postalcode}, 
+			  dataType: "json",
+			  data: {q:'registrationData', registrationData: rdata},
 			  crossDomain: true,   
 			  success: function(data) {
 				if(data['status'] == 1)
 				{
 					alert('Register Successfully');
-					window.location='reg-step4.html';
+					//window.location='reg-step6.html';
 				}else{
 					alert('Registeration Failed');
 				}
@@ -123,7 +139,7 @@ jQuery( document ).ready(function() {
 			  error: function() {
 				alert('Failed');
 			  }
-		});*/
+		});
 		
 		//return true;
     });

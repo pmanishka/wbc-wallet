@@ -262,17 +262,18 @@ input[type="button"].red-button {
 }
 
 .input-field_r {
-	padding: 10px 19%;
+	padding: 10px 10%;
     margin-top: 10px;
 	margin-bottom: 75px;
 }
 .input-field_r input {
-    background: url(../images/edit_text_back1.png) no-repeat center;
+    background: url(../images/edit_text_back.png) no-repeat center;
     color: #ddd;
-    padding: 15px 15px;
+    padding: 15px 43px;
     border: 0px;
     width: 100%;
     font-size: 17px;
+	    text-align: -webkit-left;
 }
 .input-field_r input::placeholder {
     color: #9a9a9a;
@@ -297,7 +298,7 @@ input[type="button"].red-button {
     margin-top: 13px;
     margin-bottom: 40px;
     float: left;
-    background-size: 349px 100px;
+    background-size: 308px 100px;
     width: 100%;
 }
 .inner-page .input-field {
@@ -376,8 +377,8 @@ font-family:Sans-Serif Condensed;
     width: 20px;
 }
 .inputerror-msg:after {
-   bottom: 33%;
-    left: 30.10%;
+   bottom: 58%;
+    left: 29.89%;
     border: solid transparent;
     content: " ";
     position: absolute;
@@ -922,7 +923,7 @@ nav:not(.mm-menu)
 
 .digi{
 	text-align:left;
-	    margin-left: 27px;
+	margin-left: 27px;
     margin-top: -33px;
     font-size: 13px;
 	
@@ -931,4 +932,130 @@ nav:not(.mm-menu)
 	font-size: 31px;
     margin-left: 52px;
 	
+}
+
+
+/* -------------------- forgot password ----------------------*/
+.pass-rec {
+    text-align: center;
+    box-sizing: border-box;
+    background: url(../images/dark_blue.png) no-repeat center;
+	padding: 30px;
+	background-size: 224px 82px;
+	margin-top:23px;
+	margin-bottom:30px;
+}
+.mobile-label_p{
+	margin-bottom:30px;
+	text-align: center;
+}
+.mobile-label_p label {
+	color: #fff;
+	font-size: 17px;
+}
+.mobile-input-field_p #mobileno {
+    width: 100%;
+    background: transparent;
+    border-bottom: 1px solid #fff;
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    font-size: 21px;
+    padding: 4px 3px;
+	color:#fff;
+	text-align:center;
+}
+.mobilecode_p {
+	width: 12%;
+	float: left;
+	padding: 0;
+	margin-left:-20px;
+}
+.mobile-input-field_p {
+    width: 80%;
+    float: left;
+}
+.mobilecode_p input {
+    background: transparent;
+    color: #fff;
+    border-bottom: 1px solid #fff;
+    border-left: 0;
+    border-right: 0;
+    border-top: 0;
+    font-size: 21px;
+    padding: 4px 0px;
+    width:130%;
+}
+
+.mobile-verify_p {
+    width: 56%;
+    margin: 30px 30%;
+}
+.pass-otp_p {
+    text-align: center;
+    box-sizing: border-box;
+    background: url(../images/dark_voilet.png) no-repeat center;
+	padding: 87px;
+	background-size: 350px 106px;
+	margin-top:45px;
+	margin-bottom:0px;
+}
+.or_p {
+	position: relative;
+	width: 100%;
+	float: left;
+	margin-bottom:36px;
+}
+.or-text_p {
+	/* z-index: 999; */
+	max-width: 35px;
+	border: 1px solid #000;
+	color: #ffffff;
+	padding: 9px;
+	border-radius: 50%;
+	position: absolute;
+	bottom: -17px;
+	left: 43%;
+	font-size: 12px;
+	background: #000;
+}
+.or-line_p {
+	border-bottom: 1px solid #ccc;
+	width: 100%;
+	  
+}
+.email-label_p{
+	margin-bottom:40px;
+	text-align: center;
+	margin-left:-10px;
+}
+.email-label_p label {
+	color: #fff;
+	font-size: 17px;
+}
+.email-input-field_p #email {
+    width: 100%;
+    background: transparent;
+    border-bottom: 1px solid #fff;
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    font-size: 15px;
+    padding: 4px 3px;
+	color:#fff;
+	text-align:center;
+	margin-left:72px;
+}
+.email-input-field_p {
+    width: 60%;
+    float: left;
+}
+.pass-reset {
+    text-align: center;
+    box-sizing: border-box;
+    background: url(../images/dark_red.png) no-repeat center;
+	padding: 30px;
+	background-size: 350px 106px;
+	margin-top:104px;
+	margin-bottom:30px;
 }
