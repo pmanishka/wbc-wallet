@@ -5,7 +5,7 @@
 <link rel="stylesheet" type="text/css" href="css/style.css">
 <script src="js/jquery.min.js"></script>
 <script type="text/javascript" src="js/jquery.qrcode.min.js"></script>
-
+<script type="text/javascript" src="js/jquery.scannerdetection.js"></script>
 </head>
 <body>
 
@@ -20,6 +20,14 @@
 			<div class="logo-text">World Bank of Cryptocurrencies</div>
 		</div>
 	</div>
+	<!--
+	Ideally these elements aren't created until it's confirmed that the 
+	client supports video/camera, but for the sake of illustrating the 
+	elements involved, they are created with markup (not JavaScript)
+	-->
+	<video id="video" width="640" height="480" autoplay></video>
+	<button id="snap">Snap Photo</button>
+	<canvas id="canvas" width="640" height="480"></canvas>
 	
 	<div class="container">
 		<div class="registertop">
@@ -59,20 +67,54 @@ var contentType ="application/x-www-form-urlencoded; charset=utf-8";
 if(window.XDomainRequest){contentType = "text/plain";}
 jQuery.support.cors = true;
 
+
+
+// Grab elements, create settings, etc.
+var video = document.getElementById('video');
+
+// Get access to the camera!
+if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+    // Not adding `{ audio: true }` since we only want video now
+    navigator.mediaDevices.getUserMedia({ video: true }).then(function(stream) {
+        video.src = window.URL.createObjectURL(stream);
+        video.play();
+    });
+}
+
+/* Legacy code below: getUserMedia 
+else if(navigator.getUserMedia) { // Standard
+    navigator.getUserMedia({ video: true }, function(stream) {
+        video.src = stream;
+        video.play();
+    }, errBack);
+} else if(navigator.webkitGetUserMedia) { // WebKit-prefixed
+    navigator.webkitGetUserMedia({ video: true }, function(stream){
+        video.src = window.webkitURL.createObjectURL(stream);
+        video.play();
+    }, errBack);
+} else if(navigator.mozGetUserMedia) { // Mozilla-prefixed
+    navigator.mozGetUserMedia({ video: true }, function(stream){
+        video.src = window.URL.createObjectURL(stream);
+        video.play();
+    }, errBack);
+}
+*/
+
+
+// Elements for taking the snapshot
+var canvas = document.getElementById('canvas');
+var context = canvas.getContext('2d');
+var video = document.getElementById('video');
+
+// Trigger photo take
+document.getElementById("snap").addEventListener("click", function() {
+	context.drawImage(video, 0, 0, 640, 480);
+});
+
 jQuery( document ).ready(function() {
 
 var adhar_card_no = "";
 
-function buildUrl(adhar_card_no)
-{
-    var host = "http://auth.uidai.gov.in";
-    var version = 1.6;
-    var aua = "";
-    var asalk = "";
-    var uid = str_split($adhar_card_no);
-    var url =  host+"/"+version+"/"+aua+"/"+uid[0]+"/"+uid[1]+"/"+asalk;
-    alert(url);
-}
 
 	jQuery("input[name='submit']").click(function () {
 	

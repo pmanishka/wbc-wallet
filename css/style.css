@@ -259,6 +259,7 @@ input[type="button"].red-button {
 	padding: 10px 10px;
 	/* font-weight: 600; */
 	font-size: 20px;
+	-webkit-logical-height: 48px;
 }
 
 .input-field_r {
@@ -377,8 +378,8 @@ font-family:Sans-Serif Condensed;
     width: 20px;
 }
 .inputerror-msg:after {
-   bottom: 58%;
-    left: 29.89%;
+   bottom: 44%;
+    left: 83%;
     border: solid transparent;
     content: " ";
     position: absolute;
@@ -549,7 +550,7 @@ font-family:Sans-Serif Condensed;
 #topbar img {
 	width: 20px;
 	margin-right: 0px;
-	margin-left:30px;
+	margin-left:5px;
 }
 .or {
 	position: relative;
@@ -571,7 +572,8 @@ font-family:Sans-Serif Condensed;
 }
 .or-line {
 	border-bottom: 1px solid #ccc;
-	width: 100%;
+	width: 93%;
+	margin-left:10px;
 }
 .register-form.reg-step4 {
 	width: 100%;
@@ -606,7 +608,7 @@ nav:not(.mm-menu)
 	float: left;
 }
 .header-card {
-	margin-left: 21px;
+	margin-left: 35px;
 	float: left;
 	width: 56%;
 }
@@ -1134,34 +1136,279 @@ body .container_s {
 padding:48px 0 30px 0 !important;
 }
 /*----------------------------- change password -----------------------------------------*/
-.password-key {
-	width: 12%;
-	float: left;
-	padding: 0;
+.change-password{
+	width: 100%;
+	float: left	;
+	margin-top: 45px;
+	margin-left: 50px;
 }
-.password-key-input-field {
-    width: 60%;
-    float: left;
-}
-.password-key input {
+
+.password-input-field #password {
+    /* width: 100%; */
+	    -webkit-logical-width: 100%;
     background: transparent;
-    color: #fff;
-    border-bottom: 1px solid #fff;
+    border-bottom: 1px solid #ccc;
+    border-top: 0;
     border-left: 0;
     border-right: 0;
-    border-top: 0;
-    font-size: 21px;
+    font-size: 15px;
     padding: 4px 3px;
-    width:100%;
+	color:#fff;
+	text-align:center;
+	    margin-left: 10px;
+    margin-bottom: 50px;
+	    text-align: -webkit-left;
+		margin-right:-40px;
 }
-.password-label{
+.password-input-field{
+    width: 60%;
+    float: left;
+}	
+.password-change {
+    width: 100%;
+    margin: 30px 30%;
+	float:left;
+}
+
+.red-cancel-button {
+    margin-top: 25px;
+    background: url(../images/dark_red.png) no-repeat center;
+	background-size: 109px 78px;
+    float: left;
+	margin-left: 49px;
+	
+}
+.red-cancel-button input[type="button"] {
+    background: none;
+    border: 0;
+    color: #fff;
+    font-size: 17px;
+	padding: 30px;
+}
+.green-save-button {
+    margin-top: 25px;
+    background: url(../images/dark_green.png) no-repeat center;
+	background-size: 109px 78px;
+	float:right;
+	margin-right: 50px;
+	margin-left:10px;
+}
+.green-save-button input[type="button"] {
+    background: none;
+    border: 0;
+    color: #fff;
+    font-size: 17px;
+	padding: 30px;
+}
+.buttons{
+	margin-left:10px;
+	float: right;
+}
+/* .notification{
+	float:right;
+	margin-right:10px;
+	
+} */
+/*------------------------------ Add AADHAAR ------------------------------------*/
+.unique-id-label{
 	margin-bottom:30px;
+	text-align: center;
+	    margin-top: 40px;
 }
-.password-label label {
-	color: #fff;
+.unique-id-label label {
+	color: #ccc;
 	font-size: 17px;
 }
-.password-verify_p {
+.unique-id-input-field #uniqueid {
+    width: 100%;
+    background: transparent;
+    border-bottom: 1px  #ccc;
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    font-size: 21px;
+    padding: 4px 3px;
+	color:#ccc;
+	text-align:center;
+	margin-left: -12px;
+	
+}
+.unique-id-input-field {
+    width: 80%;
+    float: left;
+}
+.add-aadhaar {
     width: 56%;
     margin: 30px 30%;
+}
+.line {
+	position: relative;
+	width: 100%;
+	float: left;
+	margin-top: 35px;
+}
+.line-div {
+	border-bottom: 1px solid #ccc;
+	width: 93%;
+	margin-left:10px;
+}
+.aadhaar-new{	
+margin-left:35px;
+margin-top:20px;
+align-items:center;
+
+
+
+}
+.aadhaar-input-field #aadhaar {
+    /* width: 100%; */
+	    -webkit-logical-width: 100%;
+    background: transparent;
+    border-bottom: 1px solid #ccc;
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    font-size: 15px;
+    padding: 4px 3px;
+	color:#fff;
+	text-align:center;
+	    margin-left: 10px;
+    margin-bottom: 50px;
+	    text-align: -webkit-left;
+		margin-right:-40px;
+}
+.aadhaar-input-field{
+    width: 100%;
+    float: left;
+}	
+.aadhaar-upload{
+	float:left;
+	margin-top:10px;
+	
+	
+}
+.uniqueid{	
+margin-bottom:150px;	
+}
+
+/*------------------------- ADD NOMINEE ----------------------*/
+.nomineeid{	
+margin-bottom:150px;	
+}
+
+
+.nominee-id-label{
+	margin-bottom:30px;
+	text-align: center;
+	    margin-top: 40px;
+}
+.nominee-id-label label {
+	color: #ccc;
+	font-size: 17px;
+}
+.nominee-id-input-field #nomineeid {
+    width: 100%;
+    background: transparent;
+    border-bottom: 1px  #ccc;
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    font-size: 21px;
+    padding: 4px 3px;
+	color:#ccc;
+	text-align:center;
+	margin-left: -12px;
+	
+}
+.nominee-id-input-field {
+    width: 80%;
+    float: left;
+}
+.nominee-id {
+    width: 56%;
+    margin: 30px 30%;
+}
+.nominee-new{	
+margin-left:35px;
+margin-top:20px;
+align-items:center;
+}
+.nominee-input-field #nominee {
+    /* width: 100%; */
+	    -webkit-logical-width: 100%;
+    background: transparent;
+    border-bottom: 1px solid #ccc;
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    font-size: 15px;
+    padding: 4px 3px;
+	color:#fff;
+	text-align:center;
+	    margin-left: 10px;
+    margin-bottom: 50px;
+	    text-align: -webkit-left;
+		margin-right:-40px;
+}
+.nominee-input-field{
+    width: 100%;
+    float: left;
+}	
+/* The switch - the box around the slider */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {display:none;}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
 }
