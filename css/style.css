@@ -174,7 +174,7 @@ body .container {
 input[type="button"].red-button {
     border: 0px;
     color: #fff;
-    padding: 31px 123px;
+    padding: 31px 148px;
     font-size: 17px;
     font-weight: 600;
 }
@@ -270,7 +270,7 @@ input[type="button"].red-button {
 .input-field_r input {
     background: url(../images/edit_text_back.png) no-repeat center;
     color: #ddd;
-    padding: 15px 12px;
+    padding: 15px 50px;
     border: 0px;
     width: 100%;
     font-size: 17px;
@@ -336,14 +336,16 @@ font-family:Sans-Serif Condensed;
 
 }
 .inputerror-msg {
-    text-align: right;
     float: right;
-    margin-top: -85px;
-    width: 35%;
+    margin-top: -132px;
+    /* max-width: 32%; */
     padding-top: 7px;
-    margin-right: 29%;
+    margin-right: 21%;
+    /* padding: 0px 168px 0; */
+    /* z-index: 111; */
+    position: relative;
+    text-align: right;
 }
-
 .usersuccess.update {
     position: relative;
     width: 100%;
@@ -360,13 +362,13 @@ font-family:Sans-Serif Condensed;
     width: 30px;
 }
 .userfailed {
-	position: fixed;
-	/* max-width: 200px; */
-	/* text-align: right; */
-	bottom: 125px;
-	left: 48px;
-	    margin-left: 83px;
-    margin-bottom: 28px;
+    position: relative;
+    /* max-width: 200px; */
+    /* text-align: right; */
+
+  /*   right: -2px;
+    margin-left: 83px; */
+    
 }
 .usersuccess.errmsg{
     position: relative;
@@ -374,8 +376,9 @@ font-family:Sans-Serif Condensed;
     float: left;
 }
 .userfailed img {
-	width: 100%;
-	max-width: 50%;
+    width: 100%;
+    max-width: 53%;
+	-webkit-margin-after: 7%;
 }
 /*.inputerror-msg:after {
    bottom: 44%;
@@ -1358,8 +1361,8 @@ align-items:center;
 .switch {
   position: relative;
   display: inline-block;
-  width: 35px;
-  height: 24px;
+  width: 48px;
+  height: 23px;
 }
 
 /* Hide default HTML checkbox */
@@ -1381,10 +1384,10 @@ align-items:center;
 .slider:before {
   position: absolute;
   content: "";
-  height: 16px;
-  width: 16px;
+  height: 30px;
+  width: 30px;
   left: 4px;
-  bottom: 4px;
+  bottom: 0px;
   background-color: white;
   -webkit-transition: .4s;
   transition: .4s;
@@ -1399,9 +1402,9 @@ input:focus + .slider {
 }
 
 input:checked + .slider:before {
-  -webkit-transform: translateX(26px);
-  -ms-transform: translateX(26px);
-  transform: translateX(26px);
+  -webkit-transform: translateX(22px);
+  -ms-transform: translateX(22px);
+  transform: translateX(22px);
 }
 
 /* Rounded sliders */
