@@ -67,16 +67,7 @@
 	
 	<icon src="icon.png" />
 	<icon gap:platform="webos" src="res/icon/ios/Icon-180.png" />
-	<icon src="res/icon/ios/Icon-180.png" gap:platform="android" gap:density="ldpi" />
-	<icon src="res/icon/ios/Icon-180.png" gap:platform="android" gap:density="mdpi" />
-	<icon src="res/icon/ios/Icon-180.png" gap:platform="android" gap:density="hdpi" />
-	<icon src="res/icon/ios/Icon-180.png" gap:platform="android" gap:density="xhdpi" />
-	<icon src="res/icon/ios/Icon-180.png" gap:platform="android" gap:density="xxhdpi" />
-	<icon src="res/icon/ios/Icon-180.png" gap:platform="android" gap:density="ldpi" />
-	<icon src="res/icon/ios/Icon-180.png" gap:platform="android" gap:density="mdpi" />
-	<icon src="res/icon/ios/Icon-180.png" gap:platform="android" gap:density="hdpi" />
-	<icon src="res/icon/ios/Icon-180.png" gap:platform="android" gap:density="xhdpi" />
-	<icon src="res/icon/ios/Icon-180.png" gap:platform="android" gap:density="xxhdpi" />
+	
 		
 	<!--Iphone icons-->
 	<splash src="splash.png" />
