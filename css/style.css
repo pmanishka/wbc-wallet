@@ -306,19 +306,17 @@ input[type="button"].red-button {
     width: 100%;
 }
 .green-button {
-    margin-top: 280px;
     background: url('../images/dark_green.png') no-repeat center;
 }
 .inner-page .input-field.username {
 	margin-top: -2px;
 }
-.green-button input[type="button"] {
-    background: none;
+input[type="button"].green-button  {
     border: 0;
     color: #fff;
     font-size: 17px;
     font-weight: 500;
-    padding: 27px;
+    padding: 27px 90px;
 	font-weight: bold;
 }
 .congratulations-msg .msg span {
@@ -1358,8 +1356,8 @@ align-items:center;
 .switch {
   position: relative;
   display: inline-block;
-  width: 60px;
-  height: 34px;
+  width: 35px;
+  height: 24px;
 }
 
 /* Hide default HTML checkbox */
@@ -1381,8 +1379,8 @@ align-items:center;
 .slider:before {
   position: absolute;
   content: "";
-  height: 26px;
-  width: 26px;
+  height: 16px;
+  width: 16px;
   left: 4px;
   bottom: 4px;
   background-color: white;
@@ -1391,11 +1389,11 @@ align-items:center;
 }
 
 input:checked + .slider {
-  background-color: #2196F3;
+  background-color: #fafa00;
 }
 
 input:focus + .slider {
-  box-shadow: 0 0 1px #2196F3;
+  box-shadow: 0 0 1px #fafa00;
 }
 
 input:checked + .slider:before {
