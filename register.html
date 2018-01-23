@@ -79,12 +79,11 @@ jQuery( document ).ready(function() {
 			});
 		
 		}else {
-		//alert('blank');
-			jQuery('#username').focus(function(){
+			/*jQuery('#username').focus(function(){
 				jQuery('.usersuccess').removeClass('errmsg');
 				jQuery('.inputerror-msg').hide();
 				jQuery('.userfailed').hide();
-			});
+			});*/
 			jQuery('.usersuccess').addClass('errmsg');
 			jQuery('.userfailed').show();
 			jQuery('.inputerror-msg').show();
@@ -120,16 +119,17 @@ jQuery( document ).ready(function() {
 					<div class="input-field_r">
 						<input required type="text" name="username" id="username" placeholder="User Name" />
 					</div>
+					<div class="inputerror-msg" style="display:none;">
+						Please Enter User Name
+					</div>
 					<div class="edit-username">
 						<img src="images/edit_username.png"/>
 					</div>
 					<div class="userfailed">
-						<img src="images/erroralert.png"/>
+						<img src="images/errormsg.png" style="float: right; margin-right: 11px;"/>
 					</div>
 				</div>
-				<div class="inputerror-msg" style="display:none;">
-					Please Enter User Name
-				</div>
+				
 				<div class="congratulations-msg" style="display:none;">
 					<div class="msg">
 						<img src="images/done.png"/><br/>

@@ -270,7 +270,7 @@ input[type="button"].red-button {
 .input-field_r input {
     background: url(../images/edit_text_back.png) no-repeat center;
     color: #ddd;
-    padding: 15px 43px;
+    padding: 15px 12px;
     border: 0px;
     width: 100%;
     font-size: 17px;
@@ -341,8 +341,7 @@ font-family:Sans-Serif Condensed;
     margin-top: -85px;
     width: 35%;
     padding-top: 7px;
-    margin-right: 20%;
-    border-top: 3px solid #ff0000;
+    margin-right: 29%;
 }
 
 .usersuccess.update {
@@ -361,11 +360,13 @@ font-family:Sans-Serif Condensed;
     width: 30px;
 }
 .userfailed {
-    position: absolute;
-    max-width: 200px;
-    /* text-align: right; */
-    top: 35px;
-    right: 130px;
+	position: fixed;
+	/* max-width: 200px; */
+	/* text-align: right; */
+	bottom: 125px;
+	left: 48px;
+	    margin-left: 83px;
+    margin-bottom: 28px;
 }
 .usersuccess.errmsg{
     position: relative;
@@ -373,9 +374,10 @@ font-family:Sans-Serif Condensed;
     float: left;
 }
 .userfailed img {
-    width: 20px;
+	width: 100%;
+	max-width: 50%;
 }
-.inputerror-msg:after {
+/*.inputerror-msg:after {
    bottom: 44%;
     left: 83%;
     border: solid transparent;
@@ -383,7 +385,7 @@ font-family:Sans-Serif Condensed;
     position: absolute;
     border-bottom-color: #ff0000;
     border-width: 9px;
-}
+}*/
 
 
 .dummy-text {
