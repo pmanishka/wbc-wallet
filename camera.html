@@ -13,50 +13,22 @@
  
 <body>
 <div data-role="page" id="home">
-    <div data-role="header">
-        <h1>Home</h1>
-    </div>
-
-    <div data-role="main" class="ui-content">
-        <p>
-            <button onClick="scan();" style="text-decoration: none">Scan</button>
-            <a target="_blank" href="#display" style="text-decoration: none"><button>Display Scanned Data</button></a>
-        </p>
-    </div>
+    <button onClick="scan();" style="text-decoration: none">Scan</button>
 </div>
 
-	<div data-role="page" id="display">
-		<div data-role="header">
-			<a target="_blank" href="#home" class="ui-btn ui-icon-home ui-btn-icon-left">Home</a>
-			<h1>Display</h1>
-		</div>
-
-		<div data-role="main" class="ui-content">
-			<table data-role="table" data-mode="column" id="allTable" class="ui-responsive table-stroke">
-				<thead>
-					<tr>
-						<th>Name</th>
-						<th>Value</th>
-					</tr>
-				</thead>
-				<tbody>
-				</tbody>
-			</table>
-		</div>
-	</div>
+	
 </body>
-<script type="text/javascript">
 
-
-</script>
 <script type="text/javascript">
 function scan()
 {
-//alert('test');
+
     cordova.plugins.barcodeScanner.scan(
         function (result) {
+
             if(!result.cancelled)
             {
+			
                 if(result.format == "QR_CODE")
                 {
                     navigator.notification.prompt("Please enter name of data",  function(input){
