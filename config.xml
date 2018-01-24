@@ -62,6 +62,7 @@
 	<gap:plugin name="cordova-plugin-navis-background-geolocation" source="npm" />-->
 	<plugin name="cordova-plugin-inappbrowser" spec="~1.7.1" />	
 	<plugin name="cordova-plugin-splashscreen" />
+	<plugin name="phonegap-plugin-barcodescanner" />
 	
 	<icon src="icon.png" />
 	<icon gap:platform="webos" src="res/icon/ios/Icon-180.png" />
