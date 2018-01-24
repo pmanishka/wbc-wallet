@@ -4,6 +4,7 @@
 <title>World Bank of Cryptocurrencies</title>
 <link rel="stylesheet" type="text/css" href="css/style.css">
 <script src="js/jquery.min.js"></script>
+<script src="js/config.js"></script>
 
 <script>
 var contentType ="application/x-www-form-urlencoded; charset=utf-8";
@@ -18,7 +19,7 @@ jQuery( document ).ready(function() {
 		
 		$.ajax({
 		  //url: "https://4xwin.com/MobileApp/login",
-		  url: "http://10.0.0.66/Regular/cryptocurrency/api/login",
+		  url: siteurl+"login",
 		  type: 'POST',
 		  data: {q:'checklogin',user_id:user_id,password:password}, 
 		  crossDomain: true,   

@@ -26,8 +26,12 @@
 	<plugin name="cordova-plugin-file-transfer" spec="~1.6.3" />
 	<plugin name="cordova.plugins.diagnostic" source="npm" />
 	<plugin name="cordova-plugin-dialogs" source="npm" />
-	<plugin name="phonegap-plugin-barcodescanner" />
-	
+<edit-config target="NSCameraUsageDescription" file="*-Info.plist" mode="merge">
+    <string>To scan barcodes</string>
+</edit-config>
+	<!-- add a version here, otherwise PGB will use whatever the latest version of the package on npm is -->
+<plugin name="phonegap-plugin-barcodescanner" />
+<preference name="android-build-tool" value="gradle" />
 	<platform name="android">
 	  <resource-file src="google-services.json" target="google-services.json" />
 	</platform>
