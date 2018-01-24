@@ -25,8 +25,8 @@ function scan()
 
     cordova.plugins.barcodeScanner.scan(
         function (result) {
-
-            if(!result.cancelled)
+			alert(result); 
+            /*if(!result.cancelled)
             {
 			
                 if(result.format == "QR_CODE")
@@ -45,7 +45,7 @@ function scan()
                         alert("Done");
                     });
                 }
-            }
+            }*/
         },
         function (error) {
             alert("Scanning failed: " + error);
