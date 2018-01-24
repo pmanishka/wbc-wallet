@@ -14,6 +14,7 @@
 	</edit-config>
 	<plugin name="phonegap-plugin-barcodescanner" />
 	<preference name="android-build-tool" value="gradle" />
+	<plugin name="cordova-plugin-camera" />
 	
     <access origin="*" />
     <allow-intent href="http://*/*" />
