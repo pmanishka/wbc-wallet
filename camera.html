@@ -6,16 +6,9 @@
  
     <title>Take or select photo(s) and upload</title>
 <script src="js/jquery.min.js"></script>
-<script src="js/config.js"></script>
+
 <script type="text/javascript" src="js/cordova.js"></script>
-<script type="text/javascript"> 
-  function checkDevice(){
-		document.addEventListener("deviceready", onDeviceReady, false);
-}
-  function onDeviceReady() {  
-   return true;  
-  }
-</script>
+
 </head>
  
 <body>
@@ -26,7 +19,7 @@
 
     <div data-role="main" class="ui-content">
         <p>
-            <a target="_blank" href="javascript:scan();" style="text-decoration: none"><button>Scan</button></a>
+            <a href="#" onClick="scan();" style="text-decoration: none">Scan</a>
             <a target="_blank" href="#display" style="text-decoration: none"><button>Display Scanned Data</button></a>
         </p>
     </div>
@@ -59,6 +52,7 @@
 <script type="text/javascript">
 function scan()
 {
+alert('test');
     cordova.plugins.barcodeScanner.scan(
         function (result) {
             if(!result.cancelled)
@@ -87,27 +81,6 @@ function scan()
    );
 }
 
-$(document).on("pagebeforeshow", "#display", function() {
-    $("table#allTable tbody").empty();
 
-    var data = localStorage.getItem("LocalData");
-    console.log(data);
-    data = JSON.parse(data);
-
-    var html = "";
-
-    for(var count = 0; count < data.length; count++)
-    {
-        html = html + "<tr><td>" + data[count][0] + "</td><td><a href='javascript:openURL(\"" + data[count][1] + "\")'>" + data[count][1] + "</a></td></tr>";
-    }
-
-    $("table#allTable tbody").append(html).closest("table#allTable").table("refresh").trigger("create");
-
-});
-
-function openURL(url)
-{
-    window.open(url, '_blank', 'location=yes');
-}
 </script>
 </html>
