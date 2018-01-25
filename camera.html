@@ -7,11 +7,18 @@
     <title>Take or select photo(s) and upload</title>
 <script src="js/jquery.min.js"></script>
 <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
-
+<script type="text/javascript"> 
+function checkDevice(){
+		document.addEventListener("deviceready", onDeviceReady, false);
+}
+function onDeviceReady() {  
+	return true;  
+}
+</script>
 
 </head>
  
-<body>
+<body onLoad="checkDevice();">
 <div data-role="page" id="home">
     <button onClick="scan();" style="text-decoration: none">Scan</button>
 </div>
@@ -22,7 +29,7 @@
 <script type="text/javascript">
 function scan()
 {
-
+alert('test');
     cordova.plugins.barcodeScanner.scan(
 		function (result) {
 			alert("We got a barcode\n" +
