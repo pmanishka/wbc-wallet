@@ -15,8 +15,10 @@ jQuery( document ).ready(function() {
 	
 	jQuery('input[name="submit"]').click(function(){
 		var user_id=jQuery("#emailid").val();
+		var emailid=jQuery("#emailid").val();
 		var password=jQuery("#password").val();
 		
+		//alert(password);
 		$.ajax({
 		  //url: "https://4xwin.com/MobileApp/login",
 		  url: siteurl+"login",
@@ -28,7 +30,12 @@ jQuery( document ).ready(function() {
 			//alert('Login Successfully');
 			if(data['status'] == 1)
 			{
-				//alert('Login Success');
+				//alert(data);
+				window.sessionStorage.setItem("loggedIn", 1);
+				sessionStorage.setItem("emailid", emailid);
+				sessionStorage.setItem("password", password);
+				//var password = sessionStorage.setItem("password", password);
+				//alert(sessionStorage.getItem("password"));
 				window.location='dashboard.html';
 			}else{
 				alert('Login Failed');

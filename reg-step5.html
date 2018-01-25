@@ -128,7 +128,7 @@ var adhar_card_no = "";
 		var rdata = JSON.stringify(registrationData);
 		
 		$.ajax({
-			  url: "http://10.0.0.66/Regular/cryptocurrency/api/userRegistrationData",
+			  url: siteurl+"userRegistrationData",
 			  type: 'POST',
 			  dataType: "json",
 			  data: {q:'registrationData', registrationData: rdata},

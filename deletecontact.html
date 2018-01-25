@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>World Bank of Cryptocurrencies</title>
+<link rel="stylesheet" type="text/css" href="css/style.css">
+<link rel="stylesheet" href="css/jquery.mmenu.all.css" />
+
+<script src="js/jquery.min.js"></script>
+<script src="js/jquery.mmenu.all.js"></script>
+<script type="text/javascript">
+$(function() {
+	$('nav#menu').mmenu();
+	$( "nav#menu .mm-panels" ).addClass( "profile-menu" );
+});
+
+</script>
+<script>
+var contentType ="application/x-www-form-urlencoded; charset=utf-8";
+if(window.XDomainRequest){contentType = "text/plain";}
+jQuery.support.cors = true;
+
+</script>
+</head>
+<body>
+
+<div id="main_wrapper" class="inner-page">
+	<div class="main-container">
+		<div id="topbar" class="navigation">
+			
+				<div class="header">
+					<a href="#menu"><span></span></a>
+				</div>
+				<nav id="menu">
+					<ul>
+						
+						<li class="menutop">
+							<span class="profile-icon">P</span>
+							<span class="name">Priyanka</span>
+							<span class="email">
+								<span class="uemail">p.grover@intouchgroup.in</span>
+								<span class="verify">Unverified</span></span>
+							</span>
+						</li>
+						
+						<li class="tbl" style="padding-top: 4px; padding-bottom: 20px;">
+						<table>
+							<tr>
+								<td class="picon"><img src="images/home.png"></td>
+								<td>&nbsp;&nbsp;&nbsp;</td>
+								<td class="ptxt">Home</td>
+							</tr>
+						</table>
+						</li>
+						<li class="tbl" style="padding-top: 4px; padding-bottom: 20px;">
+						<table>
+							<tr>
+								<td class="picon"><img src="images/prepaid-card-in-a-hand.png"></td>
+								<td>&nbsp;&nbsp;&nbsp;</td>
+								<td class="ptxt">Digi Card</td>
+							</tr>
+						</table>
+						</li>
+						<li class="tbl" style="padding-top:4px; padding-bottom:20px;">
+						<table>
+							<tr>
+								<td class="picon"><img src="images/setting2.png"></td>
+								<td>&nbsp;&nbsp;&nbsp;</td>
+								<td class="ptxt">Setting</td>
+							</tr>
+						</table>
+						</li>
+						<li class="Divider">Communicate</li>
+						<li class="tbl" style="padding-top: 36px; padding-bottom: 20px;">
+						<table>
+							<tr>
+								<td class="picon"><img src="images/support.png"></td>
+								<td>&nbsp;&nbsp;&nbsp;</td>
+								<td class="ptxt">Support</td>
+							</tr>
+						</table>
+						</li>
+					</ul>
+				</nav>
+			<div class="header-card">Settings</div>
+			<div class="notification" style="float:right;"><img src="images/notification_title_menu.png"/><!--  style="margin-left:41px;" --><img src="images/dot.png" style="margin-left:22px;"/></div>
+		</div>
+		<div class="container_a">
+			<form method="post">
+					<div class="addressbook-input-field">
+						<input type="text" name="addressbook" id="address" placeholder="Search"/>
+					</div>
+			</form>
+		</div>
+		
+		<div class="deletecontact1">
+			<table>
+				<tr>
+					<td class="addressdel1-img"><img src="images/delete.png" style="-webkit-logical-height:25px; -webkit-logical-width:25px;"/></td>
+				</tr>
+			</table>
+		</div>
+		<div class="addressback">
+			<table>
+				<tr>
+					<td class="addressback-img"><img src="images/back.png" style="-webkit-logical-height:25px; -webkit-logical-width:25px; margin-left:10px"/></td>
+				</tr>
+			</table>
+		</div>
+	</div>
+</div>
+</body>
+</html>

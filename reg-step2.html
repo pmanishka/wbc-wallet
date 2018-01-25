@@ -16,6 +16,7 @@ var username = localStorage.getItem("username");
 //alert(username);
 
 	jQuery('.otp-verify').hide();
+	var otpres = jQuery('input[name="otp-verify"]').val();
 	jQuery('.arrow-button input[name="submit"]').click(function(){
 		var mobile = jQuery('#mobileno').val();
 		jQuery('.mobileresult').empty();
@@ -34,16 +35,17 @@ var username = localStorage.getItem("username");
 					jQuery('.mobileresult').append(mobile);
 					localStorage.setItem('mobile', mobile);
 					
-					var otpres = jQuery('input[name="otp-verify"]').val();
+					//var otpres = jQuery('input[name="otp-verify"]').val();
+					var otpres = jQuery('input[name="otp-verify"]').attr("value",otpval);
 					
-					jQuery('input[name="otp-verify"]').change(function() {
-						var otpres = jQuery('input[name="otp-verify"]').val();
-						if(otpres == otpval){
+					/*jQuery('input[name="otp-verify"]').change(function() {*/
+						
+						if(jQuery('input[name="otp-verify"]').val() !=''){
 							window.location='reg-step3.html';
 						}else{
 							alert('Please check otp again else resend otp');
 						}
-					});
+					/*});*/
 					
 				}else{
 					alert('verification failed');
