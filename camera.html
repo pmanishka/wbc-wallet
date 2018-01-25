@@ -29,8 +29,9 @@ function onDeviceReady() {
 <script type="text/javascript">
 function scan()
 {
-alert('test');
+
     cordova.plugins.barcodeScanner.scan(
+	alert('test');
 		function (result) {
 			alert("We got a barcode\n" +
               "Result: " + result.text + "\n" +
