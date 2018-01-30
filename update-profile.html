@@ -4,11 +4,8 @@
 <title>World Bank of Cryptocurrencies</title>
 <link rel="stylesheet" type="text/css" href="css/style.css">
 <link rel="stylesheet" href="css/jquery.mmenu.all.css" />
-<link href="css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
-<link href="css/font-awesome.css" rel="stylesheet">
+<script src="js/config.js"></script>
 
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="js/jquery.min.js"></script>
 <script src="js/jquery.mmenu.all.js"></script>
 <script type="text/javascript">
@@ -22,6 +19,56 @@ $(function() {
 var contentType ="application/x-www-form-urlencoded; charset=utf-8";
 if(window.XDomainRequest){contentType = "text/plain";}
 jQuery.support.cors = true;
+
+jQuery( document ).ready(function() {
+
+	if(window.sessionStorage.getItem("loggedIn") == 1) {
+		var userid = sessionStorage.getItem("user_id") ;
+		var password = sessionStorage.getItem("password") ;
+		var uid = sessionStorage.getItem("uid") ;
+		//alert(uid);
+		jQuery('.logout').hide();
+		jQuery('.log-out').click(function(){
+			jQuery('.logout').toggle( "slow" );
+		});
+		
+		$.ajax({
+		  url: siteurl+"login",
+		  type: 'POST',
+		  data: {q:'checklogin',user_id:userid,password:password}, 
+		  crossDomain: true,   
+		  success: function(data) {
+
+			if(data['status'] == 1)
+			{
+				var name = jQuery('.name').append(data['details']['name']);
+				var email = jQuery('.uemail').append(data['details']['email']);
+				var mobile = jQuery('.mobile').append(data['details']['mobile']);
+				var picon = data['details']['name'];
+				var profile = jQuery('.profile-icon').append(picon.charAt(0));
+				var verifystatus = data['details']['emailverifystatus'];
+				if(typeof verifystatus!='undefined' && verifystatus!='' && verifystatus!=null && verifystatus=='1'){
+					jQuery('.verify').append("Verified");
+				}else{
+					jQuery('.verify').append("Unverified");
+				}
+				//For Inner Content
+				var email = jQuery('.email').append(data['details']['email']);
+			}
+			else{
+				window.location='login.html';
+			}
+		  },
+		  error: function() {
+			alert('Error');
+		  }
+		});
+	}
+	else
+	{
+		window.location='login.html';
+	}
+});
 
 </script>
 </head>
@@ -38,11 +85,11 @@ jQuery.support.cors = true;
 				<ul>
 					
 					<li class="menutop">
-						<span class="profile-icon">P</span>
-						<span class="name">Priyanka</span>
+						<span class="profile-icon"></span>
+						<span class="name"></span>
 						<span class="email">
-							<span class="uemail">p.grover@intouchgroup.in</span>
-							<span class="verify">Unverified</span></span>
+							<span class="uemail"></span>
+							<span class="verify"></span></span>
 						</span>
 					</li>
 					
@@ -51,7 +98,7 @@ jQuery.support.cors = true;
 						<tr>
 							<td class="picon"><img src="images/home.png"></td>
 							<td>&nbsp;&nbsp;&nbsp;</td>
-							<td class="ptxt">Home</td>
+							<td class="ptxt"><a href="dashboard.html">Home</a></td>
 						</tr>
 					</table>
 					</li>
@@ -60,7 +107,7 @@ jQuery.support.cors = true;
 						<tr>
 							<td class="picon"><img src="images/prepaid-card-in-a-hand.png"></td>
 							<td>&nbsp;&nbsp;&nbsp;</td>
-							<td class="ptxt">Digi Card</td>
+							<td class="ptxt"><a href="dashboard.html">Digi Card</a></td>
 						</tr>
 					</table>
 					</li>
@@ -69,7 +116,7 @@ jQuery.support.cors = true;
 						<tr>
 							<td class="picon"><img src="images/setting2.png"></td>
 							<td>&nbsp;&nbsp;&nbsp;</td>
-							<td class="ptxt">Setting</td>
+							<td class="ptxt"><a href="setting.html">Setting</a></td>
 						</tr>
 					</table>
 					</li>
@@ -79,47 +126,53 @@ jQuery.support.cors = true;
 						<tr>
 							<td class="picon"><img src="images/support.png"></td>
 							<td>&nbsp;&nbsp;&nbsp;</td>
-							<td class="ptxt">Support</td>
+							<td class="ptxt"><a href="support.html">Support</a></td>
 						</tr>
 					</table>
 					</li>
 				</ul>
 			</nav>
 		<div class="header-card">Update Profile</div>
-		<div class="notification" style="float:right;  margin-left:-9px;"><img src="images/notification_title_menu.png"/><!--  style="margin-left:41px;" --><img src="images/dot.png" style="margin-left:22px;"/></div>
+		<div class="notification" style="float:right; margin-left:-9px;">
+			<a href="notifications.html"><img src="images/notification_title_menu.png"/></a>
+			<span class="log-out"><img src="images/dot.png" style="margin-left:22px;"/></span>
+			<div class="logout">
+				<a href="logout.html">Logout</a>
+			</div>
+		</div>
 	</div>
 	<div class="dashboard-container">
 		<div class="inner-profile">
 			<div class="profileicon">
-				<div class="profile-icon">P</div>
+				<div class="profile-icon"></div>
 			</div>
 			<div class="profile-details">
-				<div class="name">Priyanka</div>
-				<div class="email">p.grover@intouchgroup.in</div>
-				<div class="mobile">7206871510</div>
+				<div class="name"></div>
+				<div class="email"></div>
+				<div class="mobile"></div>
 			</div>
 		</div>
 		<div class="spanel">
 			<div class="setting-panel">
-				<div class="txt">Add Nominee Card Number</div>
+				<div class="txt"><a href="addnominee.html">Add Nominee Card Number</a></div>
 				<div class="icon"><a href="addnominee.html"><img src="images/add.png"></a></div>
 			</div>
 		</div>
 		<div class="spanel">
 		<div class="setting-panel">
-			<div class="txt">Add National Id</div>
+			<div class="txt"><a href="addadhar.html">Add National Id</a></div>
 			<div class="icon"><a href="addadhar.html"><img src="images/add.png"></a></div>
 		</div>
 		</div>
 		<div class="spanel">
 		<div class="setting-panel">
-			<div class="txt">Change Security Pin</div>
+			<div class="txt"><a href="cpin.html">Change Security Pin</a></div>
 			<div class="icon"><a href="cpin.html"><img src="images/edit_white.png"></a></div>
 		</div>
 		</div>
 		<div class="spanel">
 		<div class="setting-panel">
-			<div class="txt">Change Profile Password</div>
+			<div class="txt"><a href="cpass.html">Change Profile Password</a></div>
 			<div class="icon"><a href="cpass.html"><img src="images/edit_white.png"></a></div>
 		</div>
 		</div>

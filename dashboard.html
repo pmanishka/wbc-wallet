@@ -16,6 +16,7 @@ $(function() {
 });
 </script>
 <script>
+
 var contentType ="application/x-www-form-urlencoded; charset=utf-8";
 if(window.XDomainRequest){contentType = "text/plain";}
 jQuery.support.cors = true;
@@ -23,9 +24,10 @@ jQuery.support.cors = true;
 jQuery( document ).ready(function() {
 
 	if(window.sessionStorage.getItem("loggedIn") == 1) {
-		var emailid = sessionStorage.getItem("emailid") ;
+		var userid = sessionStorage.getItem("user_id") ;
 		var password = sessionStorage.getItem("password") ;
-
+		var uid = sessionStorage.getItem("uid") ;
+		//alert(uid);
 		jQuery('.logout').hide();
 		jQuery('.log-out').click(function(){
 			jQuery('.logout').toggle( "slow" );
@@ -34,13 +36,16 @@ jQuery( document ).ready(function() {
 		$.ajax({
 		  url: siteurl+"login",
 		  type: 'POST',
-		  data: {q:'checklogin',user_id:emailid,password:password}, 
+		  data: {q:'checklogin',user_id:userid,password:password}, 
 		  crossDomain: true,   
 		  success: function(data) {
 			if(data['status'] == 1)
 			{
 				var name = jQuery('.name').append(data['details']['name']);
 				var email = jQuery('.uemail').append(data['details']['email']);
+				var card_type = jQuery('.card_type').append(data['details']['card_type']);
+				//var card_type = data['details']['card_type'];
+
 				var picon = data['details']['name'];
 				var profile = jQuery('.profile-icon').append(picon.charAt(0));
 				var verifystatus = data['details']['emailverifystatus'];
@@ -63,6 +68,37 @@ jQuery( document ).ready(function() {
 			alert('Error');
 		  }
 		});
+		
+		// Get BitPay Data
+		$.ajax({
+        type: 'GET',
+        url: 'https://bitpay.com/api/rates',
+        dataType: 'json',
+        async: false,
+			success: function (response) {
+				$.each(response, function(idx, obj) {
+					if(obj.code == 'USD'){
+						jQuery('.live-footer span.amount').append(obj.rate);
+					}
+				});
+			}
+		});
+		
+
+		// Get Live Chart Data
+		$.ajax({
+        type: 'GET',
+        url: 'https://api.blockchain.info/charts/transactions-per-second?timespan=5weeks&rollingAverage=8hours&format=json',
+		dataType: 'json',
+		crossDomain: true,	
+		crossOrigin: true,
+		headers: { 'Access-Control-Allow-Origin': '*' },
+		success: function(response) {
+			console.log(response);
+		}
+		});
+
+		
 	}
 	else
 	{
@@ -137,16 +173,46 @@ jQuery( document ).ready(function() {
 			<a href="notifications.html"><img src="images/notification_title_menu.png"/></a>
 			<span class="log-out"><img src="images/dot.png" style="margin-left:22px;"/></span>
 			<div class="logout">
-				<a href="logout.html">Logout</a>
+				<a href="logout.html">SignOut</a>
 			</div>
 		</div>
 	</div>
 	<div class="container">
 		<div class="digi">
-		Your DIGI Card number</div>
+			Your DIGI Card number</div>
 		<div class="digi-num">
-		<div></div>
+			<div></div>
+		</div>
+		<div class="digi-text">
+			<div class="card_type"></div>
+		</div>
+		<div class="digi-line"></div>
+		<div>
+			<div style="width:50%; float:left">	
+				<a href="transact.html" class="green-transact-button">Transact</a>
+			</div>
+			<div style="width:40%; float:left; margin-left:10%;">
+				<a href="history.html" class="red-history-button">History</a>
+			</div>
+		</div>
+		<div class="price-chart">
+		Live Price Chart - BTC <img src="images/arrow_down.png"/>
+		</div>
+		<div class="chart">
+				chart
+		</div>
+		<table class="dash-footer">
+		<tr>
+			<td class="balance">Balance <img src="images/bitcoin_logo.png"/></td>
+			<td style="text-align:center;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+			<td class="live-market">Live Market <img src="images/dollar_icon.png"/></td>
+		</tr>
+		<tr>
+			<td class="balance-footer">0.0000000000</td>
+			<td>&nbsp;&nbsp;&nbsp;</td>
+			<td class="live-footer">$ <span class="amount"></span></td>
+		</tr>
+		</table>
 	</div>
-</div>
 </body>
 </html>

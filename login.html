@@ -14,32 +14,29 @@ jQuery.support.cors = true;
 jQuery( document ).ready(function() {
 	
 	jQuery('input[name="submit"]').click(function(){
-		var user_id=jQuery("#emailid").val();
-		var emailid=jQuery("#emailid").val();
+
+		var user_id=jQuery("#userid").val();
 		var password=jQuery("#password").val();
+
 		
-		//alert(password);
 		$.ajax({
-		  //url: "https://4xwin.com/MobileApp/login",
 		  url: siteurl+"login",
 		  type: 'POST',
 		  data: {q:'checklogin',user_id:user_id,password:password}, 
 		  crossDomain: true,   
 		  success: function(data) {
-
-			//alert('Login Successfully');
+		
 			if(data['status'] == 1)
 			{
 				//alert(data);
 				window.sessionStorage.setItem("loggedIn", 1);
-				sessionStorage.setItem("emailid", emailid);
+				sessionStorage.setItem("user_id", user_id);
 				sessionStorage.setItem("password", password);
-				//var password = sessionStorage.setItem("password", password);
-				//alert(sessionStorage.getItem("password"));
-				window.location='dashboard.html';
+				sessionStorage.setItem("uid", data['details']['id']);
+
+				window.location='securitypin.html';
 			}else{
 				alert('Login Failed');
-				//window.location='dashboard.html';
 			}
 		  },
 		  error: function() {
@@ -67,7 +64,7 @@ jQuery( document ).ready(function() {
 		<div class="login-form">
 			<form method="post">
 				<div class="input-field">
-					<input type="text" name="emailid" id="emailid" placeholder="Email Id or Card no"/>
+					<input type="text" name="userid" id="userid" placeholder="Email Id or Card no"/>
 				</div>
 				<div class="input-field">
 					<input type="password" name="password" id="password" placeholder="Password"/>

@@ -5,6 +5,78 @@
 <link rel="stylesheet" type="text/css" href="css/style.css">
 <script src="js/jquery.min.js"></script>
 <script src="js/config.js"></script>
+
+<script>
+var contentType ="application/x-www-form-urlencoded; charset=utf-8";
+if(window.XDomainRequest){contentType = "text/plain";}
+jQuery.support.cors = true;
+
+jQuery( document ).ready(function() {
+
+	if(window.sessionStorage.getItem("loggedIn") == 1) {
+	
+		// Check Session
+		var userid = sessionStorage.getItem("user_id") ;
+		var password = sessionStorage.getItem("password") ;
+		var uid = sessionStorage.getItem("uid") ;
+		
+		jQuery('.logout').hide();
+		jQuery('.log-out').click(function(){
+			jQuery('.logout').toggle( "slow" );
+		});
+		
+		// Get Login data
+		$.ajax({
+		  url: siteurl+"login",
+		  type: 'POST',
+		  data: {q:'checklogin',user_id:userid,password:password}, 
+		  crossDomain: true,   
+		  success: function(data) {
+			if(data['status'] == 1)
+			{
+				var user_otp = data['details']['u_pin'];
+				//alert(user_otp);
+				// Concatinate otp value
+				jQuery(".spin").keyup(function () {
+					if (this.value.length == this.maxLength) {
+					  var $next = $(this).next('.spin');
+					  if ($next.length){
+						  $(this).next('.spin').focus();
+					  }
+					  else{
+						  $(this).blur();
+						  var optcvalue='';
+							jQuery('.spin').each(function(){
+							   optcvalue+=this.value;
+							});
+						  if(optcvalue == user_otp)
+						  {
+							 window.location='dashboard.html';
+						  }else{
+							 alert('Enter the correct pin');
+						  }
+					  }
+						  
+					
+					}
+				});
+			}
+			else{
+				window.location='login.html';
+			}
+		  },
+		  error: function() {
+			alert('Error');
+		  }
+		});
+	
+	}
+	else
+	{
+		window.location='login.html';
+	}
+});
+</script>
 </head>
 <body>
 
@@ -19,7 +91,12 @@
 		<div class="pin-container">
 			<div class="pin-verify">
 						<div class="pin-msg">Enter Securtiy Pin</div>
-						<div class="pin-textbox"><input class="pin-input" type="password" name="pin-verify" maxlength="4"/></div>
+						<div class="spin-textbox">
+							<input type="password" name="spin0" class="spin" maxlength=1/>
+							<input type="password" name="spin1" class="spin" maxlength=1/>
+							<input type="password" name="spin2" class="spin" maxlength=1/>
+							<input type="password" name="spin3" class="spin" maxlength=1/>
+						</div>
 			</div>
 			<div class="input-button">
 				<input type="button" name="submit" class="green-button-s" value="Don't Remember Pin"/>

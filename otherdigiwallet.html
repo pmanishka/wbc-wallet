@@ -100,11 +100,11 @@ $(document).ready(function(){
 	</div>
 	<div class="dashboard-container">
 		<ul class="tabs">
-		<li class="tab-link current" data-tab="tab-1">RECIEVED</li>
-		<li class="tab-link" data-tab="tab-2">SEND</li>
+		<li class="tab-link " data-tab="tab-1">RECIEVED</li>
+		<li class="tab-link current" data-tab="tab-2">SEND</li>
 	</ul>
 
-	<div id="tab-1" class="tab-content current">
+	<div id="tab-1" class="tab-content">
 		<div class="amount">
 			<img src="images/amount.png"/>
 		</div>
@@ -128,9 +128,37 @@ $(document).ready(function(){
 					<input type="button" name="submit" class="transact-button" value="Proceed"/>
 		</div>
 	</div>
-	<div id="tab-2" class="tab-content">
-		<input type="button" class="other-wallet" value="TO OTHER WALLET"/>
-		<input type="button" class="digi-wallet" value="TO OTHER DIGI WALLET"/>
+	<div id="tab-2" class="tab-content current">
+		<div class="amount">
+			<img src="images/amount_send.png"/>
+		</div>
+		<table class="btc">
+			<tr>
+				<td style="text-align:center; width:50%;">BTC&nbsp;&nbsp;&nbsp;&nbsp;<img src="images/bitcoin_logo.png"/></td>
+				<td style="text-align:center;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+				<td style="text-align:center; width:50%;">USD&nbsp;&nbsp;&nbsp;&nbsp;<img src="images/dollar_icon.png"/></td>
+			</tr>
+			<tr>
+				<td class="btc-input-field" style="width:50%;">
+					<input type="text" name="btc" id="btc" />
+				</td>
+				<td style="text-align:center;">OR</td>
+				<td class="usd-input-field" style="width:50%;">
+					<input type="text" name="usd" id="usd" />
+				</td>
+			</tr>
+		</table>
+		<table>
+			<tr>
+				<td class="digicard-input-field">
+					<input type="text" name="digicardno" id="digicardno" placeholder="Enter 16 Digit Card Number"/>
+				</td>
+			</tr>
+		</table>
+		<div class="input-button">
+					<input type="button" name="submit" class="transact-button" value="Confirm"/>
+		</div>
+	
 	</div>
 	
 		

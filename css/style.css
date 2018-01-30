@@ -51,17 +51,16 @@ input:-webkit-autofill {
     position: relative;
 }
 .wrapper {    max-width: 600px;    height: auto;    display: inline-block;    width: 100%;    margin: 0 auto;    background: #000;    float: none; }
-#main_wrapper
+/* #main_wrapper
 {
 	width:100%;
 	height:100%;
 	margin:0px;
 	padding:0px;
 	overflow: hidden;
-}
+} */
 .main-container {
-    width: 100%;
-	height:100%;
+    max-width: 600px;
     background: #000;
 }
 body{
@@ -71,8 +70,7 @@ body{
 body .container {
     float: left;
     width: 100%;
-	height:100%;
-	padding:48px 0 82px 0;
+	padding:48px 0 0px 0;
 	overflow:hidden;
 }
 #top_header {
@@ -81,10 +79,7 @@ body .container {
     width: 100%;
 	background:#000;
 }
-.loading{
-	color:#fff; 
-	text-align:center;
-	font-size:34px;}
+.loading{color:#fff; text-align:center;}
 /* #main_wrapper {
     min-height: 650px;
     background: #000;
@@ -135,21 +130,21 @@ body .container {
 /* --------- Home Page Style -----------*/
 .homewrapper {
     text-align: center;
-    padding: 14% 0 35% 0;
-   /*  margin-bottom: 104px; */
+    padding: 60px 0 70px 0;
+    margin-bottom: 104px;
 }
 .mainpage-section .homewrapper img {
-    width: 42%;
+    width: 55%;
 }
 .home-text {
     /* text-align: center; */
     color: #fff;
     padding: 10px;
-	font-size:39px;
+	font-size:14px;
 }
 .home-text-main {
     color: #fff;
-    font-size: 76px;
+    font-size: 30px;
 	font-family:Sans-Serif Condensed;
 	font-weight:bold;
 	
@@ -338,7 +333,6 @@ input[type="button"].green-button  {
 }
 .error-msg .msg{color:#C6482A;
 margin-top:70px;
-font-family:Sans-Serif Condensed;
 /* margin-bottom:10px; */
 
 }
@@ -363,7 +357,7 @@ font-family:Sans-Serif Condensed;
     max-width: 200px;
     /* text-align: right; */
     top: 31px;
-    right: 128px;
+    right: 13%;
 }
 .edit-username img {
     width: 30px;
@@ -736,12 +730,12 @@ nav:not(.mm-menu)
 	font-size: 15px;
 }
 .profile-details {
-	float: left;
-	width: 73%;
+    float: left;
+    width: 85%;
 }
 .profileicon {
-	float: left;
-	width: 27%;
+    float: left;
+    width: 15%;
 }
 /*--------- Tab ----------*/
 .w3-bar-item.w3-button.transact-tab {
@@ -789,8 +783,10 @@ nav:not(.mm-menu)
 .setting-panel .icon img {
 	width: 18px;
 }
-.setting-panel a{
-	color:#fff;
+.setting-panel a {
+    color: #fff;
+    width: 100%;
+    float: left;
 }
 .trans {
 	position: relative;
@@ -859,6 +855,7 @@ nav:not(.mm-menu)
 	/* font-weight: bold; */
 	margin-top:35%;
 	align-items:center;
+	font-family:Sans-Serif Condensed;
  }
 .digi-wallet {
     background: url('../images/dark_voilet.png') no-repeat center;
@@ -873,32 +870,140 @@ nav:not(.mm-menu)
 	/* font-weight: bold; */
 	margin-top:10%;
 	align-items:center;
+	font-family:Sans-Serif Condensed;
  }
  .amount {
-	position: relative;
-	width: 100%;
-	float: left;
 	margin-bottom:36px;
 	margin-top:26px;
 }
-.amount-text {
-	/* z-index: 999; */
-	max-width: 35px;
-	border: 1px solid #000;
-	color: #ffffff;
-	padding: 9px;
-	border-radius: 50%;
-	position: absolute;
-	bottom: -17px;
-	left: 43%;
-	font-size: 12px;
-	background: #000;
+.amount img{
+	-webkit-logical-height:100%;
+	-webkit-logical-width:100%;
 }
-.amount-line {
-	border-bottom: 1px solid #ccc;
-	width: 93%;
-	margin-left:10px;
-	  
+.btc{
+	float:left;
+
+}
+.btc-input-field  {
+	padding: 10px 0%;
+    margin-top: 10px;
+	/* margin-bottom: 75px; */
+}
+.btc-input-field input {
+    background: url(../images/edit_text_back.png) no-repeat center;
+    background-size: 88% 100%;
+	color: #ddd;
+    padding: 15px 15px;
+    border: 0px;
+    width: 100%;
+    font-size: 17px;
+	text-align:center;
+	
+}
+.usd-input-field  {
+	padding: 10px 0%;
+    margin-top: 10px;
+	/* margin-bottom: 75px; */
+}
+.usd-input-field input {
+    background: url(../images/edit_text_back.png) no-repeat center;
+    background-size: 88% 100%;
+	color: #ddd;
+    padding: 15px 15px;
+    border: 0px;
+    width: 100%;
+    font-size: 17px;
+	text-align:center;
+	
+}
+.transact-button {
+    background: url('../images/dark_red.png') no-repeat center;
+	    background-size: 91% 98%;
+}
+ input[type="button"].transact-button {
+    border: 0;
+    color: #fff;
+    font-size: 17px;
+    /* font-weight: 500; */
+    padding: 27px 100px;
+    /* font-weight: bold; */
+    /* margin-top: 44%; */
+    position: fixed;
+    align-items: center;
+    bottom: 2%;
+          left: 28%;
+    margin-left: -50px;
+   
+}
+/*--------------------- Other Wallet -------------------*/
+.qrcode{
+	text-align:center;
+}
+.qrcode img{
+	    width: 25%;
+}
+.qr-text{
+	text-align:center;
+}
+.payment-address img{
+	width:100%;
+}
+.withdrawal img{
+	width:100%;
+}
+.payment-input-field  {
+	padding: 10px 0%;
+    margin-top: 10px;
+	/* margin-bottom: 75px; */
+}
+.payment-input-field input {
+    background: url(../images/edit_text_back.png) no-repeat center;
+    background-size: 100% 100%;
+	color: #ddd;
+    padding: 15px 15px;
+    border: 0px;
+    width: 100%;
+    font-size: 17px;
+	text-align:center;
+	
+}
+.green-submit-button {
+    margin-top: 25px;
+    background: url(../images/dark_green.png) no-repeat center;
+	background-size: 180px 76px;
+	
+}
+input[type="button"].green-submit-button {
+   width:100%;
+    border: 0;
+    color: #fff;
+    font-size: 17px;
+    padding: 27px 100px;
+    align-items: center;	
+   /*  font-weight: 600; */
+}
+.input-button{
+	width:100%;
+	float:left;
+}
+/*---------------------------------- other digi wallet ------------------------------------*/
+.digicard-input-field  {
+	padding: 10px 0%;
+    margin-top: 10px;
+	width:36%;
+	/* margin-bottom: 75px; */
+}
+.digicard-input-field input {
+        background: url(../images/edit_text_back.png) no-repeat center;
+    background-size: 100% 100%;
+    color: #ddd;
+    padding: 15px 15px;
+    border: 0px;
+    width: 100%;
+    font-size: 17px;
+    text-align: center;
+	    margin-top: 15%;
+	
 }
 /*------- Media Screen --------*/
 @media screen and (max-width: 360px) and (min-width: 351px) {
@@ -951,10 +1056,10 @@ nav:not(.mm-menu)
 		margin-left:1%;
 		padding:30px 115px; 
 	}
-	.input-field input{width:100%; padding: 15px 8%;}
+	.input-field input{width:100%; padding: 15px 11%;}
 	.input-field {
 		padding: 10px 32px;
-		margin-bottom:80px;
+		/* margin-bottom:80px; */
 	}
 	.forgot-password {
 		max-width: 89%;
@@ -974,7 +1079,7 @@ nav:not(.mm-menu)
 		color: #ddd;
 		padding: 15px 13px;
 		border: 0px;
-		width: 100%;
+		width: 90%;
 		font-size: 17px;
 	}
 	.input-field {
@@ -1027,15 +1132,131 @@ nav:not(.mm-menu)
 	margin-left: 27px;
     margin-top: -33px;
     font-size: 13px;
+	margin-bottom:10px;
 	
 }
 .digi-num{
 	font-size: 31px;
     margin-left: 52px;
+	margin-bottom:10px;
+}
+.digi-text{
+	float:right;
+	    margin-right: 5%;
+    color: #b2ff59;
+	margin-bottom:10px;
+}
+.digi-line {
+	border-bottom: 1px solid #ccc;
+    width: 100%;
+    margin-top: 11%;
+}
+.red-history-button {
+    margin-top: 25px;
+    background: url(../images/dark_red.png) no-repeat center;
+	background-size: 100% 90%;
+    
+	float:right;
+	margin-right: 15%;
+	   /*  position: fixed; */
 	
 }
+.red-history-button input[type="button"] {
+    background: none;
+    border: 0;
+    color: #fff;
+    font-size: 17px;
+	padding: 30px;
+}
 
+a.red-history-button {
+    margin-top: 25px;
+    background: url(../images/dark_red.png) no-repeat center;
+	background-size: 100% 90%;
+	float:right;
+	margin-right: 15%;
+	border: 0;
+    color: #fff;
+    font-size: 17px;
+	padding: 30px;
+	
+}
+.green-transact-button {
+    margin-top: 25px;
+    background: url(../images/dark_green.png) no-repeat center;
+	background-size: 100% 100%;
+	float: left;
+	margin-right: 40px;
+	margin-left:11%;
+	position:relative;
+	    
+}
+.green-transact-button input[type="button"] {
+    background: none;
+    border: 0;
+    color: #fff;
+    font-size: 17px;
+	padding: 30px;
+}
+a.green-transact-button  {
+    margin-top: 25px;
+    background: url(../images/dark_green.png) no-repeat center;
+	background-size: 100% 100%;
+	float: left;
+	margin-right: 40px;
+	margin-left:11%;
+	position:relative;
+    border: 0;
+    color: #fff;
+    font-size: 17px;
+	padding: 30px;
+}
+.price-chart{
+	text-align:center;
+}
+.price-chart img{
+	margin-top:20px;
+	width:20px;
+/* 	font-size:100px; */
+}
 
+.chart{
+	height:191px;
+	width:100%;
+    margin-top: 10%;	
+}
+.dash-footer{
+	bottom:10px;
+}
+.balance{
+	text-align:center; 
+	width:50%;
+	font-size:25px;		
+}
+.live-market{
+	text-align:center; 
+	width:50%;
+	font-size:25px;
+}
+.balance-footer{
+	background-color:#086a79;
+	width:30%;
+	height: 37px;
+	text-align:center;
+	margin-left:10px;
+}
+.live-footer{
+	background-color:#086a79;
+	width:30%;
+	height: 37px;
+	text-align:center;
+	padding-right:10px;
+}
+.live-footer img{
+	
+	height:50%;
+	width:19%;
+}
 /* -------------------- forgot password ----------------------*/
 
 
@@ -1255,6 +1476,26 @@ input[type="button"].red-submit-button {
 	
 }
 /*----------------------------- change password -----------------------------------------*/
+.header-card_p {
+	margin-left: 10%;
+	float: left;
+	width: 53%;
+}
+.header a:before,
+.header a:after
+{
+	content: '';
+	display: block;
+	background: #fff;
+	height: 2px;
+}
+.header a span
+{
+	background: #fff;
+	display: block;
+	height: 2px;
+	margin: 6px 0;
+}
 .change-password{
 	width: 93%;
 	float: left	;
@@ -1262,7 +1503,7 @@ input[type="button"].red-submit-button {
 	margin-left: 7%;
 }
 
-.password-input-field #password {
+.password-input-field .password {
     /* width: 100%; */
 	    -webkit-logical-width: 100%;
     background: transparent;
@@ -1674,8 +1915,8 @@ input[type="button"].float-button {
 	margin-top:5px;
 }
 .line {
-	border-bottom: 1px solid #ccc;
-    width: 100%;
+	/* border-bottom: 1px solid #ccc; */
+    width: 96%;
     margin-left: 10px;
     margin-top: 10px;
 }
@@ -1777,9 +2018,11 @@ textarea#queries {
 	background:#000;
 }
 .pin-verify {
-	width: 100%;
-	float: left;
-	margin-top: 40px;
+    width: 100%;
+    float: left;
+    max-width: 58%;
+    margin-top: 40px;
+    margin-left: 20%;
 }
 .pin-verify .pin-msg {
     color: #ccc;
@@ -1797,10 +2040,25 @@ textarea#queries {
 	padding: 0 21px;
 	margin-left:49px;
 }
-.pin-textbox {
-	
+.spin-textbox .spin {
+    background: transparent;
+    border-bottom: 1px solid #fff;
+    border-top: 0;
+    border-left: 0;
+    color: #fff;
+    font-weight: bold;
+    width: 21%;
+    font-size: 26px;
+    padding: 5px 0px;
+    text-align: center;
+    border-right: 0;
+    margin-right: 3%;
+}
+.spin-textbox {
     margin-top: 18px;
-
+}
+.pin-textbox {
+    margin-top: 18px;
 }
 .pin-textbox::after {
 	
@@ -1850,4 +2108,84 @@ textarea#queries {
 }
 .logout a {
     color: #333;
+}
+.query-form {
+    width: 100%;
+    float: left;
+}
+
+.support-result {
+    width: 100%;
+    float: left;
+}
+.support-result-info{
+	border-bottom: 1px solid #fff;
+	width:100%;
+}
+.support-result-date{
+	float:left;
+	
+}
+.support-result-ticket{
+	float:right;
+}
+.support-result-content{
+	float:left;
+}
+.request-result{
+	float:right;
+	color:#ffff00
+	
+}
+.accordion-section {
+    border-bottom: 1px solid #d9fae2;
+    width: 100%;
+    float: left;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+}
+a.accordion-section-title {
+    color: #fff;
+    width: 100%;
+    float: left;
+}
+.accordion-section-content {
+    width: 100%;
+    float: left;
+    padding: 10px 0px;
+}
+.accordion-section-content p {
+    width: 100%;
+    float: left;
+    color: #d9fae2;
+}
+span.ques {
+    width: 4%;
+    float: left;
+}
+span.ques-cont {
+    width: 96%;
+    float: left;
+}
+#main_wrapper {
+    width: 100%;
+    max-width: 600px;
+}
+.inner-cont .center {
+    text-align: center;
+    padding: 15px 0;
+    border-bottom: 1px solid #fff;
+}
+.yellow {
+    color: #ffff00;
+}
+.con-data {
+    margin: 15px 0;
+    border-bottom: 1px solid #fff;
+    /* padding-bottom: 8px; */
+    padding: 0px 10px 3px 10px;
+}
+.inner-cont .next-line {
+    /* line-height: 3; */
+    margin: 13px 0;
 }

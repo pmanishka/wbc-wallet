@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>World Bank of Cryptocurrencies</title>
+<link rel="stylesheet" type="text/css" href="css/style.css">
+<link rel="stylesheet" href="css/jquery.mmenu.all.css" />
+
+<script src="js/jquery.min.js"></script>
+<script src="js/jquery.mmenu.all.js"></script>
+<script src="js/config.js"></script>
+
+<script type="text/javascript">
+$(function() {
+	$('nav#menu').mmenu();
+	$( "nav#menu .mm-panels" ).addClass( "profile-menu" );
+});
+</script>
+<script>
+var contentType ="application/x-www-form-urlencoded; charset=utf-8";
+if(window.XDomainRequest){contentType = "text/plain";}
+jQuery.support.cors = true;
+
+jQuery( document ).ready(function() {
+
+	if(window.sessionStorage.getItem("loggedIn") == 1) {
+		var userid = sessionStorage.getItem("user_id") ;
+		var password = sessionStorage.getItem("password") ;
+		var uid = sessionStorage.getItem("uid") ;
+		//alert(uid);
+		jQuery('.logout').hide();
+		jQuery('.log-out').click(function(){
+			jQuery('.logout').toggle( "slow" );
+		});
+		
+		$.ajax({
+		  url: siteurl+"login",
+		  type: 'POST',
+		  data: {q:'checklogin',user_id:userid,password:password}, 
+		  crossDomain: true,   
+		  success: function(data) {
+			if(data['status'] == 1)
+			{
+				var name = jQuery('.name').append(data['details']['name']);
+				var email = jQuery('.uemail').append(data['details']['email']);
+				var picon = data['details']['name'];
+				var profile = jQuery('.profile-icon').append(picon.charAt(0));
+				var verifystatus = data['details']['emailverifystatus'];
+				if(typeof verifystatus!='undefined' && verifystatus!='' && verifystatus!=null && verifystatus=='1'){
+					jQuery('.verify').append("Verified");
+				}else{
+					jQuery('.verify').append("Unverified");
+				}
+				var dcard = data['details']['my_card_no'];
+				
+				dcard = dcard.replace(/(\S{4})/g,"$1 ");
+				dcard = dcard.replace(/$/,"");   // if you do not want the final a
+				var digicard = jQuery('.digi-num div').append(dcard);
+			}
+			else{
+				window.location='login.html';
+			}
+		  },
+		  error: function() {
+			alert('Error');
+		  }
+		});
+	}
+	else
+	{
+		window.location='login.html';
+	}
+});
+
+jQuery(document).ready(function() {
+	function close_accordion_section() {
+		jQuery('.accordion .accordion-section-title').removeClass('active');
+		jQuery('.accordion .accordion-section-content').slideUp(300).removeClass('open');
+	}
+
+	jQuery('.accordion .accordion-section-content').hide();
+	jQuery('.accordion-section-title').click(function(e) {
+		// Grab current anchor value
+		var currentAttrValue = jQuery(this).attr('href');
+
+		if(jQuery(e.target).is('.active')) {
+			close_accordion_section();
+		}else {
+			close_accordion_section();
+
+			// Add active class to section title
+			jQuery(this).addClass('active');
+			// Open up the hidden content panel
+			jQuery('.accordion ' + currentAttrValue).slideDown(300).addClass('open'); 
+		}
+
+		e.preventDefault();
+	});
+});
+</script>
+</head>
+<body>
+
+<div id="main_wrapper" class="inner-page">
+	<div class="main-container">
+	<div id="topbar" class="navigation">
+		
+			<div class="header">
+				<a href="#menu"><span></span></a>
+			</div>
+			<nav id="menu">
+				<ul>
+					
+					<li class="menutop">
+						<span class="profile-icon"></span>
+						<span class="name"></span>
+						<span class="email">
+							<span class="uemail"></span>
+							<span class="verify"></span></span>
+						</span>
+					</li>
+					
+					<li class="tbl" style="padding-top: 4px; padding-bottom: 20px;">
+					<table>
+						<tr>
+							<td class="picon"><img src="images/home.png"></td>
+							<td>&nbsp;&nbsp;&nbsp;</td>
+							<td class="ptxt"><a href="dashboard.html">Home</a></td>
+						</tr>
+					</table>
+					</li>
+					<li class="tbl" style="padding-top: 4px; padding-bottom: 20px;">
+					<table>
+						<tr>
+							<td class="picon"><img src="images/prepaid-card-in-a-hand.png"></td>
+							<td>&nbsp;&nbsp;&nbsp;</td>
+							<td class="ptxt"><a href="dashboard.html">Digi Card</a></td>
+						</tr>
+					</table>
+					</li>
+					<li class="tbl" style="padding-top:4px; padding-bottom:20px;">
+					<table>
+						<tr>
+							<td class="picon"><img src="images/setting2.png"></td>
+							<td>&nbsp;&nbsp;&nbsp;</td>
+							<td class="ptxt"><a href="setting.html">Setting</a></td>
+						</tr>
+					</table>
+					</li>
+					<li class="Divider">Communicate</li>
+					<li class="tbl" style="padding-top: 36px; padding-bottom: 20px;">
+					<table>
+						<tr>
+							<td class="picon"><img src="images/support.png"></td>
+							<td>&nbsp;&nbsp;&nbsp;</td>
+							<td class="ptxt"><a href="support.html">Support</a></td>
+						</tr>
+					</table>
+					</li>
+				</ul>
+			</nav>
+		<div class="header-card_p">FAQ</div>
+		<div class="notification" style="float:right; margin-left:-9px;">
+			<a href="notifications.html"><img src="images/notification_title_menu.png"/></a>
+			<span class="log-out"><img src="images/dot.png" style="margin-left:22px;"/></span>
+			<div class="logout">
+				<a href="logout.html">Logout</a>
+			</div>
+		</div>
+	</div>
+	<div class="faq-container">
+		<div class="accordion">
+		<div class="accordion-section">
+		<a class="accordion-section-title" href="#accordion-1"><span class="ques">Q.</span> <span class="ques-cont">What is WBC?</span></a>
+		<div id="accordion-1" class="accordion-section-content">
+		<p>WBC is the acronym of World Bank cryptocurrency. This is the bank for cryptocurrencies only. It is meant only to maintain the cryptocurrencies in a safe and Secure Manner of the clients who has open the accounts with WBC. It's not a wallet it's a bank account just like traditional banking system but it is digital banking system.</p>
+		</div><!--end .accordion-section-content-->
+		</div><!--end .accordion-section-->
+		
+		<div class="accordion-section">
+		<a class="accordion-section-title" href="#accordion-2"><span class="ques">Q.</span> <span class="ques-cont">What is digi card?</span></a>
+		<div id="accordion-2" class="accordion-section-content">
+		<p>You can understand digicard just like a digital wallet to keep your cryptocurrencies but in reality it is just your bank account in WBC.</p>
+		</div><!--end .accordion-section-content-->
+		</div><!--end .accordion-section-->
+		
+		<div class="accordion-section">
+		<a class="accordion-section-title" href="#accordion-1"><span class="ques">Q.</span> <span class="ques-cont">Can I transfer my cryptocurrencies in digi card from my other wallet?</span></a>
+		<div id="accordion-1" class="accordion-section-content">
+		<p>Yes you can transfer easily it has universal time to upload your transfer into Digicard.</p>
+		</div><!--end .accordion-section-content-->
+		</div><!--end .accordion-section-->
+		
+		<div class="accordion-section">
+		<a class="accordion-section-title" href="#accordion-1"><span class="ques">Q.</span> <span class="ques-cont">Can I transfer my cryptocurrencies from Digi card to any other wallet?</span></a>
+		<div id="accordion-1" class="accordion-section-content">
+		<p>Yes you can transfer easily it has universal time to upload your transfer from Digi card to other wallet.</p>
+		</div><!--end .accordion-section-content-->
+		</div><!--end .accordion-section-->
+		
+		<div class="accordion-section">
+		<a class="accordion-section-title" href="#accordion-1"><span class="ques">Q.</span> <span class="ques-cont">Can I convert my one cryptocurrency to another cryptocurrency kept in the digi card?</span></a>
+		<div id="accordion-1" class="accordion-section-content">
+		<p>Yes you can convert with one click immediately?</p>
+		</div><!--end .accordion-section-content-->
+		</div><!--end .accordion-section-->
+		
+		<div class="accordion-section">
+		<a class="accordion-section-title" href="#accordion-1"><span class="ques">Q.</span> <span class="ques-cont">How much time will be taken to transfer my cryptocurrencies from from one Digi card to another Digi card?</span></a>
+		<div id="accordion-1" class="accordion-section-content">
+		<p>Such transfer is instant, without any delay.</p>
+		</div><!--end .accordion-section-content-->
+		</div><!--end .accordion-section-->
+		
+		<div class="accordion-section">
+		<a class="accordion-section-title" href="#accordion-1"><span class="ques">Q.</span> <span class="ques-cont">What is my account?</span></a>
+		<div id="accordion-1" class="accordion-section-content">
+		<p>Digi card is just like a current account which does not yield any kind of interest but my account is just like a savings account where you can get interest.  interest rate is depending on the status of your account.</p>
+		</div><!--end .accordion-section-content-->
+		</div><!--end .accordion-section-->
+		
+		<div class="accordion-section">
+		<a class="accordion-section-title" href="#accordion-1"><span class="ques">Q.</span> <span class="ques-cont">What is affiliation income?</span></a>
+		<div id="accordion-1" class="accordion-section-content">
+		<p>If you just help to open another account you will get Commission for opening such account. such commission is your affiliation income.  you will get affiliation income if your refer affiliates other account holders.</p>
+		</div><!--end .accordion-section-content-->
+		</div><!--end .accordion-section-->
+		
+		<div class="accordion-section">
+		<a class="accordion-section-title" href="#accordion-1"><span class="ques">Q.</span> <span class="ques-cont">Can I withdraw interest and affiliation incomes?</span></a>
+		<div id="accordion-1" class="accordion-section-content">
+		<p>Your all affiliation incomes and interest will be automatically transferred to your Digi card every week on Monday so there is no need to withdraw them.</p>
+		</div><!--end .accordion-section-content-->
+		</div><!--end .accordion-section-->
+		
+		<div class="accordion-section">
+		<a class="accordion-section-title" href="#accordion-1"><span class="ques">Q.</span> <span class="ques-cont">Can I transfer the balance of my account to digi card?</span></a>
+		<div id="accordion-1" class="accordion-section-content">
+		<p>Yes you can transfer anytime but if it is hundred percent withdrawal your my account will be deactivated forever and your all referral incomes will be stopped in future. if you withdraw 50% amount then all your referral incomes will automatically be 50% in future.</p>
+		</div><!--end .accordion-section-content-->
+		</div><!--end .accordion-section-->
+		
+		<div class="accordion-section">
+		<a class="accordion-section-title" href="#accordion-1"><span class="ques">Q.</span> <span class="ques-cont">What is the minimum amount to be deposited in digi card?</span></a>
+		<div id="accordion-1" class="accordion-section-content">
+		<p>Any amount you can keep in your digi card.</p>
+		</div><!--end .accordion-section-content-->
+		</div><!--end .accordion-section-->
+		
+		<div class="accordion-section">
+		<a class="accordion-section-title" href="#accordion-1"><span class="ques">Q.</span> <span class="ques-cont">What is the minimum amount to be transferred to my account at first time?</span></a>
+		<div id="accordion-1" class="accordion-section-content">
+		<p>The minimum amount to be transferred to my account must be $ 250 at first time. Later on you can transfer any amount.</p>
+		</div><!--end .accordion-section-content-->
+		</div><!--end .accordion-section-->
+		
+		<div class="accordion-section">
+		<a class="accordion-section-title" href="#accordion-1"><span class="ques">Q.</span> <span class="ques-cont">What is the pattern to calculate interest?</span></a>
+		<div id="accordion-1" class="accordion-section-content">
+		<p>Your interest shall be calculated on the amount in usd which you have transferred.</p>
+		</div><!--end .accordion-section-content-->
+		</div><!--end .accordion-section-->
+		
+		<div class="accordion-section">
+		<a class="accordion-section-title" href="#accordion-1"><span class="ques">Q.</span> <span class="ques-cont">What is the payment mode to transfer interest income and affiliation  income to digi card?</span></a>
+		<div id="accordion-1" class="accordion-section-content">
+		<p>Converted value in cryptocurrency will be transferred in Digi card.</p>
+		</div><!--end .accordion-section-content-->
+		</div><!--end .accordion-section-->
+		
+		<div class="accordion-section">
+		<a class="accordion-section-title" href="#accordion-1"><span class="ques">Q.</span> <span class="ques-cont">If I withdraw my original deposit from my account to digi card what I will get the equivalent value of original crypto currency?</span></a>
+		<div id="accordion-1" class="accordion-section-content">
+		<p>You will get original cryptocurrency. This is inaugural offer which continued till 31st December 2017 and later on you will get the converted value.</p>
+		</div><!--end .accordion-section-content-->
+		</div><!--end .accordion-section-->
+		
+		<div class="accordion-section">
+		<a class="accordion-section-title" href="#accordion-1"><span class="ques">Q.</span> <span class="ques-cont">Is there any lag period in transfer?</span></a>
+		<div id="accordion-1" class="accordion-section-content">
+		<p>Yes any transfer from digi card to my account or from my account to digi card will be of 10 days.</p>
+		</div><!--end .accordion-section-content-->
+		</div><!--end .accordion-section-->
+		
+		<div class="accordion-section">
+		<a class="accordion-section-title" href="#accordion-1"><span class="ques">Q.</span> <span class="ques-cont">Is there any lock in period.</span></a>
+		<div id="accordion-1" class="accordion-section-content">
+		<p>Yes there is a locking period of 1 month for every transfer from Digi card to my account.</p>
+		</div><!--end .accordion-section-content-->
+		</div><!--end .accordion-section-->
+		
+		<div class="accordion-section">
+		<a class="accordion-section-title" href="#accordion-1"><span class="ques">Q.</span> <span class="ques-cont">Is there any free look period?</span></a>
+		<div id="accordion-1" class="accordion-section-content">
+		<p>Yes it is also of 10 days.</p>
+		</div><!--end .accordion-section-content-->
+		</div><!--end .accordion-section-->
+		
+		<div class="accordion-section">
+		<a class="accordion-section-title" href="#accordion-1"><span class="ques">Q.</span> <span class="ques-cont">If we transfer from other wallet to Digi card why it takes time?</span></a>
+		<div id="accordion-1" class="accordion-section-content">
+		<p>As you know that the cryptocurrency when it is transferred from one wallet to another, transaction goes to miners for verification and then it comes to the wallet which sometimes takes good time. And since the cryptocurrency identifies only the address of sender. Another reason other wallet is working on chrome environment while it is working in dark web environment so the entry from one environment to another also takes time. Further the cryptocurrency so received in digi card is again decrypted and encrypted to attach with the 16 digit Card Code instead of regular address the reason behind it to hide the address in further transactions from the greedy eyes of hackers. <br/>Process<br/>Wallet A ------ miners---------digi card in as it is form----------real address hiding process---------now address layered with digi card code.<br/>Now further transfer from Digi card to Digi card conversion becomes very easy without any time lag. So this delay its for your protection.</p>
+		</div><!--end .accordion-section-content-->
+		</div><!--end .accordion-section-->
+		
+		</div><!--end .accordion-->
+	</div>
+</div>
+</body>
+</html>
