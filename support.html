@@ -21,12 +21,10 @@ if(window.XDomainRequest){contentType = "text/plain";}
 jQuery.support.cors = true;
 jQuery( document ).ready(function() {
 
-var user_id = sessionStorage.getItem("uid") ;
-//alert(uid);
-
 	if(window.sessionStorage.getItem("loggedIn") == 1) {
-		var emailid = sessionStorage.getItem("emailid") ;
+		var emailid = sessionStorage.getItem("user_id") ;
 		var password = sessionStorage.getItem("password") ;
+		var user_id = sessionStorage.getItem("uid") ;
 
 		jQuery('.logout').hide();
 		jQuery('.log-out').click(function(){
@@ -67,7 +65,8 @@ var user_id = sessionStorage.getItem("uid") ;
 	}
 	
 
-	$.ajax({
+	// Get Support Queries
+		$.ajax({
 			  url: siteurl+"getIssueByUserId/"+user_id,
 			  type: 'GET',
 			  //data: {user_id:uid}, 
@@ -109,6 +108,7 @@ var user_id = sessionStorage.getItem("uid") ;
 
 });
 </script>
+
 <div id="main_wrapper" class="inner-page">
 	<div class="main-container">
 	<div id="topbar" class="navigation">
@@ -167,7 +167,7 @@ var user_id = sessionStorage.getItem("uid") ;
 					</li>
 				</ul>
 			</nav>
-		<div class="header-card">Digi Card</div>
+		<div class="header-card">Support</div>
 		<div class="notification" style="float:right; margin-left:-9px;">
 			<a href="notifications.html"><img src="images/notification_title_menu.png"/></a>
 			<span class="log-out"><img src="images/dot.png" style="margin-left:22px;"/></span>

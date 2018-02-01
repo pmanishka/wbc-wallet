@@ -7,33 +7,34 @@
 
 <script src="js/jquery.min.js"></script>
 <script src="js/jquery.mmenu.all.js"></script>
-<script src="js/config.js"></script>
 
+<script src="js/config.js"></script>
 <script type="text/javascript">
 $(function() {
 	$('nav#menu').mmenu();
 	$( "nav#menu .mm-panels" ).addClass( "profile-menu" );
 });
+
 </script>
 <script>
-
 var contentType ="application/x-www-form-urlencoded; charset=utf-8";
 if(window.XDomainRequest){contentType = "text/plain";}
 jQuery.support.cors = true;
 
+	
 jQuery( document ).ready(function() {
 
+function testOrientation() {
+  document.getElementById('block_land').style.display = (screen.width>screen.height) ? 'none' : 'block';
+}
 
 	if(window.sessionStorage.getItem("loggedIn") == 1) {
 		var userid = sessionStorage.getItem("user_id") ;
 		var password = sessionStorage.getItem("password") ;
-		var uid = sessionStorage.getItem("uid") ;
-		//alert(uid);
-		jQuery('.logout').hide();
-		jQuery('.log-out').click(function(){
-			jQuery('.logout').toggle( "slow" );
-		});
-		
+		var user_id = sessionStorage.getItem("uid") ;
+		//var currency_id = '' ;
+		//var currency_name = '' ;
+
 		$.ajax({
 		  url: siteurl+"login",
 		  type: 'POST',
@@ -44,32 +45,69 @@ jQuery( document ).ready(function() {
 			{
 				var name = jQuery('.name').append(data['details']['name']);
 				var email = jQuery('.uemail').append(data['details']['email']);
-				
-				var card_id = data['details']['card_type'];
-				//alert(card_id);
-				// Get Card Type
-				var card = data['card'] ;
-				$.each(card, function(idx, obj) {
-				
-					if(obj.id == card_id){
-					//alert(obj.card_name);
-						var card_type = jQuery('.card_type').append(obj.card_name);
-					}
-				});
 				var picon = data['details']['name'];
 				var profile = jQuery('.profile-icon').append(picon.charAt(0));
 				var verifystatus = data['details']['emailverifystatus'];
+				var curr = data['currency'] ;
+				var username  = jQuery('#username').attr("value", data['details']['name']);
+				//alert(username);
+				$.each(curr, function(idx, obj) {
+					if(obj.short_name == 'BTC'){
+						var currency_id = jQuery("input[name='curr_id']").attr("value",obj.id);
+						var currency_name = jQuery("input[name='currency_name']").attr("value",obj.name);
+					}
+				});
 				if(typeof verifystatus!='undefined' && verifystatus!='' && verifystatus!=null && verifystatus=='1'){
 					jQuery('.verify').append("Verified");
 				}else{
 					jQuery('.verify').append("Unverified");
 				}
-				var dcard = data['details']['my_card_no'];
+				var dcard = data['details']['my_card_no'] ;
+				var dcardval = jQuery('.history input[name="dcardno"]').attr('value',dcard);
 				
-				dcard = dcard.replace(/(\S{4})/g,"$1 ");
-				dcard = dcard.replace(/$/,"");   // if you do not want the final a
-				var digicard = jQuery('.digi-num div').append(dcard);
-				var btcbal = jQuery('.balance-footer').append(data['details']['net_btc_bal']);
+				//Get History Data
+				var dcardno = jQuery('input[name="dcardno"]').val();
+				$.ajax({
+					  url: siteurl+"getDigibookNewByUserId",
+					  type: 'POST',
+					  data: {q:'digibook',user_id:user_id,card_no:dcardno}, 
+					  crossDomain: true,   
+					  success: function(data) {
+						for (var i = 0; i < data['digibook'].length; i++) {
+							var withdarwval ='' ;
+							var status ='' ;
+							if(data['digibook'][i]['payment_for'] == 'withdrawfromdc'){
+								var withdarwval = "Withdrawal from DigiCard";
+							}else if(data['digibook'][i]['payment_for'] == 'deposit'){
+								var withdarwval = "Deposit";
+							}
+							
+							if(data['digibook'][i]['update_status'] == 1)
+							{	
+								var status ='' ;
+								var redclass = 'red' ;
+							}else{
+								var status = "<br/>(Pending for Approval)"; 
+								var redclass = '' ;
+							}
+							
+							var date = new Date(data['digibook'][i]['payment_date']);
+							var options = {month: 'short', year: 'numeric', day: 'numeric' };
+							var paymentdate = (date.toLocaleDateString('us-US',options));
+
+							
+							jQuery('.history-result').append("<table class='support-result-info'><tr><td class='support-result-date'>"+paymentdate+"</td><td>&nbsp;</td><td class='request-result'>-"+data['digibook'][i]['amount']+" BTC</td></tr><tr><td class='support-result-content "+redclass+"'>"+withdarwval+""+status+"</td><td>&nbsp;</td></tr><tr><td>&nbsp;</td><td>&nbsp;</td><td class='request-result'></td></tr></table>");
+							
+							
+						}
+					  },
+					  error: function() {
+						alert('Error2');
+					  }
+				});
+				
+				
+				
 			}
 			else{
 				window.location='login.html';
@@ -80,54 +118,25 @@ jQuery( document ).ready(function() {
 		  }
 		});
 		
-		// Get BitPay Data
-		$.ajax({
-        type: 'GET',
-        url: 'https://bitpay.com/api/rates',
-        dataType: 'json',
-        async: false,
-			success: function (response) {
-				$.each(response, function(idx, obj) {
-					if(obj.code == 'USD'){
-						jQuery('.live-footer span.amount').append(obj.rate);
-					}
-				});
-			}
+		
+		
+		jQuery('.logout').hide();
+		jQuery('.log-out').click(function(){
+			jQuery('.logout').toggle( "slow" );
 		});
 		
-
-		// Get Live Chart Data
-		$.ajax({
-        type: 'GET',
-        url: 'https://bitpay.com/api/rates',
-        dataType: 'json',
-        async: false,
-			success: function (response) {
-				$.each(response, function(idx, obj) {
-					if(obj.code == 'USD'){
-						var livechart = jQuery('.chart').html(obj.rate);
-						localStorage.setItem('livechart', livechart);
-						return false;
-					}
-					if(localStorage.getItem('livechart')) {
-						$('chart').append(localStorage.getItem('livechart'));
-					}
-				});
-			}
-		});
-
-		
+		// Get History
 	}
 	else
 	{
 		window.location='login.html';
 	}
-});
 
+});
 </script>
 </head>
-<body>
-
+<body onorientationchange="testOrientation();" onload="testOrientation();">
+<div id="block_land">
 <div id="main_wrapper" class="inner-page">
 	<div class="main-container">
 	<div id="topbar" class="navigation">
@@ -161,7 +170,34 @@ jQuery( document ).ready(function() {
 						<tr>
 							<td class="picon"><img src="images/prepaid-card-in-a-hand.png"></td>
 							<td>&nbsp;&nbsp;&nbsp;</td>
+							<td class="ptxt"><a href="transact.html">Received</a></td>
+						</tr>
+					</table>
+					</li>
+					<li class="tbl" style="padding-top: 4px; padding-bottom: 20px;">
+					<table>
+						<tr>
+							<td class="picon"><img src="images/prepaid-card-in-a-hand.png"></td>
+							<td>&nbsp;&nbsp;&nbsp;</td>
+							<td class="ptxt"><a href="otherdigiwallet.html">Send</a></td>
+						</tr>
+					</table>
+					</li>
+					<li class="tbl" style="padding-top: 4px; padding-bottom: 20px;">
+					<table>
+						<tr>
+							<td class="picon"><img src="images/prepaid-card-in-a-hand.png"></td>
+							<td>&nbsp;&nbsp;&nbsp;</td>
 							<td class="ptxt"><a href="dashboard.html">Digi Card</a></td>
+						</tr>
+					</table>
+					</li>
+					<li class="tbl" style="padding-top:4px; padding-bottom:20px;">
+					<table>
+						<tr>
+							<td class="picon"><img src="images/setting2.png"></td>
+							<td>&nbsp;&nbsp;&nbsp;</td>
+							<td class="ptxt"><a href="digibook.html">Digibook</a></td>
 						</tr>
 					</table>
 					</li>
@@ -186,7 +222,7 @@ jQuery( document ).ready(function() {
 					</li>
 				</ul>
 			</nav>
-		<div class="header-card">Digi Card</div>
+		<div class="header-card">History</div>
 		<div class="notification" style="float:right; margin-left:-9px;">
 			<a href="notifications.html"><img src="images/notification_title_menu.png"/></a>
 			<span class="log-out"><img src="images/dot.png" style="margin-left:22px;"/></span>
@@ -195,42 +231,18 @@ jQuery( document ).ready(function() {
 			</div>
 		</div>
 	</div>
-	<div class="container">
-		<div class="digi">
-			Your DIGI Card number</div>
-		<div class="digi-num">
-			<div></div>
+	<div class="dashboard-container">
+	
+		<div class="history">
+			<input type="hidden" name="dcardno" />
+			<div class="history-result"></div>
 		</div>
-		<div class="digi-text">
-			<div class="card_type"></div>
-		</div>
-		<div class="digi-line"></div>
-		<div>
-			<div style="width:50%; float:left">	
-				<a href="transact.html" class="green-transact-button">Transact</a>
-			</div>
-			<div style="width:40%; float:left; margin-left:10%;">
-				<a href="history.html" class="red-history-button">History</a>
-			</div>
-		</div>
-		<div class="price-chart">
-		Live Price Chart - BTC <img src="images/arrow_down.png"/>
-		</div>
-		<div class="chart">
-				chart
-		</div>
-		<table class="dash-footer">
-		<tr>
-			<td class="balance">Balance <img src="images/bitcoin_logo.png"/></td>
-			<td style="text-align:center;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-			<td class="live-market">Live Market <img src="images/dollar_icon.png"/></td>
-		</tr>
-		<tr>
-			<td class="balance-footer"></td>
-			<td>&nbsp;&nbsp;&nbsp;</td>
-			<td class="live-footer">$ <span class="amount"></span></td>
-		</tr>
-		</table>
+	
+	
+	
+		
 	</div>
+</div>
+</div>
 </body>
 </html>
