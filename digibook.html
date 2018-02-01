@@ -21,12 +21,24 @@ var contentType ="application/x-www-form-urlencoded; charset=utf-8";
 if(window.XDomainRequest){contentType = "text/plain";}
 jQuery.support.cors = true;
 
+ (function () {
+        detectPortrait();
+        $(window).resize(function() {
+            detectPortrait("#mainView");
+        });
+
+
+        function detectPortrait(mainDiv) {
+            if (screen.width < screen.height) {
+                $(mainDiv).addClass("portrait_mode");
+            }
+            else {
+                $(mainDiv).removeClass("portrait_mode");
+            }
+        }
+    })();
 	
 jQuery( document ).ready(function() {
-
-function testOrientation() {
-  document.getElementById('block_land').style.display = (screen.width>screen.height) ? 'none' : 'block';
-}
 
 	if(window.sessionStorage.getItem("loggedIn") == 1) {
 		var userid = sessionStorage.getItem("user_id") ;
@@ -135,8 +147,8 @@ function testOrientation() {
 });
 </script>
 </head>
-<body onorientationchange="testOrientation();" onload="testOrientation();">
-<div id="block_land">
+<body>
+
 <div id="main_wrapper" class="inner-page">
 	<div class="main-container">
 	<div id="topbar" class="navigation">
@@ -222,7 +234,7 @@ function testOrientation() {
 					</li>
 				</ul>
 			</nav>
-		<div class="header-card">History</div>
+		<div class="header-card">Digibook</div>
 		<div class="notification" style="float:right; margin-left:-9px;">
 			<a href="notifications.html"><img src="images/notification_title_menu.png"/></a>
 			<span class="log-out"><img src="images/dot.png" style="margin-left:22px;"/></span>
@@ -242,7 +254,6 @@ function testOrientation() {
 	
 		
 	</div>
-</div>
 </div>
 </body>
 </html>
