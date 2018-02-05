@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>World Bank of Cryptocurrencies</title>
+<link rel="stylesheet" type="text/css" href="css/style.css">
+<link rel="stylesheet" href="css/jquery.mmenu.all.css" />
+
+<script src="js/jquery.min.js"></script>
+<script src="js/jquery.mmenu.all.js"></script>
+<script src="js/validate.js"></script>
+<script src="js/config.js"></script>
+
+<script type="text/javascript">
+$(function() {
+	$('nav#menu').mmenu();
+	$( "nav#menu .mm-panels" ).addClass( "profile-menu" );
+});
+var contentType ="application/x-www-form-urlencoded; charset=utf-8";
+if(window.XDomainRequest){contentType = "text/plain";}
+jQuery.support.cors = true;
+
+
+
+jQuery( document ).ready(function() {
+
+	if(window.sessionStorage.getItem("loggedIn") == 1) {
+	
+		jQuery("#snackbar").hide();
+	
+	
+		// Get Login Session
+		var emailid = sessionStorage.getItem("user_id") ;
+		var password = sessionStorage.getItem("password") ;
+		var user_id = sessionStorage.getItem("uid") ;
+
+		jQuery('.logout').hide();
+		jQuery('.log-out').click(function(){
+			jQuery('.logout').toggle( "slow" );
+		});
+		
+		//Get Login Data
+		$.ajax({
+		  url: siteurl+"login",
+		  type: 'POST',
+		  data: {q:'checklogin',user_id:emailid,password:password}, 
+		  crossDomain: true,   
+		  success: function(data) {
+			if(data['status'] == 1)
+			{
+				var name = jQuery('.name').append(data['details']['name']);
+				var email = jQuery('.uemail').append(data['details']['email']);
+				var picon = data['details']['name'];
+				var profile = jQuery('.profile-icon').append(picon.charAt(0));
+				var verifystatus = data['details']['emailverifystatus'];
+				if(typeof verifystatus!='undefined' && verifystatus!='' && verifystatus!=null && verifystatus=='1'){
+					jQuery('.verify').append("Verified");
+				}else{
+					jQuery('.verify').append("Unverified");
+				}
+				
+				var uid = jQuery('#userid').attr('value',data['details']['id']) ;
+				
+				
+				jQuery("#addressForm").validate({
+					rules: {
+						name: "required",
+						cardno: {
+							required: true,
+							minlength: 16,
+							maxlength: 16,
+							digits: true
+						},
+						btc_address: "required"
+					},
+					messages: {
+						name: "Enter name",
+						cardno: {required: "Enter card number",
+								minlength: "Enter 16 digits card number. Not allowed alpabet or any special key"
+							},
+						btc_address: "Enter Payment Address"
+
+					}
+				});
+
+				jQuery('#add').click(function() {
+					jQuery("#snackbar").hide();
+					$("#addressForm").valid();
+					var addname = jQuery('input[name="name"]').val();
+					var card_no = jQuery('input[name="cardno"]').val();
+					var btc_address = jQuery('input[name="btc_address"]').val();
+					$.ajax({
+						  url: siteurl+"saveMyAddressOnBook",
+						  type: 'POST',
+						  data: {q:'myAddress',user_id:user_id,name:addname,card_no:card_no,btc_address:btc_address}, 
+						  crossDomain: true,   
+						  success: function(data) {
+							if(data['status'] == 1){
+								//$("#addressForm").valid();
+								window.location='addressbook.html';
+								jQuery("#snackbar").hide();
+							}else if(data['status'] == 2){
+								$("#snackbar").fadeIn("slow", function () {
+									setTimeout(function () {
+										$("#snackbar").fadeOut("slow");
+									}, 1000);
+								});
+							}
+						  },
+						  error: function() {
+							alert('Error');
+						  }
+					});	
+				});
+				//Save My Address
+				/*jQuery("input[name='add']").click(function(){
+					var addname = jQuery('input[name="name"]').val();
+					var card_no = jQuery('input[name="cardno"]').val();
+					var btc_address = jQuery('input[name="btc_address"]').val();
+					$.ajax({
+						  url: siteurl+"saveMyAddressOnBook",
+						  type: 'POST',
+						  data: {q:'myAddress',user_id:user_id,name:addname,card_no:card_no,btc_address:btc_address}, 
+						  crossDomain: true,   
+						  success: function(data) {
+							if(data['status'] == 1){
+								window.location='addressbook.html';
+							}else if(data['status'] == 2){
+								alert('Card no already exists');
+							}
+						  },
+						  error: function() {
+							alert('Error');
+						  }
+					});		
+				});*/
+				
+				//Cancel Add Records
+				jQuery("input[name='cancel']").click(function(){
+					window.location.reload();
+				});
+			}
+			
+		  },
+		  error: function() {
+			alert('Error');
+		  }
+		});
+	}
+	else
+	{
+		window.location='login.html';
+	}
+
+});
+</script>
+</head>
+<body>
+
+<div id="main-wrapper" class="inner-page">
+	<div class="main-container">
+		<div id="topbar">
+				<a href="update-profile.html"><img src="images/back_arrow.png" style="float:left;"/></a> 
+				<div class="header-card_p">Address Book</div>
+				<div class="notification" style="float:right; margin-left:-9px;">
+					<a href="notifications.html"><img src="images/notification_title_menu.png"/></a>
+					<span class="log-out"><img src="images/dot.png" style="margin-left:22px;"/></span>
+					<div class="logout">
+						<a href="logout.html">SignOut</a>
+					</div>
+				</div>
+		</div>
+		
+			<form method="post" id="addressForm">
+				<div class="add-address">			
+					<div class="password-input-field">
+						<div class="field-left">
+							<img src="images/user.png" style="-webkit-logical-height: 30px;"/>
+						</div>
+						<div class="field-right field">
+							<input type="text" name="name" id="name" placeholder="Enter Name"/>
+							<label for="name">Enter Name</label>
+						</div>
+					</div>
+					<div class="password-input-field">
+						<div class="field-left">
+							<img src="images/digi_card.png" style="-webkit-logical-height: 30px;"/>
+						</div>
+						<div class="field-right field">
+							<input type="text" name="cardno" id="cardno" placeholder="Enter Card Number">
+							<label for="cardno">Enter Card Number</label>
+						</div>
+					</div>
+					<div class="password-input-field">
+					   <div class="field-left">
+							<img src="images/pin.png" style="-webkit-logical-height: 30px;"/>
+						</div>
+					    <div class="field-right field">
+							<input type="text" name="btc_address" id="btc_address" placeholder="Payment Address">
+							<label for="btc_address">Payment Address</label>
+					    </div>
+					</div>	
+					
+					<br><br>
+				</div>
+				<div>
+					<div style="width:40%; float:left">	
+						<div class="red-cancel-button">
+							<input type="button" name="cancel" value="Cancel"/>
+						</div>
+					</div>
+					<div style="width:40%; float: left; margin-left: 20%;">
+						<div class="green-save-button">
+							<input type="button" name="add" id="add" value="Save"/>
+						</div>
+					</div>
+				
+			</form>		
+	</div>
+</div>
+<div id="snackbar">Card no already exists</div>
+</body>
+</html>

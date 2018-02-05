@@ -7,18 +7,79 @@
 
 <script src="js/jquery.min.js"></script>
 <script src="js/jquery.mmenu.all.js"></script>
+<script src="js/config.js"></script>
 <script type="text/javascript">
 $(function() {
 	$('nav#menu').mmenu();
 	$( "nav#menu .mm-panels" ).addClass( "profile-menu" );
 });
-
-</script>
-<script>
 var contentType ="application/x-www-form-urlencoded; charset=utf-8";
 if(window.XDomainRequest){contentType = "text/plain";}
 jQuery.support.cors = true;
+jQuery( document ).ready(function() {
 
+	if(window.sessionStorage.getItem("loggedIn") == 1) {
+		var emailid = sessionStorage.getItem("user_id") ;
+		var password = sessionStorage.getItem("password") ;
+		var user_id = sessionStorage.getItem("uid") ;
+
+		jQuery('.logout').hide();
+		jQuery('.log-out').click(function(){
+			jQuery('.logout').toggle( "slow" );
+		});
+		
+		$.ajax({
+		  url: siteurl+"login",
+		  type: 'POST',
+		  data: {q:'checklogin',user_id:emailid,password:password}, 
+		  crossDomain: true,   
+		  success: function(data) {
+			if(data['status'] == 1)
+			{
+				var name = jQuery('.name').append(data['details']['name']);
+				var email = jQuery('.uemail').append(data['details']['email']);
+				var picon = data['details']['name'];
+				var profile = jQuery('.profile-icon').append(picon.charAt(0));
+				var verifystatus = data['details']['emailverifystatus'];
+				if(typeof verifystatus!='undefined' && verifystatus!='' && verifystatus!=null && verifystatus=='1'){
+					jQuery('.verify').append("Verified");
+				}else{
+					jQuery('.verify').append("Unverified");
+				}
+				
+				var uid = jQuery('#userid').attr('value',data['details']['id']) ;
+			}
+			
+		  },
+		  error: function() {
+			alert('Error1');
+		  }
+		});
+	}
+	else
+	{
+		window.location='login.html';
+	}
+	
+	jQuery('input[name="hide-balance"]').click(function(){
+		if($(this).prop("checked")== true)
+		{
+			var hidebal = jQuery(this).attr("value","1");
+			sessionStorage.setItem("hidebalance", "1");
+		} else if($(this).prop("checked") == false){
+			var hidebal = jQuery(this).attr("value","0");
+			
+			sessionStorage.setItem("hidebalance", "0");
+		}
+	});
+	var hidebal=sessionStorage.getItem("hidebalance");
+	//alert(hidebal);
+	if(hidebal == 1){
+		jQuery('input[name="hide-balance"]').attr("checked","checked");
+	}else{
+		
+	}
+});
 </script>
 </head>
 <body>
@@ -34,11 +95,11 @@ jQuery.support.cors = true;
 				<ul>
 					
 					<li class="menutop">
-						<span class="profile-icon">P</span>
-						<span class="name">Priyanka</span>
+						<span class="profile-icon"></span>
+						<span class="name"></span>
 						<span class="email">
-							<span class="uemail">p.grover@intouchgroup.in</span>
-							<span class="verify">Unverified</span></span>
+							<span class="uemail"></span>
+							<span class="verify"></span></span>
 						</span>
 					</li>
 					
@@ -47,7 +108,7 @@ jQuery.support.cors = true;
 						<tr>
 							<td class="picon"><img src="images/home.png"></td>
 							<td>&nbsp;&nbsp;&nbsp;</td>
-							<td class="ptxt">Home</td>
+							<td class="ptxt"><a href="dashboard.html">Home</a></td>
 						</tr>
 					</table>
 					</li>
@@ -56,7 +117,7 @@ jQuery.support.cors = true;
 						<tr>
 							<td class="picon"><img src="images/prepaid-card-in-a-hand.png"></td>
 							<td>&nbsp;&nbsp;&nbsp;</td>
-							<td class="ptxt">Digi Card</td>
+							<td class="ptxt"><a href="dashboard.html">Digi Card</a></td>
 						</tr>
 					</table>
 					</li>
@@ -65,7 +126,7 @@ jQuery.support.cors = true;
 						<tr>
 							<td class="picon"><img src="images/setting2.png"></td>
 							<td>&nbsp;&nbsp;&nbsp;</td>
-							<td class="ptxt">Setting</td>
+							<td class="ptxt"><a href="setting.html">Setting</a></td>
 						</tr>
 					</table>
 					</li>
@@ -75,14 +136,20 @@ jQuery.support.cors = true;
 						<tr>
 							<td class="picon"><img src="images/support.png"></td>
 							<td>&nbsp;&nbsp;&nbsp;</td>
-							<td class="ptxt">Support</td>
+							<td class="ptxt"><a href="support.html">Support</a></td>
 						</tr>
 					</table>
 					</li>
 				</ul>
 			</nav>
 		<div class="header-card">Settings</div>
-		<div class="notification" style="float:right;"><img src="images/notification_title_menu.png"/><!--  style="margin-left:41px;" --><img src="images/dot.png" style="margin-left:22px;"/></div>
+		<div class="notification" style="float:right; margin-left:-9px;">
+			<a href="notifications.html"><img src="images/notification_title_menu.png"/></a>
+			<span class="log-out"><img src="images/dot.png" style="margin-left:22px;"/></span>
+			<div class="logout">
+				<a href="logout.html">SignOut</a>
+			</div>
+		</div>
 	</div>
 	<div class="dashboard-container">
 		<div class="spanel">
@@ -96,7 +163,7 @@ jQuery.support.cors = true;
 			<div class="txt">Hide Balance</div>
 			<div class="icon">
 				<label class="switch">
-					<input type="checkbox">
+					<input type="checkbox" name="hide-balance">
 						  <span class="slider round"></span>
 				</label>
 			</div>
@@ -107,7 +174,7 @@ jQuery.support.cors = true;
 			<div class="txt">Email Notifications</div>
 			<div class="icon">
 				<label class="switch">
-					<input type="checkbox">
+					<input type="checkbox" checked="checked" name="hide-emailnotification">
 						  <span class="slider round"></span>
 				</label>
 			</div>

@@ -23,17 +23,7 @@ jQuery.support.cors = true;
 
 
 
-window.onresize = function (event) {
-  applyOrientation();
-}
 
-function applyOrientation() {
-  if (window.innerHeight > window.innerWidth) {
-   alert("You are now in portrait");
-  } else {
-    alert("You are now in landscape");
-  }
-}
 	
 jQuery( document ).ready(function() {
 
@@ -59,6 +49,7 @@ jQuery( document ).ready(function() {
 				var verifystatus = data['details']['emailverifystatus'];
 				var curr = data['currency'] ;
 				var username  = jQuery('#username').attr("value", data['details']['name']);
+
 				//alert(username);
 				$.each(curr, function(idx, obj) {
 					if(obj.short_name == 'BTC'){
@@ -85,8 +76,9 @@ jQuery( document ).ready(function() {
 						for (var i = 0; i < data['digibook'].length; i++) {
 							var withdarwval ='' ;
 							var status ='' ;
+							var newclass ='' ;
 							if(data['digibook'][i]['payment_for'] == 'withdrawfromdc'){
-								var withdarwval = "Withdrawal from DigiCard";
+								var withdarwval = "Withdrawal from DC";
 							}else if(data['digibook'][i]['payment_for'] == 'deposit'){
 								var withdarwval = "Deposit";
 							}
@@ -94,18 +86,18 @@ jQuery( document ).ready(function() {
 							if(data['digibook'][i]['update_status'] == 1)
 							{	
 								var status ='' ;
-								var redclass = 'red' ;
+								var newclass = 'red' ;
 							}else{
-								var status = "<br/>(Pending for Approval)"; 
-								var redclass = '' ;
+								var status = "<br/>(Pending)"; 
+								var newclass = 'yellow' ;
 							}
 							
 							var date = new Date(data['digibook'][i]['payment_date']);
 							var options = {month: 'short', year: 'numeric', day: 'numeric' };
 							var paymentdate = (date.toLocaleDateString('us-US',options));
 
-							
-							jQuery('.digibook-result').append("<table class='support-result-info'><tr><td class='support-result-date'>"+paymentdate+"</td><td>&nbsp;</td><td class='request-result'>-"+data['digibook'][i]['amount']+" BTC</td></tr><tr><td class='support-result-content "+redclass+"'>"+withdarwval+""+status+"</td><td>&nbsp;</td></tr><tr><td>&nbsp;</td><td>&nbsp;</td><td class='request-result'></td></tr></table>");
+							//alert('test');
+							jQuery('.digibook-result .digibook-res tbody').append("<tr class='"+newclass+"'><td >"+paymentdate+"</td><td>"+withdarwval+""+status+"</td><td>"+data['digibook'][i]['amount']+" BTC(Dr.)</td><td>BTC "+data['digibook'][i]['btc_bal'].toFixed(1)+" <br/> ETH "+data['digibook'][i]['eth_bal'].toFixed(1)+"</td></tr>");
 							
 							
 						}
@@ -247,7 +239,16 @@ jQuery( document ).ready(function() {
 			<div class="digibook-result">
 				<table class="digibook-res">
 					<thead>
+						<tr>
+							<td>Date <br/> Time</td>
+							<td>Transaction</td>
+							<td>Debit/Credit</td>
+							<td>Balance</td>
+						</tr>
 					</thead>
+					<tbody>
+
+					</tbody>
 				</table>
 			</div>
 		</div>

@@ -4,11 +4,11 @@
 <title>World Bank of Cryptocurrencies</title>
 <link rel="stylesheet" type="text/css" href="css/style.css">
 <link rel="stylesheet" href="css/jquery.mmenu.all.css" />
-<link href="css/font-awesome.css" rel="stylesheet">
-<meta name="viewport" content="width=device-width,initial-scale-scale=1.0" />
+
 <script src="js/jquery.min.js"></script>
 <script src="js/jquery.mmenu.all.js"></script>
 <script src="js/config.js"></script>
+<script src="js/validate.js"></script>
 <script type="text/javascript">
 $(function() {
 	$('nav#menu').mmenu();
@@ -22,7 +22,7 @@ if(window.XDomainRequest){contentType = "text/plain";}
 jQuery.support.cors = true;
 
 jQuery( document ).ready(function() {
-
+jQuery("#snackbar").hide();
 	if(window.sessionStorage.getItem("loggedIn") == 1) {
 		var userid = sessionStorage.getItem("user_id") ;
 		var password = sessionStorage.getItem("password") ;
@@ -55,6 +55,17 @@ jQuery( document ).ready(function() {
 				}
 				//For Inner Content
 				var email = jQuery('.email').append(data['details']['email']);
+				
+				//Get Login User Data
+				jQuery('#uniqueid').attr("value",data['details']['national_id']);
+				jQuery('#aadhaar').attr("value",data['details']['national_id']);
+				jQuery('#name').attr("value",data['details']['name']);
+				jQuery('#birthday').attr("value",data['details']['Birthday']);
+				jQuery('#address').attr("value",data['details']['Address']);
+				jQuery('#city').attr("value",data['details']['City']);
+				jQuery('#state').attr("value",data['details']['State']);
+				jQuery('#pin').attr("value",data['details']['Pin']);
+				jQuery('#country').attr("value",data['details']['Country']);
 			}
 			else{
 				window.location='login.html';
@@ -63,6 +74,76 @@ jQuery( document ).ready(function() {
 		  error: function() {
 			alert('Error');
 		  }
+		});
+		
+		jQuery('.logout').hide();
+		jQuery('.log-out').click(function(){
+			jQuery('.logout').toggle( "slow" );
+		});
+		
+			
+		jQuery("#updateprofile").validate({
+		
+			rules: {
+				nominee: {
+					required: true,
+					maxlength: 16,
+					minlength: 16,
+					digits: true,
+				},
+			},
+			messages: {
+				nominee: "Enter 16 Digit Card Number"
+			}
+		});
+		jQuery('input[name="save"]').click(function(){
+			
+			if ($('#updateprofile').valid()) {                   // checks form for validity
+
+				var nominee = jQuery('#nominee').val();
+				var image = jQuery('#image').val();
+				var national_id = jQuery('#aadhaar').val();
+				var user_name = jQuery('#name').val();
+				var user_dob = jQuery('#birthday').val();
+				var user_address = jQuery('#address').val();
+				var user_city = jQuery('#city').val();
+				var user_state = jQuery('#state').val();
+				var user_pin = jQuery('#pin').val();
+				var user_country = jQuery('#country').val();
+				
+				var details = {id:uid,image:image,national_card_id:national_id,user_name:user_name,user_dob:user_dob,user_address:user_address,user_city:user_city,user_state:user_state,user_pin:user_pin,user_country:user_country};
+				
+				
+					// Update Nominee
+					$.ajax({
+					  url: siteurl+"updateProfile",
+					  type: 'POST',
+					  data: {q:'national_id',detail:JSON.stringify(details)}, 
+					  crossDomain: true,   
+					  success: function(data) {
+						if(data == 1)
+						{
+							$("#snackbar").fadeIn("slow", function () {
+								setTimeout(function () {
+									$("#snackbar").fadeOut("slow");
+								}, 1000);
+								window.location='update-profile.html';
+							});
+						}
+					  },
+					  error: function() {
+						 alert('Error');
+					  }
+					});	
+				
+
+			} else {
+				jQuery('.lbl-name').hide();		 
+			}
+
+		});
+		jQuery('input[name="cancel"]').click(function(){
+			window.location.reload();
 		});
 	}
 	else
@@ -104,87 +185,95 @@ jQuery( document ).ready(function() {
 			</form>
 		</div>
 	<div class="aadhaar-new">
-				<form method="post">
+				<form method="post" id="updateprofile">
 					<div style="height:70%; float:left; ">
-						<div class="aadhaar-input-field">
-							<div style="width:8%; float:left;">
+						<div class="password-input-field">
+							<div class="field-left">
 								<img src="images/digi_card.png" style="-webkit-logical-height: 30px;"/>
 							</div>
-							<div style="width:80%; float:left;">
+							<div class="field-right field">
 								<input type="text" name="aadhaarno" id="aadhaar" placeholder="Enter 12 Digit AADHAAR Card Number"/>
+								<label for="aadhaar" class="lbl-name">Enter 12 digit AADHAAR Card Number</label>
 							</div>
 						</div>
-						<div class="aadhaar-input-field">
-							<div style="width:8%; float:left;">
+						<div class="password-input-field">
+							<div class="field-left">
 								<img src="images/user_white.png" style="-webkit-logical-height: 30px;"/>
 							</div>
-							<div style="width:80%; float:left;">
-								<input type="text" name="name" id="aadhaar" placeholder="Name"/>
+							<div class="field-right field">
+								<input type="text" name="name" id="name" placeholder="Name"/>
+								<label for="name" class="lbl-name">Name</label>
 							</div>					
 						</div>
-						<div class="aadhaar-input-field">
-							<div style="width:8%; float:left;">
+						<div class="password-input-field">
+							<div class="field-left">
 								<img src="images/birthday.png" style="-webkit-logical-height: 30px;"/>
 							</div>
-							<div style="width:80%; float:left;">
-								<input type="text" name="birthday" id="aadhaar" placeholder="Date Of Birth"/>
+							<div class="field-right field">
+								<input type="text" name="birthday" id="birthday" placeholder="Date Of Birth"/>
+								<label for="birthday" class="lbl-name">Date Of Birth</label>
 							</div>	
 						</div>
-						<div class="aadhaar-input-field">
-							<div style="width:8%; float:left;">
+						<div class="password-input-field">
+							<div class="field-left">
 								<img src="images/address.png" style="-webkit-logical-height: 30px;"/>
 							</div>
-							<div style="width:80%; float:left;">
-								<input type="text" name="address" id="aadhaar" placeholder="Address"/>
+							<div class="field-right field">
+								<input type="text" name="address" id="address" placeholder="Address"/>
+								<label for="address" class="lbl-name">Address</label>
 							</div>	
 						</div>
-						<div class="aadhaar-input-field">
-							<div style="width:8%; float:left;">
+						<div class="password-input-field">
+							<div class="field-left">
 								<img src="images/city.png" style="-webkit-logical-height: 30px;"/>
 							</div>
-							<div style="width:80%; float:left;">
-								<input type="text" name="city" id="aadhaar" placeholder="City"/>
+							<div class="field-right field">
+								<input type="text" name="city" id="city" placeholder="City"/>
+								<label for="city" class="lbl-name">City</label>
 							</div>	
 						</div>
-						<div class="aadhaar-input-field">
-							<div style="width:8%; float:left;">
+						<div class="password-input-field">
+							<div class="field-left">
 								<img src="images/state.png" style="-webkit-logical-height: 30px;"/>
 							</div>
-							<div style="width:80%; float:left;">
-								<input type="text" name="state" id="aadhaar" placeholder="State"/>
+							<div class="field-right field">
+								<input type="text" name="state" id="state" placeholder="State"/>
+								<label for="state" class="lbl-name">State</label>
 							</div>	
 						</div>
-						<div class="aadhaar-input-field">
-							<div style="width:8%; float:left;">
+						<div class="password-input-field">
+							<div class="field-left">
 								<img src="images/pincode.png" style="-webkit-logical-height: 30px;"/>
 							</div>
-							<div style="width:80%; float:left;">
-								<input type="text" name="pin" id="aadhaar" placeholder="Pin"/>
+							<div class="field-right field">
+								<input type="text" name="pin" id="pin" placeholder="Pin"/>
+								<label for="pin" class="lbl-name">Pin</label>
 							</div>	
 						</div>
-						<div class="aadhaar-input-field">
-							<div style="width:8%; float:left;">
+						<div class="password-input-field">
+							<div class="field-left">
 								<img src="images/country.png" style="-webkit-logical-height: 30px;"/>
 							</div>
-							<div style="width:80%; float:left;">
-								<input type="text" name="country" id="aadhaar" placeholder="Country"/>
+							<div class="field-right field">
+								<input type="text" name="country" id="country" placeholder="Country"/>
+								<label for="country" class="lbl-name">Country</label>
 							</div>	
 						</div><br><br>
 					
 					
-						<div class="aadhaar_upload">
-							<img src="images/uploading.png" style="-webkit-logical-height: 24px;"><span style="margin-left: 10px;">Upload Your Id</span></div>
+						<div class="password-input-field aadhaar_upload">
+							<img src="images/uploading.png" style="-webkit-logical-height: 24px;"><span style="margin-left: 10px;"><input type="file" name="image" id="image">Upload Your Id</span></div>
 					</div>
 		
 					<div style="height:30%;">
 						<div style="width:50%; float:left; margin-right:100px; margin-left:-50px;">	
 							<div class="red-cancel-button">
-								<input type="button" name="submit" value="Cancel"/>
+								<input type="button" name="cancel" value="Cancel"/>
 							</div>
 						</div>
 						<div style="width:20%; float: right; margin-left:58px;">
 							<div class="green-save-button">
-								<input type="button" name="submit" value="Save"/>
+								<input type="button" name="save" value="Save"/>
 							</div>
 						</div>
 					</div>
@@ -192,5 +281,6 @@ jQuery( document ).ready(function() {
 	</div>
 	</div>	
 </div>
+<div id="snackbar">Update Password Successfully</div>
 </body>
 </html>

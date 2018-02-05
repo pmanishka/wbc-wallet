@@ -5,11 +5,11 @@
 <link rel="stylesheet" type="text/css" href="css/style.css">
 <link rel="stylesheet" href="css/jquery.mmenu.all.css" />
 
-<script type="text/javascript" src="http://www.technicalkeeda.com/js/javascripts/plugin/jquery.js"></script>
+
 <script src="js/jquery.min.js"></script>
-<script type="text/javascript" src="http://www.technicalkeeda.com/js/javascripts/plugin/jquery.validate.js"></script>
 <script src="js/jquery.mmenu.all.js"></script>
 <script src="js/config.js"></script>
+<script src="js/validate.js"></script>
 <script type="text/javascript">
 $(function() {
 	$('nav#menu').mmenu();
@@ -22,33 +22,16 @@ var contentType ="application/x-www-form-urlencoded; charset=utf-8";
 if(window.XDomainRequest){contentType = "text/plain";}
 jQuery.support.cors = true;
 
-function validatePassword() {
 
-	var validator = $("#changepassword").validate({
-	//alert('test');
-		rules: {
-			password: "required",
-			confirmpassword: {
-				equalTo: "#password"
-			}
-		},
-		messages: {
-			password: " Enter Password",
-			confirmpassword: " Enter Confirm Password Same as Password"
-		}
-	});
-	if (validator.form()) {
-		alert('Sucess');
-	}
-}
-	
 jQuery( document ).ready(function() {
-
+jQuery("#snackbar").hide();
 	if(window.sessionStorage.getItem("loggedIn") == 1) {
 		var userid = sessionStorage.getItem("user_id") ;
 		var password = sessionStorage.getItem("password") ;
 		var uid = sessionStorage.getItem("uid") ;
 
+			
+		
 		$.ajax({
 		  url: siteurl+"login",
 		  type: 'POST',
@@ -83,38 +66,72 @@ jQuery( document ).ready(function() {
 			jQuery('.logout').toggle( "slow" );
 		});
 		
-
-		
-		/*jQuery('input[name="save"]').click(function(){
-			var old_pass = jQuery('#oldpassword').val();
-			var new_pass = jQuery('#newpassword').val();
 			
-			if(old_pass == password)
-			{
+			jQuery("#changepassword").validate({
+					rules: {
+						pass: "required",
+						oldpassword: {
+							required: true,
+							equalTo: "#pass"
+						},
+						password: "required",
+						confirmpassword: {
+							required: true,
+							equalTo: "#password"
+						},
+					},
+					messages: {
+						pass: "Enter Old Password",
+						oldpassword: {
+							required: "Enter Old Password",
+							equalTo: "Old Password is wrong"
+						},
+						password: "Enter New Password",
+						confirmpassword: {
+							required: "Please provide a password",
+							equalTo: "Please enter the same password as above"
+						}
+					}
+			});
+		jQuery('input[name="save"]').click(function(){
+			jQuery('.field #pass').attr('value',password);
+			if ($('#changepassword').valid()) {                   // checks form for validity
+				var old_pass = jQuery('#oldpassword').val();
+				var new_pass = jQuery('#password').val();
 				
-				/*$.ajax({
-				  url: siteurl+"resetProfilePassword",
-				  type: 'POST',
-				  data: {q:'resetPassword',user_id:userid,new_pass:new_pass}, 
-				  crossDomain: true,   
-				  success: function(data) {
-					if(data['status'] == 1)
-					{
-						
-					}
-					else{
-						window.location='login.html';
-					}
-				  },
-				  error: function() {
-					alert('Error');
-				  }
-				});*/
-		/*	}else{
-				alert('Wrong Password');
+					$.ajax({
+					  url: siteurl+"resetProfilePassword",
+					  type: 'POST',
+					  data: {q:'resetPassword',user_id:userid,new_pass:new_pass}, 
+					  crossDomain: true,   
+					  success: function(data) {
+						if(data['status'] == 1)
+						{
+							$("#snackbar").fadeIn("slow", function () {
+								setTimeout(function () {
+									$("#snackbar").fadeOut("slow");
+								}, 1000);
+								window.location='update-profile.html';
+							});
+						}
+						else{
+							window.location='login.html';
+						}
+					  },
+					  error: function() {
+						 alert('Error');
+					  }
+					});	
+				
+
+			} else {
+				jQuery('.lbl-name').hide();		 
 			}
-			
-		});*/
+
+		});
+		jQuery('input[name="cancel"]').click(function(){
+			window.location.reload();
+		});
 	}
 	else
 	{
@@ -142,29 +159,34 @@ jQuery( document ).ready(function() {
 
 		
 			<form method="post" id="changepassword">
-				<div class="change-password">			
+				<div class="change-password">
+					
 					<div class="password-input-field">
-						<div style="width:10%; float:left;">
+						<div class="field-left">
 							<img src="images/key.png" style="-webkit-logical-height: 30px;"/>
 						</div>
-						<div style="width:90%; float:left;">
-							<input type="password" name="oldpassword" id="oldpassword" class="password" placeholder="Old Password"/>
+						<div class="field-right field">
+							<input type="hidden" name="pass" id="pass"/>
+							<input type="password" name="oldpassword" id="oldpassword" placeholder="Old Password"/>
+							<label for="oldpassword" class="lbl-name">Old Password</label>
 						</div>
 					</div>
 					<div class="password-input-field">
-						<div style="width:10%; float:left;">
+						<div class="field-left">
 							<img src="images/key.png" style="-webkit-logical-height: 30px;"/>
 						</div>
-						<div style="width:90%; float:left;">
-							<input tabindex="1" size="40" type="password" name="password" id="password" class="password" placeholder="New Password" />
+						<div class="field-right field">
+							<input tabindex="1" size="40" type="password" name="password" id="password" placeholder="New Password" />
+							<label for="password" class="lbl-name">New Password</label>
 						</div>					
 					</div>
 					<div class="password-input-field">
-						<div style="width:10%; float:left;">
+						<div class="field-left">
 							<img src="images/key.png" style="-webkit-logical-height: 30px;"/>
 						</div>
-						<div style="width:90%; float:left;">
-							<input tabindex="1" size="40" type="password" name="confirmpassword" placeholder="Confirm Password" class="password" id="confirmpassword" />
+						<div class="field-right field">
+							<input tabindex="1" size="40" type="password" name="confirmpassword" placeholder="Confirm Password" id="confirmpassword" />
+							<label for="confirmpassword" class="lbl-name">Confirm Password</label>
 						</div>	
 					</div><br><br><p id="validate-status"></p>
 				</div>
@@ -176,7 +198,7 @@ jQuery( document ).ready(function() {
 					</div>
 					<div style="width:40%; float:left;">
 						<div class="green-save-button">
-							<input type="button" name="save" value="Save" onClick="validatePassword();"/>
+							<input type="button" name="save" value="Save"/>
 						</div>
 					</div>
 				</div>
@@ -184,5 +206,6 @@ jQuery( document ).ready(function() {
 	
 </div>
 </div>
+<div id="snackbar">Update Password Successfully</div>
 </body>
 </html>

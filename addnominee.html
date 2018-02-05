@@ -4,11 +4,11 @@
 <title>World Bank of Cryptocurrencies</title>
 <link rel="stylesheet" type="text/css" href="css/style.css">
 <link rel="stylesheet" href="css/jquery.mmenu.all.css" />
-<link href="css/font-awesome.css" rel="stylesheet">
-<meta name="viewport" content="width=device-width,initial-scale-scale=1.0" />
+
 <script src="js/jquery.min.js"></script>
 <script src="js/jquery.mmenu.all.js"></script>
 <script src="js/config.js"></script>
+<script src="js/validate.js"></script>
 <script type="text/javascript">
 $(function() {
 	$('nav#menu').mmenu();
@@ -21,17 +21,15 @@ var contentType ="application/x-www-form-urlencoded; charset=utf-8";
 if(window.XDomainRequest){contentType = "text/plain";}
 jQuery.support.cors = true;
 
-jQuery( document ).ready(function() {
 
+jQuery( document ).ready(function() {
+jQuery("#snackbar").hide();
 	if(window.sessionStorage.getItem("loggedIn") == 1) {
 		var userid = sessionStorage.getItem("user_id") ;
 		var password = sessionStorage.getItem("password") ;
 		var uid = sessionStorage.getItem("uid") ;
-		//alert(uid);
-		jQuery('.logout').hide();
-		jQuery('.log-out').click(function(){
-			jQuery('.logout').toggle( "slow" );
-		});
+
+			
 		
 		$.ajax({
 		  url: siteurl+"login",
@@ -39,12 +37,10 @@ jQuery( document ).ready(function() {
 		  data: {q:'checklogin',user_id:userid,password:password}, 
 		  crossDomain: true,   
 		  success: function(data) {
-
 			if(data['status'] == 1)
 			{
 				var name = jQuery('.name').append(data['details']['name']);
 				var email = jQuery('.uemail').append(data['details']['email']);
-				var mobile = jQuery('.mobile').append(data['details']['mobile']);
 				var picon = data['details']['name'];
 				var profile = jQuery('.profile-icon').append(picon.charAt(0));
 				var verifystatus = data['details']['emailverifystatus'];
@@ -53,8 +49,12 @@ jQuery( document ).ready(function() {
 				}else{
 					jQuery('.verify').append("Unverified");
 				}
-				//For Inner Content
-				var email = jQuery('.email').append(data['details']['email']);
+				
+				var pn = data['details']['nominee_card_number'];
+				pn = pn.replace(/(\S{4})/g,"$1 ");
+				pn = pn.replace(/$/,"");   // if you do not want the final a
+				var previousnominee = jQuery('#previousnominee input[name="nomineeid"]').attr("value",pn);
+				
 			}
 			else{
 				window.location='login.html';
@@ -64,13 +64,73 @@ jQuery( document ).ready(function() {
 			alert('Error');
 		  }
 		});
+		
+		jQuery('.logout').hide();
+		jQuery('.log-out').click(function(){
+			jQuery('.logout').toggle( "slow" );
+		});
+		
+			
+			jQuery("#updatenominee").validate({
+			
+				rules: {
+					nominee: {
+						required: true,
+						maxlength: 16,
+						minlength: 16,
+						digits: true,
+					},
+				},
+				messages: {
+					nominee: "Enter 16 Digit Card Number"
+				}
+			});
+		jQuery('input[name="save"]').click(function(){
+			
+			if ($('#updatenominee').valid()) {                   // checks form for validity
+
+				var nominee = jQuery('#nominee').val();
+				var details = {id:uid,card_no:nominee};
+				
+				
+					// Update Nominee
+					$.ajax({
+					  url: siteurl+"updateProfile",
+					  type: 'POST',
+					  data: {q:'nominee_card_number',detail:JSON.stringify(details)}, 
+					  crossDomain: true,   
+					  success: function(data) {
+						if(data == 1)
+						{
+							$("#snackbar").fadeIn("slow", function () {
+								setTimeout(function () {
+									$("#snackbar").fadeOut("slow");
+								}, 1000);
+								window.location='update-profile.html';
+							});
+						}
+					  },
+					  error: function() {
+						 alert('Error');
+					  }
+					});	
+				
+
+			} else {
+				jQuery('.lbl-name').hide();		 
+			}
+
+		});
+		jQuery('input[name="cancel"]').click(function(){
+			window.location.reload();
+		});
 	}
 	else
 	{
 		window.location='login.html';
 	}
-});
 
+});
 </script>
 </head>
 <body>
@@ -89,7 +149,7 @@ jQuery( document ).ready(function() {
 		</div>
 	</div>	
 		<div class="nomineeid">
-			<form method="get">
+			<form method="get" id="previousnominee">
 				<div class="nominee-id-label">
 					<label>Your Current Nominee Card Number</label>
 				</div>
@@ -104,14 +164,15 @@ jQuery( document ).ready(function() {
 			</form>
 		</div>
 		<div class="nominee-new">
-				<form method="post">
+				<form method="post" id="updatenominee">
 					<div style="height:50%; float:left; -webkit-logical-width: 100%;">
-						<div class="nominee-input-field">
-							<div style="width:8%; float:left;">
+						<div class="password-input-field">
+							<div class="field-left">
 								<img src="images/digi_card.png" style="-webkit-logical-height: 30px;"/>
 							</div>
-							<div style="width:80%; float:left;">
-								<input type="text" name="nomineeid" id="nominee" placeholder="Enter 16 Digit Card Number of Nominee"/>
+							<div class="field-right field">
+								<input type="text" name="nominee" id="nominee" placeholder="Enter 16 Digit Card Number of Nominee"/>
+								<label for="nominee" class="lbl-name">Enter 16 Digit Card Number of Nominee</label>
 							</div>
 						</div>
 					</div>
@@ -119,22 +180,19 @@ jQuery( document ).ready(function() {
 					<div style="height:30%;">
 						<div style="width:50%; float:left; margin-right:100px; margin-left:-50px;">	
 							<div class="red-cancel-button">
-								<input type="button" name="submit" value="Cancel"/>
+								<input type="button" name="cancel" value="Cancel"/>
 							</div>
 						</div>
 						<div style="width:20%; float: right; margin-left:58px;">
 							<div class="green-save-button">
-								<input type="button" name="submit" value="Save"/>
+								<input type="button" name="save" value="Save"/>
 							</div>
 						</div>
 					</div>
 				</form>	
-		</div>
-
-
-
-		
+		</div>	
 </div>
 </div>
+<div id="snackbar">Update Password Successfully</div>
 </body>
 </html>

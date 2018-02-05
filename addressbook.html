@@ -7,111 +7,321 @@
 
 <script src="js/jquery.min.js"></script>
 <script src="js/jquery.mmenu.all.js"></script>
+<script src="js/config.js"></script>
 <script type="text/javascript">
 $(function() {
 	$('nav#menu').mmenu();
 	$( "nav#menu .mm-panels" ).addClass( "profile-menu" );
 });
-
-</script>
-<script>
 var contentType ="application/x-www-form-urlencoded; charset=utf-8";
 if(window.XDomainRequest){contentType = "text/plain";}
 jQuery.support.cors = true;
+jQuery( document ).ready(function() {
 
+	if(window.sessionStorage.getItem("loggedIn") == 1) {
+	
+	
+		
+		var emailid = sessionStorage.getItem("user_id") ;
+		var password = sessionStorage.getItem("password") ;
+		var user_id = sessionStorage.getItem("uid") ;
+
+		jQuery('.logout').hide();
+		jQuery('.log-out').click(function(){
+			jQuery('.logout').toggle( "slow" );
+		});
+		
+		$.ajax({
+		  url: siteurl+"login",
+		  type: 'POST',
+		  data: {q:'checklogin',user_id:emailid,password:password}, 
+		  crossDomain: true,   
+		  success: function(data) {
+			if(data['status'] == 1)
+			{
+				var name = jQuery('.name').append(data['details']['name']);
+				var email = jQuery('.uemail').append(data['details']['email']);
+				var picon = data['details']['name'];
+				var profile = jQuery('.profile-icon').append(picon.charAt(0));
+				var verifystatus = data['details']['emailverifystatus'];
+				if(typeof verifystatus!='undefined' && verifystatus!='' && verifystatus!=null && verifystatus=='1'){
+					jQuery('.verify').append("Verified");
+				}else{
+					jQuery('.verify').append("Unverified");
+				}
+				
+				var uid = jQuery('#userid').attr('value',data['details']['id']) ;
+								
+				var searchkeyword = jQuery("input[name='keyword']").val();
+					// Check Textbox value
+					jQuery("input[name='keyword']").blur(function(){
+					
+						jQuery('.address-container table.search-detail').show();
+						jQuery('.address-container table.detail').hide();
+						jQuery('.address-container table.search-detail').empty();
+						//Search Address
+						var searchkeyword = jQuery("input[name='keyword']").val();
+						
+						if(searchkeyword != ''){
+							$.ajax({
+							  url: siteurl+"searchMyAddressBook",
+							  type: 'POST',
+							  data: {q:'searchmyAddress',keyword:searchkeyword,user_id:user_id}, 
+							  crossDomain: true,   
+							  success: function(data) {
+									var data = data['data'] ;
+									$.each(data, function(idx, obj) {
+										var addicon = obj.address_name;
+										var namelogo = addicon.charAt(0);
+										var add_id = obj.id;
+										
+										var dcard = obj.address_card_no;
+								
+										dcard = dcard.replace(/(\S{4})/g,"$1 ");
+										dcard = dcard.replace(/$/,"");   // if you do not want the final space
+										
+										if(dcard != ''){ 
+											jQuery('.address-container table.search-detail').append('<tr><td class="name-logo" rowspan="3">'+namelogo+'<input type="checkbox" value="'+obj.id+'" name="addid[]" class="add_id" id="checkbox'+obj.id+'"/><label for="checkbox'+obj.id+'"></label></td><td rowspan="3" width="30px">&nbsp;</td><td class="address-name">'+obj.address_name+'</td><td rowspan="3" class="edit-address"><img src="images/edit_white.png" id="'+obj.id+'"/></td></tr><tr><td class="card-no">Card No : '+dcard+'</td></tr><tr><td class="pay-address">Pay Address : '+obj.address_btc_address+'</td></tr><tr class="blank" colspan="5"><td colspan="5"><hr/></td></tr>');
+										}
+										
+										
+										jQuery('.add_id').hide();
+										jQuery('.actions').hide();
+										jQuery('.name-logo label').hide();
+										
+										//Delete Address
+										jQuery(".deladd").click(function(){
+											jQuery('.add_id').show();
+											jQuery('.actions').show();
+											jQuery('.name-logo label').show();
+
+											// Delete selected address
+											$('.delete-address').click(function() {
+												var selval = $('.add_id:checked').map(function() {
+													return this.value;
+												}).get().join(', ');
+												$.ajax({
+													  url: siteurl+"deleteMyAddressBook",
+													  type: 'POST',
+													  data: {q:'delete',user_id:user_id,id_comma_seperated:selval}, 
+													  crossDomain: true,   
+													  success: function(data) {
+														if(data['status'] == 1){
+															location.reload();
+														}
+													  }
+												});		
+											});
+											
+											//Refresh Data
+											jQuery('.refresh-address').click(function() {
+												 location.reload();
+											});
+											
+										});
+										
+										//Update Address
+										jQuery('.edit-address img').click(function() {
+										var saveaddid = this.id ;
+											localStorage.setItem("add_id",saveaddid);
+											window.location='editaddress.html';
+										});
+									});
+							  },
+							  error: function() {
+								alert('Error');
+							  }
+							});
+						}else{
+							jQuery('.address-container table.search-detail').hide();
+							jQuery('.address-container table.detail').show();
+						}
+						
+					});
+					
+					if(searchkeyword == ''){
+						jQuery('.address-container table.search-detail').hide();
+						
+						//Get My Address Book
+						$.ajax({
+						  url: siteurl+"getMyAddressBook",
+						  type: 'POST',
+						  data: {q:'myAddress',user_id:user_id}, 
+						  crossDomain: true,   
+						  success: function(data) {
+						  // alert(data);
+							var data = data['data'] ;
+							
+							$.each(data, function(idx, obj) {
+								var addicon = obj.address_name;
+								var namelogo = addicon.charAt(0);
+								var add_id = obj.id;
+								
+								var dcard = obj.address_card_no;
+						
+								dcard = dcard.replace(/(\S{4})/g,"$1 ");
+								dcard = dcard.replace(/$/,"");   // if you do not want the final a
+								
+								if(dcard != ''){ 
+									jQuery('.address-container table.detail').append('<tr><td class="name-logo" rowspan="3">'+namelogo+'<input type="checkbox" value="'+obj.id+'" name="addid[]" class="add_id" id="checkbox'+obj.id+'"/><label for="checkbox'+obj.id+'"></label></td><td rowspan="3" width="30px">&nbsp;</td><td class="address-name">'+obj.address_name+'</td><td rowspan="3" class="edit-address"><img src="images/edit_white.png" id="'+obj.id+'"/></td></tr><tr><td class="card-no">Card No : '+dcard+'</td></tr><tr><td class="pay-address">Pay Address : '+obj.address_btc_address+'</td></tr><tr class="blank" colspan="5"><td colspan="5"><hr/></td></tr>');
+								}
+										
+								
+								
+								jQuery('.add_id').hide();
+								jQuery('.actions').hide();
+								jQuery('.name-logo label').hide();
+								
+								//Delete Address
+								jQuery(".deladd").click(function(){
+									jQuery('.add_id').show();
+									jQuery('.actions').show();
+									jQuery('.name-logo label').show();
+
+									// Delete selected address
+									$('.delete-address').click(function() {
+										var selval = $('.add_id:checked').map(function() {
+											return this.value;
+										}).get().join(', ');
+										$.ajax({
+											  url: siteurl+"deleteMyAddressBook",
+											  type: 'POST',
+											  data: {q:'delete',user_id:user_id,id_comma_seperated:selval}, 
+											  crossDomain: true,   
+											  success: function(data) {
+												if(data['status'] == 1){
+													location.reload();
+												}
+											  }
+										});		
+									});
+									
+									//Refresh Data
+									jQuery('.refresh-address').click(function() {
+										 location.reload();
+									});
+									
+								});
+								
+								//Update Address
+								jQuery('.edit-address img').click(function() {
+								var saveaddid = this.id ;
+									localStorage.setItem("add_id",saveaddid);
+									window.location='editaddress.html';
+								});
+							});
+							
+						  },
+						  error: function() {
+							alert('Error1');
+						  }
+						});
+					}
+					
+				
+			}
+			
+		  },
+		  error: function() {
+			alert('Error1');
+		  }
+		});
+	}
+	else
+	{
+		window.location='login.html';
+	}
+
+});
 </script>
 </head>
 <body>
 
 <div id="main_wrapper" class="inner-page">
 	<div class="main-container">
-		<div id="topbar" class="navigation">
-			
-				<div class="header">
-					<a href="#menu"><span></span></a>
-				</div>
-				<nav id="menu">
-					<ul>
-						
-						<li class="menutop">
-							<span class="profile-icon">P</span>
-							<span class="name">Priyanka</span>
-							<span class="email">
-								<span class="uemail">p.grover@intouchgroup.in</span>
-								<span class="verify">Unverified</span></span>
-							</span>
-						</li>
-						
-						<li class="tbl" style="padding-top: 4px; padding-bottom: 20px;">
-						<table>
-							<tr>
-								<td class="picon"><img src="images/home.png"></td>
-								<td>&nbsp;&nbsp;&nbsp;</td>
-								<td class="ptxt">Home</td>
-							</tr>
-						</table>
-						</li>
-						<li class="tbl" style="padding-top: 4px; padding-bottom: 20px;">
-						<table>
-							<tr>
-								<td class="picon"><img src="images/prepaid-card-in-a-hand.png"></td>
-								<td>&nbsp;&nbsp;&nbsp;</td>
-								<td class="ptxt">Digi Card</td>
-							</tr>
-						</table>
-						</li>
-						<li class="tbl" style="padding-top:4px; padding-bottom:20px;">
-						<table>
-							<tr>
-								<td class="picon"><img src="images/setting2.png"></td>
-								<td>&nbsp;&nbsp;&nbsp;</td>
-								<td class="ptxt">Setting</td>
-							</tr>
-						</table>
-						</li>
-						<li class="Divider">Communicate</li>
-						<li class="tbl" style="padding-top: 36px; padding-bottom: 20px;">
-						<table>
-							<tr>
-								<td class="picon"><img src="images/support.png"></td>
-								<td>&nbsp;&nbsp;&nbsp;</td>
-								<td class="ptxt">Support</td>
-							</tr>
-						</table>
-						</li>
-					</ul>
-				</nav>
-			<div class="header-card">Settings</div>
-			<div class="notification" style="float:right;"><img src="images/notification_title_menu.png"/><!--  style="margin-left:41px;" --><img src="images/dot.png" style="margin-left:22px;"/></div>
+	<div id="topbar" class="navigation">
+		
+			<div class="header">
+				<a href="#menu"><span></span></a>
+			</div>
+			<nav id="menu">
+				<ul>
+					
+					<li class="menutop">
+						<span class="profile-icon"></span>
+						<span class="name"></span>
+						<span class="email">
+							<span class="uemail"></span>
+							<span class="verify"></span></span>
+						</span>
+					</li>
+					
+					<li class="tbl" style="padding-top: 4px; padding-bottom: 20px;">
+					<table>
+						<tr>
+							<td class="picon"><img src="images/home.png"></td>
+							<td>&nbsp;&nbsp;&nbsp;</td>
+							<td class="ptxt"><a href="dashboard.html">Home</a></td>
+						</tr>
+					</table>
+					</li>
+					<li class="tbl" style="padding-top: 4px; padding-bottom: 20px;">
+					<table>
+						<tr>
+							<td class="picon"><img src="images/prepaid-card-in-a-hand.png"></td>
+							<td>&nbsp;&nbsp;&nbsp;</td>
+							<td class="ptxt"><a href="dashboard.html">Digi Card</a></td>
+						</tr>
+					</table>
+					</li>
+					<li class="tbl" style="padding-top:4px; padding-bottom:20px;">
+					<table>
+						<tr>
+							<td class="picon"><img src="images/setting2.png"></td>
+							<td>&nbsp;&nbsp;&nbsp;</td>
+							<td class="ptxt"><a href="setting.html">Setting</a></td>
+						</tr>
+					</table>
+					</li>
+					<li class="Divider">Communicate</li>
+					<li class="tbl" style="padding-top: 36px; padding-bottom: 20px;">
+					<table>
+						<tr>
+							<td class="picon"><img src="images/support.png"></td>
+							<td>&nbsp;&nbsp;&nbsp;</td>
+							<td class="ptxt"><a href="support.html">Support</a></td>
+						</tr>
+					</table>
+					</li>
+				</ul>
+			</nav>
+		<div class="header-card">Settings</div>
+		<div class="notification" style="float:right; margin-left:-9px;">
+			<a href="notifications.html"><img src="images/notification_title_menu.png"/></a>
+			<span class="log-out"><img src="images/dot.png" style="margin-left:22px;"/></span>
+			<div class="logout">
+				<a href="logout.html">SignOut</a>
+			</div>
 		</div>
+	</div>
 		<div class="container_a">
-			<form method="post">
-					<div class="addressbook-input-field">
-						<input type="text" name="addressbook" id="address" placeholder="Search"/>
-					</div>
+			<form method="post" name="search-form">
+				<div class="addressbook-input-field">
+					<input type="text" name="keyword" id="address" placeholder="Search"/>
+				</div>
 			</form>
 			<div class="address-container">
-					<table class="detail">
-						<tr>
-							<td><img src="images/user_white.png" style="-webkit-logical-height:40px; -webkit-logical-width:40px;"></td>
-							<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-							<td class="card-top">Name</td>
-							<td class="card-bottom">Card Number</td>
-						</tr>				
-					</table>
+				<table class="detail">
 					
-					<span class="line"></span>
-					<table class="detail">
-						<tr>
-							<td><img src="images/user_white.png" style="-webkit-logical-height:40px; -webkit-logical-width:40px;"></td>
-							<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-							<td class="card-top">Name</td>
-							<td class="card-bottom">Card Number</td>
-						</tr>				
-					</table>
+				</table>
+				<table class="search-detail">
+					
+				</table>
 			</div>
-			
-	
+			<div class="actions" style="display:none;">
+				<div class="refresh-address"><img src="images/back.png"/></div>
+				<div class="delete-address"><img src="images/delete.png"/></div>
+			</div>
 		</div>
 		<div class="addbutton">
 				<input type="button" class="float-button open">
@@ -120,18 +330,18 @@ jQuery.support.cors = true;
 			<div class="addnewcontact">
 				<table>
 					<tr>			
-						<td class="address-text">&nbsp;&nbsp;&nbsp;&nbsp;Add New&nbsp;&nbsp;&nbsp;&nbsp;</td>
-						<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-						<td class="addressadd-img"><a href="addcontact.html"><img src="images/add_address.png" style="-webkit-logical-height:25px; -webkit-logical-width:25px;"></a></td>						
+						<td class="address-text"><a href="addaddress.html">Add New</a></td>
+						<td>&nbsp;</td>
+						<td class="addressadd-img"><a href="addaddress.html"><img src="images/add_address.png" style="-webkit-logical-height:25px; -webkit-logical-width:25px;"></a></td>						
 					</tr>
 				</table>
 			</div>
 			<div class="deletecontact">
 				<table>
-					<tr>
-						<td class="address-text">&nbsp;&nbsp;&nbsp;&nbsp;Delete&nbsp;&nbsp;&nbsp;&nbsp;</td>
-						<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-						<td class="addressdel-img"><a href="deletecontact.html"><img src="images/delete.png" style="-webkit-logical-height:25px; -webkit-logical-width:25px;"></a></td>
+					<tr class="deladd">
+						<td class="address-text">Delete</td>
+						<td>&nbsp;</td>
+						<td class="addressdel-img"><img src="images/delete.png" style="-webkit-logical-height:25px; -webkit-logical-width:25px;"></td>
 					</tr>
 				</table>
 			</div>	

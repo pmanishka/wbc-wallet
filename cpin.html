@@ -4,11 +4,11 @@
 <title>World Bank of Cryptocurrencies</title>
 <link rel="stylesheet" type="text/css" href="css/style.css">
 <link rel="stylesheet" href="css/jquery.mmenu.all.css" />
-<link href="css/font-awesome.css" rel="stylesheet">
-<meta name="viewport" content="width=device-width,initial-scale-scale=1.0" />
+
 <script src="js/jquery.min.js"></script>
 <script src="js/jquery.mmenu.all.js"></script>
 <script src="js/config.js"></script>
+<script src="js/validate.js"></script>
 <script type="text/javascript">
 $(function() {
 	$('nav#menu').mmenu();
@@ -21,17 +21,15 @@ var contentType ="application/x-www-form-urlencoded; charset=utf-8";
 if(window.XDomainRequest){contentType = "text/plain";}
 jQuery.support.cors = true;
 
-jQuery( document ).ready(function() {
 
+jQuery( document ).ready(function() {
+jQuery("#snackbar").hide();
 	if(window.sessionStorage.getItem("loggedIn") == 1) {
 		var userid = sessionStorage.getItem("user_id") ;
 		var password = sessionStorage.getItem("password") ;
 		var uid = sessionStorage.getItem("uid") ;
-		//alert(uid);
-		jQuery('.logout').hide();
-		jQuery('.log-out').click(function(){
-			jQuery('.logout').toggle( "slow" );
-		});
+
+			
 		
 		$.ajax({
 		  url: siteurl+"login",
@@ -39,13 +37,13 @@ jQuery( document ).ready(function() {
 		  data: {q:'checklogin',user_id:userid,password:password}, 
 		  crossDomain: true,   
 		  success: function(data) {
-
 			if(data['status'] == 1)
 			{
 				var name = jQuery('.name').append(data['details']['name']);
 				var email = jQuery('.uemail').append(data['details']['email']);
-				var mobile = jQuery('.mobile').append(data['details']['mobile']);
 				var picon = data['details']['name'];
+				var user_otp = data['details']['u_pin'];
+				jQuery('#pin').attr("value",user_otp);
 				var profile = jQuery('.profile-icon').append(picon.charAt(0));
 				var verifystatus = data['details']['emailverifystatus'];
 				if(typeof verifystatus!='undefined' && verifystatus!='' && verifystatus!=null && verifystatus=='1'){
@@ -53,8 +51,7 @@ jQuery( document ).ready(function() {
 				}else{
 					jQuery('.verify').append("Unverified");
 				}
-				//For Inner Content
-				var email = jQuery('.email').append(data['details']['email']);
+				
 			}
 			else{
 				window.location='login.html';
@@ -64,13 +61,93 @@ jQuery( document ).ready(function() {
 			alert('Error');
 		  }
 		});
+		
+		jQuery('.logout').hide();
+		jQuery('.log-out').click(function(){
+			jQuery('.logout').toggle( "slow" );
+		});
+		
+			
+			jQuery("#cpin").validate({
+				rules: {
+					pin: "required",
+					oldpin: {
+						required: true,
+						equalTo: "#pin"
+					},
+					npin: {
+						required: true,
+						maxlength: 4,
+						minlength: 4,
+						digits: true,
+					},
+					cpin: {
+						required: true,
+						equalTo: "#npin"
+					},
+				},
+				messages: {
+					pin: "Enter Old Pin",
+					oldpin: {
+						required: "Enter Old Pin",
+						equalTo: "Old Pin is wrong"
+					},
+					npin: {
+						required: "Enter New Pin",
+						maxlength: "Maximum 4 number allowed",
+						digits: "Please enter only digits"
+					},
+					cpin: {
+						required: "Please provide a pin",
+						equalTo: "Please enter the same pin as above"
+					}
+				}
+			});
+		jQuery('input[name="save"]').click(function(){
+			
+			if ($('#cpin').valid()) {                   // checks form for validity
+				
+				var newpin = jQuery('#npin').val();
+				var details = {id:uid,pin:newpin};
+				
+					 $.ajax({
+					  url: siteurl+"updateProfile",
+					  type: 'POST',
+					  data: {q:'security_pin',detail:JSON.stringify(details)}, 
+					  crossDomain: true,   
+					  success: function(data) {
+						if(data == 1)
+						{
+							$("#snackbar").fadeIn("slow", function () {
+								setTimeout(function () {
+									$("#snackbar").fadeOut("slow");
+								}, 1000);
+								window.location='update-profile.html';
+							});
+							
+						}
+					  },
+					  error: function() {
+						 alert('Error');
+					  }
+					});	
+				
+
+			} else {
+				jQuery('.lbl-name').hide();		 
+			}
+
+		});
+		jQuery('input[name="cancel"]').click(function(){
+			window.location.reload();
+		});
 	}
 	else
 	{
 		window.location='login.html';
 	}
-});
 
+});
 </script>
 </head>
 <body>
@@ -89,47 +166,52 @@ jQuery( document ).ready(function() {
 			</div>
 		</div>
 		
-			<form method="post">
+			<form method="post" id="cpin">
 				<div class="change-password">			
 					<div class="password-input-field">
-						<div style="width:10%; float:left;">
+						<div class="field-left">
 							<img src="images/key.png" style="-webkit-logical-height: 30px;"/>
 						</div>
-						<div style="width:90%; float:left;">
-							<input type="text" name="pin" class="password" placeholder="Old Pin" maxlength="4"/>
+						<div class="field-right field">
+							<input type="hidden" name="pin" id="pin"/>
+							<input type="text" name="oldpin" id="oldpin" placeholder="Old Pin"/>
+							<label for="oldpin" class="lbl-name">Old Pin</label>
 						</div>
 					</div>
 					<div class="password-input-field">
-						<div style="width:10%; float:left;">
+						<div class="field-left">
 							<img src="images/key.png" style="-webkit-logical-height: 30px;"/>
 						</div>
-						<div style="width:90%; float:left;">
-							<input type="text" name="npin" class="password" placeholder="New Pin" maxlength="4" />
+						<div class="field-right field">
+							<input type="text" name="npin" placeholder="New Pin" id="npin" />
+							<label for="npin" class="lbl-name">New Pin</label>
 						</div>					
 					</div>
 					<div class="password-input-field">
-						<div style="width:10%; float:left;">
+						<div class="field-left">
 							<img src="images/key.png" style="-webkit-logical-height: 30px;"/>
 						</div>
-						<div style="width:90%; float:left;">
-							<input type="text" name="cpin" class="password" placeholder="Confirm Pin" maxlength="4"/>
+						<div class="field-right field">
+							<input type="text" name="cpin" placeholder="Confirm Pin" id="cpin" />
+							<label for="cpin" class="lbl-name">Confirm Pin</label>
 						</div>	
 					</div><br><br>
 				</div>
 				<div>
 					<div style="width:40%; float:left">	
 						<div class="red-cancel-button">
-							<input type="button" name="submit" value="Cancel"/>
+							<input type="button" name="cancel" value="Cancel"/>
 						</div>
 					</div>
 					<div style="width:40%; float: right;">
 						<div class="green-save-button">
-							<input type="button" name="submit" value="Save"/>
+							<input type="button" name="save" value="Save"/>
 						</div>
 					</div>
 				
 			</form>		
 	</div>
 </div>
+<div id="snackbar">Update Pin Successfully</div>
 </body>
 </html>
