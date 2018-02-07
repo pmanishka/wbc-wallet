@@ -131,7 +131,7 @@ body .container {
 .homewrapper {
     text-align: center;
     padding: 60px 0 70px 0;
-    margin-bottom: 104px;
+    /*margin-bottom: 104px;*/
 }
 .mainpage-section .homewrapper img {
     width: 55%;
