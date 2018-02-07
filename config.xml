@@ -20,6 +20,9 @@
     <preference name="SplashMaintainAspectRatio" value="true" />
     <preference name="FadeSplashScreenDuration" value="300" />
 
+	
+	<!-- add a version here, otherwise PGB will use whatever the latest version of the package on npm is -->
+	<plugin name="phonegap-plugin-barcodescanner" />
     <!--
       Change these to configure how the splashscreen displays and fades in/out.
       More info here: https://github.com/apache/cordova-plugin-splashscreen
@@ -66,4 +69,9 @@
     <plugin name="cordova-plugin-statusbar" spec="2.2.1" />
     <plugin name="cordova-plugin-device" spec="1.1.4" />
     <plugin name="cordova-plugin-splashscreen" spec="~4.0.1" />
+	
+<edit-config target="NSCameraUsageDescription" file="*-Info.plist" mode="merge">
+    <string>To scan barcodes</string>
+</edit-config>	
+	
 </widget>
