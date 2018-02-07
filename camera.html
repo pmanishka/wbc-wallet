@@ -10,7 +10,15 @@ input, label {vertical-align:middle}
 .qrcode-text-btn {display:inline-block; background:url(//dab1nmslvvntp.cloudfront.net/wp-content/uploads/2017/07/1499401426qr_icon.svg) 50% 50% no-repeat; height:1em; width:1.7em; margin-left:-1.7em; cursor:pointer}
 .qrcode-text-btn > input[type=file] {position:absolute; overflow:hidden; width:1px; height:1px; opacity:0}
         </style>
+		
+<script>
+var contentType ="application/x-www-form-urlencoded; charset=utf-8";
+if(window.XDomainRequest){contentType = "text/plain";}
+jQuery.support.cors = true;
+</script>
     </head>
+	
+	
     <body>
         <input type=text size=16 placeholder="Tracking Code" class=qrcode-text><label class=qrcode-text-btn><input type=file accept="image/*" capture=environment onchange="openQRCamera(this);" tabindex=-1></label> 
 <input type=button value="Go" disabled>
