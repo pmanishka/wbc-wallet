@@ -2474,3 +2474,24 @@ input[name="nomineelist"] {
     text-align: center;
     font-size: 20px;
 }
+
+.aadhaar_upload .field {
+    margin-top: 20px;
+}
+.aadhaar_upload .field-left {
+    margin-top: 10px;
+	overflow: hidden;
+    position: relative;
+}
+  .field-left > input[type="file"] {
+    font-size: 200px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    opacity: 0;
+  }
+  .field-left > .btn-image {
+    display: inline-block;
+    width: 35px;
+    height: 35px;
+  }

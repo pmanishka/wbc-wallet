@@ -82,7 +82,7 @@ jQuery("#snackbar").hide();
 		});
 		
 			
-		jQuery("#updateprofile").validate({
+		/*jQuery("#updateprofile").validate({
 		
 			rules: {
 				nominee: {
@@ -95,10 +95,10 @@ jQuery("#snackbar").hide();
 			messages: {
 				nominee: "Enter 16 Digit Card Number"
 			}
-		});
+		});*/
 		jQuery('input[name="save"]').click(function(){
 			
-			if ($('#updateprofile').valid()) {                   // checks form for validity
+			/*if ($('#updateprofile').valid()) {  */                 // checks form for validity
 
 				var nominee = jQuery('#nominee').val();
 				var image = jQuery('#image').val();
@@ -137,9 +137,9 @@ jQuery("#snackbar").hide();
 					});	
 				
 
-			} else {
+			/*} else {
 				jQuery('.lbl-name').hide();		 
-			}
+			}*/
 
 		});
 		jQuery('input[name="cancel"]').click(function(){
@@ -262,8 +262,16 @@ jQuery("#snackbar").hide();
 					
 					
 						<div class="password-input-field aadhaar_upload">
-							<img src="images/uploading.png" style="-webkit-logical-height: 24px;"><span style="margin-left: 10px;"><input type="file" name="image" id="image">Upload Your Id</span></div>
-					</div>
+							<div class="password-input-field ">
+								<div class="field-left">
+									<img src="images/uploading.png" class="btn-image" style="-webkit-logical-height: 30px;"/>
+									<input type="file" name="image" id="image">
+								</div>
+								<div class="field-right field">
+									<span style="margin-left: 10px;">Upload Your Id</span></div>
+								</div>
+							</div>
+						</div>
 		
 					<div style="height:30%;">
 						<div style="width:50%; float:left; margin-right:100px; margin-left:-50px;">	
