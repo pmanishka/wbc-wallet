@@ -12,6 +12,12 @@ if(window.XDomainRequest){contentType = "text/plain";}
 jQuery.support.cors = true;
 
 jQuery( document ).ready(function() {
+
+
+ touchMove = function(event) {
+        event.preventDefault();
+    }
+	
 	
 	jQuery('input[name="submit"]').click(function(){
 
@@ -51,7 +57,7 @@ jQuery( document ).ready(function() {
 </head>
 <body>
 
-<div id="main_wrapper">
+<div id="main_wrapper" ontouchmove="touchMove(event)">
 	<div class="main-container">
 	<div id="top_header">
 		<div class="logo">
@@ -77,6 +83,7 @@ jQuery( document ).ready(function() {
 				</div>
 			</form>
 		</div>
+	</div>
 	</div>
 </div>
 </body>
