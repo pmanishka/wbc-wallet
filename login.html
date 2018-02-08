@@ -13,10 +13,16 @@ jQuery.support.cors = true;
 
 jQuery( document ).ready(function() {
 
-
- touchMove = function(event) {
-        event.preventDefault();
-    }
+$(window).bind("resize", function(){
+    var orientation = window.orientation;
+    var new_orientation = (orientation) ? 0 : 180 + orientation;
+    $('body').css({
+        "-webkit-transform": "rotate(" + new_orientation + "deg)"
+    });
+});
+touchMove = function(event) {
+      event.preventDefault();
+}
 	
 	
 	jQuery('input[name="submit"]').click(function(){
