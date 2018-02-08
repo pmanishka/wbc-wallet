@@ -13,13 +13,11 @@ jQuery.support.cors = true;
 
 jQuery( document ).ready(function() {
 
-$(window).bind("resize", function(){
-    var orientation = window.orientation;
-    var new_orientation = (orientation) ? 0 : 180 + orientation;
-    $('body').css({
-        "-webkit-transform": "rotate(" + new_orientation + "deg)"
+if (!(/iphone|ipad/gi).test(navigator.appVersion)) {
+    $(window).unbind("resize").bind("resize", function() {
+        $(window).trigger("orientationchange");
     });
-});
+}
 touchMove = function(event) {
       event.preventDefault();
 }
