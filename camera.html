@@ -1,20 +1,44 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
+ 
 <html>
-    <head>
-        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">
-        <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+ 
+<head>
+<title>Take or select photo(s) and upload</title>
+
+<meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 
+'unsafe-inline'; media-src *">
+
+<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
 <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
-<script type="text/javascript" src="js/cordova.js"></script>
-<script type="text/javascript">
+<script src="js/jquery.min.js"></script>
+
+<script type="text/javascript"> 
 if(localStorage.getItem("LocalData") == null)
 {
     var data = [];
     data = JSON.stringify(data);
     localStorage.setItem("LocalData", data);
 }
+cordova.plugins.barcodeScanner.scan(
+  function (result) {
+    if(!result.cancelled)
+    {
+      alert("Barcode type is: " + result.format);
+      alert("Decoded text is: " + result.text);
+    }
+    else
+    {
+      alert("You have cancelled scan");
+    }
+  },
+  function (error) {
+      alert("Scanning failed: " + error);
+  }
+);
 
 function scan()
 {
+alert('test');
     cordova.plugins.barcodeScanner.scan(
         function (result) {
             if(!result.cancelled)
@@ -42,66 +66,43 @@ function scan()
         }
    );
 }
+</script>
 
-
-$(document).on("pagebeforeshow", "#display", function() {
-    $("table#allTable tbody").empty();
-
-    var data = localStorage.getItem("LocalData");
-    console.log(data);
-    data = JSON.parse(data);
-
-    var html = "";
-
-    for(var count = 0; count < data.length; count++)
-    {
-        html = html + "<tr><td>" + data[count][0] + "</td><td><a href='javascript:openURL(\"" + data[count][1] + "\")'>" + data[count][1] + "</a></td></tr>";
-    }
-
-    $("table#allTable tbody").append(html).closest("table#allTable").table("refresh").trigger("create");
-
-});
-
-function openURL(url)
-{
-    window.open(url, '_blank', 'location=yes');
-}
-
-
-        </script>
-    </head>
+</head>
  
 <body>
-    <div data-role="page" id="home">
+<div data-role="page" id="home">
     <div data-role="header">
         <h1>Home</h1>
     </div>
 
     <div data-role="main" class="ui-content">
         <p>
-            <button onclick="scan()">Scan</button>
+
+            <a target="_blank" href="javascript:scan();" style="text-decoration: none"><button>Scan</button></a>
             <a target="_blank" href="#display" style="text-decoration: none"><button>Display Scanned Data</button></a>
         </p>
     </div>
 </div>
-<div data-role="page" id="display">
-    <div data-role="header">
-        <a target="_blank" href="#home" class="ui-btn ui-icon-home ui-btn-icon-left">Home</a>
-        <h1>Display</h1>
-    </div>
+</body>
 
-    <div data-role="main" class="ui-content">
-        <table data-role="table" data-mode="column" id="allTable" class="ui-responsive table-stroke">
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Value</th>
-                </tr>
-            </thead>
-            <tbody>
-            </tbody>
-        </table>
-    </div>
-</div>
-    </body>
+<script type="text/javascript">
+function scan()
+{
+    cordova.plugins.barcodeScanner.scan(
+	alert('test');
+		function (result) {
+			alert("We got a barcode\n" +
+              "Result: " + result.text + "\n" +
+              "Format: " + result.format + "\n" +
+              "Cancelled: " + result.cancelled);
+		},
+		function (error) {
+			alert("Scanning failed: " + error);
+		}
+	);
+}
+
+
+</script>
 </html>

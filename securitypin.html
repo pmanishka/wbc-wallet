@@ -14,7 +14,7 @@ jQuery.support.cors = true;
 jQuery( document ).ready(function() {
 
 	if(window.sessionStorage.getItem("loggedIn") == 1) {
-	//alert('test login');
+	
 		// Check Session
 		var userid = sessionStorage.getItem("user_id") ;
 		var password = sessionStorage.getItem("password") ;
@@ -51,11 +51,7 @@ jQuery( document ).ready(function() {
 							});
 						  if(optcvalue == user_otp)
 						  {
-							if(data['details']['myaccount_blocked'] == 1){
-								window.location='dashboard.html';
-							}else{
-								window.location='mydashboard.html';
-							}
+							 window.location='dashboard.html';
 						  }else{
 							 alert('Enter the correct pin');
 						  }
@@ -64,6 +60,9 @@ jQuery( document ).ready(function() {
 					
 					}
 				});
+			}
+			else{
+				window.location='login.html';
 			}
 		  },
 		  error: function() {
@@ -74,20 +73,7 @@ jQuery( document ).ready(function() {
 	}
 	else
 	{
-		var mobile = sessionStorage.getItem("mobile") ;
-		var otp = sessionStorage.getItem("otp");
-		var user_id = sessionStorage.getItem("user_id");
-		//alert(mobile);
-		//alert(otp);
-		//alert(user_id);
-		jQuery(".spin").keyup(function () {
-			if (this.value.length == this.maxLength) {
-			  var $next = $(this).next('.spin');
-			  if ($next.length){
-				  $(this).next('.spin').focus();
-			  }
-			}
-		});
+		window.location='login.html';
 	}
 });
 </script>
