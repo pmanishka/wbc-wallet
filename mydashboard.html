@@ -7,33 +7,49 @@
 
 <script src="js/jquery.min.js"></script>
 <script src="js/jquery.mmenu.all.js"></script>
-<script src="js/config.js"></script>
 
+<script src="js/config.js"></script>
 <script type="text/javascript">
 $(function() {
 	$('nav#menu').mmenu();
 	$( "nav#menu .mm-panels" ).addClass( "profile-menu" );
 });
+
 </script>
 <script>
-
 var contentType ="application/x-www-form-urlencoded; charset=utf-8";
 if(window.XDomainRequest){contentType = "text/plain";}
 jQuery.support.cors = true;
 
-jQuery( document ).ready(function() {
+function validatePassword() {
 
+	var validator = $("#changepassword").validate({
+	//alert('test');
+		rules: {
+			password: "required",
+			confirmpassword: {
+				equalTo: "#password"
+			}
+		},
+		messages: {
+			password: " Enter Password",
+			confirmpassword: " Enter Confirm Password Same as Password"
+		}
+	});
+	if (validator.form()) {
+		alert('Sucess');
+	}
+}
+	
+jQuery( document ).ready(function() {
 
 	if(window.sessionStorage.getItem("loggedIn") == 1) {
 		var userid = sessionStorage.getItem("user_id") ;
 		var password = sessionStorage.getItem("password") ;
 		var uid = sessionStorage.getItem("uid") ;
-		//alert(uid);
-		jQuery('.logout').hide();
-		jQuery('.log-out').click(function(){
-			jQuery('.logout').toggle( "slow" );
-		});
-		
+		//var currency_id = '' ;
+		//var currency_name = '' ;
+
 		$.ajax({
 		  url: siteurl+"login",
 		  type: 'POST',
@@ -44,32 +60,24 @@ jQuery( document ).ready(function() {
 			{
 				var name = jQuery('.name').append(data['details']['name']);
 				var email = jQuery('.uemail').append(data['details']['email']);
-				
-				var card_id = data['details']['card_type'];
-				//alert(card_id);
-				// Get Card Type
-				var card = data['card'] ;
-				$.each(card, function(idx, obj) {
-				
-					if(obj.id == card_id){
-					//alert(obj.card_name);
-						var card_type = jQuery('.card_type').append(obj.card_name);
-					}
-				});
 				var picon = data['details']['name'];
 				var profile = jQuery('.profile-icon').append(picon.charAt(0));
 				var verifystatus = data['details']['emailverifystatus'];
+				var curr = data['currency'] ;
+				var username  = jQuery('#username').attr("value", data['details']['name']);
+				//alert(username);
+				$.each(curr, function(idx, obj) {
+					if(obj.short_name == 'BTC'){
+						var currency_id = jQuery("input[name='curr_id']").attr("value",obj.id);
+						var currency_name = jQuery("input[name='currency_name']").attr("value",obj.name);
+					}
+				});
 				if(typeof verifystatus!='undefined' && verifystatus!='' && verifystatus!=null && verifystatus=='1'){
 					jQuery('.verify').append("Verified");
 				}else{
 					jQuery('.verify').append("Unverified");
 				}
-				var dcard = data['details']['my_card_no'];
 				
-				dcard = dcard.replace(/(\S{4})/g,"$1 ");
-				dcard = dcard.replace(/$/,"");   // if you do not want the final a
-				var digicard = jQuery('.digi-num div').append(dcard);
-				var btcbal = jQuery('.balance-footer').append(data['details']['net_btc_bal']);
 			}
 			else{
 				window.location='login.html';
@@ -80,51 +88,93 @@ jQuery( document ).ready(function() {
 		  }
 		});
 		
-		// Get BitPay Data
-		$.ajax({
-        type: 'GET',
-        url: 'https://bitpay.com/api/rates',
-        dataType: 'json',
-        async: false,
-			success: function (response) {
-				$.each(response, function(idx, obj) {
-					if(obj.code == 'USD'){
-						jQuery('.live-footer span.amount').append(obj.rate);
-					}
-				});
-			}
+		jQuery('.logout').hide();
+		jQuery('.log-out').click(function(){
+			jQuery('.logout').toggle( "slow" );
 		});
 		
+		$('ul.tabs li').click(function(){
+			var tab_id = $(this).attr('data-tab');
 
-		// Get Live Chart Data
-		$.ajax({
-        type: 'GET',
-        url: 'https://bitpay.com/api/rates',
-        dataType: 'json',
-        async: false,
-			success: function (response) {
-				$.each(response, function(idx, obj) {
-					if(obj.code == 'USD'){
-						var livechart = jQuery('.chart').html(obj.rate);
-						localStorage.setItem('livechart', livechart);
-						return false;
-					}
-					if(localStorage.getItem('livechart')) {
-						$('chart').append(localStorage.getItem('livechart'));
-					}
+			$('ul.tabs li').removeClass('current');
+			$('.tab-content').removeClass('current');
+
+			$(this).addClass('current');
+			$("#"+tab_id).addClass('current');
+			if ($(".current").hasClass("send")) {
+				jQuery('.other-wallet').click(function(){
+					window.location='otherwallet.html';
+				});
+				jQuery('.digi-wallet').click(function(){
+					window.location='otherdigiwallet.html';
 				});
 			}
 		});
+	
+	
+		$(".btc-input-field #btc").keyup(function(){
+			var btcval = jQuery('.btc-input-field #btc').val();
+			
+			// Get BitPay Data
+			$.ajax({
+			type: 'GET',
+			url: 'https://bitpay.com/api/rates',
+			dataType: 'json',
+			async: false,
+				success: function (response) {
+					$.each(response, function(idx, obj) {
+						if(obj.code == 'USD'){
+							var usdval = (obj.rate) ;
+							var bitcalc = btcval * usdval;
+							jQuery("#usd").attr("value",bitcalc);
+							var currency_id = jQuery("#curr_id").val();
+							var username = jQuery("#username").val();
+							var currency_name = jQuery("#currency_name").val();
 
+								// Click on proceed button
+								jQuery('input[class="transact-button"]').click(function(){
+									if(btcval > 0){
+										jQuery(this).hide();
+										jQuery("#btc").prop('readonly', true);
+										jQuery("#usd").prop('readonly', true);
+										// Get barcode
+										$.ajax({
+										  url: "https://www.4xwin.com/appadmin/app_call_for_block_chain.php",
+										  type: 'POST',
+										  data: {q:'depositCurrency',user_id:userid,amount:bitcalc,currency_id:currency_id,username:username,currency_name:currency_name,equal_usd:bitcalc}, 
+										  crossDomain: true,   
+										  success: function(data) {
+											var obj = jQuery.parseJSON(data);
+											jQuery('.transact-btc-result').show();
+											jQuery('.transact-btc-result .equal_usd').html('<img src="'+obj.url+'" />');
+											jQuery('.transact-btc-result .usd_address').append(obj.address);
+											// Address Copied
+											jQuery('.transact-btc-result .usd_address').focus(function(){
+												document.execCommand('copy');
+											});
+										  },
+										  error: function() {
+											alert('Error');
+										  }
+										});
+									}
+								});
+						}
+						jQuery('.transact-button').show();
+					});
+				}
+			});
+			
+		});
+			
 		
 	}
 	else
 	{
 		window.location='login.html';
 	}
+
 });
-
-
 </script>
 </head>
 <body>
@@ -187,7 +237,7 @@ jQuery( document ).ready(function() {
 					</li>
 				</ul>
 			</nav>
-		<div class="header-card">Digi Card</div>
+		<div class="header-card">Home</div>
 		<div class="notification" style="float:right; margin-left:-9px;">
 			<a href="notifications.html"><img src="images/notification_title_menu.png"/></a>
 			<span class="log-out"><img src="images/dot.png" style="margin-left:22px;"/></span>
@@ -197,40 +247,13 @@ jQuery( document ).ready(function() {
 		</div>
 	</div>
 	<div class="container">
-		<div class="digi">
-			Your DIGI Card number</div>
-		<div class="digi-num">
-			<div></div>
-		</div>
-		<div class="digi-text">
-			<div class="card_type"></div>
-		</div>
-		<div class="digi-line"></div>
-		<div class="dash-button">
-			<div class="dash-green-button">
-				<a href="transact.html" class="green-transact-button">Transact</a>
-			</div>
-			<div class="dash-red-button">
-				<a href="history.html" class="red-history-button">History</a>
-			</div>
-		</div>
-		<div class="price-chart">
-		Live Price Chart - BTC <img src="images/arrow_down.png"/>
-			
-		</div><div class="chart1"><div id="flot-placeholder"></div></div>
 		
-		<table class="dash-footer">
-		<tr>
-			<td class="balance">Balance <img src="images/bitcoin_logo.png"/></td>
-			<td style="text-align:center;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-			<td class="live-market">Live Market <img src="images/dollar_icon.png"/></td>
-		</tr>
-		<tr>
-			<td class="balance-footer"></td>
-			<td>&nbsp;&nbsp;&nbsp;</td>
-			<td class="live-footer">$ <span class="amount"></span></td>
-		</tr>
-		</table>
+		<div class="send-button">
+			<div class="other-wallet"><a href="dashboard.html">Digi Card</a></div>
+			<div class="digi-wallet"><a href="myaccount.html">My Account</a></div>
+		</div>
+		
 	</div>
+</div>
 </body>
 </html>
