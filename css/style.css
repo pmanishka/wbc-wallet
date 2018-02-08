@@ -70,7 +70,7 @@ body{
 body .container {
     float: left;
     width: 100%;
-	padding:48px 0 0px 0;
+	padding:35px 0 0px 0;
 	overflow:hidden;
 }
 #top_header {
@@ -79,7 +79,14 @@ body .container {
     width: 100%;
 	background:#000;
 }
-.loading{color:#fff; text-align:center;}
+.loading{    color: #fff;
+    text-align: center;
+    margin-top: 50%;
+    /* position: fixed; */
+    /* bottom: 10px; */
+    /* left: 50%; */
+    /* right: 40%; */
+}
 /* #main_wrapper {
     min-height: 650px;
     background: #000;
@@ -89,7 +96,7 @@ body .container {
     width: 100%;
     border-bottom: 1px solid #fff;
     padding: 14px 0px;
-	
+	padding-left: 24%;
 }
 .logo .logo-img {
     max-height: 75px;
@@ -131,7 +138,7 @@ body .container {
 .homewrapper {
     text-align: center;
     padding: 60px 0 70px 0;
-    /*margin-bottom: 104px;*/
+    /* margin-bottom: 104px; */
 }
 .mainpage-section .homewrapper img {
     width: 55%;
@@ -291,7 +298,7 @@ input[type="button"].red-button {
 }
 .inner-page #topbar{
 	padding:15px 20px;
-	margin-bottom: 9px;
+	/* margin-bottom: 9px; */
 }
 .register-form {
     text-align: center;
@@ -1039,6 +1046,7 @@ input[type="button"].green-submit-button {
 		width: 100%;
 		border-bottom: 1px solid #fff;
 		padding: 10px 27px;
+		padding-left: 110px;
 	}
 	.darkblue-button1{
 		margin-left:1%;
@@ -1140,29 +1148,52 @@ input[type="button"].green-submit-button {
 
 
 .digi{
-	text-align:left;
-	margin-left: 27px;
-    margin-top: -33px;
+    text-align: left;
+    /* margin-left: 27px; */
+    /* margin-top: -33px; */
     font-size: 13px;
-	margin-bottom:10px;
+    /* margin-bottom: 10px; */
+    position: fixed;
+    top: 10%;
+    left: 28px;
 	
 }
 .digi-num{
-	font-size: 31px;
-    margin-left: 52px;
-	margin-bottom:10px;
+	    font-size: 26px;
+    /* margin-left: 52px; */
+    position: fixed;
+    left: 53px;
+	top:13%;
+	width:100%;
+    /* margin-bottom: 10px */
 }
 .digi-text{
-	float:right;
-	    margin-right: 5%;
+	    position: fixed;
+    right: 4%;
+    top: 19%;
+    /* margin-right: 5%; */
     color: #b2ff59;
-	margin-bottom:10px;
+    /* margin-bottom: 10px; */
 }
 .digi-line {
-	border-bottom: 1px solid #ccc;
+	    border-bottom: 1px solid #ccc;
+    position: fixed;
     width: 100%;
-    margin-top: 11%;
+    top: 25%;
+    /* margin-top: 11%; */
 }
+.dash-button{
+	position:fixed;
+	top:23%;
+}
+.dash-green-button{
+	position:fixed;
+	left:0px;
+}
+.dash-red-button{
+	position:fixed;
+	right:0px;
+	}
 .red-history-button {
     margin-top: 25px;
     background: url(../images/dark_red.png) no-repeat center;
@@ -1224,7 +1255,10 @@ a.green-transact-button  {
 	padding: 30px;
 }
 .price-chart{
-	text-align:center;
+	    /* text-align: center; */
+    position: fixed;
+    top: 37%;
+    right: 27%;
 }
 .price-chart img{
 	margin-top:20px;
@@ -1232,23 +1266,26 @@ a.green-transact-button  {
 /* 	font-size:100px; */
 }
 
-.chart{
-	height:191px;
+.chart1{
+	height:41%;
 	width:100%;
-    margin-top: 10%;	
+/*     margin-top: 10%;	 */
+	position:fixed;
+	top:49%;
 }
 .dash-footer{
-	bottom:10px;
+	bottom:0px;
+	position:fixed;
 }
 .balance{
 	text-align:center; 
 	width:50%;
-	font-size:25px;		
+	font-size:23px;		
 }
 .live-market{
 	text-align:center; 
 	width:50%;
-	font-size:25px;
+	font-size:23px;
 }
 .balance-footer{
 	background-color:#086a79;
@@ -1269,6 +1306,7 @@ a.green-transact-button  {
 	height:50%;
 	width:19%;
 }
+#flot-placeholder{width:350px;height:300px;} 
 /* -------------------- forgot password ----------------------*/
 
 
