@@ -45,12 +45,14 @@ jQuery( document ).ready(function() {
 					if (this.value.length == this.maxLength) {
 					
 					
-						 // $(this).next('.inputs').focus();
+					if (!/iPad|iPhone|iPod/g.test(navigator.userAgent)) {
+						var $next = $(this).next('.spin');
+						  if ($next.length){
+							  $(this).next('.spin').focus();
+						  }
+					}
 					
-					  var $next = $(this).next('.spin');
-					  if ($next.length){
-						  $(this).next('.spin').focus();
-					  }
+					  
 					  else{
 						  $(this).blur();
 						  var optcvalue='';
