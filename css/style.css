@@ -1077,10 +1077,19 @@ input[type="button"].green-submit-button {
     width: 100%;
 }
 .digi-line {
-	    border-bottom: 1px solid #ccc;
-    position: fixed;
+    border-bottom: 1px solid #ccc;
+    /* position: fixed; */
     width: 100%;
-    top: 25%;
+    float: left;
+    /* top: 25%; */
+    /* margin-top: 11%; */
+}
+.digidash{
+    border-bottom: 1px solid #ccc;
+    /* position: fixed; */
+    width: 100%;
+    float: left;
+    /* top: 25%; */
     /* margin-top: 11%; */
 }
 .dash-button{
@@ -2450,5 +2459,31 @@ input[name="nomineelist"] {
 .myaccount-btn{
     background: url(../images/dark_green_broad.png) no-repeat 100% 100%;
     padding: 30%;
+    text-align: center;
+}
+.my-acccount {
+    width: 100%;
+    max-width: 50%;
+    margin: 0 25%;
+    float: left;
+}
+.passbook {
+    background: url(../images/dark_green.png) no-repeat 100% 100%;
+    padding: 10%;
+    text-align: center;
+}
+.affiliation{
+    background: url(../images/light_orange.png) no-repeat 100% 100%;
+    padding: 10%;
+    text-align: center;
+}
+.request {
+    background: url(../images/light_green.png) no-repeat 100% 100%;
+    padding: 10%;
+    text-align: center;
+}
+.statistics{
+    background: url(../images/dark_red.png) no-repeat 100% 100%;
+    padding: 10%;
     text-align: center;
 }
