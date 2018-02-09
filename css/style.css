@@ -2443,12 +2443,12 @@ input[name="nomineelist"] {
     float: left;
 }
 .digicard-btn {
-    background: url(images/dark_red_broad.png) no-repeat 100% 100%;
+    background: url(../images/dark_red_broad.png) no-repeat 100% 100%;
     padding: 30%;
     text-align: center;
 }
 .myaccount-btn{
-    background: url(images/dark_green_broad.png) no-repeat 100% 100%;
+    background: url(../images/dark_green_broad.png) no-repeat 100% 100%;
     padding: 30%;
     text-align: center;
 }
