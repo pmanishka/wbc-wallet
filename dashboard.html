@@ -8,12 +8,23 @@
 <script src="js/jquery.min.js"></script>
 <script src="js/jquery.mmenu.all.js"></script>
 <script src="js/config.js"></script>
+<script type="text/javascript" src="http://www.jqueryflottutorial.com/js/flot/jquery.flot.min.js"></script>
+<script type="text/javascript" src="http://www.jqueryflottutorial.com/js/flot/jquery.flot.time.js"></script>    
+<script type="text/javascript" src="http://www.jqueryflottutorial.com/js/flot/jshashtable-2.1.js"></script>    
+<script type="text/javascript" src="http://www.jqueryflottutorial.com/js/flot/jquery.numberformatter-1.2.3.min.js"></script>
+<script type="text/javascript" src="http://www.jqueryflottutorial.com/js/flot/jquery.flot.symbol.js"></script>
+<script type="text/javascript" src="http://www.jqueryflottutorial.com/js/flot/jquery.flot.axislabels.js"></script>
+
 
 <script type="text/javascript">
 $(function() {
 	$('nav#menu').mmenu();
 	$( "nav#menu .mm-panels" ).addClass( "profile-menu" );
 });
+jQuery.support.cors = true;
+touchMove = function(event) {
+      event.preventDefault();
+}
 </script>
 <script>
 
@@ -124,12 +135,110 @@ jQuery( document ).ready(function() {
 	}
 });
 
+//******* Precious Metal Price - HORIZONTAL BAR CHART
+//Oceania
+var rawData1 = [
+    [year(100), 7513], [year(110), 7600], [year(120), 7668], [year(130), 7700], [year(140), 7660],
+    [year(150), 7558], [year(160), 7662], [year(170), 7558], [year(180), 7449]
+];
+
+
+var dataSet = [
+    {  data: rawData1, color: "#00aa00" }
+];
+
+var options = {
+    series: {
+        lines: {
+            show: true
+        }
+    },
+    xaxis: {
+        axisLabel: "Year",
+        axisLabelUseCanvas: true,
+        axisLabelFontSizePixels: 12,
+        axisLabelFontFamily: 'Verdana, Arial',
+        axisLabelPadding: 100,        
+        mode: "time",
+        tickSize: [10, "year"],
+        timeformat: "%Y"
+    },
+    yaxis: {
+        axisLabel: "Population (multiply by 10,000)",
+        axisLabelUseCanvas: true,
+        axisLabelFontSizePixels: 12,
+        axisLabelFontFamily: 'Verdana, Arial',
+        axisLabelPadding: 2,
+        tickFormatter: function (v, axis) {
+            return $.formatNumber(v, { format: "#,###", locale: "us" });
+        }
+    }
+};
+
+$(document).ready(function () {
+    $.plot($("#flot-placeholder"), dataSet, options);    
+    $("#flot-placeholder").UseTooltip();
+});
+
+function year(year) {    
+    return new Date(year, 1, 1).getTime();
+}
+
+
+var previousPoint = null, previousLabel = null;
+
+$.fn.UseTooltip = function () {
+    $(this).bind("plothover", function (event, pos, item) {
+        if (item) {
+            if ((previousLabel != item.series.label) || 
+                 (previousPoint != item.dataIndex)) {
+                previousPoint = item.dataIndex;
+                previousLabel = item.series.label;
+                $("#tooltip").remove();
+
+                var x = item.datapoint[0];
+                var y = item.datapoint[1];
+
+                var color = item.series.color;
+                //alert(color)
+                //console.log(item.series.xaxis.ticks[x].label);                
+                
+                showTooltip(item.pageX,
+                        item.pageY,
+                        color,
+                        "<strong>" + item.series.label + "</strong><br>" + new Date(x).getFullYear() +
+                        " : <strong>Population : " + $.formatNumber(y, { format: "#,###", locale: "us" }) + "</strong>  (multiply by 10,000)");                
+            }
+        } else {
+            $("#tooltip").remove();
+            previousPoint = null;
+        }
+    });
+};
+
+function showTooltip(x, y, color, contents) {
+    $('<div id="tooltip">' + contents + '</div>').css({
+        position: 'absolute',
+        display: 'none',
+        top: y - 10,
+        left: x + 10,
+        border: '2px solid ' + color,
+        padding: '3px',
+        'font-size': '9px',
+        'border-radius': '5px',
+        'background-color': '#fff',
+        'font-family': 'Verdana, Arial, Helvetica, Tahoma, sans-serif',
+        opacity: 0.9
+    }).appendTo("body").fadeIn(200);
+}
+
+
 
 </script>
 </head>
 <body>
 
-<div id="main_wrapper" class="inner-page">
+<div id="main_wrapper" class="inner-page" ontouchmove="touchMove(event)">
 	<div class="main-container">
 	<div id="topbar" class="navigation">
 		
@@ -231,6 +340,7 @@ jQuery( document ).ready(function() {
 			<td class="live-footer">$ <span class="amount"></span></td>
 		</tr>
 		</table>
+	</div>
 	</div>
 </body>
 </html>

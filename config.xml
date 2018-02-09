@@ -7,17 +7,17 @@
 
     <!-- versionCode is optional and Android only -->
 
-    <name>WBC</name>
+    <name>Digi Wallet</name>
 
     <description>
-      World Bank Of CryptoCurrencies
+      Digi Wallet
     </description>
 
     <author href="http://www.intouchgroup.in" email="p.grover@intouchgroup.in">
       Priyanka Grover
     </author>
 	
-	<preference name="orientation" value="portrait"/>
+	<!--<preference name="orientation" value="portrait"/>-->
 	<!--<preference name="phonegap-version" value="cli-6.4.0" />-->
 	<plugin name="cordova-plugin-device" spec="~1.1.6" />
 	<plugin name="cordova-plugin-geolocation" spec="~2.4.3" />

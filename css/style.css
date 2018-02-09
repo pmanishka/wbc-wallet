@@ -70,7 +70,7 @@ body{
 body .container {
     float: left;
     width: 100%;
-	padding:48px 0 0px 0;
+	padding:35px 0 0px 0;
 	overflow:hidden;
 }
 #top_header {
@@ -79,7 +79,14 @@ body .container {
     width: 100%;
 	background:#000;
 }
-.loading{color:#fff; text-align:center;}
+.loading{    color: #fff;
+    text-align: center;
+    margin-top: 50%;
+    /* position: fixed; */
+    /* bottom: 10px; */
+    /* left: 50%; */
+    /* right: 40%; */
+}
 /* #main_wrapper {
     min-height: 650px;
     background: #000;
@@ -89,7 +96,7 @@ body .container {
     width: 100%;
     border-bottom: 1px solid #fff;
     padding: 14px 0px;
-	
+	padding-left: 27%;
 }
 .logo .logo-img {
     max-height: 75px;
@@ -131,7 +138,7 @@ body .container {
 .homewrapper {
     text-align: center;
     padding: 60px 0 70px 0;
-    /*margin-bottom: 104px;*/
+    /* margin-bottom: 104px; */
 }
 .mainpage-section .homewrapper img {
     width: 55%;
@@ -156,6 +163,7 @@ body .container {
     background: url(../images/advertis.png) no-repeat center;
     /* margin: 0 auto; */
     padding: 30px 0px;
+	margin-top:14%;
     color: #fff;
 	font-family:Sans-Serif Condensed;
 	
@@ -174,14 +182,17 @@ body .container {
 input[type="button"].red-button {
     border: 0px;
     color: #fff;
-    padding: 31px 148px;
+	    background-size: 83% 113%;
+    padding: 31px 40%;
     font-size: 17px;
     font-weight: 600;
+	max-width:600px;
+	width:90%
 }
 .account {
     color: #fff;
     text-align: center;
-    margin: 20px 0 0 0;
+    margin:2% 0 0 0;
     font-size: 15px;
     font-weight: 600;
 }
@@ -206,15 +217,18 @@ input[type="button"].red-button {
     text-align: center;
 }
 .input-field {
-	padding: 10px 19%;
+    padding: 2% 2%;
     margin-top: 10px;
-	/* margin-bottom: 75px; */
+    width: 100%;
+	max-width:600px;
+    /* margin-bottom: 75px; */
 }
 .input-field input {
-    background: url(../images/edit_text_back1.png) no-repeat center;
+        background: url(../images/edit_text_back1.png) no-repeat center;
     color: #ddd;
-    padding: 15px 15px;
+    padding: 15px 28px;
     border: 0px;
+    background-size: 90% 100%;
     width: 100%;
     font-size: 17px;
 }
@@ -242,8 +256,8 @@ input[type="button"].red-button {
 .forgot-password {
     text-align: right;
     margin-top: 10px;
-    max-width: 77%;
-    width: 100%;
+    max-width: 600px;
+    width: 92%;
 }
 .forgot-password span a{
     color: #fff;
@@ -291,7 +305,7 @@ input[type="button"].red-button {
 }
 .inner-page #topbar{
 	padding:15px 20px;
-	margin-bottom: 9px;
+	/* margin-bottom: 9px; */
 }
 .register-form {
     text-align: center;
@@ -1017,152 +1031,58 @@ input[type="button"].green-submit-button {
 	    margin-top: 15%;
 	
 }
-/*------- Media Screen --------*/
-@media screen and (max-width: 360px) and (min-width: 351px) {
-	.logo{
-		padding:18px 0px;
-	}
-	.input-field input{
-		max-width:100%;
-		background: url(../images/edit_text_back-med.png) no-repeat;
-	}
-	.input-field {
-		padding: 3px 13px;
-	}
-	.forgot-password{
-		max-width:90%;
-	}
-}
-@media screen and (min-width: 361px) and (max-width: 420px) {
-    .logo {
-		float: left;
-		width: 100%;
-		border-bottom: 1px solid #fff;
-		padding: 10px 27px;
-	}
-	.darkblue-button1{
-		margin-left:1%;
-		padding:30px 115px; 
-	}
-	.input-field input{width:100%; padding: 15px 8%;}
-	.input-field {
-		padding: 10px 5px;
-	}
-	.forgot-password {
-		max-width: 97% !important;
-	}
-}
-@media screen and (min-width: 481px) and (max-width: 491px) {
-	.forgot-password {
-		max-width: 86%;
-	}
-}
-@media screen and (min-width: 421px) and (max-width: 480px) {
-    .logo {
-		float: left;
-		width: 100%;
-		border-bottom: 1px solid #fff;
-		padding: 10px 27px;
-	}
-	.darkblue-button1{
-		margin-left:1%;
-		padding:30px 115px; 
-	}
-	.input-field input{width:100%; padding: 15px 11%;}
-	.input-field {
-		padding: 10px 32px;
-		/* margin-bottom:80px; */
-	}
-	.forgot-password {
-		max-width: 89%;
-	}
-}
 
-
-@media screen and (min-width: 320px) and (max-width: 350px) {
-	.logo {
-		padding: 4px 10px;
-	}
-	.logo .logo-text{
-		font-size:15px;
-	}
-	.input-field input {
-		background: url(../images/edit_text_back.png) no-repeat;
-		color: #ddd;
-		padding: 15px 13px;
-		border: 0px;
-		width: 90%;
-		font-size: 17px;
-	}
-	.input-field {
-		padding: 10px 10px;
-	}
-	.forgot-password{
-		max-width:95%;
-	}
-}
-@media screen and (min-width: 310px) and (max-width: 319px) {
-	.input-field input {
-		background: url(../images/edit_text_back.png) no-repeat;
-		color: #ddd;
-		padding: 15px 13px;
-		border: 0px;
-		width: 100%;
-		font-size: 17px;
-	}
-	.input-field {
-		padding: 10px 6px;
-	}
-	.forgot-password{
-		max-width:95%;
-	}
-}
-@media screen and (max-width: 309px) {
-	.logo{padding:18px 0px;}
-	.input-field input {
-		background: url(../images/edit_text_back-small.png) no-repeat;
-		color: #ddd;
-		padding: 15px 13px;
-		border: 0px;
-		width: 100%;
-		font-size: 17px;
-	}
-	.input-field {
-		padding: 10px 4%;
-	}
-	.logo .logo-text{
-		font-size:14px;
-	}
-	.forgot-password{max-width:95%;}
-}
 
 /*-----   Dashboard ---------------*/
 
 
 .digi{
-	text-align:left;
-	margin-left: 27px;
-    margin-top: -33px;
+    text-align: left;
+    /* margin-left: 27px; */
+    /* margin-top: -33px; */
     font-size: 13px;
-	margin-bottom:10px;
+    /* margin-bottom: 10px; */
+    position: fixed;
+    top: 10%;
+    left: 28px;
 	
 }
 .digi-num{
-	font-size: 31px;
-    margin-left: 52px;
-	margin-bottom:10px;
+	    font-size: 26px;
+    /* margin-left: 52px; */
+    position: fixed;
+    left: 53px;
+	top:13%;
+	width:100%;
+    /* margin-bottom: 10px */
 }
 .digi-text{
-	float:right;
-	    margin-right: 5%;
+	    position: fixed;
+    right: 4%;
+    top: 19%;
+    /* margin-right: 5%; */
     color: #b2ff59;
-	margin-bottom:10px;
+    /* margin-bottom: 10px; */
 }
 .digi-line {
-	border-bottom: 1px solid #ccc;
+	    border-bottom: 1px solid #ccc;
+    position: fixed;
     width: 100%;
-    margin-top: 11%;
+    top: 25%;
+    /* margin-top: 11%; */
 }
+.dash-button{
+	position:fixed;
+	top:23%;
+}
+.dash-green-button{
+	position:fixed;
+	left:0px;
+}
+.dash-red-button{
+	position:fixed;
+	right:0px;
+	}
 .red-history-button {
     margin-top: 25px;
     background: url(../images/dark_red.png) no-repeat center;
@@ -1224,7 +1144,10 @@ a.green-transact-button  {
 	padding: 30px;
 }
 .price-chart{
-	text-align:center;
+	    /* text-align: center; */
+    position: fixed;
+    top: 37%;
+    right: 27%;
 }
 .price-chart img{
 	margin-top:20px;
@@ -1232,23 +1155,26 @@ a.green-transact-button  {
 /* 	font-size:100px; */
 }
 
-.chart{
-	height:191px;
+.chart1{
+	height:41%;
 	width:100%;
-    margin-top: 10%;	
+/*     margin-top: 10%;	 */
+	position:fixed;
+	top:49%;
 }
 .dash-footer{
-	bottom:10px;
+	bottom:0px;
+	position:fixed;
 }
 .balance{
 	text-align:center; 
 	width:50%;
-	font-size:25px;		
+	font-size:23px;		
 }
 .live-market{
 	text-align:center; 
 	width:50%;
-	font-size:25px;
+	font-size:23px;
 }
 .balance-footer{
 	background-color:#086a79;
@@ -1269,6 +1195,7 @@ a.green-transact-button  {
 	height:50%;
 	width:19%;
 }
+#flot-placeholder{width:350px;height:300px;} 
 /* -------------------- forgot password ----------------------*/
 
 
