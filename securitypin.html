@@ -12,6 +12,16 @@ var contentType ="application/x-www-form-urlencoded; charset=utf-8";
 if(window.XDomainRequest){contentType = "text/plain";}
 jQuery.support.cors = true;
 
+
+$(function(){
+	window.onorientationchange = OrientationChanged;
+	window.setTimeout(OrientationChanged, 0);
+}
+function OrientationChanged(e){
+	$('body').css('-webkit-transform', window.orientation % 180 == 0 ? '' : 'rotate(-90deg)');
+}
+ 
+ 
 touchMove = function(event) {
      event.preventDefault();
 }
