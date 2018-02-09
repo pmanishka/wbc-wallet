@@ -13,9 +13,7 @@ if(window.XDomainRequest){contentType = "text/plain";}
 jQuery.support.cors = true;
 
 
-$(window).on("orientationchange",function(){
-	event.stopPropagation();
-}); 
+window.screen.lockOrientation('portrait'); 
  
  
 touchMove = function(event) {
