@@ -5,25 +5,16 @@
 <link rel="stylesheet" type="text/css" href="css/style.css">
 <script src="js/jquery.min.js"></script>
 <script src="js/config.js"></script>
-<script src="js/jquery.autotab.js"></script>
 
 <script>
 var contentType ="application/x-www-form-urlencoded; charset=utf-8";
 if(window.XDomainRequest){contentType = "text/plain";}
 jQuery.support.cors = true;
 
-
-//window.screen.lockOrientation('portrait'); 
- 
- 
-touchMove = function(event) {
-     event.preventDefault();
-}
-
 jQuery( document ).ready(function() {
 
 	if(window.sessionStorage.getItem("loggedIn") == 1) {
-	
+	//alert('test login');
 		// Check Session
 		var userid = sessionStorage.getItem("user_id") ;
 		var password = sessionStorage.getItem("password") ;
@@ -48,16 +39,10 @@ jQuery( document ).ready(function() {
 				// Concatinate otp value
 				jQuery(".spin").keyup(function () {
 					if (this.value.length == this.maxLength) {
-					
-						var $next = $(this).next('.spin');
-						   $('.spin').autotab();
-						   if ($next.length){
-							 // $(this).next('.spin').focus();
-							  $(this).next('.spin').autotab();
-						  }
-					
-					
-					  
+					  var $next = $(this).next('.spin');
+					  if ($next.length){
+						  $(this).next('.spin').focus();
+					  }
 					  else{
 						  $(this).blur();
 						  var optcvalue='';
@@ -66,7 +51,11 @@ jQuery( document ).ready(function() {
 							});
 						  if(optcvalue == user_otp)
 						  {
-							 window.location='dashboard.html';
+							if(data['details']['myaccount_blocked'] == 1){
+								window.location='dashboard.html';
+							}else{
+								window.location='mydashboard.html';
+							}
 						  }else{
 							 alert('Enter the correct pin');
 						  }
@@ -75,9 +64,6 @@ jQuery( document ).ready(function() {
 					
 					}
 				});
-			}
-			else{
-				window.location='login.html';
 			}
 		  },
 		  error: function() {
@@ -88,12 +74,30 @@ jQuery( document ).ready(function() {
 	}
 	else
 	{
-		window.location='login.html';
+		var mobile = sessionStorage.getItem("mobile") ;
+		var otp = sessionStorage.getItem("otp");
+		var user_id = sessionStorage.getItem("user_id");
+		var splitotp = otp.split("");
+		
+		$.each(splitotp,function(i){
+		   $("input[name='spin"+[i]+"']").attr('value',splitotp[i]);
+		   window.location='reset-password.html';
+		});
+				
+		//alert(user_id);
+		/*jQuery(".spin").keyup(function () {
+			if (this.value.length == this.maxLength) {
+			  var $next = $(this).next('.spin');
+			  if ($next.length){
+				  $(this).next('.spin').focus();
+			  }
+			}
+		});*/
 	}
 });
 </script>
 </head>
-<body ontouchmove="touchMove(event)">
+<body>
 
 <div id="main_wrapper">
 	<div class="main-container">
@@ -107,10 +111,10 @@ jQuery( document ).ready(function() {
 			<div class="pin-verify">
 						<div class="pin-msg">Enter Securtiy Pin</div>
 						<div class="spin-textbox">
-							<input type="password" name="spin0" class="spin" maxlength=1 pattern="[0-9]*"/>
-							<input type="password" name="spin1" class="spin" maxlength=1 pattern="[0-9]*"/>
-							<input type="password" name="spin2" class="spin" maxlength=1 pattern="[0-9]*"/>
-							<input type="password" name="spin3" class="spin" maxlength=1 pattern="[0-9]*"/>
+							<input type="password" name="spin0" class="spin" maxlength=1/>
+							<input type="password" name="spin1" class="spin" maxlength=1/>
+							<input type="password" name="spin2" class="spin" maxlength=1/>
+							<input type="password" name="spin3" class="spin" maxlength=1/>
 						</div>
 			</div>
 			<div class="input-button">
