@@ -8,30 +8,27 @@
 var contentType ="application/x-www-form-urlencoded; charset=utf-8";
 if(window.XDomainRequest){contentType = "text/plain";}
 jQuery.support.cors = true;
-touchMove = function(event) {
-      event.preventDefault();
-}
-	
+
 jQuery(document).ready(function() {  
 	window.setTimeout(function() {
-		window.location.href = 'camera.html';
+		window.location.href = 'home.html';
 	}, 4000);
 });
 </script>
 </head>
 <body>
 
-<div id="main_wrapper " ontouchmove="touchMove(event)">
+<div id="main_wrapper">
 	<div class="main-container loadpage">
 		<div class="container">
 			<div class="mainpage-section">
 				<div class="homewrapper">
-					<img src="images/logo8.png"/>
-<!-- 					<div class="home-text-main">Cryptocurrencies</div>
- -->					<div class="home-text">Welcome To Digi Wallet</div>
-					<div class="loading">Loading</div>
+					<img src="images/gif_logo.gif"/>
+					<div class="home-text-main">Cryptocurrencies</div>
+					<div class="home-text">Welcome To World Bank Of Cryptocurrencies</div>
+					
 				</div>
-			</div>
+			</div><div class="loading">Loading...</div>
 		</div>
 	</div>
 </div>
