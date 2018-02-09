@@ -48,16 +48,10 @@ jQuery( document ).ready(function() {
 				// Concatinate otp value
 				jQuery(".spin").keyup(function () {
 					if (this.value.length == this.maxLength) {
-					
-						var $next = $(this).next('.spin');
-						   $('.spin').autotab();
-						   if ($next.length){
-							 $(this).next('.spin').focus();
-							 //  $(this).next('.spin').autotab();
-						  }
-					
-					
-					  
+					  var $next = $(this).next('.spin');
+					  if ($next.length){
+						  $(this).next('.spin').focus();
+					  }
 					  else{
 						  $(this).blur();
 						  var optcvalue='';
@@ -66,7 +60,11 @@ jQuery( document ).ready(function() {
 							});
 						  if(optcvalue == user_otp)
 						  {
-							 window.location='dashboard.html';
+							if(data['details']['myaccount_blocked'] == 1){
+								window.location='dashboard.html';
+							}else{
+								window.location='mydashboard.html';
+							}
 						  }else{
 							 alert('Enter the correct pin');
 						  }
