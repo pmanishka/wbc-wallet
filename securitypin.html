@@ -60,11 +60,7 @@ jQuery( document ).ready(function() {
 							});
 						  if(optcvalue == user_otp)
 						  {
-							if(data['details']['myaccount_blocked'] == 1){
-								window.location='dashboard.html';
-							}else{
-								window.location='mydashboard.html';
-							}
+							window.location='dashboard.html';
 						  }else{
 							 alert('Enter the correct pin');
 						  }

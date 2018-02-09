@@ -58,6 +58,48 @@ jQuery( document ).ready(function() {
 					jQuery('.verify').append("Unverified");
 				}
 				
+				
+				
+				// Getpassbook
+				$.ajax({
+				  url: siteurl+"getPassbookByUserId",
+				  type: 'POST',
+				  data: {q:'passbook',user_id:uid}, 
+				  crossDomain: true,   
+				  success: function(data) {
+				  
+						for (var i = 0; i < data['affil'].length; i++) {
+					
+							/*var withdarwval ='' ;
+							var status ='' ;
+							if(data['digibook'][i]['payment_for'] == 'withdrawfromdc'){
+								var withdarwval = "Withdrawal from DigiCard";
+							}else if(data['digibook'][i]['payment_for'] == 'deposit'){
+								var withdarwval = "Deposit";
+							}
+							
+							if(data['digibook'][i]['update_status'] == 1)
+							{	
+								var status ='' ;
+								var redclass = 'red' ;
+							}else{
+								var status = "<br/>(Pending for Approval)"; 
+								var redclass = '' ;
+							}*/
+							
+							var date = new Date(data['affil'][i]['datetime']);
+							var options = {month: 'short', year: 'numeric', day: 'numeric' };
+							var paymentdate = (date.toLocaleDateString('us-US',options));
+
+							jQuery('.passbook-result').append("<table class='support-result-info'><tr><td class='support-result-date'>"+paymentdate+"</td><td>&nbsp;</td><td class='request-result'>-"+data['affil'][i]['amount']+" BTC</td></tr><tr><td class='support-result-content "+data['affil'][i]['amount']+"</td><td>&nbsp;</td></tr><tr><td>&nbsp;</td><td>&nbsp;</td><td class='request-result'></td></tr></table>");
+							
+						}
+				  }
+				});
+				
+				
+				
+				
 			}
 			else{
 				window.location='login.html';
@@ -73,14 +115,7 @@ jQuery( document ).ready(function() {
 			jQuery('.logout').toggle( "slow" );
 		});
 		
-		jQuery('.digicard-btn').click(function(){
-			window.location='dashboard.html';
-		});
-	
-		jQuery('.myaccount-btn').click(function(){
-			window.location='myaccount.html';
-		});
-
+		
 	}
 	else
 	{
@@ -160,12 +195,7 @@ jQuery( document ).ready(function() {
 		</div>
 	</div>
 	<div class="container">
-		
-		<div class="main-acc">
-			<div class="digicard-btn">Digi Card</div>
-			<div class="myaccount-btn">My Account</div>
-		</div>
-		
+		<div class="passbook-result"></div>
 	</div>
 </div>
 </body>

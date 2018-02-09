@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>World Bank of Cryptocurrencies</title>
+<title>Digi Wallet</title>
 <link rel="stylesheet" type="text/css" href="css/style.css">
 <link rel="stylesheet" href="css/jquery.mmenu.all.css" />
 
@@ -20,19 +20,20 @@ $(function() {
 var contentType ="application/x-www-form-urlencoded; charset=utf-8";
 if(window.XDomainRequest){contentType = "text/plain";}
 jQuery.support.cors = true;
-
+touchMove = function(event) {
+      event.preventDefault();
+}
+jQuery.support.cors = true;
+touchMove = function(event) {
+      event.preventDefault();
+}
 jQuery( document ).ready(function() {
 jQuery("#snackbar").hide();
 	if(window.sessionStorage.getItem("loggedIn") == 1) {
 		var userid = sessionStorage.getItem("user_id") ;
 		var password = sessionStorage.getItem("password") ;
 		var uid = sessionStorage.getItem("uid") ;
-		//alert(uid);
-		jQuery('.logout').hide();
-		jQuery('.log-out').click(function(){
-			jQuery('.logout').toggle( "slow" );
-		});
-		
+	
 		$.ajax({
 		  url: siteurl+"login",
 		  type: 'POST',
@@ -76,10 +77,7 @@ jQuery("#snackbar").hide();
 		  }
 		});
 		
-		jQuery('.logout').hide();
-		jQuery('.log-out').click(function(){
-			jQuery('.logout').toggle( "slow" );
-		});
+	
 		
 			
 		/*jQuery("#updateprofile").validate({
@@ -158,15 +156,13 @@ jQuery("#snackbar").hide();
 
 <div id="main-wrapper" class="inner-page">
 	<div class="main-container">
-		<div id="topbar">
+		<div id="topbar" ontouchmove="touchMove(event)">
 			<a href="update-profile.html"><img src="images/back_arrow.png" style="float:left;"/></a> 
 			<div class="header-card_p">Add AADHAAR Number</div>
 			<div class="notification" style="float:right; margin-left:-9px;">
 				<a href="notifications.html"><img src="images/notification_title_menu.png"/></a>
-				<span class="log-out"><img src="images/dot.png" style="margin-left:22px;"/></span>
-				<div class="logout">
-					<a href="logout.html">SignOut</a>
-				</div>
+							<span class="back"><a href="dashboard.html"><img src="images/close.png" style="margin-left:22px;"/></a></span>
+
 			</div>
 		</div>		
 		<div class="uniqueid">
@@ -268,13 +264,13 @@ jQuery("#snackbar").hide();
 									<input type="file" name="image" id="image">
 								</div>
 								<div class="field-right field">
-									<span style="margin-left: 10px;">Upload Your Id</span></div>
+									<span style="margin-left: 15px;">Upload Id Proof</span></div>
 								</div>
 							</div>
 						</div>
 		
 					<div style="height:30%;">
-						<div style="width:50%; float:left; margin-right:100px; margin-left:-50px;">	
+						<div style="width:50%; float:left; margin-left:-40px;">	
 							<div class="red-cancel-button">
 								<input type="button" name="cancel" value="Cancel"/>
 							</div>

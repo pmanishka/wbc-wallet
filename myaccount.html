@@ -25,25 +25,7 @@ touchMove = function(event) {
      event.preventDefault();
 }
 
-function validatePassword() {
 
-	var validator = $("#changepassword").validate({
-	//alert('test');
-		rules: {
-			password: "required",
-			confirmpassword: {
-				equalTo: "#password"
-			}
-		},
-		messages: {
-			password: " Enter Password",
-			confirmpassword: " Enter Confirm Password Same as Password"
-		}
-	});
-	if (validator.form()) {
-		alert('Sucess');
-	}
-}
 	
 jQuery( document ).ready(function() {
 
@@ -91,7 +73,21 @@ jQuery( document ).ready(function() {
 			jQuery('.logout').toggle( "slow" );
 		});
 		
+		jQuery('.passbook').click(function(){
+			window.location='passbook.html';
+		});
+	
+		jQuery('.affiliation').click(function(){
+			window.location='affiliation.html';
+		});
 		
+		jQuery('.request').click(function(){
+			window.location='request.html';
+		});
+	
+		jQuery('.statistics').click(function(){
+			window.location='statistics.html';
+		});
 
 	}
 	else
