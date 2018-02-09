@@ -13,13 +13,9 @@ if(window.XDomainRequest){contentType = "text/plain";}
 jQuery.support.cors = true;
 
 
-$(function(){
-	window.onorientationchange = OrientationChanged;
-	window.setTimeout(OrientationChanged, 0);
-}
-function OrientationChanged(e){
-	$('body').css('-webkit-transform', window.orientation % 180 == 0 ? '' : 'rotate(-90deg)');
-}
+$(window).on("orientationchange",function(){
+	event.stopPropagation();
+}); 
  
  
 touchMove = function(event) {
