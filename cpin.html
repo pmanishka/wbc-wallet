@@ -20,6 +20,9 @@ $(function() {
 var contentType ="application/x-www-form-urlencoded; charset=utf-8";
 if(window.XDomainRequest){contentType = "text/plain";}
 jQuery.support.cors = true;
+touchMove = function(event) {
+      event.preventDefault();
+}
 
 
 jQuery( document ).ready(function() {
@@ -62,10 +65,6 @@ jQuery("#snackbar").hide();
 		  }
 		});
 		
-		jQuery('.logout').hide();
-		jQuery('.log-out').click(function(){
-			jQuery('.logout').toggle( "slow" );
-		});
 		
 			
 			jQuery("#cpin").validate({
@@ -152,7 +151,7 @@ jQuery("#snackbar").hide();
 </head>
 <body>
 
-<div id="main-wrapper" class="inner-page">
+<div id="main-wrapper" class="inner-page" ontouchmove="touchMove(event)">
 	<div class="main-container">
 		<div id="topbar">
 			<a href="update-profile.html"><img src="images/back_arrow.png" style="float:left;"/></a> 

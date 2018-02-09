@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>World Bank of Cryptocurrencies</title>
+<title>Digi Wallet</title>
 <link rel="stylesheet" type="text/css" href="css/style.css">
 <link rel="stylesheet" href="css/jquery.mmenu.all.css" />
 <script src="js/config.js"></script>
@@ -19,18 +19,16 @@ $(function() {
 var contentType ="application/x-www-form-urlencoded; charset=utf-8";
 if(window.XDomainRequest){contentType = "text/plain";}
 jQuery.support.cors = true;
-
+touchMove = function(event) {
+      event.preventDefault();
+}
 jQuery( document ).ready(function() {
 
 	if(window.sessionStorage.getItem("loggedIn") == 1) {
 		var userid = sessionStorage.getItem("user_id") ;
 		var password = sessionStorage.getItem("password") ;
 		var uid = sessionStorage.getItem("uid") ;
-		//alert(uid);
-		jQuery('.logout').hide();
-		jQuery('.log-out').click(function(){
-			jQuery('.logout').toggle( "slow" );
-		});
+		
 		
 		$.ajax({
 		  url: siteurl+"login",
@@ -74,7 +72,7 @@ jQuery( document ).ready(function() {
 </head>
 <body>
 
-<div id="main_wrapper" class="inner-page">
+<div id="main_wrapper" class="inner-page" ontouchmove="touchMove(event)">
 	<div class="main-container">
 	<div id="topbar" class="navigation">
 		
@@ -129,16 +127,20 @@ jQuery( document ).ready(function() {
 							<td class="ptxt"><a href="support.html">Support</a></td>
 						</tr>
 					</table>
+						<table>
+						<tr>
+							<td class="picon"><img src="images/logout.png"></td>
+							<td>&nbsp;&nbsp;&nbsp;</td>
+							<td class="ptxt"><a href="login.html">Signout</a></td>
+						</tr>
+					</table>
 					</li>
 				</ul>
 			</nav>
 		<div class="header-card">Update Profile</div>
 		<div class="notification" style="float:right; margin-left:-9px;">
 			<a href="notifications.html"><img src="images/notification_title_menu.png"/></a>
-			<span class="log-out"><img src="images/dot.png" style="margin-left:22px;"/></span>
-			<div class="logout">
-				<a href="logout.html">SignOut</a>
-			</div>
+			<span class="back"><a href="dashboard.html"><img src="images/close.png" style="margin-left:22px;"/></a></span>
 		</div>
 	</div>
 	<div class="dashboard-container">
@@ -177,6 +179,7 @@ jQuery( document ).ready(function() {
 		</div>
 		</div>
 	</div>
+</div>
 </div>
 </body>
 </html>
