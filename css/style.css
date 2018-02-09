@@ -70,7 +70,7 @@ body{
 body .container {
     float: left;
     width: 100%;
-	padding:35px 0 0px 0;
+	padding:11px 0 0px 0;
 	overflow:hidden;
 }
 #top_header {
@@ -304,7 +304,7 @@ input[type="button"].red-button {
 	margin-top: -10px;
 }
 .inner-page #topbar{
-	padding:15px 20px;
+	padding:4% 2%;
 	/* margin-bottom: 9px; */
 }
 .register-form {
@@ -1035,34 +1035,46 @@ input[type="button"].green-submit-button {
 
 /*-----   Dashboard ---------------*/
 
-
+.digi-header {
+    width: 100%;
+    float: left;
+    max-width: 90%;
+    margin: 0 5%;
+}
 .digi{
-    text-align: left;
+      text-align: left;
     /* margin-left: 27px; */
     /* margin-top: -33px; */
     font-size: 13px;
     /* margin-bottom: 10px; */
-    position: fixed;
+    /* position: fixed; */
     top: 10%;
-    left: 28px;
-	
+    left: 4%;
+
 }
 .digi-num{
-	    font-size: 26px;
+	      font-size: 31px;
     /* margin-left: 52px; */
-    position: fixed;
-    left: 53px;
-	top:13%;
-	width:100%;
-    /* margin-bottom: 10px */
+    /* position: fixed; */
+    /* left: 10%; */
+    /* top: 13%; */
+	margin-top:4%;
+    text-align: center;
+    width: 100%;
+    /* margin-bottom: 10px; */
+
 }
 .digi-text{
-	    position: fixed;
-    right: 4%;
-    top: 19%;
+	  /*  position: fixed; */
+    /* right: 4%; */
+    /* top: 19%; */
     /* margin-right: 5%; */
+    text-align: right;
+    margin: 4% 7%;
     color: #b2ff59;
+    max-width: 89%;
     /* margin-bottom: 10px; */
+    width: 100%;
 }
 .digi-line {
 	    border-bottom: 1px solid #ccc;
@@ -1157,7 +1169,7 @@ a.green-transact-button  {
 
 .chart1{
 	height:41%;
-	width:100%;
+	width:90%;
 /*     margin-top: 10%;	 */
 	position:fixed;
 	top:49%;
@@ -2422,3 +2434,21 @@ input[name="nomineelist"] {
     width: 35px;
     height: 35px;
   }
+  
+
+.main-acc {
+    width: 100%;
+    max-width: 50%;
+    margin: 0 25%;
+    float: left;
+}
+.digicard-btn {
+    background: url(images/dark_red_broad.png) no-repeat 100% 100%;
+    padding: 30%;
+    text-align: center;
+}
+.myaccount-btn{
+    background: url(images/dark_green_broad.png) no-repeat 100% 100%;
+    padding: 30%;
+    text-align: center;
+}
