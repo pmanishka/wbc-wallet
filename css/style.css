@@ -734,7 +734,7 @@ nav:not(.mm-menu)
 	font-weight: bold;
 }
 .inner-profile div.email {
-	padding: 2px 0px 0px 10px;
+	padding: 2px 0px 7px 10px;
 	color: #fff;
 	font-size: 15px;
 }
@@ -744,8 +744,9 @@ nav:not(.mm-menu)
 	font-size: 15px;
 }
 .profile-details {
-    float: left;
-    width: 85%;
+        float: left;
+    width: 54%;
+    margin-left: 4%;
 }
 .profileicon {
     float: left;
