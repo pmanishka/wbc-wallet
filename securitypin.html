@@ -13,7 +13,7 @@ if(window.XDomainRequest){contentType = "text/plain";}
 jQuery.support.cors = true;
 
 
-//window.screen.lockOrientation('portrait'); 
+
  
  
 touchMove = function(event) {
@@ -52,8 +52,8 @@ jQuery( document ).ready(function() {
 						var $next = $(this).next('.spin');
 						   $('.spin').autotab();
 						   if ($next.length){
-							  $(this).next('.spin').trigger('focus');
-							 // $(this).next('.spin').autotab();
+							 $(this).next('.spin').focus();
+							 //  $(this).next('.spin').autotab();
 						  }
 					
 					
