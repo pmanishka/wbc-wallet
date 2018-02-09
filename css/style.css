@@ -1094,7 +1094,7 @@ input[type="button"].green-submit-button {
 }
 .dash-button{
 	position:fixed;
-	top:23%;
+	top:25%;
 }
 .dash-green-button{
 	position:fixed;
@@ -1167,7 +1167,7 @@ a.green-transact-button  {
 .price-chart{
 	    /* text-align: center; */
     position: fixed;
-    top: 37%;
+    top: 39%;
     right: 27%;
 }
 .price-chart img{
