@@ -1437,9 +1437,10 @@ input[type="button"].red-submit-button {
 }
 /*----------------------------- change password -----------------------------------------*/
 .header-card_p {
-	margin-left: 5%;
+	margin-left: 3%;
 	float: left;
 	width: 53%;
+	font-size:17px;
 }
 .header a:before,
 .header a:after
@@ -1572,12 +1573,12 @@ input[type="button"].red-submit-button {
 }
 .line-div {
 	border-bottom: 1px solid #ccc;
-	width: 93%;
-	margin-left:10px;
+	width: 98%;
+	
 }
 .aadhaar-new{	
-margin-left:35px;
-margin-top:20px;
+margin-left:5%;
+
 align-items:center;
 
 
@@ -1611,7 +1612,7 @@ align-items:center;
 	
 }
 .uniqueid{	
-margin-bottom:150px;	
+margin-bottom:25%;	
 }
 
 /*------------------------- ADD NOMINEE ----------------------*/
@@ -1779,7 +1780,7 @@ input:checked + .slider:before {
 }
 
 .field label {
-  font-size:12px;
+  font-size:9px;
 }
 .field input::placeholder{
 	color:transparent;
@@ -1928,12 +1929,12 @@ table.detail img,table.search-detail img {
     color: #757575;
 }
 .field-left{
-	width:10%; 
+	width:12%; 
 	margin-top: 20px;
 	float:left;
 }
 .field-right{
-	width:90%; 
+	width:80%; 
 	float:left;
 }
 .address-text{
