@@ -5,6 +5,7 @@
 <link rel="stylesheet" type="text/css" href="css/style.css">
 <script src="js/jquery.min.js"></script>
 <script src="js/config.js"></script>
+<script src="js/jquery.autotab.js"></script>
 
 <script>
 var contentType ="application/x-www-form-urlencoded; charset=utf-8";
@@ -12,7 +13,7 @@ if(window.XDomainRequest){contentType = "text/plain";}
 jQuery.support.cors = true;
 
 touchMove = function(event) {
-      event.preventDefault();
+     event.preventDefault();
 }
 
 jQuery( document ).ready(function() {
@@ -44,13 +45,13 @@ jQuery( document ).ready(function() {
 				jQuery(".spin").keyup(function () {
 					if (this.value.length == this.maxLength) {
 					
-					
-					if (!/iPad|iPhone|iPod/g.test(navigator.userAgent)) {
 						var $next = $(this).next('.spin');
-						  if ($next.length){
-							  $(this).next('.spin').focus();
+						   $('.spin').autotab();
+						   if ($next.length){
+							 // $(this).next('.spin').focus();
+							  $(this).next('.spin').autotab();
 						  }
-					}
+					
 					
 					  
 					  else{
