@@ -746,7 +746,7 @@ nav:not(.mm-menu)
 .profile-details {
         float: left;
     width: 54%;
-    margin-left: 4%;
+    margin-left: 8%;
 }
 .profileicon {
     float: left;
@@ -1071,7 +1071,7 @@ input[type="button"].green-submit-button {
     /* top: 19%; */
     /* margin-right: 5%; */
     text-align: right;
-    margin: 4% 7%;
+    margin: 2% 7%;
     color: #b2ff59;
     max-width: 89%;
     /* margin-bottom: 10px; */
@@ -1437,7 +1437,7 @@ input[type="button"].red-submit-button {
 }
 /*----------------------------- change password -----------------------------------------*/
 .header-card_p {
-	margin-left: 10%;
+	margin-left: 5%;
 	float: left;
 	width: 53%;
 }

@@ -17,6 +17,17 @@
       Priyanka Grover
     </author>
 	
+	<config-file target="AndroidManifest.xml" parent="/manifest/application">
+    <activity
+        android:name="com.google.zxing.client.android.CaptureActivity"
+        android:screenOrientation="landscape"
+        android:clearTaskOnLaunch="true"
+        android:configChanges="orientation|keyboardHidden"
+        android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
+        android:windowSoftInputMode="stateAlwaysHidden"
+        android:exported="false">
+		
+		
 	<!--<preference name="orientation" value="portrait"/>-->
 	<!--<preference name="phonegap-version" value="cli-6.4.0" />-->
 	<plugin name="cordova-plugin-device" spec="~1.1.6" />
