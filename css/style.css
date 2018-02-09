@@ -163,6 +163,7 @@ body .container {
     background: url(../images/advertis.png) no-repeat center;
     /* margin: 0 auto; */
     padding: 30px 0px;
+	margin-top:14%;
     color: #fff;
 	font-family:Sans-Serif Condensed;
 	
@@ -190,7 +191,7 @@ input[type="button"].red-button {
 .account {
     color: #fff;
     text-align: center;
-    margin: 15% 0 0 0;
+    margin:2% 0 0 0;
     font-size: 15px;
     font-weight: 600;
 }
