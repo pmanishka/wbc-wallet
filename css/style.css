@@ -2135,12 +2135,13 @@ textarea#queries {
 }
 /*------------------------- Security pin ------------------------------*/
 .logo-pin{
-	float: left;
+	    float: left;
     width: 100%;
     border-bottom: 1px solid #fff;
-    padding: 14px 0px;
-	margin-top:35px;
-	padding-bottom:40px;
+    padding: 14px 0;
+    margin-top: 35px;
+    padding-bottom: 40px;
+    padding-left: 27%;
 }
 .logo-pin .logo-pin-img {
     max-height: 75px;
@@ -2246,15 +2247,17 @@ textarea#queries {
     background: url('../images/dark_green.png') no-repeat center;
 }
  input[type="button"].green-button-s  {
-    border: 0;
+   border: 0;
     color: #fff;
     font-size: 17px;
-    font-weight: 500;
-    padding: 27px 100px;
-	font-weight: bold;
-	margin-top:50%;
-	align-items:center;
-	
+    font-weight: 600;
+    background-size: 83% 113%;
+    padding: 30px 27%;
+    max-width: 600px;
+    width: 90%;
+    /* font-weight: bold; */
+    margin-top: 50%;
+    /* align-items: center; */
 }
 .logout {
     position: relative;
