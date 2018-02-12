@@ -172,6 +172,7 @@ body .container {
     box-sizing: border-box;
     background: url(../images/advertis.png) no-repeat center;
     /* margin: 0 auto; */
+	background-size: 53% 117%;
     padding: 30px 0px;
 	margin-top:14%;
     color: #fff;
@@ -343,7 +344,7 @@ input[type="button"].green-button  {
     color: #fff;
     font-size: 17px;
     font-weight: 500;
-    padding: 27px 14%;
+    padding: 27px 16%;
 	font-weight: bold;
 }
 .congratulations-msg .msg span {
@@ -2156,7 +2157,7 @@ textarea#queries {
     padding: 14px 0;
     margin-top: 35px;
     padding-bottom: 40px;
-    padding-left: 27%;
+    padding-left:33%;
 }
 .logo-pin .logo-pin-img {
     max-height: 75px;
@@ -2168,7 +2169,7 @@ textarea#queries {
 }
 .logo-pin .logo-pin-img img{
 	height:100%;
-	max-height:50px;
+	max-height:83px;
 
 }
 .logo-pin .logo-pin-text {
