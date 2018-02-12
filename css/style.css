@@ -1017,7 +1017,7 @@ input[type="button"].green-submit-button {
     border: 0;
     color: #fff;
     font-size: 17px;
-    padding: 27px 100px;
+    padding: 19px 100px;
     align-items: center;	
    /*  font-weight: 600; */
 }
@@ -1430,7 +1430,7 @@ body .container_s {
 padding:48px 0 30px 0 !important;
 }
 .red-submit-button {
-    margin-top: 25px;
+    /* margin-top: 25px; */
     background: url(../images/dark_red.png) no-repeat center;
 	background-size: 75% 75%;
 	
