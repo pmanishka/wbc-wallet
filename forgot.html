@@ -6,7 +6,7 @@
 <script src="js/jquery.min.js"></script>
 </head>
 <body>
-	<div id="main_wrapper">
+	<div id="main_wrapper" ontouchmove="touchMove(event)">
 		<div class="main-container">
 			<div class="pass-rec">
 			<span>Password Recovery</span>
@@ -51,7 +51,9 @@
 var contentType ="application/x-www-form-urlencoded; charset=utf-8";
 if(window.XDomainRequest){contentType = "text/plain";}
 jQuery.support.cors = true;
-
+touchMove = function(event) {
+      event.preventDefault();
+}
 jQuery( document ).ready(function() {
 
 	// Reset by mobile

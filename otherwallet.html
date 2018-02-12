@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>World Bank of Cryptocurrencies</title>
+<title>Digi Wallet</title>
 <link rel="stylesheet" type="text/css" href="css/style.css">
 <link rel="stylesheet" href="css/jquery.mmenu.all.css" />
 
@@ -21,6 +21,9 @@ var contentType ="application/x-www-form-urlencoded; charset=utf-8";
 if(window.XDomainRequest){contentType = "text/plain";}
 jQuery.support.cors = true;
 
+touchMove = function(event) {
+      event.preventDefault();
+}
 function validatePassword() {
 
 	var validator = $("#changepassword").validate({
@@ -179,7 +182,7 @@ jQuery( document ).ready(function() {
 </head>
 <body>
 
-<div id="main_wrapper" class="inner-page">
+<div id="main_wrapper" class="inner-page" ontouchmove="touchMove(event)">
 	<div class="main-container">
 	<div id="topbar" class="navigation">
 		
@@ -198,7 +201,7 @@ jQuery( document ).ready(function() {
 						</span>
 					</li>
 					
-					<li class="tbl" style="padding-top: 4px; padding-bottom: 20px;">
+					<li class="tbl" style="padding-top: 2px; padding-bottom: 10px;">
 					<table>
 						<tr>
 							<td class="picon"><img src="images/home.png"></td>
@@ -207,7 +210,7 @@ jQuery( document ).ready(function() {
 						</tr>
 					</table>
 					</li>
-					<li class="tbl" style="padding-top: 4px; padding-bottom: 20px;">
+					<li class="tbl" style="padding-top: 2px; padding-bottom: 10px;">
 					<table>
 						<tr>
 							<td class="picon"><img src="images/prepaid-card-in-a-hand.png"></td>
@@ -216,7 +219,7 @@ jQuery( document ).ready(function() {
 						</tr>
 					</table>
 					</li>
-					<li class="tbl" style="padding-top: 4px; padding-bottom: 20px;">
+					<li class="tbl" style="padding-top: 2px; padding-bottom: 10px;">
 					<table>
 						<tr>
 							<td class="picon"><img src="images/prepaid-card-in-a-hand.png"></td>
@@ -225,7 +228,7 @@ jQuery( document ).ready(function() {
 						</tr>
 					</table>
 					</li>
-					<li class="tbl" style="padding-top: 4px; padding-bottom: 20px;">
+					<li class="tbl" style="padding-top: 2px; padding-bottom: 10px;">
 					<table>
 						<tr>
 							<td class="picon"><img src="images/prepaid-card-in-a-hand.png"></td>
@@ -234,7 +237,7 @@ jQuery( document ).ready(function() {
 						</tr>
 					</table>
 					</li>
-					<li class="tbl" style="padding-top:4px; padding-bottom:20px;">
+					<li class="tbl" style="padding-top:2px; padding-bottom:10px;">
 					<table>
 						<tr>
 							<td class="picon"><img src="images/setting2.png"></td>
@@ -244,7 +247,7 @@ jQuery( document ).ready(function() {
 					</table>
 					</li>
 					<li class="Divider">Communicate</li>
-					<li class="tbl" style="padding-top: 36px; padding-bottom: 20px;">
+					<li class="tbl" style="padding-top: 16px; padding-bottom: 10px;">
 					<table>
 						<tr>
 							<td class="picon"><img src="images/support.png"></td>
@@ -253,7 +256,7 @@ jQuery( document ).ready(function() {
 						</tr>
 					</table>
 					</li>
-					<li class="tbl" style="padding-top: 4px; padding-bottom: 10px;">
+					<li class="tbl" style="padding-top: 2px; padding-bottom: 10px;">
 					<table>
 						<tr>
 							<td class="picon"><img src="images/logout.png"></td>
@@ -364,7 +367,7 @@ jQuery( document ).ready(function() {
 			</tr>
 		</table>
 		<div class="input-button">
-				<input type="button" name="submit" class="green-submit-button" value="submit"/>
+				<input type="button" name="submit" class="green-submit-button" value="Submit"/>
 		</div>
 		</form>
 	</div>

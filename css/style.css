@@ -97,7 +97,7 @@ body .container {
     width: 100%;
     border-bottom: 1px solid #fff;
     padding: 14px 0px;
-	padding-left: 27%;
+	padding-left: 25%;
 }
 .logo .logo-img {
     max-height: 75px;
@@ -252,7 +252,7 @@ input[type="button"].red-button {
 .red-button {
     margin-top: 25px;
     background: url(../images/dark_red.png) no-repeat center;
-	background-size: 350px 112px;
+	background-size: 50% 136%;
 	
 }
 .red-button input[type="button"] {
@@ -307,6 +307,7 @@ input[type="button"].red-button {
 .registertop {
     color: #d9fae2;
 	border-bottom: 1px solid #fff;
+	padding-top:15px;
 	padding-bottom: 15px;
 	text-align: center;
 	font-size: 19px;
@@ -322,7 +323,7 @@ input[type="button"].red-button {
 }
 .register-form .input-button {
     margin-top: 13px;
-    margin-bottom: 40px;
+   /*  margin-bottom: 40px; */
     float: left;
     background-size: 308px 100px;
     width: 100%;
@@ -341,7 +342,7 @@ input[type="button"].green-button  {
     color: #fff;
     font-size: 17px;
     font-weight: 500;
-    padding: 27px 90px;
+    padding: 27px 14%;
 	font-weight: bold;
 }
 .congratulations-msg .msg span {
@@ -496,6 +497,7 @@ margin-top:70px;
     color: transparent;
     font-size: 23px;
     width: 100%;
+	background-size:90% 93%;
 }
 .otp-verify {
 	width: 100%;
@@ -871,7 +873,7 @@ nav:not(.mm-menu)
 	background-size: 290px 96px;
     border: 0;
     color: #fff;
-    font-size: 17px;
+    font-size: 12px;
     padding: 27px 100px;
 	margin-top:35%;
 	font-family:Sans-Serif Condensed;
@@ -882,7 +884,7 @@ nav:not(.mm-menu)
 	background-size: 290px 96px;
     border: 0;
     color: #fff;
-    font-size: 17px;
+    font-size: 12px;
     padding: 27px 86px;
 	margin-top:10%;
 	text-align:center;
@@ -898,7 +900,7 @@ nav:not(.mm-menu)
 }
 .btc{
 	float:left;
-	margin-bottom:20px;
+	/* margin-bottom:20px; */
 
 }
 .btc-input-field  {
@@ -948,7 +950,7 @@ nav:not(.mm-menu)
     position: fixed;
     align-items: center;
     bottom: 2%;
-          left: 28%;
+          left: 25%;
     margin-left: -50px;
    
 }
@@ -1267,7 +1269,7 @@ a.green-transact-button  {
 	margin-left:-20px;
 }
 .mobile-input-field_p {
-    width: 80%;
+    width: 88%;
     float: left;
 }
 .mobilecode_p input {
@@ -1377,7 +1379,7 @@ a.green-transact-button  {
  
 	background-size: 224px 82px;
 	margin-top:23px;
-	margin-bottom:30px;
+	
 	padding: 30px;
 	text-align: center;
 }
@@ -1428,14 +1430,14 @@ padding:48px 0 30px 0 !important;
 .red-submit-button {
     margin-top: 25px;
     background: url(../images/dark_red.png) no-repeat center;
-	background-size: 144px 76px;
+	background-size: 75% 75%;
 	
 }
 input[type="button"].red-submit-button {
     border: 0px;
     color: #fff;
     padding: 31px 58px;
-    font-size: 17px;
+    font-size: 15px;
 	
    /*  font-weight: 600; */
 }
@@ -2296,7 +2298,7 @@ textarea#queries {
     padding-left: 10px;
     padding-bottom: 10px;
     padding-right: 10px;
-	font-size:14px;
+	font-size:11px;
 }
 .support-result-date{
 	float:left;
