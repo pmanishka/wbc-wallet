@@ -229,7 +229,7 @@ input[type="button"].red-button {
 }
 .input-field {
     padding: 2% 2%;
-    margin-top: 10px;
+   /*  margin-top: 10px; */
     width: 100%;
 	max-width:600px;
     /* margin-bottom: 75px; */
@@ -1027,7 +1027,7 @@ input[type="button"].green-submit-button {
 .input-button{
 	width:100%;
 	float:left;
-	margin-top:-4%;
+	margin-top:0%;
 }
 /*---------------------------------- other digi wallet ------------------------------------*/
 .digicard-input-field  {
