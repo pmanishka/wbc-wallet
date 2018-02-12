@@ -94,6 +94,7 @@ body .container {
 } */
 .logo{
 	float: left;
+	background:#fff;
     width: 100%;
     border-bottom: 1px solid #fff;
     padding: 14px 0px;
@@ -113,7 +114,7 @@ body .container {
 
 }
 .logo .logo-text {
-    color: #d9fae2;
+    color: #6e76e9;
     float: left;
     padding-top: 18px;
     padding-left: 11px;
