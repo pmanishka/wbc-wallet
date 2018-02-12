@@ -193,7 +193,7 @@ body .container {
 input[type="button"].red-button {
     border: 0px;
     color: #fff;
-	    background-size: 83% 113%;
+	    background-size: 90% 113%;
     padding: 31px 40%;
     font-size: 17px;
     font-weight: 600;
@@ -221,7 +221,7 @@ input[type="button"].red-button {
     box-sizing: border-box;
     background: url(../images/dark_blue.png) no-repeat center;
 	padding: 30px;
-	background-size: 70% 113%;
+	background-size: 60% 113%;
 }
 .darkblue-button span {
     color: #fff;
