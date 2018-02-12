@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>World Bank of Cryptocurrencies</title>
+<title>Digi Wallet</title>
 <link rel="stylesheet" type="text/css" href="css/style.css">
 <link rel="stylesheet" href="css/jquery.mmenu.all.css" />
 
@@ -22,9 +22,6 @@ var contentType ="application/x-www-form-urlencoded; charset=utf-8";
 if(window.XDomainRequest){contentType = "text/plain";}
 jQuery.support.cors = true;
 
-touchMove = function(event) {
-      event.preventDefault();
-}
 
 jQuery( document ).ready(function() {
 jQuery("#snackbar").hide();
@@ -33,7 +30,10 @@ jQuery("#snackbar").hide();
 		var password = sessionStorage.getItem("password") ;
 		var uid = sessionStorage.getItem("uid") ;
 
-			
+		touchMove = function(event) {
+      event.preventDefault();
+}
+	
 		
 		$.ajax({
 		  url: siteurl+"login",

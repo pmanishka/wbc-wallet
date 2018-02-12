@@ -20,9 +20,7 @@ $(function() {
 var contentType ="application/x-www-form-urlencoded; charset=utf-8";
 if(window.XDomainRequest){contentType = "text/plain";}
 jQuery.support.cors = true;
-touchMove = function(event) {
-      event.preventDefault();
-}
+
 
 
 jQuery( document ).ready(function() {
@@ -32,7 +30,9 @@ jQuery("#snackbar").hide();
 		var password = sessionStorage.getItem("password") ;
 		var uid = sessionStorage.getItem("uid") ;
 
-			
+			touchMove = function(event) {
+      event.preventDefault();
+}
 		
 		$.ajax({
 		  url: siteurl+"login",

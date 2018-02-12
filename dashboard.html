@@ -22,9 +22,7 @@ $(function() {
 	$( "nav#menu .mm-panels" ).addClass( "profile-menu" );
 });
 jQuery.support.cors = true;
-touchMove = function(event) {
-      event.preventDefault();
-}
+
 </script>
 <script>
 
@@ -34,7 +32,9 @@ jQuery.support.cors = true;
 
 jQuery( document ).ready(function() {
 
-
+touchMove = function(event) {
+      event.preventDefault();
+}
 	if(window.sessionStorage.getItem("loggedIn") == 1) {
 		var userid = sessionStorage.getItem("user_id") ;
 		var password = sessionStorage.getItem("password") ;
@@ -309,7 +309,7 @@ function showTooltip(x, y, color, contents) {
 		<div class="header-card">Digi Card</div>
 		<div class="notification" style="float:right; margin-left:-9px;">
 			<a href="notifications.html"><img src="images/notification_title_menu.png"/></a>
-			<span class="back" style="display:none;"><a herf="dashboard.html"><img src="images/close.png" style="margin-left:22px;"/></a></span>
+			<span class="back" style="display:none;"><a href="dashboard.html"><img src="images/close.png" style="margin-left:22px;"/></a></span>
 		
 		</div>
 	</div>

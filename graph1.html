@@ -114,7 +114,33 @@ function showTooltip(x, y, color, contents) {
 }
 
 
+jQuery( document ).ready(function() {
+	// Get BitPay Data
+	var ajaxResult=[];
+	$.ajax({
+	type: 'GET',
+	url: 'https://apiv2.bitcoinaverage.com/indices/global/history/BTCUSD?period=daily&?format=json',
+	dataType: 'json',
+	async: false,
+		success: function (response) {
+			$.each(response, function(idx, obj) {
+					var resAverage = (obj.average) ;
+					
+					var date = new Date(obj.time);
+				
+					var cHour = date.getHours();
+					var cMin = date.getMinutes();
+					var resTime = cHour+ ":" + cMin;
+					
+					//var resTime = (obj.time);
+					//alert(resTime);
+					
+					jQuery('.graphRes').append("<table class='support-result-info'><tr><td class='support-result-date'>"+resAverage+"</td><td>&nbsp;</td><td class='request-result'>"+resTime+" </td></tr></table>");
 
+			});
+		}
+	});
+});
 
 </script>
 	

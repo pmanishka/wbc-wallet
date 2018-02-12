@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>World Bank of Cryptocurrencies</title>
+<title>Digi Wallet</title>
 <link rel="stylesheet" type="text/css" href="css/style.css">
 <link rel="stylesheet" href="css/jquery.mmenu.all.css" />
 
@@ -19,6 +19,9 @@ $(function() {
 var contentType ="application/x-www-form-urlencoded; charset=utf-8";
 if(window.XDomainRequest){contentType = "text/plain";}
 jQuery.support.cors = true;
+touchMove = function(event) {
+      event.preventDefault();
+}
 
 jQuery( document ).ready(function() {
 
@@ -75,7 +78,7 @@ jQuery( document ).ready(function() {
 </head>
 <body>
 
-<div id="main_wrapper" class="inner-page">
+<div id="main_wrapper" class="inner-page" ontouchmove="touchMove(event)">
 	<div class="main-container">
 	<div id="topbar" class="navigation">
 		
@@ -94,7 +97,7 @@ jQuery( document ).ready(function() {
 						</span>
 					</li>
 					
-					<li class="tbl" style="padding-top: 4px; padding-bottom: 20px;">
+					<li class="tbl" style="padding-top: 2px; padding-bottom: 10px;">
 					<table>
 						<tr>
 							<td class="picon"><img src="images/home.png"></td>
@@ -103,7 +106,7 @@ jQuery( document ).ready(function() {
 						</tr>
 					</table>
 					</li>
-					<li class="tbl" style="padding-top: 4px; padding-bottom: 20px;">
+					<li class="tbl" style="padding-top: 2px; padding-bottom: 10px;">
 					<table>
 						<tr>
 							<td class="picon"><img src="images/prepaid-card-in-a-hand.png"></td>
@@ -112,7 +115,7 @@ jQuery( document ).ready(function() {
 						</tr>
 					</table>
 					</li>
-					<li class="tbl" style="padding-top:4px; padding-bottom:20px;">
+					<li class="tbl" style="padding-top:2px; padding-bottom:10px;">
 					<table>
 						<tr>
 							<td class="picon"><img src="images/setting2.png"></td>
@@ -122,12 +125,20 @@ jQuery( document ).ready(function() {
 					</table>
 					</li>
 					<li class="Divider">Communicate</li>
-					<li class="tbl" style="padding-top: 36px; padding-bottom: 20px;">
+					<li class="tbl" style="padding-top: 36px; padding-bottom: 10px;">
 					<table>
 						<tr>
 							<td class="picon"><img src="images/support.png"></td>
 							<td>&nbsp;&nbsp;&nbsp;</td>
 							<td class="ptxt"><a href="support.html">Support</a></td>
+						</tr>
+					</table>
+					</li><li class="tbl" style="padding-top: 4px; padding-bottom: 10px;">
+					<table>
+						<tr>
+							<td class="picon"><img src="images/logout.png"></td>
+							<td>&nbsp;&nbsp;&nbsp;</td>
+							<td class="ptxt"><a href="login.html">Signout</a></td>
 						</tr>
 					</table>
 					</li>
@@ -136,11 +147,8 @@ jQuery( document ).ready(function() {
 		<div class="header-card">Digi Card</div>
 		<div class="notification" style="float:right; margin-left:-9px;">
 			<a href="notifications.html"><img src="images/notification_title_menu.png"/></a>
-			<span class="log-out"><img src="images/dot.png" style="margin-left:22px;"/></span>
-			<div class="logout">
-				<a href="logout.html">Logout</a>
+				<span class="back"><a href="dashboard.html"><img src="images/close.png" style="margin-left:22px;"/></a></span>
 			</div>
-		</div>
 	</div>
 	<div class="dashboard-container">
 		<div class="spanel">
@@ -168,6 +176,7 @@ jQuery( document ).ready(function() {
 		</div>
 		</div>
 	</div>
+</div>
 </div>
 </body>
 </html>
