@@ -172,7 +172,7 @@ body .container {
     box-sizing: border-box;
     background: url(../images/advertis.png) no-repeat center;
     /* margin: 0 auto; */
-	background-size: 70% 130%;
+	background-size: 80% 130%;
     padding: 30px 0px;
 	margin-top:14%;
     color: #fff;
@@ -221,7 +221,7 @@ input[type="button"].red-button {
     box-sizing: border-box;
     background: url(../images/dark_blue.png) no-repeat center;
 	padding: 30px;
-	background-size: 200px 82px;
+	background-size: 70% 113%;
 }
 .darkblue-button span {
     color: #fff;
@@ -254,7 +254,8 @@ input[type="button"].red-button {
 .red-button {
     margin-top: 25px;
     background: url(../images/dark_red.png) no-repeat center;
-	background-size: 70% 136%;
+	background-size: 7
+	0% 136%;
 	
 }
 .red-button input[type="button"] {
