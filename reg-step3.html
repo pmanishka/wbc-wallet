@@ -25,13 +25,13 @@ jQuery(document).ready(function() {
 			  data: {q:'verify_email',email:email,username:username}, 
 			  crossDomain: true,   
 			  success: function(data) {
-				if(data['status'] == 1)
+				window.location='reg-step4.html';/*if(data['status'] == 1)
 				{
 					localStorage.setItem('email', email);
 					window.location='reg-step4.html';
 				}else{
 					jQuery('.error-msg').show();
-				}
+				}*/
 			  },
 			  error: function() {
 				 //alert('Failed');
