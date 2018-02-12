@@ -150,7 +150,7 @@ body .container {
 }
 .mainpage-section .homewrapper img {
     width: 100%;
-	margin-left: -28px;
+	/* margin-left: -28px; */
 }
 .home-text {
     /* text-align: center; */
@@ -172,7 +172,7 @@ body .container {
     box-sizing: border-box;
     background: url(../images/advertis.png) no-repeat center;
     /* margin: 0 auto; */
-	background-size: 53% 117%;
+	background-size: 70% 130%;
     padding: 30px 0px;
 	margin-top:14%;
     color: #fff;
@@ -254,7 +254,7 @@ input[type="button"].red-button {
 .red-button {
     margin-top: 25px;
     background: url(../images/dark_red.png) no-repeat center;
-	background-size: 50% 136%;
+	background-size: 70% 136%;
 	
 }
 .red-button input[type="button"] {
@@ -290,8 +290,8 @@ input[type="button"].red-button {
 
 .input-field_r {
 	padding: 10px 10%;
-    margin-top: 10px;
-	margin-bottom: 75px;
+  /*   margin-top: 10px; */
+	margin-bottom: 45px;
 }
 .input-field_r input {
     background: url(../images/edit_text_back.png) no-repeat center;
