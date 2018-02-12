@@ -97,7 +97,7 @@ body .container {
     width: 100%;
     border-bottom: 1px solid #fff;
     padding: 14px 0px;
-	padding-left: 36%;
+	padding-left: 34%;
 }
 .logo .logo-img {
     max-height: 75px;
@@ -149,7 +149,7 @@ body .container {
     /* margin-bottom: 104px; */
 }
 .mainpage-section .homewrapper img {
-    width: 55%;
+    width: 100%;
 }
 .home-text {
     /* text-align: center; */
