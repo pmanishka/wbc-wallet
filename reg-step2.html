@@ -29,7 +29,8 @@ var username = localStorage.getItem("username");
 			  data: {q:'verify_mobile',mobile:mobile}, 
 			  crossDomain: true,   
 			  success: function(data) {
-				if(data['status'] == 1)
+			  window.location='reg-step3.html';
+				/*if(data['status'] == 1)
 				{
 					var otpval= (data['otp']);
 					
@@ -42,16 +43,16 @@ var username = localStorage.getItem("username");
 					
 					/*jQuery('input[name="otp-verify"]').change(function() {*/
 						
-						if(jQuery('input[name="otp-verify"]').val() !=''){
+						/*if(jQuery('input[name="otp-verify"]').val() !=''){
 							window.location='reg-step3.html';
 						}else{
 							alert('Please check otp again else resend otp');
 						}
 					/*});*/
 					
-				}else{
+				/*}else{
 					alert('verification failed');
-				}
+				}*/
 			  },
 			  error: function() {
 				 alert('Failed');

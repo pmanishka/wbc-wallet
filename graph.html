@@ -8,8 +8,8 @@
     <script type="text/javascript" src="http://www.pureexample.com/js/lib/jquery-1.8.3.min.js"></script>
     <script type="text/javascript" src="http://www.pureexample.com/js/flot/jquery.flot.min.js"></script>
     <script type="text/javascript">
-        var data = [['2.5', 130], ['3.5', 40], ['4.5', 80], ['5.5', 160], ['6.5', 159], ['6.5', 370], ['8.5', 330], ['9.5', 350], ['10.5', 370], ['11.5', 400]];
-		//alert(data);
+       /* var data = [['2.5', 130], ['3.5', 40], ['4.5', 80], ['5.5', 160], ['6.5', 159], ['6.5', 370], ['8.5', 330], ['9.5', 350], ['10.5', 370], ['11.5', 400]];
+		
         var dataset = [{label: "line1",data: data}];
  
         var options = {
@@ -24,7 +24,7 @@
  
         $(document).ready(function () {
             $.plot($("#flot-placeholder"), dataset, options);
-        });
+        });*/
 		
 		
 jQuery( document ).ready(function() {
@@ -36,53 +36,47 @@ jQuery( document ).ready(function() {
 	url: 'https://apiv2.bitcoinaverage.com/indices/global/history/BTCUSD?period=daily&?format=json',
 	dataType: 'json',
 	async: false,
-		success: function (response) {
-		//var ajaxResult="[[";
-		//var graphres = "";
-		var resAverage = '' ;
-		var resTime = '';
-			//$.each(response, function(idx, obj) {
-				var resGraph = response.length; 
+		success: function (data) {
+		var resGraph = data.length; 
+		//var arr = [];
+		var endRec = 10;
+			 for(i = 0, len = resGraph.length, graphData = "", rDate= "", resTime= "" ; i < endRec; i++){
 				
-				/*var resAverage = (obj.average) ;
-				var date = new Date(obj.time);
+				var rDate = new Date(data[i].time);
+				
+				var cHour = rDate.getHours();
+				var cMin = rDate.getMinutes();
+				var resTime = cHour+ "." + cMin;
+				
+				 if(i === endRec-1) {  //The last one
+					graphData += ( resTime + ',' + data[i].average) ;
+				 } else {
+					graphData += ( resTime + ',' + data[i].average)  + ',';
+				 } 
+				
+				
+			 }
 			
-				var cHour = date.getHours();
-				var cMin = date.getMinutes();
-				var resTime = cHour+ ":" + cMin;*/
-					
-				var text = ''; 
-				var i ;
-				for(var i =0;i < resGraph.length-1;i++)
-				{
-				  var item = itemData[i];
-				  alert(item.Test1 + item.Test2 + item.Test3);
+			 var gdata = (graphData) ;
+			// alert (gdata);
+			 var data = [['2.5', '8880.6'], ['3.5', '8500.5'], ['4.5', '8600.5'], ['5.5', '8546.5']];
+			//alert (data);
+			var dataset = [{label: "line1",data: data}];
+	 
+			var options = {
+				series: {
+					lines: { show: true },
+					points: {
+						radius: 3,
+						show: true
+					}
 				}
-				for(var i =0;i < resGraph.length-1;i++)
-					
-					
-					text += resGraph[i].average + "<br>";
-					
-				 }
-					jQuery('.graphRes').append("<table class='support-result-info'><tr><td class='support-result-date'>"+text+" </td></tr></table>");
-					
-					
-					//ajaxResult=ajaxResult+"[["+resAverage + "," + resTime + "]]";
-			
-					
-					//alert(ajaxResult);
-					//var resTime = (obj.time);
-					//alert(resTime);
-					
-					
-
-			//});
-			//var ajaxResult="]]";
-			//alert(ajaxResult);
-			
-			
-			
-			
+			};
+	 
+			$(document).ready(function () {
+				$.plot($("#flot-placeholder"), dataset, options);
+			});
+		
 		}
 	});
 });

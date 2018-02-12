@@ -325,7 +325,7 @@ input[type="button"].red-button {
     margin-top: 13px;
    /*  margin-bottom: 40px; */
     float: left;
-    background-size: 308px 100px;
+    background-size: 50% 50%;
     width: 100%;
 }
 .inner-page .input-field {
@@ -349,7 +349,7 @@ input[type="button"].green-button  {
     color: #aefd36;
 }
 .congratulations-msg {
-    margin-top: 60px;
+    margin-top: 5%;
 	margin-bottom:15px
 }
 .congratulations-msg .msg img {
@@ -874,7 +874,7 @@ nav:not(.mm-menu)
     border: 0;
     color: #fff;
     font-size: 12px;
-    padding: 27px 100px;
+    padding: 27px 86px;
 	margin-top:35%;
 	font-family:Sans-Serif Condensed;
 	text-align:center;
@@ -901,6 +901,7 @@ nav:not(.mm-menu)
 .btc{
 	float:left;
 	/* margin-bottom:20px; */
+	margin-top:-10px;
 
 }
 .btc-input-field  {
@@ -1023,11 +1024,12 @@ input[type="button"].green-submit-button {
 .input-button{
 	width:100%;
 	float:left;
+	margin-top:-4%;
 }
 /*---------------------------------- other digi wallet ------------------------------------*/
 .digicard-input-field  {
 	padding: 10px 0%;
-    margin-top: 10px;
+   /*  margin-top: 10px; */
 	width:36%;
 	/* margin-bottom: 75px; */
 }
@@ -1301,7 +1303,7 @@ a.green-transact-button  {
  background: url(../images/dark_voilet.png) no-repeat center;
 	background-size: 224px 82px;
 	margin-top:23px;
-	margin-bottom:30px;
+	/* margin-bottom:30px; */
 	padding: 30px;
 	text-align: center;
 }
