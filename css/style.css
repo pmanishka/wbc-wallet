@@ -15,7 +15,7 @@ a{ text-decoration:none; }
 img{border:none;}
 .clr{ clear:both; margin:0px; padding:0px;}
 h1,h2,h3,h4,h5,h6,h7,p,span{ margin:0px; padding:0px;}
-body {margin: 0; padding: 0; background: #f4f4f4;font-family: 'Roboto Condensed', sans-serif;}
+body {margin: 0; padding: 0; /* background: #f4f4f4; */font-family: 'Roboto Condensed', sans-serif;}
 
 input{ outline:none;}
 ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
@@ -61,7 +61,7 @@ input:-webkit-autofill {
 } */
 .main-container {
     max-width: 600px;
-    background: #000;
+   /*  background: #000; */
 }
 body{
 	background:#000;
@@ -79,9 +79,10 @@ body .container {
     width: 100%;
 	background:#000;
 }
-.loading{    color: #fff;
+.loading{    color: #000;
     text-align: center;
     margin-top: 50%;
+	font-weight:600;
     /* position: fixed; */
     /* bottom: 10px; */
     /* left: 50%; */
@@ -124,6 +125,13 @@ body .container {
 	font-family:Sans-Serif Condensed;
 	
 }
+.container-white{
+	background:#fff;
+	 float: left;
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+}
 .container {
     float: left;
     width: 100%;
@@ -145,13 +153,14 @@ body .container {
 }
 .home-text {
     /* text-align: center; */
-    color: #fff;
+    color: #000;
     padding: 10px;
 	font-size:14px;
 }
 .home-text-main {
-    color: #fff;
+    color:#6e76e9;
     font-size: 30px;
+	margin-left:5%;
 	font-family:Sans-Serif Condensed;
 	font-weight:bold;
 	
@@ -1929,26 +1938,26 @@ table.detail img,table.search-detail img {
     color: #757575;
 }
 .field-left{
-	width:12%; 
+	width:14%; 
 	margin-top: 20px;
 	float:left;
 }
 .field-right{
-	width:88%; 
+	width:86%; 
 	float:left;
 }
 .address-text{
 	padding:10px;
 }
 .addressbook-input-field {
-	margin-left:3px;
+	margin-left:1%;
 	/* padding: 10px 19%; */
    /*  margin-top: 10px; */
 	/* margin-bottom: 75px; */
 }
 .addressbook-input-field input {
     background: url(../images/search_box.png) no-repeat left;
-	background-size: 100% 100%;
+	background-size: 98% 100%;
     color: #ddd;
     padding: 15px 8%;
     border: 0px;
@@ -2252,7 +2261,7 @@ textarea#queries {
     font-size: 17px;
     font-weight: 600;
     background-size: 83% 113%;
-    padding: 30px 24%;
+    padding: 30px 18%;
     max-width: 600px;
     width: 90%;
     /* font-weight: bold; */
