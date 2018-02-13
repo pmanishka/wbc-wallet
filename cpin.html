@@ -150,64 +150,65 @@ jQuery("#snackbar").hide();
 </script>
 </head>
 <body>
-
-<div id="main-wrapper" class="inner-page" ontouchmove="touchMove(event)">
-	<div class="main-container">
-		<div id="topbar">
-			<a href="update-profile.html"><img src="images/back_arrow.png" style="float:left;"/></a> 
-			<div class="header-card_p">Change PIN</div>
-			<div class="notification" style="float:right; margin-left:-9px;">
-				<a href="notifications.html"><img src="images/notification_title_menu.png"/></a>
-				<span class="back" style="display:none"><a href="dashboard.html"><img src="images/close.png" style="margin-left:22px;"/></a></span>
-			</div>
-		</div>
-		
-			<form method="post" id="cpin">
-				<div class="change-password">			
-					<div class="password-input-field">
-						<div class="field-left">
-							<img src="images/key.png" style="-webkit-logical-height: 30px;"/>
-						</div>
-						<div class="field-right field">
-							<input type="hidden" name="pin" id="pin"/>
-							<input type="text" name="oldpin" id="oldpin" placeholder="Old Pin"/>
-							<label for="oldpin" class="lbl-name">Old Pin</label>
-						</div>
-					</div>
-					<div class="password-input-field">
-						<div class="field-left">
-							<img src="images/key.png" style="-webkit-logical-height: 30px;"/>
-						</div>
-						<div class="field-right field">
-							<input type="text" name="npin" placeholder="New Pin" id="npin" />
-							<label for="npin" class="lbl-name">New Pin</label>
-						</div>					
-					</div>
-					<div class="password-input-field">
-						<div class="field-left">
-							<img src="images/key.png" style="-webkit-logical-height: 30px;"/>
-						</div>
-						<div class="field-right field">
-							<input type="text" name="cpin" placeholder="Confirm Pin" id="cpin" />
-							<label for="cpin" class="lbl-name">Confirm Pin</label>
-						</div>	
-					</div><br><br>
+<div ontouchmove="touchMove(event)">
+	<div id="main-wrapper" class="inner-page">
+		<div class="main-container">
+			<div id="topbar">
+				<a href="update-profile.html"><img src="images/back_arrow.png" style="float:left;"/></a> 
+				<div class="header-card_p">Change PIN</div>
+				<div class="notification" style="float:right; margin-left:-9px;">
+					<a href="notifications.html"><img src="images/notification_title_menu.png"/></a>
+					<span class="back" style="display:none"><a href="dashboard.html"><img src="images/close.png" style="margin-left:22px;"/></a></span>
 				</div>
-				<div>
-					<div style="width:40%; float:left">	
-						<div class="red-cancel-button">
-							<input type="button" name="cancel" value="Cancel"/>
+			</div>
+			
+				<form method="post" id="cpin">
+					<div class="change-password">			
+						<div class="password-input-field">
+							<div class="field-left">
+								<img src="images/key.png" style="-webkit-logical-height: 30px;"/>
+							</div>
+							<div class="field-right field">
+								<input type="hidden" name="pin" id="pin"/>
+								<input type="text" name="oldpin" id="oldpin" placeholder="Old Pin" pattern="[0-9]*"/>
+								<label for="oldpin" class="lbl-name">Old Pin</label>
+							</div>
 						</div>
-					</div>
-					<div style="width:40%; float: right;">
-						<div class="green-save-button">
-							<input type="button" name="save" value="Save"/>
+						<div class="password-input-field">
+							<div class="field-left">
+								<img src="images/key.png" style="-webkit-logical-height: 30px;"/>
+							</div>
+							<div class="field-right field">
+								<input type="text" name="npin" placeholder="New Pin" id="npin" pattern="[0-9]*"/>
+								<label for="npin" class="lbl-name">New Pin</label>
+							</div>					
 						</div>
+						<div class="password-input-field">
+							<div class="field-left">
+								<img src="images/key.png" style="-webkit-logical-height: 30px;"/>
+							</div>
+							<div class="field-right field">
+								<input type="text" name="cpin" placeholder="Confirm Pin" id="cpin" pattern="[0-9]*" />
+								<label for="cpin" class="lbl-name">Confirm Pin</label>
+							</div>	
+						</div><br><br>
 					</div>
-				
-			</form>		
+					<div>
+						<div style="width:40%; float:left">	
+							<div class="red-cancel-button">
+								<input type="button" name="cancel" value="Cancel"/>
+							</div>
+						</div>
+						<div style="width:40%; float: right;">
+							<div class="green-save-button">
+								<input type="button" name="save" value="Save"/>
+							</div>
+						</div>
+					
+				</form>		
+		</div>
 	</div>
+	<div id="snackbar">Update Pin Successfully</div>
 </div>
-<div id="snackbar">Update Pin Successfully</div>
 </body>
 </html>

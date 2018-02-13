@@ -191,7 +191,7 @@ function stickIt() {
 								<img src="images/digi_card.png" style="-webkit-logical-height: 30px;"/>
 							</div>
 							<div class="field-right field">
-								<input type="text" name="nominee" id="nominee" placeholder="Enter 16 Digit Card Number of Nominee"/>
+								<input type="text" name="nominee" id="nominee" placeholder="Enter 16 Digit Card Number of Nominee" maxlength="16" pattern="[0-9]*"/>
 								<label for="nominee" class="lbl-name">Enter 16 Digit Card Number of Nominee</label>
 							</div>
 						</div>
@@ -203,7 +203,7 @@ function stickIt() {
 								<input type="button" name="cancel" value="Cancel"/>
 							</div>
 						</div>
-						<div style="width:20%; float: right; margin-right:-16px;">
+						<div style="width:20%; float: right;">
 							<div class="green-save-button">
 								<input type="button" name="save" value="Save"/>
 							</div>

@@ -113,7 +113,7 @@ jQuery( document ).ready(function() {
 			}
 		});
 	
-	
+		// BTC To USD
 		$(".btc-input-field #btc").keyup(function(){
 			var btcval = jQuery('.btc-input-field #btc').val();
 			
@@ -169,6 +169,65 @@ jQuery( document ).ready(function() {
 			
 		});
 			
+		
+		
+		// USD To BTC
+		$(".btc-input-field #usd").keyup(function(){
+			var usdval = jQuery('.btc-input-field #usd').val();
+			
+			// Get BitPay Data
+			$.ajax({
+			type: 'GET',
+			url: 'https://bitpay.com/api/rates',
+			dataType: 'json',
+			async: false,
+				success: function (response) {
+					$.each(response, function(idx, obj) {
+						if(obj.code == 'BTC'){
+							var btcval = (obj.rate) ;
+							var usdcalc = btcval * usdval;
+							jQuery("#usd").attr("value",usdcalc);
+							var currency_id = jQuery("#curr_id").val();
+							var username = jQuery("#username").val();
+							var currency_name = jQuery("#currency_name").val();
+
+								// Click on proceed button
+								jQuery('input[class="transact-button"]').click(function(){
+									if(btcval > 0){
+										jQuery(this).hide();
+										jQuery("#btc").prop('readonly', true);
+										jQuery("#usd").prop('readonly', true);
+										// Get barcode
+										$.ajax({
+										  url: "https://www.4xwin.com/appadmin/app_call_for_block_chain.php",
+										  type: 'POST',
+										  data: {q:'depositCurrency',user_id:userid,amount:bitcalc,currency_id:currency_id,username:username,currency_name:currency_name,equal_usd:bitcalc}, 
+										  crossDomain: true,   
+										  success: function(data) {
+											var obj = jQuery.parseJSON(data);
+											jQuery('.transact-btc-result').show();
+											jQuery('.transact-btc-result .equal_usd').html('<img src="'+obj.url+'" />');
+											jQuery('.transact-btc-result .usd_address').append(obj.address);
+											// Address Copied
+											jQuery('.transact-btc-result .usd_address').focus(function(){
+												document.execCommand('copy');
+											});
+										  },
+										  error: function() {
+											alert('Error');
+										  }
+										});
+									}
+								});
+						}
+						jQuery('.transact-button').show();
+					});
+				}
+			});
+			
+		});
+		
+		
 		
 	}
 	else
@@ -230,9 +289,9 @@ jQuery( document ).ready(function() {
 					<li class="tbl" style="padding-top: 2px; padding-bottom: 10px;">
 					<table>
 						<tr>
-							<td class="picon"><img src="images/prepaid-card-in-a-hand.png"></td>
+							<td class="picon"><img src="images/digibook.png"></td>
 							<td>&nbsp;&nbsp;&nbsp;</td>
-							<td class="ptxt"><a href="dashboard.html">Digi Card</a></td>
+							<td class="ptxt"><a href="digibook.html">Digi Book</a></td>
 						</tr>
 					</table>
 					</li>
@@ -341,7 +400,7 @@ jQuery( document ).ready(function() {
 				</tr>			
 				<tr>
 					<td class="payment-input-field" style="width:50%;">
-						<input type="text" name="payment_address" id="payment_address" placeholder="Payment Address"/>
+						<input type="text" name="payment_address" id="payment_address" placeholder="Payment Address" pattern="[0-9]*"/>
 					</td>
 				</tr>
 				<tr>
@@ -363,11 +422,11 @@ jQuery( document ).ready(function() {
 				</tr>
 				<tr>
 					<td class="btc-input-field" style="width:50%;">
-						<input type="text" name="btc" id="btc" />
+						<input type="text" name="btc" id="btc" pattern="[0-9]*"/>
 					</td>
 					<td style="text-align:center;">OR</td>
 					<td class="usd-input-field" style="width:50%;">
-						<input type="text" name="usd" id="usd" />
+						<input type="text" name="usd" id="usd" pattern="[0-9]*" />
 					</td>
 				</tr>
 			</table>
@@ -388,18 +447,18 @@ jQuery( document ).ready(function() {
 				</tr>
 				<tr>
 					<td class="btc-input-field" style="width:50%;">
-						<input type="text" name="btc" id="btc" />
+						<input type="text" name="btc" id="btc" pattern="[0-9]*" />
 					</td>
 					<td style="text-align:center;">OR</td>
 					<td class="usd-input-field" style="width:50%;">
-						<input type="text" name="usd" id="usd" />
+						<input type="text" name="usd" id="usd" pattern="[0-9]*" />
 					</td>
 				</tr>
 			</table>
 			<table>
 				<tr>
 					<td class="digicard-input-field">
-						<input type="text" name="digicardno" id="digicardno" placeholder="Enter 16 Digit Card Number"/>
+						<input type="text" name="digicardno" id="digicardno" placeholder="Enter 16 Digit Card Number" pattern="[0-9]*"/>
 					</td>
 				</tr>
 			</table>

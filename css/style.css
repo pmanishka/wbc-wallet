@@ -79,7 +79,7 @@ body .container {
     width: 100%;
 	background:#000;
 }
-.loading{    color: #000;
+.loading{    color: #fff;
     text-align: center;
     margin-top: 50%;
 	font-weight:600;
@@ -150,6 +150,7 @@ body .container {
 }
 .mainpage-section .homewrapper img {
     width: 55%;
+    margin-top:5%;
 	/* margin-left: -28px; */
 }
 .home-text {
@@ -159,9 +160,10 @@ body .container {
 	font-size:14px;
 }
 .home-text-main {
-    color:#b85ad6;
-    font-size: 23px;
+    color:#efcd61;;
+    font-size: 31px;
 	margin-left:5%;
+	margin-top: 10%;
 	font-family:Sans-Serif Condensed;
 	font-weight:bold;
 	
@@ -1206,7 +1208,7 @@ a.green-transact-button  {
 }
 .dash-footer{
 	bottom:0px;
-	/*position:fixed;*/
+	position:fixed;
 }
 .balance{
 	text-align:center; 
@@ -2541,3 +2543,14 @@ margin-left:-1.7em;
 cursor:pointer}
 
 .qrcode-text-btn > input[type=file] {position:absolute; overflow:hidden; width:1px; height:1px; opacity:0}
+
+
+.loader {
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 9999;
+	background: url('http://www.downgraf.com/wp-content/uploads/2014/09/01-progress.gif?e44397') 50% 50% no-repeat rgb(249,249,249);
+}

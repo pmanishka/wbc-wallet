@@ -11,14 +11,21 @@ jQuery.support.cors = true;
 touchMove = function(event) {
       event.preventDefault();
 }
+jQuery( document ).ready(function() {
+
+
+if(window.sessionStorage.getItem("loggedIn") == 1) {
+	window.location='securitypin.html';
+}
+});
 </script>
 </head>
 <body>
-
-<div id="main_wrapper" ontouchmove="touchMove(event)">
+<div ontouchmove="touchMove(event)">
+<div id="main_wrapper">
 	<div class="main-container">
 	<div id="topbar">
-		<div style="color:transparent">Step 2</div>
+		<div style="color:transparent">test</div>
 	</div>
 	<div id="top_header">
 		<div class="logo">
@@ -34,6 +41,7 @@ touchMove = function(event) {
 		<a href="register.html">Open New Account</a></div>
 		<div class="account"><span>If you have an account. | <a href="login.html">Click here</a></span></div>
 	</div>
+</div>
 </div>
 </div>
 </body>

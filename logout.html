@@ -25,7 +25,14 @@ jQuery.support.cors = true;
 
 	jQuery(document).ready(function(){
 		localStorage.clear();
+		sessionStorage.clear();
+		sessionStorage.removeItem('loggedIn');
+		sessionStorage.removeItem('user_id');
+		sessionStorage.removeItem('password');
+		sessionStorage.removeItem('uid');
 		window.location ='home.html';
+
+		
 	});
 		
 </script>

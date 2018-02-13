@@ -9,7 +9,6 @@
 var contentType ="application/x-www-form-urlencoded; charset=utf-8";
 if(window.XDomainRequest){contentType = "text/plain";}
 jQuery.support.cors = true;
-
 touchMove = function(event) {
       event.preventDefault();
 }
@@ -93,7 +92,7 @@ var username = localStorage.getItem("username");
 						<input type="text" readonly value="+91"/>
 					</div>
 					<div class="mobile-input-field">
-						<input type="text" name="mobileno" id="mobileno" maxlength="10"/>
+						<input type="text" name="mobileno" id="mobileno" maxlength="10" pattern="[0-9]*"/>
 					</div>
 					<div class="input-button arrow-button">
 						<input type="button" name="submit" value="Send OTP"/>

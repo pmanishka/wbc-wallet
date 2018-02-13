@@ -12,11 +12,16 @@ touchMove = function(event) {
       event.preventDefault();
 }
 	
-/*jQuery(document).ready(function() {  
+jQuery(document).ready(function() {  
 	window.setTimeout(function() {
-		window.location.href = 'home.html';
+		if(window.sessionStorage.getItem("loggedIn") == 1) {
+			window.location='securitypin.html';
+		}
+		else{
+			window.location.href = 'home.html';
+		}
 	}, 4000);
-});*/
+});
 </script>
 </head>
 <body>
@@ -26,8 +31,9 @@ touchMove = function(event) {
 		<div class="container">
 			<div class="mainpage-section">
 				<div class="homewrapper">
+					<div class="home-text-main">Welcome</div>
 					<img src="images/logo-digi6.png"/>
-					<div class="home-text-main">Welcome To Digi Wallet</div>
+					
 					<!-- <div class="home-text"></div> -->
 					<div class="loading">Loading</div>
 				</div>

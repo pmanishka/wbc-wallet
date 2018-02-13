@@ -10,25 +10,23 @@
 var contentType ="application/x-www-form-urlencoded; charset=utf-8";
 if(window.XDomainRequest){contentType = "text/plain";}
 jQuery.support.cors = true;
-
+touchMove = function(event) {
+		  event.preventDefault();
+	}
+	
 jQuery( document ).ready(function() {
 
-if (!(/iphone|ipad/gi).test(navigator.appVersion)) {
-    $(window).unbind("resize").bind("resize", function() {
-        $(window).trigger("orientationchange");
-    });
+if(window.sessionStorage.getItem("loggedIn") == 1) {
+	window.location='securitypin.html';
 }
-touchMove = function(event) {
-      event.preventDefault();
-}
-	
+else{
 	
 	jQuery('input[name="submit"]').click(function(){
 
 		var user_id=jQuery("#userid").val();
 		var password=jQuery("#password").val();
 
-		
+
 		$.ajax({
 		  url: siteurl+"login",
 		  type: 'POST',
@@ -44,7 +42,13 @@ touchMove = function(event) {
 				sessionStorage.setItem("password", password);
 				sessionStorage.setItem("uid", data['details']['id']);
 
-				window.location='securitypin.html';
+				$("#snackbar").fadeIn("slow", function () {
+					setTimeout(function () {
+						$("#snackbar").fadeOut("slow");
+					}, 1000);
+					window.location='securitypin.html';
+				});
+				
 			}else{
 				alert('Login Failed');
 			}
@@ -54,7 +58,8 @@ touchMove = function(event) {
 		  }
 		});
 	});
-		
+
+}	
 });
 
 </script>
@@ -89,5 +94,6 @@ touchMove = function(event) {
 	</div>
 	</div>
 </div>
+<div id="snackbar" style="display:none;">Login Successfully</div>
 </body>
 </html>
