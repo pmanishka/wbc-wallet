@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+        <link rel="stylesheet" type="text/css" href="css/style.css" />
+		 <script type="text/javascript" src="js/jquery.min.js"></script>
+		 <script type="text/javascript" src="js/jquery.qrcode.min.js"></script>
+<script>
+var contentType ="application/x-www-form-urlencoded; charset=utf-8";
+if(window.XDomainRequest){contentType = "text/plain";}
+jQuery.support.cors = true;
+
+
+function scan()
+{
+	cordova.plugins.barcodeScanner.scan(
+    function (result) {
+        if(!result.cancelled){
+				   // In this case we only want to process QR Codes
+				   if(result.format == "QR_CODE"){
+						var value = result.text;
+						// This is the retrieved content of the qr code
+						console.log(value);
+				   }else{
+					  alert("Sorry, only qr codes this time ;)");
+				   }
+			}else{
+			  alert("The user has dismissed the scan");
+			}
+		 },
+		 function (error) {
+			  alert("An error ocurred: " + error);
+		 }
+	);
+}
+
+</script>
+    </head>
+
+    <body>
+
+ <div id="demo"></div>
+        
+        <input class="submitbtn" type="submit" onClick="scan();" value="SCAN BAR CODE"/>
+
+    </body>
+</html>
