@@ -213,7 +213,7 @@ jQuery( document ).ready(function() {
 					<li class="tbl" style="padding-top: 2px; padding-bottom: 10px;">
 					<table>
 						<tr>
-							<td class="picon"><img src="images/prepaid-card-in-a-hand.png"></td>
+							<td class="picon"><img src="images/recieve.png"></td>
 							<td>&nbsp;&nbsp;&nbsp;</td>
 							<td class="ptxt"><a href="transact.html">Received</a></td>
 						</tr>
@@ -222,7 +222,7 @@ jQuery( document ).ready(function() {
 					<li class="tbl" style="padding-top: 2px; padding-bottom: 10px;">
 					<table>
 						<tr>
-							<td class="picon"><img src="images/prepaid-card-in-a-hand.png"></td>
+							<td class="picon"><img src="images/send.png"></td>
 							<td>&nbsp;&nbsp;&nbsp;</td>
 							<td class="ptxt"><a href="otherdigiwallet.html">Send</a></td>
 						</tr>
@@ -231,9 +231,9 @@ jQuery( document ).ready(function() {
 					<li class="tbl" style="padding-top: 2px; padding-bottom: 10px;">
 					<table>
 						<tr>
-							<td class="picon"><img src="images/prepaid-card-in-a-hand.png"></td>
+							<td class="picon"><img src="images/digibook.png"></td>
 							<td>&nbsp;&nbsp;&nbsp;</td>
-							<td class="ptxt"><a href="dashboard.html">Digi Card</a></td>
+							<td class="ptxt"><a href="digibook.html">Digi Book</a></td>
 						</tr>
 					</table>
 					</li>
@@ -294,11 +294,11 @@ jQuery( document ).ready(function() {
 					<input type="hidden" name="curr_id" id="curr_id" />
 					<input type="hidden" name="username" id="username" />
 					<input type="hidden" name="currency_name" id="currency_name" />
-					<input type="text" name="btc" id="btc" />
+					<input type="text" name="btc" id="btc" pattern="[0-9]*" />
 				</td>
 				<td style="text-align:center;">OR</td>
 				<td class="usd-input-field" style="width:50%;">
-					<input type="text" name="usd" id="usd" />
+					<input type="text" name="usd" id="usd" pattern="[0-9]*"/>
 				</td>
 			</tr>
 		</table>
@@ -358,11 +358,11 @@ jQuery( document ).ready(function() {
 			</tr>
 			<tr>
 				<td class="btc-input-field" style="width:50%;">
-					<input type="text" name="btc" id="btc" />
+					<input type="text" name="btc" id="btc" pattern="[0-9]*"/>
 				</td>
 				<td style="text-align:center;">OR</td>
 				<td class="usd-input-field" style="width:50%;">
-					<input type="text" name="usd" id="usd" />
+					<input type="text" name="usd" id="usd" pattern="[0-9]*" />
 				</td>
 			</tr>
 		</table>
