@@ -115,9 +115,9 @@ jQuery( document ).ready(function() {
 		});
 	
 	
-		$(".btc-input-field #btc").keyup(function(){
-			var btcval = jQuery('.btc-input-field #btc').val();
-			
+		$(".send-transc .btc-input-field #btc").keyup(function(){
+			var btcval = jQuery(this).val();
+			//alert(btcval);
 			// Get BitPay Data
 			$.ajax({
 			type: 'GET',
@@ -128,38 +128,23 @@ jQuery( document ).ready(function() {
 					$.each(response, function(idx, obj) {
 						if(obj.code == 'USD'){
 							var usdval = (obj.rate) ;
-							var bitcalc = btcval * usdval;
-							jQuery("#usd").attr("value",bitcalc);
+							jQuery('.send-transc .btc-input-field #btc').attr("value",btcval);
+							var btccval = jQuery('.send-transc  .btc-input-field #btc').val();
+							var bitcalc = btccval * usdval;
+							//alert(bitcalc);
+							jQuery(".send-transc .usd-input-field #usd").attr("value",bitcalc);
 							var currency_id = jQuery("#curr_id").val();
 							var username = jQuery("#username").val();
 							var currency_name = jQuery("#currency_name").val();
 
 								// Click on proceed button
-								jQuery('input[class="transact-button"]').click(function(){
-									if(btcval > 0){
+								jQuery('.receive input[class="green-submit-button"]').click(function(){
+									if(btccval > 0){
 										jQuery(this).hide();
-										jQuery("#btc").prop('readonly', true);
-										jQuery("#usd").prop('readonly', true);
+										//jQuery("#btc").prop('readonly', true);
+										//jQuery("#usd").prop('readonly', true);
 										// Get barcode
-										$.ajax({
-										  url: "https://www.4xwin.com/appadmin/app_call_for_block_chain.php",
-										  type: 'POST',
-										  data: {q:'depositCurrency',user_id:userid,amount:bitcalc,currency_id:currency_id,username:username,currency_name:currency_name,equal_usd:bitcalc}, 
-										  crossDomain: true,   
-										  success: function(data) {
-											var obj = jQuery.parseJSON(data);
-											jQuery('.transact-btc-result').show();
-											jQuery('.transact-btc-result .equal_usd').html('<iframe src="'+obj.url+'" width="354" height="354" />');
-											jQuery('.transact-btc-result .usd_address').append(obj.address);
-											// Address Copied
-											jQuery('.transact-btc-result .usd_address').focus(function(){
-												document.execCommand('copy');
-											});
-										  },
-										  error: function() {
-											alert('Error');
-										  }
-										});
+										
 									}
 								});
 						}
@@ -350,7 +335,7 @@ jQuery( document ).ready(function() {
 			</tr>
 		</table>
 		<form>
-			<table class="btc">
+			<table class="btc send-transc">
 			<tr>
 				<td style="text-align:center; width:50%;">BTC&nbsp;&nbsp;&nbsp;&nbsp;<img src="images/bitcoin_logo.png"/></td>
 				<td style="text-align:center;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>

@@ -43,6 +43,7 @@
 	</platform>
 	
 	<preference name="android-build-tool" value="gradle" />
+	<preference name="UIWebViewBounce" value="false" />
 	<plugin name="phonegap-plugin-barcodescanner" />
 	<!--<platform name="android">
 	  <resource-file src="google-services.json" target="google-services.json" />

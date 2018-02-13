@@ -1,0 +1,19 @@
+1. In home page loding section should be in bottom - Done
+2. Every page should not be scroll- (Done) 
+3. Login 
+	a. Manage input - Done
+	b. Change everywhere digi wallet - Done
+	c. Header should be sticky
+4. Off Landscape in full app - Done
+5. Security Pin auto focus in every input and numeric - working
+6. Dashboard: Add signout in menu -Done
+	remove from right side top 
+	Set Design
+	Add backbutton
+8. If user aleardy loggedin  in device then when open app then open security pin page no need login or register page - Done
+11.add snakbar in all pages.
+add pre loader in data page.
+in transact page instead of normal keypad numeric keypad will be active. Done
+problem in faq.(Done)
+problem in  qr code and address in transact page.
+in addressbook page add button will be invisible after clicking on delete and delete button will be on that place.

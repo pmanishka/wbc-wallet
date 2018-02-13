@@ -127,6 +127,9 @@ jQuery( document ).ready(function() {
 					$.each(response, function(idx, obj) {
 						if(obj.code == 'USD'){
 							var usdval = (obj.rate) ;
+							
+							jQuery(".btc-input-field #btc").attr("value",btcval);
+							var btcval = jQuery('.btc-input-field #btc').val();
 							var bitcalc = btcval * usdval;
 							jQuery("#usd").attr("value",bitcalc);
 							var currency_id = jQuery("#curr_id").val();
@@ -139,6 +142,7 @@ jQuery( document ).ready(function() {
 										jQuery(this).hide();
 										jQuery("#btc").prop('readonly', true);
 										jQuery("#usd").prop('readonly', true);
+										
 										// Get barcode
 										$.ajax({
 										  url: "https://www.4xwin.com/appadmin/app_call_for_block_chain.php",
@@ -146,14 +150,22 @@ jQuery( document ).ready(function() {
 										  data: {q:'depositCurrency',user_id:userid,amount:bitcalc,currency_id:currency_id,username:username,currency_name:currency_name,equal_usd:bitcalc}, 
 										  crossDomain: true,   
 										  success: function(data) {
-											var obj = jQuery.parseJSON(data);
-											jQuery('.transact-btc-result').show();
-											jQuery('.transact-btc-result .equal_usd').html('<img src="'+obj.url+'" />');
-											jQuery('.transact-btc-result .usd_address').append(obj.address);
-											// Address Copied
-											jQuery('.transact-btc-result .usd_address').focus(function(){
-												document.execCommand('copy');
-											});
+										  
+										  
+												var obj = jQuery.parseJSON(data);
+												jQuery('.transact-btc-result').show();
+												if(obj.address == 'Invalid xpub format'){
+													jQuery('.transact-btc-result .equal_usd').html('<img src="images/error.png" />');
+												}else{
+													jQuery('.transact-btc-result .equal_usd').html('<img src="'+obj.url+'" />');
+												}
+												
+												jQuery('.transact-btc-result .usd_address').append(obj.address);
+												// Address Copied
+												jQuery('.transact-btc-result .usd_address').focus(function(){
+													document.execCommand('copy');
+												});
+												
 										  },
 										  error: function() {
 											alert('Error');
@@ -172,9 +184,9 @@ jQuery( document ).ready(function() {
 		
 		
 		// USD To BTC
-		$(".btc-input-field #usd").keyup(function(){
-			var usdval = jQuery('.btc-input-field #usd').val();
-			
+		$(".usd-input-field #usd").keyup(function(){
+		
+			var usdval = jQuery('.usd-input-field #usd').val();
 			// Get BitPay Data
 			$.ajax({
 			type: 'GET',
@@ -183,17 +195,23 @@ jQuery( document ).ready(function() {
 			async: false,
 				success: function (response) {
 					$.each(response, function(idx, obj) {
-						if(obj.code == 'BTC'){
-							var btcval = (obj.rate) ;
-							var usdcalc = btcval * usdval;
-							jQuery("#usd").attr("value",usdcalc);
+						if(obj.code == 'USD'){
+							//var btcval = 1 ;
+							var usdvalrate = (obj.rate) ;
+							
+							var usdcalc =  usdval/usdvalrate;
+							
+							jQuery("#btc").attr("value",usdcalc);
+							
+							
 							var currency_id = jQuery("#curr_id").val();
 							var username = jQuery("#username").val();
 							var currency_name = jQuery("#currency_name").val();
 
 								// Click on proceed button
 								jQuery('input[class="transact-button"]').click(function(){
-									if(btcval > 0){
+								var btcval = jQuery("#btc").val();
+									if(usdval > 0){
 										jQuery(this).hide();
 										jQuery("#btc").prop('readonly', true);
 										jQuery("#usd").prop('readonly', true);
@@ -201,12 +219,16 @@ jQuery( document ).ready(function() {
 										$.ajax({
 										  url: "https://www.4xwin.com/appadmin/app_call_for_block_chain.php",
 										  type: 'POST',
-										  data: {q:'depositCurrency',user_id:userid,amount:bitcalc,currency_id:currency_id,username:username,currency_name:currency_name,equal_usd:bitcalc}, 
+										  data: {q:'depositCurrency',user_id:userid,amount:usdval,currency_id:currency_id,username:username,currency_name:currency_name,equal_usd:usdval}, 
 										  crossDomain: true,   
 										  success: function(data) {
 											var obj = jQuery.parseJSON(data);
 											jQuery('.transact-btc-result').show();
-											jQuery('.transact-btc-result .equal_usd').html('<img src="'+obj.url+'" />');
+											if(obj.address == 'Invalid xpub format'){
+													jQuery('.transact-btc-result .equal_usd').html('<img src="images/error.png" />');
+											}else{
+												jQuery('.transact-btc-result .equal_usd').html('<img src="'+obj.url+'" />');
+											}
 											jQuery('.transact-btc-result .usd_address').append(obj.address);
 											// Address Copied
 											jQuery('.transact-btc-result .usd_address').focus(function(){

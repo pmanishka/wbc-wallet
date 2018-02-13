@@ -1946,9 +1946,11 @@ table.detail img,table.search-detail img {
 	text-align:right;
 }
 .add-address {
-    width: 100%;
+   width: 93%;
     float: left;
-    padding: 10px;
+    margin-top: 45px;
+    margin-left: 7%;
+}
 }
 .address-text a {
     color: #757575;
