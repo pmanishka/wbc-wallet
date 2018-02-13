@@ -91,9 +91,11 @@ jQuery( document ).ready(function() {
 										
 										//Delete Address
 										jQuery(".deladd").click(function(){
+											jQuery('.floating').css('display','none');
 											jQuery('.add_id').show();
 											jQuery('.actions').show();
 											jQuery('.name-logo label').show();
+
 
 											// Delete selected address
 											$('.delete-address').click(function() {
