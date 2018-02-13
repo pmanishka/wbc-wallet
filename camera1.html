@@ -1,49 +1,46 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8" />
-        <meta name="format-detection" content="telephone=no" />
-        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
-        <link rel="stylesheet" type="text/css" href="css/style.css" />
-		 <script type="text/javascript" src="js/jquery.min.js"></script>
-		 <script type="text/javascript" src="js/jquery.qrcode.min.js"></script>
-<script>
-var contentType ="application/x-www-form-urlencoded; charset=utf-8";
-if(window.XDomainRequest){contentType = "text/plain";}
-jQuery.support.cors = true;
+  <head>
+    <title>QCodeDecoder - Camera</title>
+  </head>
+  <body>
 
+  <video autoplay></video>
+  <button id="reset">Reset</button>
+  <button id="stop" >Stop</button>
 
-function scan()
-{
-	cordova.plugins.barcodeScanner.scan(
-    function (result) {
-        if(!result.cancelled){
-				   // In this case we only want to process QR Codes
-				   if(result.format == "QR_CODE"){
-						var value = result.text;
-						// This is the retrieved content of the qr code
-						console.log(value);
-				   }else{
-					  alert("Sorry, only qr codes this time ;)");
-				   }
-			}else{
-			  alert("The user has dismissed the scan");
-			}
-		 },
-		 function (error) {
-			  alert("An error ocurred: " + error);
-		 }
-	);
-}
-
-</script>
-    </head>
-
-    <body>
-
- <div id="demo"></div>
-        
-        <input class="submitbtn" type="submit" onClick="scan();" value="SCAN BAR CODE"/>
-
-    </body>
+  <script src="js/qcode-decoder.min.js"></script>
+  <script type="text/javascript">
+  (function () {
+    'use strict';
+    var qr = new QCodeDecoder();
+    if (!(qr.isCanvasSupported() && qr.hasGetUserMedia())) {
+      alert('Your browser doesn\'t match the required specs.');
+      throw new Error('Canvas and getUserMedia are required');
+    }
+    var video = document.querySelector('video');
+    var reset = document.querySelector('#reset');
+    var stop = document.querySelector('#stop');
+    function resultHandler (err, result) {
+      if (err)
+        return console.log(err.message);
+      alert(result);
+    }
+    // prepare a canvas element that will receive
+    // the image to decode, sets the callback for
+    // the result and then prepares the
+    // videoElement to send its source to the
+    // decoder.
+    qr.decodeFromCamera(video, resultHandler);
+    // attach some event handlers to reset and
+    // stop whenever we want.
+    reset.onclick = function () {
+      qr.decodeFromCamera(video, resultHandler);
+    };
+    stop.onclick = function () {
+      qr.stop();
+    };
+  })();
+  </script>
+</body>
 </html>
