@@ -57,7 +57,12 @@ jQuery( document ).ready(function() {
 						  {
 							window.location='dashboard.html';
 						  }else{
-							 alert('Enter the correct pin');
+							$("#snackbar").fadeIn("slow", function () {
+								setTimeout(function () {
+									$("#snackbar").fadeOut("slow");
+								}, 1000);
+								window.location='securitypin.html';
+							});
 						  }
 					  }
 						  
@@ -88,7 +93,7 @@ jQuery( document ).ready(function() {
 	<div class="main-container">
 		<div id="top_header_pin">
 			<div class="logo-pin">
-				<div class="logo-pin-img"><img src="images/logo-digi2.png"/></div>
+				<div class="logo-pin-img"><img src="images/logo-digi6.png"/></div>
 			<!-- 	<div class="logo-pin-text">Digi Wallet</div> -->
 			</div>
 		</div>
@@ -108,5 +113,6 @@ jQuery( document ).ready(function() {
 		</div>
 	</div>
 </div>
+<div id="snackbar" style="display:none;">Enter the correct pin</div>
 </body>
 </html>
