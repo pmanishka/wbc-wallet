@@ -78,10 +78,7 @@
 	<icon src="res/icon/android/xxhdpi.png" gap:platform="android" gap:density="xxhdpi" />
 	
 	<platform name="ios">
-    <!-- There are two mechanisms for showing launch images.
-      -- Legacy method (supports all devices except iPad Pro 12.9):
-      -- Note: Images are determined by width and height. The following are supported -->
-    < <splash src="res/screen/ios/Default-667h.png" width="750" height="1334"/>
+     <splash src="res/screen/ios/Default-667h.png" width="750" height="1334"/>
     <splash src="res/screen/ios/Default-736h.png" width="1242" height="2208"/>
    
 
