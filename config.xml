@@ -83,7 +83,7 @@
    
 
 </platform>
-<preference name="SplashScreenDelay" value="10000" />
+<preference name="SplashScreenDelay" value="1000" />
 	<!--Iphone icons-->
 	<splash src="splash.png" />
 	<preference name="SplashScreen" value="res/screen/ios/Default-568h@2x~iphone.png" />  
