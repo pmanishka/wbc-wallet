@@ -1837,6 +1837,8 @@ input:checked + .slider:before {
 .actions {
     width: 100%;
     float: left;
+    position:fixed;
+    bottom:10px;
 }
 .address-name {
     color: #e1bee7;
@@ -1920,6 +1922,7 @@ input.add_id {
     border-radius: 100%;
     padding: 10px;
 	float:right;
+	margin-right:10px;
 }
 .delete-address img {
     width: 100%;
@@ -1931,6 +1934,7 @@ input.add_id {
     border-radius: 100%;
     padding: 10px;
 	float:left;
+	margin-left:10px;
 }
 .refresh-address img {
     width: 100%;
@@ -2059,6 +2063,9 @@ input[type="button"].float-button {
     -webkit-margin-after: 7%;
     margin-left: 17%;
 	    margin-top: 5px;
+}
+.deladd{
+	cursor:pointer;
 }
 .address-text{
 	background-color: #fff;

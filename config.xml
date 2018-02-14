@@ -28,8 +28,15 @@
 	<plugin name="cordova-plugin-file-transfer" spec="~1.6.3" />
 	<plugin name="cordova.plugins.diagnostic" source="npm" />
 	<plugin name="cordova-plugin-dialogs" source="npm" />
-
+	<gap:plugin name="cordova-plugin-uniquedeviceid" source="npm" />
 	
+	<!-- QR Code Scanner -->
+	<edit-config target="NSCameraUsageDescription" file="*-Info.plist" mode="merge">
+		<string>To scan barcodes</string>
+	</edit-config>
+	<!-- add a version here, otherwise PGB will use whatever the latest version of the package on npm is -->
+	<plugin name="phonegap-plugin-barcodescanner" />
+
 	<platform name="android">
 	  <resource-file src="google-services.json" target="google-services.json" />
 	</platform>
@@ -77,13 +84,7 @@
 	<icon src="res/icon/android/xhdpi.png" gap:platform="android" gap:density="xhdpi" />
 	<icon src="res/icon/android/xxhdpi.png" gap:platform="android" gap:density="xxhdpi" />
 	
-	<platform name="ios">
-     <splash src="res/screen/ios/Default-667h.png" width="750" height="1334"/>
-    <splash src="res/screen/ios/Default-736h.png" width="1242" height="2208"/>
-   
-
-</platform>
-<preference name="SplashScreenDelay" value="1000" />
+	
 	<!--Iphone icons-->
 	<splash src="splash.png" />
 	<preference name="SplashScreen" value="res/screen/ios/Default-568h@2x~iphone.png" />  

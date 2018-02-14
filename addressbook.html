@@ -91,7 +91,9 @@ jQuery( document ).ready(function() {
 										
 										//Delete Address
 										jQuery(".deladd").click(function(){
+											
 											jQuery('.floating').css('display','none');
+											jQuery('.addbutton').css('display','none');
 											jQuery('.add_id').show();
 											jQuery('.actions').show();
 											jQuery('.name-logo label').show();
@@ -176,6 +178,8 @@ jQuery( document ).ready(function() {
 								
 								//Delete Address
 								jQuery(".deladd").click(function(){
+									jQuery('.addbutton').css('display','none');
+									jQuery('.floating').css('display','none');
 									jQuery('.add_id').show();
 									jQuery('.actions').show();
 									jQuery('.name-logo label').show();
@@ -326,11 +330,12 @@ jQuery( document ).ready(function() {
 					
 				</table>
 			</div>
-			<div class="actions" style="display:none;">
+			
+		</div>
+		<div class="actions" style="display:none;">
 				<div class="refresh-address"><img src="images/back.png"/></div>
 				<div class="delete-address"><img src="images/delete.png"/></div>
 			</div>
-		</div>
 		<div class="addbutton">
 				<input type="button" class="float-button open">
 		</div>

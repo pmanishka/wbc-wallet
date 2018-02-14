@@ -3,27 +3,11 @@
 <head>
 <title>Digi Wallet</title>
 <link rel="stylesheet" type="text/css" href="css/style.css">
-<script type="text/javascript" charset="utf-8" src="js/cordova.js"></script>
 <script src="js/jquery.min.js"></script>
 <script>
 var contentType ="application/x-www-form-urlencoded; charset=utf-8";
 if(window.XDomainRequest){contentType = "text/plain";}
 jQuery.support.cors = true;
-
-
-
-document.addEventListener("deviceready", onDeviceReady, false);
-
-function onDeviceReady() {
-    var element = document.getElementById('deviceProperties');
-    element.innerHTML = 'Device Model: '    + device.model    + '<br />' +
-                        'Device Cordova: '  + device.cordova  + '<br />' +
-                        'Device Platform: ' + device.platform + '<br />' +
-                        'Device UUID: '     + device.uuid     + '<br />' +
-                        'Device Version: '  + device.version  + '<br />';
-}
-
-
 
 jQuery( document ).ready(function() {
 
@@ -56,6 +40,5 @@ if(window.sessionStorage.getItem("loggedIn") == 1) {
 	</div>
 </div>
 </div>
-    <p id="deviceProperties" style="color:#fff">Loading device properties...</p>
 </body>
 </html>

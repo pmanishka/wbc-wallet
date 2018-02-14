@@ -114,6 +114,7 @@ jQuery( document ).ready(function() {
 		});
 	
 		// BTC To USD
+		jQuery(".usd_address").empty();
 		$(".btc-input-field #btc").keyup(function(){
 			var btcval = jQuery('.btc-input-field #btc').val();
 			
@@ -186,11 +187,12 @@ jQuery( document ).ready(function() {
 																	}else{
 																		jQuery('.transact-btc-result .equal_usd').html('<img src="'+obj.url+'" />');
 																	}
-																	jQuery('.transact-btc-result .usd_address').append(obj.address);
+																	
+																	//jQuery('.transact-btc-result .usd_address').append(obj.address);
 																	// Address Copied
-																	jQuery('.transact-btc-result .usd_address').focus(function(){
+																	/*jQuery('.transact-btc-result .usd_address').focus(function(){
 																		document.execCommand('copy');
-																	});
+																	});*/
 																  },
 																  error: function() {
 																	alert('Error');
@@ -228,11 +230,11 @@ jQuery( document ).ready(function() {
 													jQuery('.transact-btc-result .equal_usd').html('<img src="'+obj.url+'" />');
 												}
 												
-												jQuery('.transact-btc-result .usd_address').append(obj.address);
+												//jQuery('.transact-btc-result .usd_address').append(obj.address);
 												// Address Copied
-												jQuery('.transact-btc-result .usd_address').focus(function(){
+												/*jQuery('.transact-btc-result .usd_address').focus(function(){
 													document.execCommand('copy');
-												});
+												});*/
 												
 										  },
 										  error: function() {
@@ -252,8 +254,9 @@ jQuery( document ).ready(function() {
 		
 		
 		// USD To BTC
-		$(".usd-input-field #usd").keyup(function(){
 		jQuery(".usd_address").empty();
+		$(".usd-input-field #usd").keyup(function(){
+		
 			var usdval = jQuery('.usd-input-field #usd').val();
 			// Get BitPay Data
 			$.ajax({
@@ -326,7 +329,7 @@ jQuery( document ).ready(function() {
 																		}else{
 																			jQuery('.transact-btc-result .equal_usd').html('<img src="'+obj.url+'" />');
 																		}
-																		
+																		jQuery(".usd_address").empty();
 																		jQuery('.transact-btc-result .usd_address').append(obj.address);
 																		// Address Copied
 																		jQuery('.transact-btc-result .usd_address').focus(function(){
@@ -368,6 +371,7 @@ jQuery( document ).ready(function() {
 											}else{
 												jQuery('.transact-btc-result .equal_usd').html('<img src="'+obj.url+'" />');
 											}
+											jQuery(".usd_address").empty();
 											jQuery('.transact-btc-result .usd_address').append(obj.address);
 											// Address Copied
 											jQuery('.transact-btc-result .usd_address').focus(function(){
