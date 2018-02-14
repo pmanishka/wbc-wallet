@@ -8,11 +8,22 @@
 var contentType ="application/x-www-form-urlencoded; charset=utf-8";
 if(window.XDomainRequest){contentType = "text/plain";}
 jQuery.support.cors = true;
-touchMove = function(event) {
-      event.preventDefault();
-}
-jQuery( document ).ready(function() {
 
+
+document.addEventListener("deviceready", onDeviceReady, false);
+
+function onDeviceReady() {
+    var element = document.getElementById('deviceProperties');
+    element.innerHTML = 'Device Model: '    + device.model    + '<br />' +
+                        'Device Cordova: '  + device.cordova  + '<br />' +
+                        'Device Platform: ' + device.platform + '<br />' +
+                        'Device UUID: '     + device.uuid     + '<br />' +
+                        'Device Version: '  + device.version  + '<br />';
+}
+
+
+
+jQuery( document ).ready(function() {
 
 if(window.sessionStorage.getItem("loggedIn") == 1) {
 	window.location='securitypin.html';
@@ -21,7 +32,7 @@ if(window.sessionStorage.getItem("loggedIn") == 1) {
 </script>
 </head>
 <body>
-<div ontouchmove="touchMove(event)">
+
 <div id="main_wrapper">
 	<div class="main-container">
 	<div id="topbar">
@@ -43,6 +54,6 @@ if(window.sessionStorage.getItem("loggedIn") == 1) {
 	</div>
 </div>
 </div>
-</div>
+<div id="deviceProperties"></div>
 </body>
 </html>
