@@ -142,6 +142,7 @@ function scan()
        function (result) {
 	    $("#aadhar_card_details").val(result.text);  
 		var aadhardata = result.text ;
+		alert(aadhardata);
 		$.ajax({
 		  type: "POST",
 		  url: "qrcode-reader.php",
