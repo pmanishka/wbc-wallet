@@ -126,9 +126,8 @@ function scan()
 	   
 	   $("#aadhar_card_details").val(result.text);  
 		var str= result.text;
-		var xmlString = (new XMLSerializer()).serializeToString(str);
-		alert(xmlString);
-		   
+		var data = XML.parse(str);
+		    alert(data);
 		  
 		   
 
