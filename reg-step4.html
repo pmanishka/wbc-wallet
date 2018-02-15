@@ -123,9 +123,11 @@ function scan()
 {
     cordova.plugins.barcodeScanner.scan(
        function (result) {
-		   alert(result.text[0]);
+		   alert(result.text['name']);
+		   alert(result.text['yob']);
+		   alert(result.text['co']);
 		  
-		   $("#aadhar_card_details").val(result.text[1]);  
+		   $("#aadhar_card_details").val(result.text['gender']);  
 
 		
       },
