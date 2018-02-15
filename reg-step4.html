@@ -126,10 +126,7 @@ function scan()
 	   
 	   $("#aadhar_card_details").val(result.text);  
 		var str= result.text;
-		var xmlDoc = $.parseXML(str[PrintLetterBarcodeData]);
-		var $xml = $(xmlDoc);
-		var $Name = $xml.find('uid');
-		alert($Name);
+		xmlString = (new XMLSerializer()).serializeToString(str);
 
 		   
 		  
