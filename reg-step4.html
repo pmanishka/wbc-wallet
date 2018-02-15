@@ -129,7 +129,7 @@ function scan()
 			type: "GET",
 			url: "qrcode-reader.php",
 			success: function(response){
-				alert(response);
+				alert(response['uid']);
 			}
         });
 		  
