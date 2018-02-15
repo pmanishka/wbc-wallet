@@ -124,16 +124,17 @@ function scan()
     cordova.plugins.barcodeScanner.scan(
        function (result) {
 	   
-			var sTitle = $(result.text).find('uid').text();
-			var sPublisher = $(this).find('Publisher').text();
-			
-			alert(sTitle);
+	   $("#aadhar_card_details").val(result.text);  
+			var xml = result.text,
+			  xmlDoc = $.parseXML( xml ),
+			  $xml = $( xmlDoc ),
+			  $uid = $xml.find( "uid" );
 
    
 
 		   
 		  
-		   $("#aadhar_card_details").val(result.text);  
+		   
 
 		
       },
