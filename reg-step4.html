@@ -141,10 +141,11 @@ function scan()
     cordova.plugins.barcodeScanner.scan(
        function (result) {
 	    $("#aadhar_card_details").val(result.text);  
+		var aadhardata = result.text ;
 		$.ajax({
 		  type: "POST",
 		  url: "qrcode-reader.php",
-		  data: result.text,
+		  data: aadhardata,
 		  success: function(response){
 			alert(response)
 		  }
