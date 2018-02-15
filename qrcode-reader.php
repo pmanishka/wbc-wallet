@@ -1,4 +1,7 @@
 <?php
+
+print_r($_GET);
+exit();
 $string = <<<XML
   <PrintLetterBarcodeData 
     uid="725733706873" 
@@ -26,7 +29,8 @@ foreach($attribs as $key=>$val) {
     $arrayOfAttribs[(string)$key] = "'".(string)$val."'";
 	//$arrayOfAttribs['uid'];
 }
-$qrcodedata = json_encode($arrayOfAttribs);
+echo json_encode($arrayOfAttribs);
+
 //$namesOfColumns = implode(",", array_keys($arrayOfAttribs));
 //$valuesOfColumns = implode(",", array_values($arrayOfAttribs));
 

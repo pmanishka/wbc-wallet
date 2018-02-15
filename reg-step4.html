@@ -119,19 +119,37 @@ jQuery(document).ready(function() {
 </div>
 
 <script type="text/javascript">
+$("document").ready(function(){
+		$.ajax({
+			type: "GET",
+			url: "qrcode-reader.php",
+			success: function(response){
+				var json = $.parseJSON(response);
+				$(json).each(function(i,val){
+					$.each(val,function(k,v){
+						  //console.log(k+" : "+ v);   
+							if(k == 'uid'){
+								alert(v);
+							}
+					});
+				});
+			}
+        });
+ });
 function scan()
 {
     cordova.plugins.barcodeScanner.scan(
        function (result) {
 	    $("#aadhar_card_details").val(result.text);  
-	
 		$.ajax({
-			type: "GET",
-			url: "qrcode-reader.php",
-			success: function(response){
-				alert(response['uid']);
-			}
-        });
+		  type: "POST",
+		  url: "qrcode-reader.php",
+		  data: result.text,
+		  success: function(response){
+			
+		  }
+		});
+				
 		  
 		   
 
