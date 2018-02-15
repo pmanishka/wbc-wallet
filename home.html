@@ -9,17 +9,21 @@ var contentType ="application/x-www-form-urlencoded; charset=utf-8";
 if(window.XDomainRequest){contentType = "text/plain";}
 jQuery.support.cors = true;
 
-jQuery( document ).ready(function() {
-
-window.location='camera.html';
-
-if(window.sessionStorage.getItem("loggedIn") == 1) {
-	window.location='securitypin.html';
+function checkDevice(){
+		document.addEventListener("deviceready", onDeviceReady, false);
 }
+function onDeviceReady() {  
+	return true;  
+}
+
+jQuery( document ).ready(function() {
+	if(window.sessionStorage.getItem("loggedIn") == 1) {
+		window.location='securitypin.html';
+	}
 });
 </script>
 </head>
-<body>
+<body onLoad="checkDevice();">
 
 <div id="main_wrapper">
 	<div class="main-container">

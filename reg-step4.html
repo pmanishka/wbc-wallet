@@ -1,11 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Digi Wallet</title>
 <link rel="stylesheet" type="text/css" href="css/style.css">
 
 <script src="js/jquery.min.js"></script>
-<script src="js/jquery-code-scanner.js"></script>
+<script src="js/config.js"></script>
+<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
 
 <script>
 var contentType ="application/x-www-form-urlencoded; charset=utf-8";
@@ -15,7 +19,12 @@ jQuery.support.cors = true;
 var username = localStorage.getItem("username");
 var email = localStorage.getItem("email");
 
-//$("#dop").datepicker();
+function checkDevice(){
+		document.addEventListener("deviceready", onDeviceReady, false);
+}
+function onDeviceReady() {  
+	return true;  
+}
 
 jQuery(document).ready(function() {
 
@@ -47,7 +56,7 @@ jQuery(document).ready(function() {
 
 </script>
 </head>
-<body>
+<body onLoad="checkDevice();">
 
 <div id="main_wrapper" class="inner-page">
 	<div class="main-container">
@@ -64,7 +73,18 @@ jQuery(document).ready(function() {
 		<div class="aadharcard-scanner">
 			<div class="scan-img"><img src="images/scan_aadhar.png"/></div>
 			<div class="scan-text">Scan Aadhar Card</div>
-			<iframe src="camera.html"></iframe>
+			
+			 <div class="innerpage registerpage regmainsctn">
+				 
+				  <div class="loginmainblock registerblock">
+					<input class="step-no" name="her_pair" id="her_pair" maxlength="15" type="text" placeholder="ENTER HERPAIR NO."/>
+					<input class="submitbtn" onClick="validateHerPair();" type="submit" value="CONTINUE"/>
+					<div class="or">Or</div>
+					<input class="submitbtn" type="submit" onClick="scan();" value="SCAN BAR CODE"/>
+				  </div>
+				</div>
+	
+	
 		</div>
 		<div class="or">
 			<div class="or-line"></div>
@@ -105,5 +125,61 @@ jQuery(document).ready(function() {
 		</div>
 	</div>
 </div>
+<script type="text/javascript">
+
+
+function validateHerPair(){
+	var url = siteurl + '?route=common/home/checkherpair';
+	
+	var user_her_pair = $('input[name="her_pair"]').val();
+	
+	jQuery.ajax({
+			 type: 'POST',
+			 url: url,
+			 data: {her_pair: user_her_pair},
+			 dataType: 'json',
+			 crossDomain: true,
+			 success: function(data){
+				$(".registerblock p").remove(); 
+				 
+				 if(data['success'])
+				 {				 
+				 	window.location = 'register2.html?herpair=' + data['success']['herpair'];
+				 }else if(data['error'])
+				 {				 
+				 						
+					navigator.notification.alert(
+						data['error']['herpair'],
+						callBackFunctionFlag, 
+						'Confirm',
+						"OK"
+					);
+				 }
+			}
+   		});	
+}
+</script>
+<script type="text/javascript">
+function scan()
+{
+    cordova.plugins.barcodeScanner.scan(
+       function (result) {
+		   
+		   $("#her_pair").val(result.text);          
+      },
+      function (error) {
+         var scan_error = "Scanning failed: " + error;
+		  navigator.notification.alert(
+						scan_error,
+						callBackFunctionFlag, 
+						'Confirm',
+						"OK"
+					);
+		  
+      }
+   );
+}
+
+</script>
 </body>
 </html>

@@ -37,7 +37,7 @@
 	<preference name="ShowSplashScreenSpinner" value="false" />
     <preference name="AutoHideSplashScreen" value="true" />
 	<preference name="SplashScreenBackgroundColor" value="0xFFFFFFFF"/>
-	
+	<preference name="AllowInlineMediaPlayback" value="true" />
 	<feature name="Device">
     <param name="android-package" value="org.apache.cordova.device.Device" />
 	</feature>
