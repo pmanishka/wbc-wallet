@@ -3,57 +3,22 @@
 <head>
 <title>Digi Wallet</title>
 <link rel="stylesheet" type="text/css" href="css/style.css">
-<style>
-body {
-background: #000;
-padding:0;
-margin:0;
-}
-.video-responsive {
-padding-bottom: 56.25%;
-position: relative;
-width: 100%;
-}
 
-.canvas,
-.video {
-height: 100%;
-left: 0;
-position: absolute;
-top: 0;
-width: 100%;
-background: #000;
-z-index: 5;
-}
-#over_video{
-position: absolute;
-width: 100%;
-height: 100%;
-text-align: center;
-top: 0;
-z-index: 10;
-font-size: 12vw;
-color: #FFF;
-font-family: Verdana, Arial, Helvetica, sans-serif;
-margin-top: 20%;
-text-shadow: 4px 4px 4px #5C433B;
-}
-</style>
 <script src="js/jquery.min.js"></script>
 <script>
 var contentType ="application/x-www-form-urlencoded; charset=utf-8";
 if(window.XDomainRequest){contentType = "text/plain";}
 jQuery.support.cors = true;
-/*jQuery(document).ready(function() {  
+jQuery(document).ready(function() {  
 	window.setTimeout(function() {
 		if(window.sessionStorage.getItem("loggedIn") == 1) {
 			window.location='securitypin.html';
 		}
 		else{
-			window.location.href = 'home.html';
+			window.location.href = 'camera.html';
 		}
 	}, 4000);
-});*/
+});
 
 
 // Init Stats
@@ -293,60 +258,20 @@ $('canvas').constellation({
 		
 		<div class="container">
 		
-
-		<div class="video-responsive">
-  <video class="video" muted="muted" loop="loop" autoplay="autoplay">
-  <source src="bg-video.mp4" type="video/mp4">
-  Your browser does not support HTML5 video.
-  </video>
-
-<canvas class="canvas"></canvas>        
-
-<div id="over_video">
-
-<div class="mainpage-section">
-	<div class="homewrapper">
-		<div class="home-text-main">Welcome</div>
-		<img src="images/logo-digi6.png"/>
-		
-		<!-- <div class="home-text"></div> -->
-		<div class="loading">Loading</div>
-	</div>
-</div>
-
-
-</div>
-</div>
-		
-			
+	
+			<div class="mainpage-section">
+				<div class="homewrapper">
+					<div class="home-text-main">Welcome</div>
+					<img src="images/logo-digi6.png"/>
+					
+					<!-- <div class="home-text"></div> -->
+					<div class="loading">Loading</div>
+				</div>
+			</div>
 		</div>
 		
 	</div>
 </div>
-<script src="canvas-video-player.js"></script>
-<script>
 
-var isIOS = /iPad|iPhone|iPod/.test(navigator.platform);
-
-if (isIOS) {
-
-    var canvasVideo = new CanvasVideoPlayer({
-        videoSelector: '.video',
-        canvasSelector: '.canvas',
-        timelineSelector: false,
-        autoplay: true,
-        makeLoop: true,
-        pauseOnClick: false,
-        audio: false
-    });
-
-}else {
-
-    // Use HTML5 video
-    document.querySelectorAll('.canvas')[0].style.display = 'none';
-
-}   
-
-</script>
 </body>
 </html>

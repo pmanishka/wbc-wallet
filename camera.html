@@ -1,45 +1,115 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<link rel="stylesheet" type="text/css" href="css/style.css">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Digi Wallet</title>
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link href="css/style.css" type="text/css" rel="stylesheet">
 <script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/config.js"></script>
+<script type="text/javascript" charset="utf-8" src="js/cordova.js"></script>
 
-<script type="text/javascript" src="js/barcodescanner.js"></script>
-<script>
-var contentType ="application/x-www-form-urlencoded; charset=utf-8";
-if(window.XDomainRequest){contentType = "text/plain";}
-jQuery.support.cors = true;
+<script type="text/javascript"> 
+  function checkDevice(){
+		document.addEventListener("deviceready", onDeviceReady, false);
+}
+  function onDeviceReady() {  
+   return true;  
+  }
+</script>
+<script type="text/javascript">
+/*if(parseInt(localStorage.getItem("herpair_log_id")) > 0)
+{
+	window.location = './index.html';
+}*/
+</script>
+<body onLoad="checkDevice();">
+<div class="wrapper">
+  <header>
+    <div class="header-top">
+      <div class="header-right"><img src="images/menu-logo.png"></div>
+    </div>
+  </header>
+  <div class="container">
+    <div class="innerpage registerpage regmainsctn">
+      <h1 class="header-title">REGISTER</h1>
+      <div class="loginmainblock registerblock">
+        <ul class="tabs">
+          <li class="active"><a href="javascript:void(0);"><span>1</span></a></li>
+          <li><a href="javascript:void(0);"><span>2</span></a></li>
+        </ul>
+        <input class="step-no" name="her_pair" id="her_pair" maxlength="15" type="text" placeholder="ENTER HERPAIR NO."/>
+        <input class="submitbtn" onClick="validateHerPair();" type="submit" value="CONTINUE"/>
+        <div class="or">Or</div>
+        <input class="submitbtn" type="submit" onClick="scan();" value="SCAN BAR CODE"/>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="loadermain" id="loadingImg">
+<div class="loader"></div>
+</div>
+</body>
+<script type="text/javascript">
+function callBackFunctionFlag(){
+	$("#loadingImg").fadeOut();
+	return true;
+}
 
+function validateHerPair(){
+	var url = siteurl + '?route=common/home/checkherpair';
+	
+	var user_her_pair = $('input[name="her_pair"]').val();
+	
+	jQuery.ajax({
+			 type: 'POST',
+			 url: url,
+			 data: {her_pair: user_her_pair},
+			 dataType: 'json',
+			 crossDomain: true,
+			 success: function(data){
+				$(".registerblock p").remove(); 
+				 
+				 if(data['success'])
+				 {				 
+				 	window.location = 'register2.html?herpair=' + data['success']['herpair'];
+				 }else if(data['error'])
+				 {				 
+				 						
+					navigator.notification.alert(
+						data['error']['herpair'],
+						callBackFunctionFlag, 
+						'Confirm',
+						"OK"
+					);
+				 }
+			}
+   		});	
+}
+</script>
+<script type="text/javascript">
 function scan()
 {
-	cordova.plugins.barcodeScanner.scan(
-      function (result) {
-          alert("We got a barcode\n" +
-                "Result: " + result.text + "\n" +
-                "Format: " + result.format + "\n" +
-                "Cancelled: " + result.cancelled);
+    cordova.plugins.barcodeScanner.scan(
+       function (result) {
+		   
+		   $("#her_pair").val(result.text);          
       },
       function (error) {
-          alert("Scanning failed: " + error);
-      },
-      {
-          preferFrontCamera : true, // iOS and Android
-          showFlipCameraButton : true, // iOS and Android
-          showTorchButton : true, // iOS and Android
-          torchOn: true, // Android, launch with the torch switched on (if available)
-          saveHistory: true, // Android, save scan history (default false)
-          prompt : "Place a barcode inside the scan area", // Android
-          resultDisplayDuration: 500, // Android, display scanned text for X ms. 0 suppresses it entirely, default 1500
-          formats : "QR_CODE,PDF_417", // default: all but PDF_417 and RSS_EXPANDED
-          orientation : "landscape", // Android only (portrait|landscape), default unset so it rotates with the device
-          disableAnimations : true, // iOS
-          disableSuccessBeep: false // iOS and Android
+         var scan_error = "Scanning failed: " + error;
+		  navigator.notification.alert(
+						scan_error,
+						callBackFunctionFlag, 
+						'Confirm',
+						"OK"
+					);
+		  
       }
    );
 }
+
 </script>
-</head>
-<body>
-<input class="step-no" name="qr-code" id="qr-code" maxlength="15" type="text" placeholder="ENTER QR Code"/>
- <input class="submitbtn" type="submit" onClick="scan();" value="SCAN BAR CODE"/>
-</body>
 </html>
