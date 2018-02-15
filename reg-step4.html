@@ -78,8 +78,7 @@ jQuery(document).ready(function() {
 				 
 				  <div class="loginmainblock registerblock">
 					<input class="step-no" name="her_pair" id="her_pair" maxlength="15" type="text" placeholder="ENTER HERPAIR NO."/>
-					<input class="submitbtn" onClick="validateHerPair();" type="submit" value="CONTINUE"/>
-					<div class="or">Or</div>
+
 					<input class="submitbtn" type="submit" onClick="scan();" value="SCAN BAR CODE"/>
 				  </div>
 				</div>
@@ -125,47 +124,16 @@ jQuery(document).ready(function() {
 		</div>
 	</div>
 </div>
-<script type="text/javascript">
 
-
-function validateHerPair(){
-	var url = siteurl + '?route=common/home/checkherpair';
-	
-	var user_her_pair = $('input[name="her_pair"]').val();
-	
-	jQuery.ajax({
-			 type: 'POST',
-			 url: url,
-			 data: {her_pair: user_her_pair},
-			 dataType: 'json',
-			 crossDomain: true,
-			 success: function(data){
-				$(".registerblock p").remove(); 
-				 
-				 if(data['success'])
-				 {				 
-				 	window.location = 'register2.html?herpair=' + data['success']['herpair'];
-				 }else if(data['error'])
-				 {				 
-				 						
-					navigator.notification.alert(
-						data['error']['herpair'],
-						callBackFunctionFlag, 
-						'Confirm',
-						"OK"
-					);
-				 }
-			}
-   		});	
-}
-</script>
 <script type="text/javascript">
 function scan()
 {
     cordova.plugins.barcodeScanner.scan(
        function (result) {
 		   
-		   $("#her_pair").val(result.text);          
+		   $("#her_pair").val(result.text);  
+
+		
       },
       function (error) {
          var scan_error = "Scanning failed: " + error;
