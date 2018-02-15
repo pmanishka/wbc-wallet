@@ -15,11 +15,12 @@ body {
 }
 
 #myVideo {
-    position: fixed;
-    right: 0;
+       position: fixed;
+    left: 0;
     bottom: 0;
-    min-width: 100%; 
+    width: 90%;
     min-height: 100%;
+    max-width: 600px;
 }
 
 .content {
@@ -51,7 +52,7 @@ body {
 var contentType ="application/x-www-form-urlencoded; charset=utf-8";
 if(window.XDomainRequest){contentType = "text/plain";}
 jQuery.support.cors = true;
-jQuery(document).ready(function() {  
+/*jQuery(document).ready(function() {  
 	window.setTimeout(function() {
 		if(window.sessionStorage.getItem("loggedIn") == 1) {
 			window.location='securitypin.html';
@@ -60,7 +61,7 @@ jQuery(document).ready(function() {
 			window.location.href = 'home.html';
 		}
 	}, 4000);
-});
+});*/
 
 var video = document.getElementById("myVideo");
 var btn = document.getElementById("myBtn");
@@ -82,7 +83,7 @@ function myFunction() {
 	<div class="main-container loadpage">
 		
 		<div class="container">
-		<video autoplay loop class="video" id="myVideo" webkit-playsinline>
+		<video webkit-playsinline autoplay loop class="video" id="myVideo">
     <source src="bg-video.mp4" type='video/mp4; codecs="h.264"' >
     <source src="bg-video.webm" type="video/webm">
 </video>
