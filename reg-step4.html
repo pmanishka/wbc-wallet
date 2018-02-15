@@ -123,7 +123,8 @@ function scan()
 {
     cordova.plugins.barcodeScanner.scan(
        function (result) {
-		   alert(result.text['name']);
+	   //jQuery.parseXML(xml);
+		   alert(result['name']);
 		   alert(result.text['yob']);
 		   alert(result.text['co']);
 		  
