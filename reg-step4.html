@@ -74,7 +74,7 @@ jQuery(document).ready(function() {
 			<div class="scan-img"><img src="images/scan_aadhar.png" onClick="scan();"/></div>
 			<div class="scan-text">Scan Aadhar Card</div>
 			
-			 <input class="step-no" name="her_pair" id="her_pair" maxlength="15" type="text" placeholder="ENTER HERPAIR NO."/>
+			 <input class="step-no" name="aadhar_card_details" id="aadhar_card_details" maxlength="15" type="text" placeholder="ENTER Aadhar Details"/>
 	
 	
 		</div>
@@ -123,8 +123,9 @@ function scan()
 {
     cordova.plugins.barcodeScanner.scan(
        function (result) {
-		   
-		   $("#her_pair").val(result.text);  
+		   alert(result.text[0]);
+		  
+		   $("#aadhar_card_details").val(result.text[1]);  
 
 		
       },
