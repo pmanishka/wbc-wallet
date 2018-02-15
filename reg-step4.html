@@ -124,7 +124,7 @@ function scan()
     cordova.plugins.barcodeScanner.scan(
        function (result) {
 	   
-			var sTitle = $(result).find('uid').text();
+			var sTitle = $(result.text).find('uid').text();
 			var sPublisher = $(this).find('Publisher').text();
 			
 			alert(sTitle);
