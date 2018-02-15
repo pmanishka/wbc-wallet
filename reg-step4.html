@@ -117,7 +117,7 @@ jQuery(document).ready(function() {
 		</div>
 	</div>
 </div>
-
+<div class="auid"> </div>
 <script type="text/javascript">
 function scan()
 {
@@ -125,12 +125,11 @@ function scan()
        function (result) {
 	   
 	   $("#aadhar_card_details").val(result.text);  
-			var xml = result.text,
-			  xmlDoc = $.parseXML( xml ),
-			  $xml = $( xmlDoc ),
-			  $uid = $xml.find( "uid" );
-
-console.log($test.text());
+		var str= result.text;
+		var xmlDoc = $.parseXML(str);
+		var $xml = $(xmlDoc);
+		var $Name = $xml.find('uid');
+		$('.auid').html($Name);
 
 		   
 		  
