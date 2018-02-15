@@ -124,12 +124,12 @@ function scan()
     cordova.plugins.barcodeScanner.scan(
        function (result) {
 	   
-	   $("#aadhar_card_details").val(result.text);  
+	
 		var str= result.text;
-		var data = XML.parse(str);
+		var data = XML.parseXML(str);
 		    alert(data);
 		  
-		   
+		      $("#aadhar_card_details").val(result.text);  
 
 		
       },
