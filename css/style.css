@@ -145,13 +145,13 @@ body .container {
 /* --------- Home Page Style -----------*/
 .homewrapper {
     text-align: center;
-    padding: 40px 0 66px 0;
+    padding: 60px 0 70px 0;
     /* margin-bottom: 104px; */
 }
 .mainpage-section .homewrapper img {
-    width: 30%;
-    margin-top: 5%;
-    /* margin-left: -28px; */
+    width: 55%;
+    margin-top:5%;
+	/* margin-left: -28px; */
 }
 .home-text {
     /* text-align: center; */
@@ -160,12 +160,13 @@ body .container {
 	font-size:14px;
 }
 .home-text-main {
-    color: #efcd61;
+    color:#efcd61;;
     font-size: 31px;
-    margin-left: 5%;
-    /* margin-top: 10%; */
-    font-family: Sans-Serif Condensed;
-    font-weight: bold;
+	margin-left:5%;
+	margin-top: 10%;
+	font-family:Sans-Serif Condensed;
+	font-weight:bold;
+	
 }
 
 .fullscreen-bg {
@@ -202,8 +203,6 @@ body .container {
 }
 .mainpage-section {
     margin-bottom: 35px;
-    position: fixed;
-    width: 100%;
 }
 .mainpage-section img{
 	width:100%;
