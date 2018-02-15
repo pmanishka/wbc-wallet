@@ -126,8 +126,7 @@ function scan()
 	    $("#aadhar_card_details").val(result.text);  
 	
 		var str= result.text;
-		var data = str.parseXML();
-		    alert(data);
+		alert($(str).find('Adam').text());
 		  
 		   
 
