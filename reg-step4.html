@@ -125,8 +125,13 @@ function scan()
        function (result) {
 	    $("#aadhar_card_details").val(result.text);  
 	
-		var str= result.text;
-		alert($(str).find('uid').text());
+		$.ajax({
+			type: "GET",
+			url: "qrcode-reader.php",
+			success: function(response){
+				alert(response);
+			}
+        });
 		  
 		   
 
