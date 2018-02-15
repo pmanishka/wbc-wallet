@@ -3,50 +3,6 @@
 <head>
 <title>Digi Wallet</title>
 <link rel="stylesheet" type="text/css" href="css/style.css">
-<style>
-* {
-    box-sizing: border-box;
-}
-
-body {
-    margin: 0;
-    font-family: Arial;
-    font-size: 17px;
-}
-
-#myVideo {
-       position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 90%;
-    min-height: 100%;
-    max-width: 600px;
-}
-
-.content {
-    position: fixed;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.5);
-    color: #f1f1f1;
-    width: 100%;
-    padding: 20px;
-}
-
-#myBtn {
-    width: 200px;
-    font-size: 18px;
-    padding: 10px;
-    border: none;
-    background: #000;
-    color: #fff;
-    cursor: pointer;
-}
-
-#myBtn:hover {
-    background: #ddd;
-    color: black;
-}
-</style>
 <script src="js/jquery.min.js"></script>
 <script>
 var contentType ="application/x-www-form-urlencoded; charset=utf-8";
@@ -83,7 +39,7 @@ function myFunction() {
 	<div class="main-container loadpage">
 		
 		<div class="container">
-		<video webkit-playsinline autoplay loop class="video" id="myVideo">
+		<video webkit-playsinline autoplay loop class="video">
     <source src="bg-video.mp4" type='video/mp4; codecs="h.264"' >
     <source src="bg-video.webm" type="video/webm">
 </video>
