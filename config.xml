@@ -42,7 +42,7 @@
 	<feature name="Device">
     <param name="android-package" value="org.apache.cordova.device.Device" />
 	</feature>
-	<gap:plugin name="com.cordova.plugin.datepicker" />
+	
 
 	
 	<icon src="icon.png" />
