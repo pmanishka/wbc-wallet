@@ -70,24 +70,45 @@ alert(spin);
 				});
 			}
 			else{
-				if(spin != ''){
-					alert(spin);
-				}else{
-					alert('test');
-					//window.location='login.html';
-				}
+				//window.location='login.html';
 			}
 		  },
 		  error: function() {
 			alert('Error');
 		  }
 		});
-	
 	}
 	else
 	{
-		
-		
+		if(spin != ''){
+			jQuery(".spin").keyup(function () {
+					if (this.value.length == this.maxLength) {
+					  var $next = $(this).next('.spin');
+					  if ($next.length){
+						  $(this).next('.spin').focus();
+					  }
+					  else{
+						  $(this).blur();
+						  var optcvalue='';
+							jQuery('.spin').each(function(){
+							   optcvalue+=this.value;
+							});
+						  if(optcvalue == spin)
+						  {
+							window.location='dashboard.html';
+						  }else{
+							$("#snackbar").fadeIn("slow", function () {
+								setTimeout(function () {
+									$("#snackbar").fadeOut("slow");
+								}, 5000);
+							});
+						  }
+					  }
+						  
+					
+					}
+				});
+		}
 	}
 });
 </script>
