@@ -141,7 +141,6 @@ body .container {
 }
 .loadpage .container{
 	padding:48px 0 0px 0 !important;
-	    background: url(../images/1.gif);
 		
 }
 /* --------- Home Page Style -----------*/
@@ -170,10 +169,16 @@ body .container {
 	font-weight:bold;
 	
 }
-.video{
-	max-width:600px;
-	width:100%;
-	z-index:-999;
+.home_logo{
+	
+    width: 50%;
+    margin-left: 26%;
+    margin-top: 5%;
+    background: url(../images/1.gif);
+    background-size: 100%;
+}
+
+
 }
 /* --------- Main Page Style -----------*/
 .darkblue-button1 {
