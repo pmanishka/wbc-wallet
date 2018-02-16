@@ -12,6 +12,7 @@
 <script src="js/config.js"></script>
 <script src="js/validate.js"></script>
     <script src="js/mobiscroll.jquery.min.js"></script>
+	<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
 
 
 <script>
@@ -24,15 +25,15 @@ var email = localStorage.getItem("email");
 //alert(email);
 
 
-  mobiscroll.settings = {
+mobiscroll.settings = {
     theme: 'ios'
 };
 
 $(function () {
-
     $('#dob').mobiscroll().calendar({
         theme: 'ios',
-        display: 'bottom'
+        display: 'bottom',
+		  dateFormat: 'yy-mm-dd'
     });
 });
 function checkDevice(){
