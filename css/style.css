@@ -170,14 +170,11 @@ body .container {
 	
 }
 .home_logo{
-	
-    width: 50%;
+	 width: 50%;
     margin-left: 26%;
     margin-top: 5%;
-    background: url(../images/1.gif);
-    background-size: 100%;
-}
-
+    background: url(../images/3.gif) no-repeat;
+    background-size: 100% 100%;
 
 }
 /* --------- Main Page Style -----------*/
