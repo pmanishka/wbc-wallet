@@ -11,12 +11,11 @@
 var contentType ="application/x-www-form-urlencoded; charset=utf-8";
 if(window.XDomainRequest){contentType = "text/plain";}
 jQuery.support.cors = true;
-touchMove = function(event) {
-     event.preventDefault();
-}
 
 jQuery( document ).ready(function() {
 
+var spin =localStorage.getItem("pin");
+alert(spin);
 	if(window.sessionStorage.getItem("loggedIn") == 1) {
 	
 		// Check Session
@@ -71,7 +70,12 @@ jQuery( document ).ready(function() {
 				});
 			}
 			else{
-				window.location='login.html';
+				if(spin != ''){
+					alert(spin);
+				}else{
+					alert('test');
+					//window.location='login.html';
+				}
 			}
 		  },
 		  error: function() {
@@ -82,14 +86,15 @@ jQuery( document ).ready(function() {
 	}
 	else
 	{
-		window.location='login.html';
+		
+		
 	}
 });
 </script>
 </head>
 <body>
 
-<div id="main_wrapper" ontouchmove="touchMove(event)">
+<div id="main_wrapper">
 	<div class="main-container">
 		<div id="top_header_pin">
 			<div class="logo-pin">

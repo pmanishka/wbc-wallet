@@ -4,14 +4,11 @@
 <title>Digi Wallet</title>
 <link rel="stylesheet" type="text/css" href="css/style.css">
 <script src="js/jquery.min.js"></script>
-
+<script src="js/config.js"></script>
 <script>
 var contentType ="application/x-www-form-urlencoded; charset=utf-8";
 if(window.XDomainRequest){contentType = "text/plain";}
 jQuery.support.cors = true;
-touchMove = function(event) {
-      event.preventDefault();
-}
 
 
 jQuery( document ).ready(function() {
@@ -35,7 +32,7 @@ jQuery( document ).ready(function() {
 			
 		
 			$.ajax({
-			  url: "http://10.0.0.66/Regular/cryptocurrency/api/registerName",
+			  url: siteurl+"registerName",
 			  type: 'POST',
 			  data: {q:'registerName',username:username}, 
 			  crossDomain: true,   
@@ -47,11 +44,13 @@ jQuery( document ).ready(function() {
 					jQuery('.inputerror-msg').hide();
 					jQuery('.green-button').hide();
 					jQuery('.congratulations-msg').show();
+					jQuery('#username').attr("readonly",true);
 					
 					jQuery('.usersuccess').addClass('update');
 					jQuery('.edit-username').show();
 					
 					jQuery('.edit-username').click(function(){
+						jQuery('#username').attr("readonly",false);
 						jQuery('.edit-username').hide();
 						jQuery('#username').focus();
 						jQuery('.congratulations-msg').hide();
@@ -86,7 +85,13 @@ jQuery( document ).ready(function() {
 				jQuery('.userfailed').hide();
 			});
 			jQuery('.usersuccess').addClass('errmsg');
-			jQuery('.userfailed').show();
+			jQuery('.userfailed').show(function(){
+				jQuery('.errmsg').click(function(){
+					jQuery('.inputerror-msg').hide();
+					jQuery( "#username" ).focus();
+					jQuery('.green-button').show();
+				});
+			});
 			jQuery('.inputerror-msg').show();
 			jQuery('.green-button').show();
 			jQuery('.congratulations-msg').hide();
@@ -99,14 +104,14 @@ jQuery( document ).ready(function() {
 </head>
 <body>
 
-<div id="main_wrapper" ontouchmove="touchMove(event)">
+<div id="main_wrapper">
 	<div class="main-container">
 	<div id="topbar">
 		Step 1
 	</div>
 	<div id="top_header">
 		<div class="logo">
-			<div class="logo-img"><img src="images/logo-digi2.png"></div>
+			<div class="logo-img"><img src="images/logo-digi6.png"></div>
 			<!-- <div class="logo-text">Digi Wallet</div> -->
 		</div>
 	</div>

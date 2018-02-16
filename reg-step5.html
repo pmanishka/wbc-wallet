@@ -4,100 +4,72 @@
 <title>Digi Wallet</title>
 <link rel="stylesheet" type="text/css" href="css/style.css">
 <script src="js/jquery.min.js"></script>
-<script type="text/javascript" src="js/jquery.qrcode.min.js"></script>
-<script type="text/javascript" src="js/jquery.scannerdetection.js"></script>
-</head>
-<body>
-
-<div id="main_wrapper" class="inner-page">
-	<div class="main-container">
-	<div id="topbar">
-		<img src="images/back_arrow.png" style="margin-right:25px;"/>Step 5
-	</div>
-	<div id="top_header">
-		<div class="logo">
-			<div class="logo-img"><img src="images/logo-digi2.png"></div>
-			<!-- <div class="logo-text">Digi Wallet</div> -->
-		</div>
-	</div>
-
-	<div class="container">
-		<div class="registertop">
-			5. Password and PIN
-		</div>
-		
-		<div class="register-form reg-step4">
-			<form method="post" id="setpassword" action="">
-				<div class="input-field password">
-					<input type="text" name="password" id="password" class="password" placeholder="Password"/>
-					<span class="validate-error"></span>
-				</div>
-				<div class="input-field cpassword">
-					<input type="text" name="repeat-password" class="password_confirm" id="password_confirm" placeholder="Repeat Password"/>
-					<span class="validate-error"></span>
-				</div>
-				<div class="input-field pin">
-					<input type="text" name="pin" id="pin" class="pin" placeholder="4 Digit Pin" minlength="4" maxlength="4" />
-					<span class="validate-error"></span>
-				</div>
-				<div class="input-field cpin">
-					<input type="text" name="repeat-pin" class=" cpin" id="cpin" placeholder="Repeat Pin" minlength="4" maxlength="4"/>
-					<span class="validate-error"></span>
-				</div>
-				<div class="red-button">
-					<input type="button" class="next" id="passSubmit" name="submit" value="Submit"/>
-				</div>
-			</form>
-			
-		</div>
-	</div>
-</div>
-
-
+<script src="js/config.js"></script>
+<script src="js/validate.js"></script>
 <script>
 var contentType ="application/x-www-form-urlencoded; charset=utf-8";
 if(window.XDomainRequest){contentType = "text/plain";}
 jQuery.support.cors = true;
 
-
-
-
-
-jQuery( document ).ready(function() {
-
-var adhar_card_no = "";
-
-
-	jQuery("input[name='submit']").click(function () {
+jQuery(document).ready(function() {
 	
-	jQuery('.password .validate-error').empty('');
-	jQuery('.cpassword .validate-error').empty('');
-	jQuery('.pin .validate-error').empty('');
-	jQuery('.cpin .validate-error').empty('');
+	jQuery("#setpassword").validate({
+			rules: {
+				password: "required",
+				password_confirm: {
+					required: true,
+					equalTo: "#password"
+				},
+				pin: {
+					required: true,
+					maxlength: 4,
+					minlength: 4,
+					digits: true,
+				},
+				cpin: {
+					required: true,
+					equalTo: "#pin"
+				},
+			},
+			messages: {
+				password: "enter password",
+				password_confirm: {
+					required: "password",
+					equalTo: "confirmpassword"
+				},
+				pin: {
+					required: "enter pin",
+					maxlength: "",
+					digits: ""
+				},
+				cpin: {
+					required: "enter cpin",
+					equalTo: ""
+				}
+			}
+	});
+	
+	jQuery('#passSubmit').click(function(){
+	//var adhar_card_no = "";
+		if ($('#setpassword').valid()) {
 	
 		var password = $("#password").val();
 		var confirmPassword = $("#password_confirm").val();
 		var pin = $("#pin").val();
 		var cpin = $("#cpin").val();
+		//alert(pin);
+		localStorage.setItem('pin', pin);
 		
-		if (password != '') {
-			if (password != confirmPassword) {
-				jQuery('.cpassword .validate-error').append('Passwords do not match');
-				return false;
-			}
+		var uid =localStorage.getItem("uid");
+		
+		if(uid == ''){
+			var uid = 0;
+			//alert(uid);
 		}else{
-			jQuery('.password .validate-error').append('Password should not be blank');
+			var uid =localStorage.getItem("uid");
+			//alert(uid);
 		}
-		
-		if (pin != '') {
-			if (pin != cpin) {
-				jQuery('.cpin .validate-error').append('Pin do not match');
-				return false;
-			}
-		}else{
-			jQuery('.pin .validate-error').append('Pin should not be blank');
-		}
-		
+		//alert(uid);
 		var username = localStorage.getItem("username");
 		var email = localStorage.getItem("email");
 		var fullname = localStorage.getItem("fullname");
@@ -110,6 +82,7 @@ var adhar_card_no = "";
 		var mobile = localStorage.getItem('mobile');
 		
 		var registrationData = {
+		  "Uid" : uid,
 		  "userName" : username,
 		  "Email" : email,
 		  "Name" : fullname,
@@ -136,8 +109,13 @@ var adhar_card_no = "";
 			  success: function(data) {
 				if(data['status'] == 1)
 				{
-					alert('Register Successfully');
-					//window.location='reg-step6.html';
+					$("#register-successfully").fadeIn("slow", function () {
+						setTimeout(function () {
+							$("#register-successfully").fadeOut("slow");
+						}, 5000);
+						window.location='securitypin.html';
+					});
+					
 				}else{
 					alert('Registeration Failed');
 				}
@@ -148,9 +126,59 @@ var adhar_card_no = "";
 		});
 		
 		//return true;
-    });
-		
+  
+		}
+	});
 });
 </script>
+</head>
+<body>
+
+<div id="main_wrapper" class="inner-page">
+	<div class="main-container">
+	<div id="topbar">
+		<img src="images/back_arrow.png" style="margin-right:25px;"/>Step 5
+	</div>
+	<div id="top_header">
+		<div class="logo">
+			<div class="logo-img"><img src="images/logo-digi6.png"></div>
+			<!-- <div class="logo-text">Digi Wallet</div> -->
+		</div>
+	</div>
+
+	<div class="container">
+		<div class="registertop">
+			5. Password and PIN
+		</div>
+		
+		<div class="register-form reg-step4">
+			<form method="post" id="setpassword" action="">
+				<div class="input-field password">
+					<input type="text" name="password" id="password" class="password" placeholder="Password"/>
+					<span class="validate-error"></span>
+				</div>
+				<div class="input-field cpassword">
+					<input type="text" name="repeat-password" class="password_confirm" id="password_confirm" placeholder="Repeat Password"/>
+					<span class="validate-error"></span>
+				</div>
+				<div class="input-field pin">
+					<input type="text" name="pin" id="pin" class="pin" placeholder="4 Digit Pin" minlength="4" maxlength="4" pattern="[0-9]*" />
+					<span class="validate-error"></span>
+				</div>
+				<div class="input-field cpin">
+					<input type="text" name="repeat-pin" class=" cpin" id="cpin" placeholder="Repeat Pin" minlength="4" maxlength="4" pattern="[0-9]*"/>
+					<span class="validate-error"></span>
+				</div>
+				<div class="red-button">
+					<input type="button" class="next" id="passSubmit" name="submit" value="Submit"/>
+				</div>
+			</form>
+			
+		</div>
+	</div>
+</div>
+
+
+<div id="register-successfully" class="snackbar" style="display:none;">Register Successfully</div>
 </body>
 </html>

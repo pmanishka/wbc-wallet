@@ -4,62 +4,217 @@
 <title>Digi Wallet</title>
 <link rel="stylesheet" type="text/css" href="css/style.css">
 <script src="js/jquery.min.js"></script>
-
+<script src="js/config.js"></script>
+<script src="js/validate.js"></script>
 <script>
 var contentType ="application/x-www-form-urlencoded; charset=utf-8";
 if(window.XDomainRequest){contentType = "text/plain";}
 jQuery.support.cors = true;
-touchMove = function(event) {
-      event.preventDefault();
-}
+
 jQuery(document).ready(function() {
 var username = localStorage.getItem("username");
-//alert(username);
 
-	jQuery('.otp-verify').hide();
-	var otpres = jQuery('input[name="otp-verify"]').val();
+	jQuery("#mobileverify").validate({
+			rules: {
+				mobileno: {
+				  required: true,
+				  number: true,
+				  minlength:10,
+				  maxlength:10,
+				}
+			},
+			messages: {
+				mobileno: {
+					required: "",
+					number: "",
+					minlength: "",
+					maxlength: ""
+				}
+			}
+	});
+	
 	jQuery('.arrow-button input[name="submit"]').click(function(){
-		var mobile = jQuery('#mobileno').val();
-		jQuery('.mobileresult').empty();
-		//var otpres= '';
+		if ($('#mobileverify').valid()) {
+			var mobile = jQuery('#mobileno').val();
+			jQuery('.mobileresult').empty();
 			$.ajax({
-			  url: "http://10.0.0.66/Regular/cryptocurrency/api/registerationMobileVerification",
+			  url: siteurl+"registerationMobileVerification",
 			  type: 'POST',
 			  data: {q:'verify_mobile',mobile:mobile}, 
 			  crossDomain: true,   
 			  success: function(data) {
-			  window.location='reg-step3.html';
-				/*if(data['status'] == 1)
+			 
+				if(data['status'] == 1)
 				{
 					var otpval= (data['otp']);
 					
 					jQuery('.otp-verify').show();
-					jQuery('.mobileresult').append(mobile);
+					jQuery('.mobileresult').append("+91" + mobile);
 					localStorage.setItem('mobile', mobile);
 					
-					//var otpres = jQuery('input[name="otp-verify"]').val();
+					//alert(otpval);
 					var otpres = jQuery('input[name="otp-verify"]').attr("value",otpval);
 					
-					/*jQuery('input[name="otp-verify"]').change(function() {*/
-						
-						/*if(jQuery('input[name="otp-verify"]').val() !=''){
-							window.location='reg-step3.html';
-						}else{
-							alert('Please check otp again else resend otp');
+					jQuery(".spin").keyup(function () {
+						if (this.value.length == this.maxLength) {
+						  var $next = $(this).next('.spin');
+						  if ($next.length){
+							  $(this).next('.spin').focus();
+						  }
+						  else{
+							  $(this).blur();
+							  var optcvalue='';
+								jQuery('.spin').each(function(){
+								   optcvalue+=this.value;
+								});
+							  if(optcvalue == otpval)
+							  {
+								window.location='reg-step3.html';
+							  }else{
+								$("#wrongotp").fadeIn("slow", function () {
+									setTimeout(function () {
+										$("#wrongotp").fadeOut("slow");
+									}, 5000);
+								});
+							  }
+						  }
 						}
-					/*});*/
-					
-				/*}else{
-					alert('verification failed');
-				}*/
+					});
+				}else{
+					$("#snackbar").fadeIn("slow", function () {
+						setTimeout(function () {
+							$("#snackbar").fadeOut("slow");
+						}, 5000);
+					});
+				}
+				
 			  },
 			  error: function() {
 				 alert('Failed');
 			  }
 		});
-		//alert(otpres);
-			
+		}else{
+			jQuery('label[for="mobileno"]').hide();
+			if(jQuery("#mobileno").val() != ''){
+				jQuery('.validnumber').show();
+				jQuery('.numberfailed').hide();
+			}else{
+				jQuery('.numberfailed').show();
+				jQuery('.validnumber').hide();
+			}
+		
+		
+			jQuery('.mobile-input-field').addClass('errmsg');
+			jQuery('.verification-text').hide();
+			jQuery('.inputerror-msg').show(function(){
+				jQuery('.errmsg').click(function(){
+					jQuery('.inputerror-msg').hide();
+					jQuery( "#mobileno" ).focus();
+				});
+			});
+			jQuery('.inputerror-msg').show();
+			jQuery('.green-button').show();
+			jQuery('.congratulations-msg').hide();
+		}
+		
 	});
+	
+	
+	jQuery('.otp-resend img').click(function(){
+		if ($('#mobileverify').valid()) {
+			var mobile = jQuery('#mobileno').val();
+			jQuery('.mobileresult').empty();
+			$.ajax({
+			  url: siteurl+"registerationMobileVerification",
+			  type: 'POST',
+			  data: {q:'verify_mobile',mobile:mobile}, 
+			  crossDomain: true,   
+			  success: function(data) {
+			 
+				if(data['status'] == 1)
+				{
+					var otpval= (data['otp']);
+					
+					jQuery('.otp-verify').show();
+					
+					//jQuery('.verificationloader').show();
+					$(".verificationloader").show(function () {
+						setTimeout(function () {
+							$('.otp-msg').hide();
+							$(".verificationloader").hide();
+						}, 200);
+					});
+					$('.otp-msg').show();
+					jQuery('.mobileresult').append("+91" + mobile);
+					localStorage.setItem('mobile', mobile);
+					
+					//alert(otpval);
+					var otpres = jQuery('input[name="otp-verify"]').attr("value",otpval);
+					
+					jQuery(".spin").keyup(function () {
+						if (this.value.length == this.maxLength) {
+						  var $next = $(this).next('.spin');
+						  if ($next.length){
+							  $(this).next('.spin').focus();
+						  }
+						  else{
+							  $(this).blur();
+							  var optcvalue='';
+								jQuery('.spin').each(function(){
+								   optcvalue+=this.value;
+								});
+							  if(optcvalue == otpval)
+							  {
+								window.location='reg-step3.html';
+							  }else{
+								$("#wrongotp").fadeIn("slow", function () {
+									setTimeout(function () {
+										$("#wrongotp").fadeOut("slow");
+									}, 5000);
+								});
+							  }
+						  }
+						}
+					});
+				}else{
+					$("#snackbar").fadeIn("slow", function () {
+						setTimeout(function () {
+							$("#snackbar").fadeOut("slow");
+						}, 5000);
+					});
+				}
+				
+			  },
+			  error: function() {
+				 alert('Failed');
+			  }
+		});
+		}else{
+			jQuery('label[for="mobileno"]').hide();
+			if(jQuery("#mobileno").val() != ''){
+				jQuery('.validnumber').show();
+				jQuery('.numberfailed').hide();
+			}else{
+				jQuery('.numberfailed').show();
+				jQuery('.validnumber').hide();
+			}
+		
+		
+			jQuery('.mobile-input-field').addClass('errmsg');
+			jQuery('.verification-text').hide();
+			jQuery('.inputerror-msg').show(function(){
+				jQuery('.errmsg').click(function(){
+					jQuery('.inputerror-msg').hide();
+					jQuery( "#mobileno" ).focus();
+				});
+			});
+			jQuery('.inputerror-msg').show();
+			jQuery('.green-button').show();
+			jQuery('.congratulations-msg').hide();
+		}
+		
+	});
+	
 		
 });
 
@@ -67,14 +222,14 @@ var username = localStorage.getItem("username");
 </head>
 <body>
 
-<div id="main_wrapper" class="inner-page" ontouchmove="touchMove(event)">
+<div id="main_wrapper" class="inner-page">
 	<div class="main-container">
 	<div id="topbar">
 		Step 2
 	</div>
 	<div id="top_header">
 		<div class="logo">
-			<div class="logo-img"><img src="images/logo-digi2.png"></div>
+			<div class="logo-img"><img src="images/logo-digi6.png"></div>
 			<!-- <div class="logo-text">Digi Wallet</div> -->
 		</div>
 	</div>
@@ -83,17 +238,26 @@ var username = localStorage.getItem("username");
 			2. Mobile Verification
 		</div>
 		<div class="register-form">
-			<form method="post">
+			<form method="post" id="mobileverify">
 				<div class="mobile-label">
 					<label>Enter Mobile Number</label>
 				</div>
 				<div class="mobile-verify">
 					<div class="mobilecode">
-						<input type="text" readonly value="+91"/>
+						+91
 					</div>
 					<div class="mobile-input-field">
 						<input type="text" name="mobileno" id="mobileno" maxlength="10" pattern="[0-9]*"/>
+						<div class="inputerror-msg" style="display:none;">
+							<div class="numberfailed">
+								<img src="images/mobileerror.png"/>
+							</div>
+							<div class="validnumber" style="display:none">
+								<img src="images/validerror.png"/>
+							</div>
+						</div>
 					</div>
+					
 					<div class="input-button arrow-button">
 						<input type="button" name="submit" value="Send OTP"/>
 					</div>	
@@ -101,9 +265,17 @@ var username = localStorage.getItem("username");
 				<div class="verification-text">
 					For your verification and update.
 				</div>
-				<div class="otp-verify">
+				<div class="verificationloader" style="display:none;"><img src="images/hourglass.gif"></div>
+				<div class="otp-verify" style="display:none;">
 					<div class="otp-msg">OTP is send to given number <span class="mobileresult"></span></div>
-					<div class="otp-textbox"><input class="otp-input" type="password" name="otp-verify" maxlength="4"/></div>
+					<div class="otp-textbox">
+						<div class="spin-textbox">
+							<input type="password" name="spin0" class="spin" maxlength=1 pattern="[0-9]*"/>
+							<input type="password" name="spin1" class="spin" maxlength=1 pattern="[0-9]*"/>
+							<input type="password" name="spin2" class="spin" maxlength=1 pattern="[0-9]*"/>
+							<input type="password" name="spin3" class="spin" maxlength=1 pattern="[0-9]*"/>
+						</div>
+					</div>
 					<div class="otp-resend"><img src="images/refresh.png">Resend OTP</div>
 				</div>
 			</form>
@@ -111,6 +283,7 @@ var username = localStorage.getItem("username");
 	</div>
 </div>
 </div>
-
+<div id="snackbar" style="display:none;">Mobile number already exist</div>
+<div id="wrongotp" class="snackbar" style="display:none;">Wrong OTP Entered</div>
 </body>
 </html>

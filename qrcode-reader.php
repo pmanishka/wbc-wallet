@@ -1,24 +1,14 @@
 <?php
 
-$xml =  $_REQUEST;
-//exit();
 
-$string = <<<XML . $xml
-XML;
+$xmldata = "aadhar.xml";
 
+$xmlobj = simplexml_load_file($xmldata);
 
-$xml = simplexml_load_string($string);
-$attribs = $xml->attributes();
-// convert the '$attribs' to an array
+$attribs = $xmlobj->attributes();
+
 foreach($attribs as $key=>$val) {
     $arrayOfAttribs[(string)$key] = "'".(string)$val."'";
-	//$arrayOfAttribs['uid'];
 }
 echo json_encode($arrayOfAttribs);
-
-//$namesOfColumns = implode(",", array_keys($arrayOfAttribs));
-//$valuesOfColumns = implode(",", array_values($arrayOfAttribs));
-
-
-
 ?>

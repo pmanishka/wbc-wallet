@@ -9,7 +9,7 @@
 
 <script src="js/jquery.min.js"></script>
 <script src="js/config.js"></script>
-<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+<script src="js/validate.js"></script>
 
 <script>
 var contentType ="application/x-www-form-urlencoded; charset=utf-8";
@@ -18,6 +18,17 @@ jQuery.support.cors = true;
 
 var username = localStorage.getItem("username");
 var email = localStorage.getItem("email");
+//alert(email);
+jQuery('#dob').keyup(function(){
+var dob = {
+  date: new Date(),
+  mode: 'date'
+};
+
+datePicker.show(options, function(date){
+  alert("date result " + date);  
+});
+})
 
 function checkDevice(){
 		document.addEventListener("deviceready", onDeviceReady, false);
@@ -28,27 +39,123 @@ function onDeviceReady() {
 
 jQuery(document).ready(function() {
 
-	//jQuery("#dop").datepicker();
+	jQuery("#register").validate({
+			rules: {
+				fullname: "required",
+				dob: "required",
+				address: "required",
+				city: "required",
+				state: "required",
+				country: "required",
+				postalcode: {
+				  required: true,
+				  number: true,
+				  maxlength: 14
+				}
+			},
+			messages: {
+				fullname: "",
+				dob: "",
+				address: "",
+				city: "",
+				state: "",
+				country: "",
+				postalcode: {
+					required: "",
+					number: "",
+					maxlength: ""
+				}
+			}
+	});
+	
+	
 	jQuery('.red-button input[name="submit"]').click(function(){
 	
-		var fname = jQuery('#fullname').val();
-		var dob = jQuery('#dob').val();
-		var address = jQuery('#address').val();
-		var city = jQuery('#city').val();
-		var state = jQuery('#state').val();
-		var country = jQuery('#country').val();
-		var postalcode = jQuery('#postalcode').val();
-		
-		localStorage.setItem('fullname', fname);
-		localStorage.setItem("dob", dob);
-		localStorage.setItem("address", address);
-		localStorage.setItem("city", city);
-		localStorage.setItem("state", state);
-		localStorage.setItem("country", country);
-		localStorage.setItem("postalcode", postalcode);
-		
-		
-		window.location='reg-step5.html';
+		if ($('#register').valid()) {
+			var uid = jQuery('#uid').val();
+			var fname = jQuery('#fullname').val();
+			var dob = jQuery('#dob').val();
+			var address = jQuery('#address').val();
+			var city = jQuery('#city').val();
+			var state = jQuery('#state').val();
+			var country = jQuery('#country').val();
+			var postalcode = jQuery('#postalcode').val();
+			
+			localStorage.setItem('uid', uid);
+			localStorage.setItem('fullname', fname);
+			localStorage.setItem("dob", dob);
+			localStorage.setItem("address", address);
+			localStorage.setItem("city", city);
+			localStorage.setItem("state", state);
+			localStorage.setItem("country", country);
+			localStorage.setItem("postalcode", postalcode);
+			
+			window.location='reg-step5.html';
+		}else{
+			if(jQuery("#fullname").val() == ''){
+				jQuery(".fullname .inputerror-msg1").show();
+				/*jQuery('.fullname .inputerror-msg1').show(function(){
+				jQuery('.inputerror-msg1').click(function(){
+						jQuery('.inputerror-msg1').hide();
+						jQuery( "#fullname" ).focus();
+					});
+				});*/
+				jQuery(".dob .inputerror-msg1").hide();
+				jQuery(".address .inputerror-msg1").hide();
+				jQuery(".city .inputerror-msg1").hide();
+				jQuery(".state .inputerror-msg1").hide();
+				jQuery(".country .inputerror-msg1").hide();
+				jQuery(".postalcode .inputerror-msg1").hide();
+			}else if(jQuery("#dob").val() == ''){
+				jQuery(".fullname .inputerror-msg1").hide();
+				jQuery(".dob .inputerror-msg1").show();
+				jQuery(".address .inputerror-msg1").hide();
+				jQuery(".city .inputerror-msg1").hide();
+				jQuery(".state .inputerror-msg1").hide();
+				jQuery(".country .inputerror-msg1").hide();
+				jQuery(".postalcode .inputerror-msg1").hide();
+			}else if(jQuery("#address").val() == ''){
+				jQuery(".fullname .inputerror-msg1").hide();
+				jQuery(".dob .inputerror-msg1").hide();
+				jQuery(".address .inputerror-msg1").show();
+				jQuery(".city .inputerror-msg1").hide();
+				jQuery(".state .inputerror-msg1").hide();
+				jQuery(".country .inputerror-msg1").hide();
+				jQuery(".postalcode .inputerror-msg1").hide();
+			}else if(jQuery("#city").val() == ''){
+				jQuery(".fullname .inputerror-msg1").hide();
+				jQuery(".dob .inputerror-msg1").hide();
+				jQuery(".address .inputerror-msg1").hide();
+				jQuery(".city .inputerror-msg1").show();
+				jQuery(".state .inputerror-msg1").hide();
+				jQuery(".country .inputerror-msg1").hide();
+				jQuery(".postalcode .inputerror-msg1").hide();
+			}else if(jQuery("#state").val() == ''){
+				jQuery(".fullname .inputerror-msg1").hide();
+				jQuery(".dob .inputerror-msg1").hide();
+				jQuery(".address .inputerror-msg1").hide();
+				jQuery(".city .inputerror-msg1").hide();
+				jQuery(".state .inputerror-msg1").show();
+				jQuery(".country .inputerror-msg1").hide();
+				jQuery(".postalcode .inputerror-msg1").hide();
+			}else if(jQuery("#country").val() == ''){
+				jQuery(".fullname .inputerror-msg1").hide();
+				jQuery(".dob .inputerror-msg1").hide();
+				jQuery(".address .inputerror-msg1").hide();
+				jQuery(".city .inputerror-msg1").hide();
+				jQuery(".state .inputerror-msg1").hide();
+				jQuery(".country .inputerror-msg1").show();
+				jQuery(".postalcode .inputerror-msg1").hide();
+			}else if(jQuery("#postalcode").val() == ''){
+				jQuery(".fullname .inputerror-msg1").hide();
+				jQuery(".dob .inputerror-msg1").hide();
+				jQuery(".address .inputerror-msg1").hide();
+				jQuery(".city .inputerror-msg1").hide();
+				jQuery(".state .inputerror-msg1").hide();
+				jQuery(".country .inputerror-msg1").hide();
+				jQuery(".postalcode .inputerror-msg1").show();
+			}
+		}
 			
 	});
 		
@@ -65,7 +172,7 @@ jQuery(document).ready(function() {
 	</div>
 	<div id="top_header">
 		<div class="logo">
-			<div class="logo-img"><img src="images/logo-digi2.png"></div>
+			<div class="logo-img"><img src="images/logo-digi6.png"></div>
 			<!-- <div class="logo-text">Digi Wallet</div> -->
 		</div>
 	</div>
@@ -74,8 +181,7 @@ jQuery(document).ready(function() {
 			<div class="scan-img"><img src="images/scan_aadhar.png" onClick="scan();"/></div>
 			<div class="scan-text">Scan Aadhar Card</div>
 			
-			 <input class="step-no" name="aadhar_card_details" id="aadhar_card_details" maxlength="15" type="text" placeholder="ENTER Aadhar Details"/>
-	
+			 <input class="step-no" type="hidden" name="aadhar_card_details" id="aadhar_card_details" type="text" placeholder="ENTER Aadhar Details" value=''/>
 	
 		</div>
 		<div class="or">
@@ -87,27 +193,63 @@ jQuery(document).ready(function() {
 		
 		
 		<div class="register-form reg-step4">
-			<form method="post">
+			<form method="post" id="register">
 				<div class="input-field fullname">
+					<input type="hidden" name="uid" id="uid" placeholder="Uid"/>
 					<input type="text" name="fullname" id="fullname" placeholder="Your Full Name"/>
+					<div class="inputerror-msg1" style="display:none;">
+						<div class="namefailed">
+							<img src="images/nameerror.png"/>
+						</div>
+					</div>
 				</div>
 				<div class="input-field dob">
 					<input type="text" name="dob" id="dob" placeholder="Dob"/>
+					<div class="inputerror-msg1" style="display:none;">
+						<div class="dobfailed">
+							<img src="images/doberror.png"/>
+						</div>
+					</div>
 				</div>
 				<div class="input-field address">
 					<input type="text" name="address" id="address" placeholder="Address"/>
+					<div class="inputerror-msg1" style="display:none;">
+						<div class="addressfailed">
+							<img src="images/addresserror.png"/>
+						</div>
+					</div>
 				</div>
 				<div class="input-field city">
 					<input type="text" name="city" id="city" placeholder="City"/>
+					<div class="inputerror-msg1" style="display:none;">
+						<div class="cityfailed">
+							<img src="images/cityerror.png"/>
+						</div>
+					</div>
 				</div>
 				<div class="input-field state">
 					<input type="text" name="state" id="state" placeholder="State"/>
+					<div class="inputerror-msg1" style="display:none;">
+						<div class="statefailed">
+							<img src="images/stateerror.png"/>
+						</div>
+					</div>
 				</div>
 				<div class="input-field country">
 					<input type="text" name="country" id="country" placeholder="Country"/>
+					<div class="inputerror-msg1" style="display:none;">
+						<div class="countryfailed">
+							<img src="images/countryerror.png"/>
+						</div>
+					</div>
 				</div>
 				<div class="input-field postalcode">
-					<input type="text" name="postalcode" id="postalcode" placeholder="Postal code(Pin)"/>
+					<input type="text" name="postalcode" id="postalcode" placeholder="Postal code(Pin)" pattern="[0-9]*"/>
+					<div class="inputerror-msg1" style="display:none;">
+						<div class="pinfailed">
+							<img src="images/pinerror.png"/>
+						</div>
+					</div>
 				</div>
 				<div class="red-button">
 					<input type="button" class="next" name="submit" value="Next Step"/>
@@ -119,39 +261,73 @@ jQuery(document).ready(function() {
 </div>
 
 <script type="text/javascript">
-$("document").ready(function(){
-		$.ajax({
-			type: "GET",
-			url: "qrcode-reader.php",
-			success: function(response){
-				var json = $.parseJSON(response);
-				$(json).each(function(i,val){
-					$.each(val,function(k,v){
-						  //console.log(k+" : "+ v);   
-							if(k == 'uid'){
-								alert(v);
-							}
-					});
-				});
-			}
-        });
- });
+/*$("document").ready(function(){
+var aadhardata = jQuery('#aadhar_card_details').val();
+
+	//alert(aadhardata);
+	$.ajax({
+		 type: "POST",
+		 url: "aadhar.xml",
+		 contentType: "text/xml",
+		 data: aadhardata,
+		 success: function(response){
+			
+		 }
+	});
+		
+});*/
+
 function scan()
 {
     cordova.plugins.barcodeScanner.scan(
        function (result) {
 	    $("#aadhar_card_details").val(result.text);  
 		var aadhardata = result.text ;
-		alert(aadhardata);
+		
 		$.ajax({
-		  type: "POST",
-		  url: "qrcode-reader.php",
-		  data: aadhardata,
-		  success: function(response){
-			alert(response)
-		  }
-		});
-				
+			type: "GET",
+			url: "qrcode-reader.php",
+			success: function(response){
+			
+				var json = $.parseJSON(response);
+				$(json).each(function(i,val){
+					$.each(val,function(k,v){
+						  //console.log(k+" : "+ v);   
+							if(k == 'uid'){
+								var uid = v;
+								uid = uid.replace(/'/g,"");
+								jQuery('#uid').attr("value",uid);
+							}else if(k == 'name'){
+								var name = v;
+								name = name.replace(/'/g,"");
+								jQuery('#fullname').attr("value",name);
+							}else if(k == 'yob'){
+								var yob = v;
+								yob = yob.replace(/'/g,"");
+								jQuery('#dob').attr("value",yob);
+							}else if(k == 'loc'){
+								var loc = v;
+								loc = loc.replace(/'/g,"");
+								jQuery('#address').attr("value",loc);
+							}else if(k == 'vtc'){
+								var vtc = v;
+								vtc = vtc.replace(/'/g,"");
+								jQuery('#city').attr("value",vtc);
+							}else if(k == 'state'){
+								var state = v;
+								state = state.replace(/'/g,"");
+								jQuery('#state').attr("value",state);
+							}else if(k == 'pc'){
+								var pc = v;
+								pc = pc.replace(/'/g,"");
+								jQuery('#postalcode').attr("value",pc)
+							}else{
+								jQuery('#country').attr("value","INDIA")
+							}
+					});
+				});
+			}
+        });		
 		  
 		   
 

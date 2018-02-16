@@ -4,28 +4,57 @@
 <title>Digi Wallet</title>
 <link rel="stylesheet" type="text/css" href="css/style.css">
 <script src="js/jquery.min.js"></script>
-
+<script src="js/config.js"></script>
+<script src="js/validate.js"></script>
 <script>
 var contentType ="application/x-www-form-urlencoded; charset=utf-8";
 if(window.XDomainRequest){contentType = "text/plain";}
 jQuery.support.cors = true;
 
 var username = localStorage.getItem("username");
+
 //alert(username);
 
 jQuery(document).ready(function() {
 	
-	jQuery('.error-msg').hide();
+	jQuery("#emailverify").validate({
+			rules: {
+				emailid: {
+				  required: true,
+				  email: true
+				}
+			},
+			messages: {
+				emailid: {
+					required: "",
+					email: ""
+				}
+			}
+	});
+	
+	
+	
+	jQuery('.username').removeClass('errmsg');
+	jQuery('.inputerror-msg').hide();
+	
+
+	
+	
 	jQuery('.red-button input[name="submit"]').click(function(){
 		var email = jQuery('#emailid').val();
 		
+		if ($('#emailverify').valid()) {
+			/*jQuery('label[for="emailid"]').hide();
+			jQuery('.validemail').show();*/
+			localStorage.setItem('email', email);
 			$.ajax({
-			  url: "http://10.0.0.66/Regular/cryptocurrency/api/emailVerification",
+			  url: siteurl+"emailVerification",
 			  type: 'POST',
 			  data: {q:'verify_email',email:email,username:username}, 
 			  crossDomain: true,   
 			  success: function(data) {
-				window.location='reg-step4.html';/*if(data['status'] == 1)
+				window.location='reg-step4.html';
+				/*if(data['status'] == 1)
 				{
 					localStorage.setItem('email', email);
 					window.location='reg-step4.html';
@@ -36,7 +65,25 @@ jQuery(document).ready(function() {
 			  error: function() {
 				 //alert('Failed');
 			  }
-		});
+			});
+		}else{
+			jQuery('label[for="emailid"]').hide();
+			if(jQuery("#emailid").val() != ''){
+				jQuery('.validemail').show();
+				jQuery('.emailfailed').hide();
+			}else{
+				jQuery('.emailfailed').show();
+				jQuery('.validemail').hide();
+			}
+			jQuery('.username').addClass('errmsg');
+			jQuery('.inputerror-msg').show();
+			
+			
+			jQuery('.errmsg').click(function(){
+				jQuery('.inputerror-msg').hide();
+				jQuery( "#emailid" ).focus();
+			});
+		}
 			
 	});
 		
@@ -53,7 +100,7 @@ jQuery(document).ready(function() {
 	</div>
 	<div id="top_header">
 		<div class="logo">
-			<div class="logo-img"><img src="images/logo-digi2.png"></div>
+			<div class="logo-img"><img src="images/logo-digi6.png"></div>
 			<!-- <div class="logo-text">Digi Wallet</div> -->
 		</div>
 	</div>
@@ -62,9 +109,17 @@ jQuery(document).ready(function() {
 			3. Enter Verification
 		</div>
 		<div class="register-form reg-step3">
-			<form method="post">
+			<form method="post" id="emailverify">
 				<div class="input-field username">
 					<input type="text" name="emailid" id="emailid" placeholder="Email Id"/>
+					<div class="inputerror-msg" style="display:none;">
+						<div class="emailfailed">
+							<img src="images/emailerror.png"/>
+						</div>
+						<div class="validemail" style="display:none">
+							<img src="images/validemailerror.png"/>
+						</div>
+					</div>
 				</div>
 				<div class="email-avalibility-msg">Please provide correct email id for verification.</div>
 				<div class="error-msg" style="display:none">

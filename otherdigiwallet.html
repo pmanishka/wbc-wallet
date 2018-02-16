@@ -20,10 +20,6 @@ $(function() {
 var contentType ="application/x-www-form-urlencoded; charset=utf-8";
 if(window.XDomainRequest){contentType = "text/plain";}
 jQuery.support.cors = true;
-touchMove = function(event) {
-      event.preventDefault();
-}
-	
 jQuery( document ).ready(function() {
 
 	if(window.sessionStorage.getItem("loggedIn") == 1) {
@@ -145,7 +141,7 @@ jQuery( document ).ready(function() {
 </head>
 <body>
 
-<div id="main_wrapper" class="inner-page" ontouchmove="touchMove(event)">
+<div id="main_wrapper" class="inner-page">
 	<div class="main-container">
 	<div id="topbar" class="navigation">
 		

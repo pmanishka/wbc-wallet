@@ -40,7 +40,6 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {  }
         background: transparent;
     }
 }
-
 input:-webkit-autofill {
     -webkit-animation-name: autofill;
     -webkit-animation-fill-mode: both;
@@ -272,6 +271,7 @@ input[type="button"].red-button {
     background: none;
     border: 0;
     color: #fff;
+	width:100%;
     font-size: 17px;
 	padding: 30px;
 }
@@ -384,6 +384,16 @@ margin-top:70px;
     position: relative;
     text-align: right;
 }
+.inputerror-msg1 {
+           float: right;
+    margin-top: -36px;
+    max-width: 72%;
+    padding-top: 0px;
+    padding: 0px 6px 0;
+    /* z-index: 111; */
+    position: relative;
+    /* text-align: right; */
+}
 .usersuccess.update {
     position: relative;
     width: 100%;
@@ -420,6 +430,93 @@ margin-top:70px;
     margin-left: 34%;
 	margin-top:11%
 }
+.numberfailed img {
+   width: 100%;
+    /* max-width: 53%; */
+    -webkit-margin-after: 0%;
+    margin-left: 28%;
+	margin-top:56%
+}
+.validnumber img {
+   width: 100%;
+    /* max-width: 53%; */
+    -webkit-margin-after: 0%;
+    margin-left: 28%;
+	margin-top:56%
+}
+.emailfailed img {
+   width: 97%;
+    /* max-width: 53%; */
+    -webkit-margin-after: 0%;
+    margin-left: 23%;
+	margin-top:29%
+}
+.validemail img {
+   width: 97%;
+    /* max-width: 53%; */
+    -webkit-margin-after: 0%;
+    margin-left: 23%;
+	margin-top:29%
+}
+.namefailed img {
+       width: 80%;
+    max-width: 73%;
+    margin-left: 32px;
+    -webkit-margin-after: 0%;
+    margin-top: 2%;
+}
+.dobfailed img {
+   width: 97%;
+    /* max-width: 53%; */
+    -webkit-margin-after: 0%;
+    margin-left: -14px;
+}
+.addressfailed img {
+       width: 80%;
+    max-width: 73%;
+    margin-left: 32px;
+    -webkit-margin-after: 0%;
+    margin-top: 2%;
+}
+.cityfailed img {
+     width: 80%;
+    max-width: 73%;
+    margin-left: 32px;
+    -webkit-margin-after: 0%;
+    margin-top: 2%;
+}
+.statefailed img {
+      width: 80%;
+    max-width: 73%;
+    margin-left: 32px;
+    -webkit-margin-after: 0%;
+    margin-top: 2%;
+}
+.countryfailed img {
+    width: 80%;
+    max-width: 73%;
+    margin-left: 32px;
+    -webkit-margin-after: 0%;
+    margin-top: 2%;
+}
+.pinfailed img {
+       width: 80%;
+    max-width: 73%;
+    margin-left: 32px;
+    -webkit-margin-after: 0%;
+    margin-top: 2%;
+}
+.verificationloader{
+	float:left;
+	width:100%;
+}
+.verificationloader img{
+	height:75px;
+	width:75px;
+    margin-top: -84px;
+    opacity: 0.5;
+}
+
 .err-text{
 	width:100%;
 	margin-left:100%;
@@ -463,16 +560,14 @@ margin-top:70px;
     width: 60%;
     float: left;
 }
-.mobilecode input {
-    background: transparent;
-    color: #fff;
+.mobilecode {
+
     border-bottom: 1px solid #fff;
     border-left: 0;
     border-right: 0;
     border-top: 0;
     font-size: 21px;
     padding: 4px 3px;
-    width:100%;
 }
 .mobile-label{
 	margin-bottom:30px;
@@ -535,13 +630,13 @@ margin-top:70px;
 .otp-textbox {
     margin-top: 18px;
 }
-.otp-textbox::after {
+/* .otp-textbox::after {
 	content: "________ ________ ________ _______";
 	line-height: 1em;
 	width: 100%;
 	float: left;
 	clear: both;
-}
+} */
 .otp-resend {
 	width: 100%;
 	margin-top: 30px;
@@ -2447,6 +2542,52 @@ border-bottom: 1px solid #ddd;
 
 /* Show the snackbar when clicking on a button (class added with JavaScript) */
 #snackbar.show {
+    visibility: visible; /* Show the snackbar */
+
+/* Add animation: Take 0.5 seconds to fade in and out the snackbar. 
+However, delay the fade out process for 2.5 seconds */
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+/* Animations to fade the snackbar in and out */
+@-webkit-keyframes fadein {
+    from {bottom: 0; opacity: 0;} 
+    to {bottom: 30px; opacity: 1;}
+}
+
+@keyframes fadein {
+    from {bottom: 0; opacity: 0;}
+    to {bottom: 30px; opacity: 1;}
+}
+
+@-webkit-keyframes fadeout {
+    from {bottom: 30px; opacity: 1;} 
+    to {bottom: 0; opacity: 0;}
+}
+
+@keyframes fadeout {
+    from {bottom: 30px; opacity: 1;}
+    to {bottom: 0; opacity: 0;}
+}
+/* ------------ Snack Box ------------- */
+/* The snackbar - position it at the bottom and in the middle of the screen */
+.snackbar {
+    min-width: 250px;
+    margin-left: -125px;
+    background-color: #33333375;
+    color: #fff;
+    text-align: center;
+    border-radius: 35px;
+    padding: 11px;
+    position: fixed;
+    z-index: 1;
+    left: 50%;
+    bottom: 30px;
+}
+
+/* Show the snackbar when clicking on a button (class added with JavaScript) */
+.snackbar.show {
     visibility: visible; /* Show the snackbar */
 
 /* Add animation: Take 0.5 seconds to fade in and out the snackbar. 
