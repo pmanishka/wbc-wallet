@@ -46,46 +46,39 @@
 
 	
 	<platform name="android">
-	<icon density="ldpi" src="res/icons/android/drawable-ldpi-icon.png" />
-	<icon density="mdpi" src="res/icons/android/drawable-mdpi-icon.png" />
-	<icon density="hdpi" src="res/icons/android/drawable-hdpi-icon.png" />
-	<icon density="xhdpi" src="res/icons/android/drawable-xhdpi-icon.png" />
-	<icon density="xxhdpi" src="res/icons/android/drawable-xxhdpi-icon.png" />
-	<icon density="xxxhdpi" src="res/icons/android/drawable-xxxhdpi-icon.png" />
-	<splash density="land-ldpi" src="res/screens/android/drawable-land-ldpi-screen.png" />
-	<splash density="land-mdpi" src="res/screens/android/drawable-land-mdpi-screen.png" />
-	<splash density="land-hdpi" src="res/screens/android/drawable-land-hdpi-screen.png" />
-	<splash density="land-xhdpi" src="res/screens/android/drawable-land-xhdpi-screen.png" />
-	<splash density="land-xxhdpi" src="res/screens/android/drawable-land-xxhdpi-screen.png" />
-	<splash density="land-xxxhdpi" src="res/screens/android/drawable-land-xxxhdpi-screen.png" />
-	<splash density="port-ldpi" src="res/screens/android/drawable-port-ldpi-screen.png" />
-	<splash density="port-mdpi" src="res/screens/android/drawable-port-mdpi-screen.png" />
-	<splash density="port-hdpi" src="res/screens/android/drawable-port-hdpi-screen.png" />
-	<splash density="port-xhdpi" src="res/screens/android/drawable-port-xhdpi-screen.png" />
-	<splash density="port-xxhdpi" src="res/screens/android/drawable-port-xxhdpi-screen.png" />
-	<splash density="port-xxxhdpi" src="res/screens/android/drawable-port-xxxhdpi-screen.png" />
-</platform>
-<platform name="ios">
-	<icon height="57" platform="ios" src="res/icons/ios/icon.png" width="57" />
-	<icon height="114" platform="ios" src="res/icons/ios/icon@2x.png" width="114" />
-	<icon height="40" platform="ios" src="res/icons/ios/icon-40.png" width="40" />
-	<icon height="80" platform="ios" src="res/icons/ios/icon-40@2x.png" width="80" />
-	<icon height="50" platform="ios" src="res/icons/ios/icon-50.png" width="50" />
-	<icon height="100" platform="ios" src="res/icons/ios/icon-50@2x.png" width="100" />
-	<icon height="60" platform="ios" src="res/icons/ios/icon-60.png" width="60" />
-	<icon height="120" platform="ios" src="res/icons/ios/icon-60@2x.png" width="120" />
-	<icon height="180" platform="ios" src="res/icons/ios/icon-60@3x.png" width="180" />
-	<icon height="72" platform="ios" src="res/icons/ios/icon-72.png" width="72" />
-	<icon height="144" platform="ios" src="res/icons/ios/icon-72@2x.png" width="144" />
-	<icon height="76" platform="ios" src="res/icons/ios/icon-76.png" width="76" />
-	<icon height="152" platform="ios" src="res/icons/ios/icon-76@2x.png" width="152" />
-	<icon height="29" platform="ios" src="res/icons/ios/icon-small.png" width="29" />
-	<icon height="58" platform="ios" src="res/icons/ios/icon-small@2x.png" width="58" />
-	<icon height="87" platform="ios" src="res/icons/ios/icon-small@3x.png" width="87" />
-</platform>
+		<icon density="ldpi" src="res/icons/android/drawable-ldpi-icon.png" />
+		<icon density="mdpi" src="res/icons/android/drawable-mdpi-icon.png" />
+		<icon density="hdpi" src="res/icons/android/drawable-hdpi-icon.png" />
+		<icon density="xhdpi" src="res/icons/android/drawable-xhdpi-icon.png" />
+		<icon density="xxhdpi" src="res/icons/android/drawable-xxhdpi-icon.png" />
+		<icon density="xxxhdpi" src="res/icons/android/drawable-xxxhdpi-icon.png" />
+	</platform>
+	<platform name="ios">
+		<allow-intent href="itms:*" />
+		<allow-intent href="itms-apps:*" />
+		<icon height="57" src="res/icon/ios/icon.png" width="57" />
+        <icon height="114" src="res/icon/ios/icon@2x.png" width="114" />
+        <icon height="40" src="res/icon/ios/icon-40.png" width="40" />
+        <icon height="80" src="res/icon/ios/icon-40@2x.png" width="80" />
+        <icon height="120" src="res/icon/ios/icon-40@3x.png" width="120" />
+        <icon height="50" src="res/icon/ios/icon-50.png" width="50" />
+        <icon height="100" src="res/icon/ios/icon-50@2x.png" width="100" />
+        <icon height="60" src="res/icon/ios/icon-60.png" width="60" />
+        <icon height="120" src="res/icon/ios/icon-60@2x.png" width="120" />
+        <icon height="180" src="res/icon/ios/icon-60@3x.png" width="180" />
+        <icon height="72" src="res/icon/ios/icon-72.png" width="72" />
+        <icon height="144" src="res/icon/ios/icon-72@2x.png" width="144" />
+        <icon height="76" src="res/icon/ios/icon-76.png" width="76" />
+        <icon height="152" src="res/icon/ios/icon-76@2x.png" width="152" />
+        <icon height="167" src="res/icon/ios/icon-83.5@2x.png" width="167" />
+        <icon height="29" src="res/icon/ios/icon-small.png" width="29" />
+        <icon height="58" src="res/icon/ios/icon-small@2x.png" width="58" />
+        <icon height="87" src="res/icon/ios/icon-small@3x.png" width="87" />
+        <icon height="1024" src="res/icon/ios/icon-1024.png" width="1024" />
+	</platform>
 	
     <access origin="*"/>
-   <access origin="whatsapp:*" launch-external="yes" />
+   
     <plugin name="cordova-plugin-whitelist" spec="~1.3.2" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
