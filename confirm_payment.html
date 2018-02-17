@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Digi Wallet</title>
+<link rel="stylesheet" type="text/css" href="css/style.css">
+<script src="js/jquery.min.js"></script>
+<script>
+var contentType ="application/x-www-form-urlencoded; charset=utf-8";
+if(window.XDomainRequest){contentType = "text/plain";}
+jQuery.support.cors = true;
+
+function checkDevice(){
+		document.addEventListener("deviceready", onDeviceReady, false);
+}
+function onDeviceReady() {  
+	return true;  
+}
+
+jQuery( document ).ready(function() {
+	
+});
+</script>
+</head>
+<body onLoad="checkDevice();">
+
+<div id="main_wrapper">
+	<div class="main-container">
+	<div id="topbar">
+		<div style="color:transparent">test</div>
+	</div>
+	<div id="top_header">
+		<div class="logo">
+			<div class="logo-img"><img src="images/logo-digi6.png"></div>
+			<!-- <div class="logo-text">Digi Wallet</div> -->
+		</div>
+	</div>
+	<div class="container">
+		<div class="mainpage-section">
+			
+		</div>
+		<div class="darkblue-button1">
+		
+	</div>
+</div>
+</div>
+</body>
+</html>

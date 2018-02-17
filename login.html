@@ -46,7 +46,11 @@ else{
 				});
 				
 			}else{
-				alert('Login Failed');
+					$("#snackbar").fadeIn("slow", function () {
+					setTimeout(function () {
+						$("#snackbar").fadeOut("slow");
+					}, 1000);
+				});
 			}
 		  },
 		  error: function() {
@@ -90,6 +94,7 @@ else{
 	</div>
 	</div>
 </div>
-<div id="snackbar" style="display:none;">Login Successfully</div>
+<div id="register-successfully" class="snackbar" style="display:none;">Register Successfully</div>
+<div id="snackbar" style="display:none;">Please Enter Details to login your account</div>
 </body>
 </html>

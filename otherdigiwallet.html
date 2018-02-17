@@ -20,6 +20,7 @@ $(function() {
 var contentType ="application/x-www-form-urlencoded; charset=utf-8";
 if(window.XDomainRequest){contentType = "text/plain";}
 jQuery.support.cors = true;
+
 jQuery( document ).ready(function() {
 
 	if(window.sessionStorage.getItem("loggedIn") == 1) {
@@ -44,12 +45,15 @@ jQuery( document ).ready(function() {
 				var verifystatus = data['details']['emailverifystatus'];
 				var curr = data['currency'] ;
 				var username  = jQuery('#username').attr("value", data['details']['name']);
-				var btcbal  = jQuery('#btcbal').attr("value", data['details']['net_btc_bal']);
+				jQuery("input[name='btcbal']").attr("value",data['details']['net_btc_bal']);
+				//alert(data['details']['net_btc_bal']);
+				jQuery("input[name='uid']").attr("value",data['details']['id']);
 				//alert(username);
 				$.each(curr, function(idx, obj) {
 					if(obj.short_name == 'BTC'){
 						var currency_id = jQuery("input[name='curr_id']").attr("value",obj.id);
 						var currency_name = jQuery("input[name='currency_name']").attr("value",obj.name);
+						
 					}
 				});
 				if(typeof verifystatus!='undefined' && verifystatus!='' && verifystatus!=null && verifystatus=='1'){
@@ -81,12 +85,24 @@ jQuery( document ).ready(function() {
 
 			$(this).addClass('current');
 			$("#"+tab_id).addClass('current');
+			if ($(".current").hasClass("send")) {
+				jQuery('.other-wallet').click(function(){
+					window.location='otherwallet.html';
+				});
+				jQuery('.digi-wallet').click(function(){
+					window.location='otherdigiwallet.html';
+				});
+			}
 		});
 	
 	
-		$(".btc .btc-input-field #btc").keyup(function(){
-
-			var btcval = jQuery('.received .btc-input-field #btc').val();
+	
+		// Receive Transaction
+		
+		//BTC To USD
+		jQuery(".usd_address").empty();
+		$(".receive .btc-input-field #btc").keyup(function(){
+			var btcval = jQuery('.btc-input-field #btc').val();
 			
 			// Get BitPay Data
 			$.ajax({
@@ -95,41 +111,415 @@ jQuery( document ).ready(function() {
 			dataType: 'json',
 			async: false,
 				success: function (response) {
-					
-
 					$.each(response, function(idx, obj) {
 						if(obj.code == 'USD'){
 							var usdval = (obj.rate) ;
+							
+							jQuery(".btc-input-field #btc").attr("value",btcval);
+							
+							var btcval = jQuery('.btc-input-field #btc').val();
 							var bitcalc = btcval * usdval;
-							//alert(bitcalc);
-							jQuery(".btc .usd-input-field #usd").attr("value",bitcalc);
+							jQuery("#usd").attr("value",bitcalc);
 							var currency_id = jQuery("#curr_id").val();
 							var username = jQuery("#username").val();
 							var currency_name = jQuery("#currency_name").val();
 
+							$("#usd").keyup(function(){
+							
+								var usdval = jQuery('.usd-input-field #usd').val();
+								var btcval = jQuery('#btc').val('0');
+								jQuery(".usd_address").empty();
+									// Get BitPay Data
+									$.ajax({
+									type: 'GET',
+									url: 'https://bitpay.com/api/rates',
+									dataType: 'json',
+									async: false,
+										success: function (response) {
+										
+											$.each(response, function(idx, obj) {
+												if(obj.code == 'USD'){
+													//var btcval = 1 ;
+													var usdvalrate = (obj.rate) ;
+													
+													var usdcalc =  usdval/usdvalrate;
+													//alert(usdcalc);
+													jQuery("#btc").val(usdcalc.toFixed(5));
+													
+													var currency_id = jQuery("#curr_id").val();
+													var username = jQuery("#username").val();
+													var currency_name = jQuery("#currency_name").val();
+
+														// Click on proceed button
+														jQuery('input[class="transact-button"]').click(function(){
+														var btcval = jQuery("#btc").val();
+															if(usdval > 0){
+																jQuery(this).hide();
+																jQuery("#btc").prop('readonly', true);
+																jQuery("#usd").prop('readonly', true);
+																
+																jQuery(".usd_address").empty();
+																// Get barcode
+																$.ajax({
+																  url: "https://www.4xwin.com/appadmin/app_call_for_block_chain.php",
+																  type: 'POST',
+																  data: {q:'depositCurrency',user_id:userid,amount:usdval,currency_id:currency_id,username:username,currency_name:currency_name,equal_usd:usdval}, 
+																  crossDomain: true,   
+																  success: function(data) {
+																	var obj = jQuery.parseJSON(data);
+																	jQuery('.transact-btc-result').show();
+																	if(obj.address == 'Invalid xpub format'){
+																			jQuery('.transact-btc-result .equal_usd').html('<img src="images/error.png" />');
+																	}else{
+																		jQuery('.transact-btc-result .equal_usd').html('<img src="'+obj.url+'" />');
+																	}
+																	
+																	//jQuery('.transact-btc-result .usd_address').append(obj.address);
+																	// Address Copied
+																	/*jQuery('.transact-btc-result .usd_address').focus(function(){
+																		document.execCommand('copy');
+																	});*/
+																  },
+																  error: function() {
+																	alert('Error');
+																  }
+																});
+															}
+														});
+												}
+												jQuery('.transact-button').show();
+											});
+										}
+									});
+							});
+								// Click on proceed button
+								jQuery('input[class="transact-button"]').click(function(){
+									if(btcval > 0){
+										jQuery(this).hide();
+										jQuery("#btc").prop('readonly', true);
+										jQuery("#usd").prop('readonly', true);
+										jQuery(".usd_address").empty();
+										// Get barcode
+										$.ajax({
+										  url: "https://www.4xwin.com/appadmin/app_call_for_block_chain.php",
+										  type: 'POST',
+										  data: {q:'depositCurrency',user_id:userid,amount:bitcalc,currency_id:currency_id,username:username,currency_name:currency_name,equal_usd:bitcalc}, 
+										  crossDomain: true,   
+										  success: function(data) {
+										  
+										  
+												var obj = jQuery.parseJSON(data);
+												jQuery('.transact-btc-result').show();
+												if(obj.address == 'Invalid xpub format'){
+													jQuery('.transact-btc-result .equal_usd').html('<img src="images/error.png" />');
+												}else{
+													jQuery('.transact-btc-result .equal_usd').html('<img src="'+obj.url+'" />');
+												}
+												
+												//jQuery('.transact-btc-result .usd_address').append(obj.address);
+												// Address Copied
+												/*jQuery('.transact-btc-result .usd_address').focus(function(){
+													document.execCommand('copy');
+												});*/
+												
+										  },
+										  error: function() {
+											alert('Error');
+										  }
+										});
+									}
+								});
 						}
 						jQuery('.transact-button').show();
 					});
-					
-					
 				}
 			});
-					
+			
 		});
 			
 		
-		// Click on proceed button
-		jQuery('input[class="transact-button"]').click(function(){
-		var btcbal = jQuery('input[name="btcbal"]').val();
-		var usdtotal = jQuery("input[name='usd']").val();
-		//alert(usdtotal);
+		
+		// USD To BTC
+		jQuery(".receive .usd_address").empty();
+		$(".receive .usd-input-field #usd").keyup(function(){
+		
+			var usdval = jQuery('.usd-input-field #usd').val();
+			// Get BitPay Data
+			$.ajax({
+			type: 'GET',
+			url: 'https://bitpay.com/api/rates',
+			dataType: 'json',
+			async: false,
+				success: function (response) {
+					$.each(response, function(idx, obj) {
+						if(obj.code == 'USD'){
+							//var btcval = 1 ;
+							var usdvalrate = (obj.rate) ;
+							
+							var usdcalc =  usdval/usdvalrate;
+							
+							jQuery("#btc").attr("value",usdcalc.toFixed(5));
+							
+							
+							var currency_id = jQuery("#curr_id").val();
+							var username = jQuery("#username").val();
+							var currency_name = jQuery("#currency_name").val();
 
-			if(btcbal >= usdtotal){
-				alert('balance available');
-			}else{
-				alert('insufficent balance');
-			}
+							
+							
+								$("#btc").keyup(function(){
+								
+								var btcval = jQuery('#btc').val();
+								var usdval = jQuery('#usd').val('0');
+								
+									// Get BitPay Data
+									$.ajax({
+									type: 'GET',
+									url: 'https://bitpay.com/api/rates',
+									dataType: 'json',
+									async: false,
+										success: function (response) {
+										
+											$.each(response, function(idx, obj) {
+												if(obj.code == 'USD'){
+													//var btcval = 1 ;
+													var usdvalrate = (obj.rate) ;
+																
+														var btcval = jQuery('.btc-input-field #btc').val();
+														var bitcalc = btcval * usdvalrate;
+														jQuery("#usd").val(bitcalc);
+														var currency_id = jQuery("#curr_id").val();
+														var username = jQuery("#username").val();
+														var currency_name = jQuery("#currency_name").val();
+														jQuery(".usd_address").empty();
+														// Click on proceed button
+														jQuery('input[class="transact-button"]').click(function(){
+															if(btcval > 0){
+																jQuery(this).hide();
+																jQuery("#btc").prop('readonly', true);
+																jQuery("#usd").prop('readonly', true);
+																
+																// Get barcode
+																$.ajax({
+																  url: "https://www.4xwin.com/appadmin/app_call_for_block_chain.php",
+																  type: 'POST',
+																  data: {q:'depositCurrency',user_id:userid,amount:bitcalc,currency_id:currency_id,username:username,currency_name:currency_name,equal_usd:bitcalc}, 
+																  crossDomain: true,   
+																  success: function(data) {
+																  
+																  
+																		var obj = jQuery.parseJSON(data);
+																		jQuery('.transact-btc-result').show();
+																		if(obj.address == 'Invalid xpub format'){
+																			jQuery('.transact-btc-result .equal_usd').html('<img src="images/error.png" />');
+																		}else{
+																			jQuery('.transact-btc-result .equal_usd').html('<img src="'+obj.url+'" />');
+																		}
+																		jQuery(".usd_address").empty();
+																		jQuery('.transact-btc-result .usd_address').append(obj.address);
+																		// Address Copied
+																		jQuery('.transact-btc-result .usd_address').focus(function(){
+																			document.execCommand('copy');
+																		});
+																		
+																  },
+																  error: function() {
+																	alert('Error');
+																  }
+																});
+															}
+														});
+												}
+												jQuery('.transact-button').show();
+											});
+										}
+									});
+							});
+								jQuery(".usd_address").empty();
+								// Click on proceed button
+								jQuery('input[class="transact-button"]').click(function(){
+								var btcval = jQuery("#btc").val();
+									if(usdval > 0){
+										jQuery(this).hide();
+										jQuery("#btc").prop('readonly', true);
+										jQuery("#usd").prop('readonly', true);
+										// Get barcode
+										$.ajax({
+										  url: "https://www.4xwin.com/appadmin/app_call_for_block_chain.php",
+										  type: 'POST',
+										  data: {q:'depositCurrency',user_id:userid,amount:usdval,currency_id:currency_id,username:username,currency_name:currency_name,equal_usd:usdval}, 
+										  crossDomain: true,   
+										  success: function(data) {
+											var obj = jQuery.parseJSON(data);
+											jQuery('.transact-btc-result').show();
+											if(obj.address == 'Invalid xpub format'){
+													jQuery('.transact-btc-result .equal_usd').html('<img src="images/error.png" />');
+											}else{
+												jQuery('.transact-btc-result .equal_usd').html('<img src="'+obj.url+'" />');
+											}
+											jQuery(".usd_address").empty();
+											jQuery('.transact-btc-result .usd_address').append(obj.address);
+											// Address Copied
+											jQuery('.transact-btc-result .usd_address').focus(function(){
+												document.execCommand('copy');
+											});
+										  },
+										  error: function() {
+											alert('Error');
+										  }
+										});
+									}
+								});
+						}
+						jQuery('.transact-button').show();
+					});
+				}
+			});
+			
 		});
+		
+		// Send To Digi Wallet Transaction
+		
+		//BTC To USD
+
+		$(".sendtodigiwallet .btc-input-field #btc").keyup(function(){
+			var btcval = jQuery(this).val();
+			// Get BitPay Data
+			$.ajax({
+			type: 'GET',
+			url: 'https://bitpay.com/api/rates',
+			dataType: 'json',
+			async: false,
+				success: function (response) {
+					$.each(response, function(idx, obj) {
+						if(obj.code == 'USD'){
+							var usdval = (obj.rate) ;
+							
+							var btcval = jQuery('.sendtodigiwallet .btc-input-field #btc').val();
+							var bitcalc = btcval * usdval;
+
+							jQuery(".sendtodigiwallet #usd").attr("value",bitcalc);
+
+							$(".sendtodigiwallet #usd").keyup(function(){
+							
+								var usdval = jQuery('.sendtodigiwallet .usd-input-field #usd').val();
+		
+									if(obj.code == 'USD'){
+										
+										var usdvalrate = (obj.rate) ;
+										
+										var usdcalc =  usdval/usdvalrate;
+										jQuery(".sendtodigiwallet #btc").val(usdcalc.toFixed(5));
+									}
+							});
+								
+						}
+					});
+				}
+			});
+			
+		});
+			
+		
+		
+		// USD To BTC
+		//jQuery(".sendtodigiwallet .usd_address").empty();
+		$(".sendtodigiwallet .usd-input-field #usd").keyup(function(){
+		
+			var usdval = jQuery('.sendtodigiwallet .usd-input-field #usd').val();
+			// Get BitPay Data
+			$.ajax({
+			type: 'GET',
+			url: 'https://bitpay.com/api/rates',
+			dataType: 'json',
+			async: false,
+				success: function (response) {
+					$.each(response, function(idx, obj) {
+						if(obj.code == 'USD'){
+							//var btcval = 1 ;
+							var usdvalrate = (obj.rate) ;
+							var usdcalc =  usdval/usdvalrate;
+							
+							jQuery(".sendtodigiwallet #btc").attr("value",usdcalc.toFixed(5));
+						
+							
+								$(".sendtodigiwallet #btc").keyup(function(){
+									
+									var btcval = jQuery('.sendtodigiwallet #btc').val();
+									
+									if(obj.code == 'USD'){
+										var usdvalrate = (obj.rate) ;
+										var btcval = jQuery('.sendtodigiwallet .btc-input-field #btc').val();
+										var bitcalc = btcval * usdvalrate;
+										jQuery(".sendtodigiwallet #usd").val(bitcalc);
+									}
+							});
+								
+						}
+					});
+				}
+			});
+			
+		});
+		
+		$.ajax({
+			  url: siteurl+"getSettings",
+			  type: 'GET',
+			  data: {q:'getSettings'},
+			  crossDomain: true,   
+			  success: function(data) {
+					//var charges = data['dc_to_dc'] ;
+					var charges = jQuery('.sendtodigiwallet #charges').attr("value",data['dc_to_dc'] );
+			  },
+			  error: function() {
+				alert('Error');
+			  }
+		});
+		jQuery('.sendtodigiwallet input[class="transact-button"]').click(function(){
+		
+			var btcval = jQuery('.sendtodigiwallet #btc').val();
+			var usdval = jQuery('.sendtodigiwallet #usd').val();
+			var digicardnoval = jQuery('.sendtodigiwallet #digicardno').val();
+			
+			var currency_id = jQuery("#curr_id").val();
+			
+			var currency_name = jQuery("#currency_name").val();
+			var net_btc_bal = jQuery("#net_btc_bal").val();
+			var charges = jQuery("#charges").val();
+			var uid = jQuery("#uid").val();
+			
+			sessionStorage.setItem("btcval", btcval);
+			sessionStorage.setItem("usdval", usdval);
+			sessionStorage.setItem("digicardnoval", digicardnoval);
+			sessionStorage.setItem("currency_id", currency_id);
+			sessionStorage.setItem("currency_name", currency_name);
+			sessionStorage.setItem("net_btc_bal", net_btc_bal);
+			sessionStorage.setItem("charges", charges);
+			sessionStorage.setItem("uid", uid);
+			
+			window.location='confirm_payment.html';
+			
+			/*$.ajax({
+				  url: siteurl+"transferToDigiCard",
+				  type: 'POST',
+				  data: {q:'digi_card',user_id:uid,amount:btcval,currency_id:currency_id,card_no:digicardnoval,charges:charges,equal_usd:usdval},
+				  crossDomain: true,   
+				  success: function(data) {
+		
+					if(data['status'] == 1)
+					{
+						
+					}else{
+						
+					}
+			      },
+			      error: function() {
+					alert('Error');
+			      }
+			});*/
+		});
+		
+		
 	}
 	else
 	{
@@ -239,7 +629,7 @@ jQuery( document ).ready(function() {
 			<li class="tab-link current" data-tab="tab-2">SEND</li>
 		</ul>
 
-	<div id="tab-1" class="tab-content">
+	<div id="tab-1" class="tab-content receive">
 		<div class="amount">
 			<img src="images/amount.png"/>
 		</div>
@@ -277,8 +667,13 @@ jQuery( document ).ready(function() {
 					<input type="button" name="submit" class="transact-button" value="Proceed"/>
 		</div>
 	</div>
-	<div id="tab-2" class="tab-content received current">
-	<input type="hidden" name="btcbal" id="btcbal" />
+	<div id="tab-2" class="tab-content sendtodigiwallet current">
+	<input type="hidden" name="curr_id" id="curr_id" />
+	<input type="hidden" name="uid" id="uid" />
+	<input type="hidden" name="currency_name" id="currency_name" />
+	<!--<input type="hidden" name="btcbal" id="btcbal" />-->
+	<input type="hidden" name="btcbal" id="net_btc_bal" />
+	<input type="hidden" name="charges" id="charges" />
 		<div class="amount">
 			<img src="images/amount_send.png"/>
 		</div>

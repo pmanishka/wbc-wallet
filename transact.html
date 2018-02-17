@@ -20,25 +20,7 @@ $(function() {
 var contentType ="application/x-www-form-urlencoded; charset=utf-8";
 if(window.XDomainRequest){contentType = "text/plain";}
 jQuery.support.cors = true;
-function validatePassword() {
 
-	var validator = $("#changepassword").validate({
-	//alert('test');
-		rules: {
-			password: "required",
-			confirmpassword: {
-				equalTo: "#password"
-			}
-		},
-		messages: {
-			password: " Enter Password",
-			confirmpassword: " Enter Confirm Password Same as Password"
-		}
-	});
-	if (validator.form()) {
-		alert('Sucess');
-	}
-}
 	
 jQuery( document ).ready(function() {
 
