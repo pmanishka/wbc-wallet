@@ -12,6 +12,8 @@ if(window.XDomainRequest){contentType = "text/plain";}
 jQuery.support.cors = true;
 jQuery( document ).ready(function() {
 
+sessionStorage.clear();
+
 if(window.sessionStorage.getItem("loggedIn") == 1) {
 	window.location='securitypin.html';
 }

@@ -38,12 +38,13 @@ var spin =localStorage.getItem("pin");
 			if(data['status'] == 1)
 			{
 				var user_otp = data['details']['u_pin'];
-				//alert(user_otp);
+				
 				// Concatinate otp value
 				jQuery(".spin").keyup(function () {
 					if (this.value.length == this.maxLength) {
 					  var $next = $(this).next('.spin');
 					  if ($next.length){
+							
 						  $(this).next('.spin').focus();
 					  }
 					  else{
@@ -54,7 +55,39 @@ var spin =localStorage.getItem("pin");
 							});
 						  if(optcvalue == user_otp)
 						  {
-							window.location='dashboard.html';
+								
+								//Transfer Digicard to Digicard
+								var btcval = sessionStorage.getItem("btcval");
+								var usdval = sessionStorage.getItem("usdval");
+								var digicardnoval = sessionStorage.getItem("digicardnoval");
+								var currency_id = sessionStorage.getItem("currency_id");
+								var currency_name = sessionStorage.getItem("currency_name");
+								var net_btc_bal = sessionStorage.getItem("net_btc_bal");
+								var charges = sessionStorage.getItem("charges");
+								var uid = sessionStorage.getItem("uid");
+								
+								
+								if(btcval != null && usdval != null  && digicardnoval != null  && currency_id != null && currency_name != null && net_btc_bal != null && charges != null  && uid != null ){
+									//alert('test');
+									$.ajax({
+										  url: siteurl+"transferToDigiCard",
+										  type: 'POST',
+										  data: {q:'digi_card',user_id:uid,amount:btcval,currency_id:currency_id,card_no:digicardnoval,charges:charges,equal_usd:usdval},
+										  crossDomain: true,   
+										  success: function(data) {
+											if(data['status'] == 1)
+											{
+												window.location='cotherdigitalwallet.html';
+											}
+										  },
+										  error: function() {
+											alert('Error');
+										  }
+									});
+								}else{
+									//alert('test123');
+									window.location='dashboard.html';
+								}
 						  }else{
 							$("#snackbar").fadeIn("slow", function () {
 								setTimeout(function () {
@@ -77,37 +110,37 @@ var spin =localStorage.getItem("pin");
 			alert('Error');
 		  }
 		});
+		
+		
 	}
 	else
 	{
 		if(spin != ''){
 			jQuery(".spin").keyup(function () {
-					if (this.value.length == this.maxLength) {
-					  var $next = $(this).next('.spin');
-					  if ($next.length){
-						  $(this).next('.spin').focus();
-					  }
-					  else{
-						  $(this).blur();
-						  var optcvalue='';
-							jQuery('.spin').each(function(){
-							   optcvalue+=this.value;
-							});
-						  if(optcvalue == spin)
-						  {
-							window.location='dashboard.html';
-						  }else{
-							$("#snackbar").fadeIn("slow", function () {
-								setTimeout(function () {
-									$("#snackbar").fadeOut("slow");
-								}, 5000);
-							});
-						  }
-					  }
-						  
-					
+				if (this.value.length == this.maxLength) {
+					var $next = $(this).next('.spin');
+					if ($next.length){
+						$(this).next('.spin').focus();
 					}
-				});
+					else{
+						$(this).blur();
+						var optcvalue='';
+							jQuery('.spin').each(function(){
+								optcvalue+=this.value;
+							});
+						if(optcvalue == spin)
+						{
+							window.location='dashboard.html';
+						}else{
+							$("#snackbar").fadeIn("slow", function () {
+							setTimeout(function () {
+								$("#snackbar").fadeOut("slow");
+							}, 5000);
+						});
+					  }
+				   }
+				}
+			});
 		}
 	}
 });

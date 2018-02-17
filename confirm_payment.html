@@ -4,6 +4,7 @@
 <title>Digi Wallet</title>
 <link rel="stylesheet" type="text/css" href="css/style.css">
 <script src="js/jquery.min.js"></script>
+<script src="js/config.js"></script>
 <script>
 var contentType ="application/x-www-form-urlencoded; charset=utf-8";
 if(window.XDomainRequest){contentType = "text/plain";}
@@ -17,17 +18,77 @@ function onDeviceReady() {
 }
 
 jQuery( document ).ready(function() {
-	
+
+	if(window.sessionStorage.getItem("loggedIn") == 1) {
+		var userid = sessionStorage.getItem("user_id") ;
+		var password = sessionStorage.getItem("password") ;
+		var uid = sessionStorage.getItem("uid") ;
+		
+		// Get Other Digi Wallet Storage
+		var btcval = sessionStorage.getItem("btcval");
+		var usdval = sessionStorage.getItem("usdval");
+		var digicardnoval = sessionStorage.getItem("digicardnoval");
+		var currency_id = sessionStorage.getItem("currency_id");
+		var currency_name = sessionStorage.getItem("currency_name");
+		var net_btc_bal = sessionStorage.getItem("net_btc_bal");
+		var charges = sessionStorage.getItem("charges");
+		var uid = sessionStorage.getItem("uid");
+		
+		digicardnoval = digicardnoval.replace(/(\S{4})/g,"$1 ");
+		digicardnoval = digicardnoval.replace(/$/,"");   // if you do not want the final a
+				
+		jQuery('.transfer_address span.transfer_address').append(btcval);
+		jQuery('.transfer_address span.cardno').append(digicardnoval);
+		
+		$.ajax({
+		  url: siteurl+"login",
+		  type: 'POST',
+		  data: {q:'checklogin',user_id:userid,password:password}, 
+		  crossDomain: true,   
+		  success: function(data) {
+			if(data['status'] == 1)
+			{
+				jQuery('.transfer_header span.name').append(data['details']['name']);
+			}
+			else{
+				window.location='login.html';
+			}
+		  },
+		  error: function() {
+			alert('Error');
+		  }
+		});
+		
+		// If click on no
+		jQuery('.red-cancel-button input[name="cancel"]').click(function(){
+			window.location='otherdigiwallet.html';
+		});
+		
+		// If click on yes
+		jQuery('.green-save-button input[name="save"]').click(function(){
+			window.location='securitypin.html';
+		});
+		
+		
+	}
+	else
+	{
+		window.location='login.html';
+	}	
 });
 </script>
 </head>
 <body onLoad="checkDevice();">
-
 <div id="main_wrapper">
 	<div class="main-container">
 	<div id="topbar">
-		<div style="color:transparent">test</div>
-	</div>
+				<a href="dashboard.html"><img src="images/back_arrow.png" style="float:left;"/></a> 
+				<div class="header-card">Confirm Payment</div>
+				<div class="notification" style="float:right; margin-left:-9px;">
+			<a href="notifications.html"><img src="images/notification_title_menu.png"/></a>
+			<span class="back" style="display:none;"><a href="dashboard.html"><img src="images/close.png" style="margin-left:22px;"/></a></span>
+		</div>
+		</div>
 	<div id="top_header">
 		<div class="logo">
 			<div class="logo-img"><img src="images/logo-digi6.png"></div>
@@ -36,10 +97,27 @@ jQuery( document ).ready(function() {
 	</div>
 	<div class="container">
 		<div class="mainpage-section">
-			
+			<div class="transfer-rec">
+			<span>Confirm Transfer</span>
+			</div>
+			<div class="transfer_content">
+			<div class="transfer_header">Hi <span class="name"></span></div>
+			<div class="transfer_address">Transaction of <span class="amt"></span> BTC to Mr. xxxxx on  DigiCard Number <br><span class="cardno"></span></div>
+			<div class="transfer_confirmation">Do you want to continue this transaction ?</div>
+			</div>
+			<div>
+						<div style="width:40%; float:left">	
+							<div class="red-cancel-button">
+								<input type="button" name="cancel" value="No"/>
+							</div>
+						</div>
+						<div style="width:40%; float: right;">
+							<div class="green-save-button">
+								<input type="button" name="save" value="Yes"/>
+							</div>
+						</div>	
 		</div>
-		<div class="darkblue-button1">
-		
+		</div>
 	</div>
 </div>
 </div>

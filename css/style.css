@@ -363,13 +363,13 @@ input[type="button"].green-button  {
 }
 .congratulations-msg {
     margin-top: 5%;
-	margin-bottom:5px
+	
 }
 .congratulations-msg .msg img {
     width: 25px;
 }
 .error-msg .msg{color:#C6482A;
-margin-top:70px;
+margin-top:0px;
 /* margin-bottom:10px; */
 
 }
@@ -2750,4 +2750,47 @@ cursor:pointer}
 	height: 100%;
 	z-index: 9999;
 	background: url('http://www.downgraf.com/wp-content/uploads/2014/09/01-progress.gif?e44397') 50% 50% no-repeat rgb(249,249,249);
+}
+.transfer_content {
+	width:80%;
+	margin:8%;
+    text-align: center;
+}
+.transfer_header{
+	margin-bottom:3%;
+}
+.transfer_address {
+    margin-bottom: 7%;
+    padding: 4%;
+    line-height: 2;
+}
+.transfer_confirmation{
+}
+.transfer-rec {
+    text-align: center;
+    box-sizing: border-box;
+    background: url(../images/dark_voilet.png) no-repeat center;
+	padding: 30px;
+	background-size: 224px 82px;
+	margin-top:23px;
+	margin-bottom:30px;
+}
+.transact_congratulation .msg1 span {
+    color: #aefd36;
+	line-height:2;
+}
+.transact_congratulation {
+    margin-top: 5%;
+    text-align: center;
+}
+.transact_congratulation .msg1 img {
+    width: 100px;
+	    margin-bottom: 9%;
+    margin-top: 11%;
+}
+.transact_congratulation .red-button {
+    position: fixed;
+    background-size: 100% 90%;
+    left: 35%;
+	bottom:2px;
 }
