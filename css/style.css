@@ -442,7 +442,7 @@ margin-top:70px;
     /* max-width: 53%; */
     -webkit-margin-after: 0%;
     margin-left: 28%;
-	margin-top:56%
+	margin-top:70%
 }
 .emailfailed img {
    width: 97%;
@@ -463,48 +463,48 @@ margin-top:70px;
    /*  max-width: 73%; */
     margin-left: 19px;
     -webkit-margin-after: 0%;
-    margin-top: 2%;
+    margin-top: 3%;
 }
 .dobfailed img {
    width: 97%;
-    max-width: 53%;
+    /* max-width: 53%; */
+	margin-left: 19px;
     -webkit-margin-after: 0%;
-    margin-left: -14px;
 }
 .addressfailed img {
        width: 80%;
     /* max-width: 73%; */
    margin-left: 19px;
     -webkit-margin-after: 0%;
-    margin-top: 2%;
+    margin-top: 3%;
 }
 .cityfailed img {
      width: 80%;
  /*    max-width: 73%; */
      margin-left: 19px;
     -webkit-margin-after: 0%;
-    margin-top: 2%;
+    margin-top: 3%;
 }
 .statefailed img {
       width: 80%;
     /* max-width: 73%; */
     margin-left: 19px;
     -webkit-margin-after: 0%;
-    margin-top: 2%;
+    margin-top: 3%;
 }
 .countryfailed img {
     width: 80%;
   /*   max-width: 73%; */
- margin-left: 19px;
+ margin-left: -14px;
     -webkit-margin-after: 0%;
-    margin-top: 2%;
+    margin-top: 3%;
 }
 .pinfailed img {
        width: 80%;
    /*  max-width: 73%; */
     margin-left: 19px;
     -webkit-margin-after: 0%;
-    margin-top: 2%;
+    margin-top: 3%;
 }
 .verificationloader{
 	float:left;
