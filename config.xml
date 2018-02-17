@@ -21,6 +21,7 @@
 	<plugin name="cordova-plugin-camera" />
 	<plugin name="cordova-plugin-file-transfer" />
 	<gap:config-file platform="ios" parent="UIViewControllerBasedStatusBarAppearance" overwrite="true">
+	<preference name="KeyboardDisplayRequiresUserAction" value="false" />
     <false/>
 </gap:config-file>
 	<param name="onload" value="true" />
