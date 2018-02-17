@@ -428,14 +428,14 @@ margin-top:70px;
     /* max-width: 53%; */
     -webkit-margin-after: 7%;
     margin-left: 34%;
-	margin-top:11%
+	margin-top:12%
 }
 .numberfailed img {
    width: 100%;
     /* max-width: 53%; */
     -webkit-margin-after: 0%;
     margin-left: 28%;
-	margin-top:56%
+	margin-top:70%
 }
 .validnumber img {
    width: 100%;
@@ -449,7 +449,7 @@ margin-top:70px;
     /* max-width: 53%; */
     -webkit-margin-after: 0%;
     margin-left: 23%;
-	margin-top:29%
+	margin-top:36%
 }
 .validemail img {
    width: 97%;
@@ -460,49 +460,49 @@ margin-top:70px;
 }
 .namefailed img {
        width: 80%;
-    max-width: 73%;
-    margin-left: 32px;
+   /*  max-width: 73%; */
+    margin-left: 19px;
     -webkit-margin-after: 0%;
     margin-top: 2%;
 }
 .dobfailed img {
    width: 97%;
-    /* max-width: 53%; */
+    max-width: 53%;
     -webkit-margin-after: 0%;
     margin-left: -14px;
 }
 .addressfailed img {
        width: 80%;
-    max-width: 73%;
-    margin-left: 32px;
+    /* max-width: 73%; */
+   margin-left: 19px;
     -webkit-margin-after: 0%;
     margin-top: 2%;
 }
 .cityfailed img {
      width: 80%;
-    max-width: 73%;
-    margin-left: 32px;
+ /*    max-width: 73%; */
+     margin-left: 19px;
     -webkit-margin-after: 0%;
     margin-top: 2%;
 }
 .statefailed img {
       width: 80%;
-    max-width: 73%;
-    margin-left: 32px;
+    /* max-width: 73%; */
+    margin-left: 19px;
     -webkit-margin-after: 0%;
     margin-top: 2%;
 }
 .countryfailed img {
     width: 80%;
-    max-width: 73%;
-    margin-left: 32px;
+  /*   max-width: 73%; */
+ margin-left: 19px;
     -webkit-margin-after: 0%;
     margin-top: 2%;
 }
 .pinfailed img {
        width: 80%;
-    max-width: 73%;
-    margin-left: 32px;
+   /*  max-width: 73%; */
+    margin-left: 19px;
     -webkit-margin-after: 0%;
     margin-top: 2%;
 }
