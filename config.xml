@@ -30,7 +30,7 @@
     <preference name="AutoHideSplashScreen" value="true" />
 	<preference name="SplashScreenBackgroundColor" value="0xFFFFFFFF"/>
 	<preference name="DisallowOverscroll" value="true" />
-	<preference name="KeyboardDisplayRequiresUserAction" value="false">
+	<!-- <preference name="KeyboardDisplayRequiresUserAction" value="false"> -->
 	<feature name="Device">
     <param name="android-package" value="org.apache.cordova.device.Device" />
 	</feature>
