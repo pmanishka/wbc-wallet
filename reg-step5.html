@@ -5,7 +5,7 @@
 <link rel="stylesheet" type="text/css" href="css/style.css">
 <script src="js/jquery.min.js"></script>
 <script src="js/config.js"></script>
-<script src="js/validate.js"></script>
+
 <script>
 var contentType ="application/x-www-form-urlencoded; charset=utf-8";
 if(window.XDomainRequest){contentType = "text/plain";}
@@ -13,45 +13,73 @@ jQuery.support.cors = true;
 
 jQuery(document).ready(function() {
 	
-	jQuery("#setpassword").validate({
-			rules: {
-				password: "required",
-				password_confirm: {
-					required: true,
-					equalTo: "#password"
-				},
-				pin: {
-					required: true,
-					maxlength: 4,
-					minlength: 4,
-					digits: true,
-				},
-				cpin: {
-					required: true,
-					equalTo: "#pin"
-				},
-			},
-			messages: {
-				password: "enter password",
-				password_confirm: {
-					required: "password",
-					equalTo: "confirmpassword"
-				},
-				pin: {
-					required: "enter pin",
-					maxlength: "",
-					digits: ""
-				},
-				cpin: {
-					required: "enter cpin",
-					equalTo: ""
-				}
-			}
-	});
-	
+		
 	jQuery('#passSubmit').click(function(){
 	//var adhar_card_no = "";
-		if ($('#setpassword').valid()) {
+	var password  = $('#password').val();
+	var cpassword=$('#password_confirm').val();
+	var pin=$('#pin').val();
+	var cpin=$('#cpin').val();
+	
+			if(!password)
+            {   
+                $("#firstStepError").html('Please enter password.');
+                $("#firstStepError").show();
+                $("#password").focus();
+                return false;
+            }
+            else if(password.length<8)
+            {
+                $("#firstStepError").html('password must be 8 characters long.');
+                $("#firstStepError").show();
+                $("#password").focus();
+                return false;
+            }
+            else if(password.length>=8 && !IsPassword(password))
+            {
+                $("#firstStepError").html('password must be at least 1 uppercase alphabet, 1 lowercase alphabet, 1 number and 1 special character.');
+                $("#firstStepError").show();
+                $("#password").focus();
+                return false;
+            }
+            else if(!cpassword)
+            {
+                $("#firstStepError").html('Please enter confirm password.');
+                $("#firstStepError").show();
+                $("#password_confirm").focus();
+                return false;
+            } 
+			else if(cpassword!=password)
+            {
+                $("#firstStepError").html('Password and confirm password does not match.');
+                $("#firstStepError").show();
+                $("#password_confirm").focus();
+                return false;
+            }
+			if(!pin)
+            {   
+                $("#firstStepError").html('Please enter pin.');
+                $("#firstStepError").show();
+                $("#pin").focus();
+                return false;
+            }
+            
+			else if(!cpin)
+            {
+                $("#firstStepError").html('Please enter confirm pin.');
+                $("#firstStepError").show();
+                $("#cpin").focus();
+                return false;
+            } 
+			else if(cpin!=pin)
+            {
+                $("#firstStepError").html('Pin and confirm pin does not match.');
+                $("#firstStepError").show();
+                $("#cpin").focus();
+                return false;
+            }
+
+			
 	
 		var password = $("#password").val();
 		var confirmPassword = $("#password_confirm").val();
@@ -64,10 +92,8 @@ jQuery(document).ready(function() {
 		
 		if(uid == ''){
 			var uid = 0;
-			//alert(uid);
 		}else{
 			var uid =localStorage.getItem("uid");
-			//alert(uid);
 		}
 		//alert(uid);
 		var username = localStorage.getItem("username");
@@ -117,7 +143,11 @@ jQuery(document).ready(function() {
 					});
 					
 				}else{
-					alert('Registeration Failed');
+					$("#register-successfully").fadeIn("slow", function () {
+						setTimeout(function () {
+							$("#register-failed").fadeOut("slow");
+						}, 5000);
+					});
 				}
 			  },
 			  error: function() {
@@ -127,9 +157,14 @@ jQuery(document).ready(function() {
 		
 		//return true;
   
-		}
+	
 	});
 });
+function IsPassword(pass) {
+    var regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,}/;
+    return regex.test(pass);
+
+}
 </script>
 </head>
 <body>
@@ -150,7 +185,7 @@ jQuery(document).ready(function() {
 		<div class="registertop">
 			5. Password and PIN
 		</div>
-		
+		<div class="form-errors" id="firstStepError"></div>
 		<div class="register-form reg-step4">
 			<form method="post" id="setpassword" action="">
 				<div class="input-field password">
@@ -180,5 +215,6 @@ jQuery(document).ready(function() {
 
 
 <div id="register-successfully" class="snackbar" style="display:none;">Register Successfully</div>
+<div id="register-failed" class="snackbar" style="display:none;">Register Failed</div>
 </body>
 </html>

@@ -81,6 +81,14 @@ jQuery(document).ready(function() {
 			var uid = jQuery('#uid').val();
 			var fname = jQuery('#fullname').val();
 			var dob = jQuery('#dob').val();
+			var d = new Date(dob);
+			var doy = d.getFullYear();
+			
+			var currentdate = new Date();
+			var cyear = currentdate.getFullYear();
+			
+			var getYearDiff = parseInt(cyear) - parseInt(doy);
+			
 			var address = jQuery('#address').val();
 			var city = jQuery('#city').val();
 			var state = jQuery('#state').val();
@@ -88,15 +96,26 @@ jQuery(document).ready(function() {
 			var postalcode = jQuery('#postalcode').val();
 			
 			localStorage.setItem('uid', uid);
-			localStorage.setItem('fullname', fname);
-			localStorage.setItem("dob", dob);
-			localStorage.setItem("address", address);
-			localStorage.setItem("city", city);
-			localStorage.setItem("state", state);
-			localStorage.setItem("country", country);
-			localStorage.setItem("postalcode", postalcode);
+				localStorage.setItem('fullname', fname);
+				localStorage.setItem("dob", dob);
+				localStorage.setItem("address", address);
+				localStorage.setItem("city", city);
+				localStorage.setItem("state", state);
+				localStorage.setItem("country", country);
+				localStorage.setItem("postalcode", postalcode);
+				
+			if(getYearDiff >= 18){
+				window.location='reg-step5.html';
+			}else{
+				$("#snackbar").fadeIn("slow", function () {
+					setTimeout(function () {
+						$("#snackbar").fadeOut("slow");
+					}, 5000);
+				});
+			}
 			
-			window.location='reg-step5.html';
+			
+		
 		}else{
 			if(jQuery("#fullname").val() == ''){
 				jQuery(".fullname .inputerror-msg1").show();
@@ -265,7 +284,7 @@ jQuery(document).ready(function() {
 		</div>
 	</div>
 </div>
-
+<div id="snackbar" style="display:none;">Must contain 18 years</div>
 <script type="text/javascript">
 /*$("document").ready(function(){
 var aadhardata = jQuery('#aadhar_card_details').val();
@@ -328,7 +347,7 @@ function scan()
 								pc = pc.replace(/'/g,"");
 								jQuery('#postalcode').attr("value",pc)
 							}else{
-								jQuery('#country').attr("value","INDIA")
+								jQuery('#country').attr("value","India")
 							}
 					});
 				});
