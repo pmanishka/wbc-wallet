@@ -522,6 +522,44 @@ margin-top:70px;
 	margin-left:100%;
 	
 }
+div#passwordError {
+    background: #000;
+    padding: 5px;
+    max-width: 75%;
+    float: right;
+    text-align: left;
+    border-top: 2px solid #ff0000;
+    margin-right: 6%;
+    margin-top: 0px;
+}
+div#CPasswordError {
+    background: #000;
+    padding: 5px;
+    max-width: 75%;
+    float: right;
+    text-align: left;
+    border-top: 2px solid #ff0000;
+    margin-right: 6%;
+    margin-top: 0px;
+}div#pinError {
+    background: #000;
+    padding: 5px;
+    max-width: 75%;
+    float: right;
+    text-align: left;
+    border-top: 2px solid #ff0000;
+    margin-right: 6%;
+    margin-top: 0px;
+}div#cPinError {
+    background: #000;
+    padding: 5px;
+    max-width: 75%;
+    float: right;
+    text-align: left;
+    border-top: 2px solid #ff0000;
+    margin-right: 6%;
+    margin-top: 0px;
+}
 /*.inputerror-msg:after {
    bottom: 44%;
     left: 83%;

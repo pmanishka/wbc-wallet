@@ -23,58 +23,82 @@ jQuery(document).ready(function() {
 	
 			if(!password)
             {   
-                $("#firstStepError").html('Please enter password.');
-                $("#firstStepError").show();
+                $("#passwordError").html('Please enter password');
+                $("#passwordError").show();
+				$("#CPasswordError").hide();
+				$("#pinError").hide();
+				$("#cPinError").hide();
                 $("#password").focus();
                 return false;
             }
             else if(password.length<8)
             {
-                $("#firstStepError").html('password must be 8 characters long.');
-                $("#firstStepError").show();
+                $("#passwordError").html('Not a valid Password Password should be minimum 8 characters, contains atleast 1 uppercase letter, 1 digit, 1 special character');
+                $("#passwordError").show();
+				$("#CPasswordError").hide();
+				$("#cPinError").hide();
+				$("#pinError").hide();
                 $("#password").focus();
                 return false;
             }
             else if(password.length>=8 && !IsPassword(password))
             {
-                $("#firstStepError").html('password must be at least 1 uppercase alphabet, 1 lowercase alphabet, 1 number and 1 special character.');
-                $("#firstStepError").show();
+                $("#passwordError").html('Not a valid Password Password should be minimum 8 characters, contains atleast 1 uppercase letter, 1 digit, 1 special character');
+                $("#passwordError").show();
+				$("#CPasswordError").hide();
+				$("#cPinError").hide();
+				$("#pinError").hide();
                 $("#password").focus();
                 return false;
             }
             else if(!cpassword)
             {
-                $("#firstStepError").html('Please enter confirm password.');
-                $("#firstStepError").show();
+                $("#CPasswordError").html('Please Confirm your Password');
+                $("#CPasswordError").show();
+				$("#passwordError").hide();
+				$("#cPinError").hide();
+				$("#pinError").hide();
                 $("#password_confirm").focus();
                 return false;
             } 
 			else if(cpassword!=password)
             {
-                $("#firstStepError").html('Password and confirm password does not match.');
-                $("#firstStepError").show();
+                $("#CPasswordError").html('Password Does not match');
+                $("#CPasswordError").show();
+				$("#passwordError").hide();
+				$("#pinError").hide();
+				$("#cPinError").hide();
                 $("#password_confirm").focus();
                 return false;
             }
 			if(!pin)
             {   
-                $("#firstStepError").html('Please enter pin.');
-                $("#firstStepError").show();
+                $("#pinError").html('Please Set PIN');
+                $("#pinError").show();
+				$("#CPasswordError").hide();
+				$("#passwordError").hide();
+				$("#cPinError").hide();
                 $("#pin").focus();
                 return false;
             }
             
 			else if(!cpin)
             {
-                $("#firstStepError").html('Please enter confirm pin.');
-                $("#firstStepError").show();
+                $("#cPinError").html('Please Confirm your PIN');
+                $("#cPinError").show();
+				$("#CPasswordError").hide();
+				$("#passwordError").hide();
+				$("#pinError").hide();
                 $("#cpin").focus();
                 return false;
             } 
 			else if(cpin!=pin)
             {
-                $("#firstStepError").html('Pin and confirm pin does not match.');
-                $("#firstStepError").show();
+                $("#cPinError").html('PIN Does not match');
+                $("#cPinError").show();
+				$("#CPasswordError").hide();
+				$("#passwordError").hide();
+				$("#pinError").hide();
                 $("#cpin").focus();
                 return false;
             }
@@ -191,18 +215,27 @@ function IsPassword(pass) {
 				<div class="input-field password">
 					<input type="text" name="password" id="password" class="password" placeholder="Password"/>
 					<span class="validate-error"></span>
+					<div id="passwordError" style="display:none;">
+					</div>
 				</div>
 				<div class="input-field cpassword">
 					<input type="text" name="repeat-password" class="password_confirm" id="password_confirm" placeholder="Repeat Password"/>
 					<span class="validate-error"></span>
+					<div id="CPasswordError" style="display:none;">
+					</div>
 				</div>
 				<div class="input-field pin">
 					<input type="text" name="pin" id="pin" class="pin" placeholder="4 Digit Pin" minlength="4" maxlength="4" pattern="[0-9]*" />
 					<span class="validate-error"></span>
+					<div id="pinError" style="display:none;">
+					
+					</div>
 				</div>
 				<div class="input-field cpin">
 					<input type="text" name="repeat-pin" class=" cpin" id="cpin" placeholder="Repeat Pin" minlength="4" maxlength="4" pattern="[0-9]*"/>
 					<span class="validate-error"></span>
+					<div id="cPinError" style="display:none;">
+					</div>
 				</div>
 				<div class="red-button">
 					<input type="button" class="next" id="passSubmit" name="submit" value="Submit"/>
