@@ -481,24 +481,46 @@ jQuery( document ).ready(function() {
 			var usdval = jQuery('.sendtodigiwallet #usd').val();
 			var digicardnoval = jQuery('.sendtodigiwallet #digicardno').val();
 			
-			var currency_id = jQuery("#curr_id").val();
 			
-			var currency_name = jQuery("#currency_name").val();
-			var net_btc_bal = jQuery("#net_btc_bal").val();
-			var charges = jQuery("#charges").val();
-			var uid = jQuery("#uid").val();
+			if(!btcval){
+				jQuery("#btcError").html('Invaid amount');
+				return false;
+			}
+			else if(!digicardnoval)
+            {
+				jQuery("#digicardError").html('Please Enter Digi Card Number');
+				return false;
+			}
+			else if(digicardnoval.length<16)
+			{
+				$("#digicardError").html('Digi card number must be 16 digits');
+				return false;
+			}
 			
-			sessionStorage.setItem("btcval", btcval);
-			sessionStorage.setItem("usdval", usdval);
-			sessionStorage.setItem("digicardnoval", digicardnoval);
-			sessionStorage.setItem("currency_id", currency_id);
-			sessionStorage.setItem("currency_name", currency_name);
-			sessionStorage.setItem("net_btc_bal", net_btc_bal);
-			sessionStorage.setItem("charges", charges);
-			sessionStorage.setItem("uid", uid);
-			
-			window.location='confirm_payment.html';
-			
+			/*if(digicardnoval != '' && digicardnoval.length==16){*/
+				var currency_id = jQuery("#curr_id").val();
+				
+				var currency_name = jQuery("#currency_name").val();
+				var net_btc_bal = jQuery("#net_btc_bal").val();
+				var charges = jQuery("#charges").val();
+				var uid = jQuery("#uid").val();
+				
+				sessionStorage.setItem("btcval", btcval);
+				sessionStorage.setItem("usdval", usdval);
+				sessionStorage.setItem("digicardnoval", digicardnoval);
+				sessionStorage.setItem("currency_id", currency_id);
+				sessionStorage.setItem("currency_name", currency_name);
+				sessionStorage.setItem("net_btc_bal", net_btc_bal);
+				sessionStorage.setItem("charges", charges);
+				sessionStorage.setItem("uid", uid);
+				
+				
+				var totalAmt = parseFloat(btcval) + parseFloat(charges);
+				if(totalAmt < net_btc_bal){
+					window.location='confirm_payment.html';
+				}
+				
+			/*}*/
 		});
 		
 		
@@ -509,6 +531,7 @@ jQuery( document ).ready(function() {
 	}
 
 });
+
 </script>
 </head>
 <body>
@@ -650,6 +673,8 @@ jQuery( document ).ready(function() {
 		</div>
 	</div>
 	<div id="tab-2" class="tab-content sendtodigiwallet current">
+	
+	
 	<input type="hidden" name="curr_id" id="curr_id" />
 	<input type="hidden" name="uid" id="uid" />
 	<input type="hidden" name="currency_name" id="currency_name" />
@@ -668,6 +693,7 @@ jQuery( document ).ready(function() {
 			<tr>
 				<td class="btc-input-field" style="width:50%;">
 					<input type="text" name="btc" id="btc" pattern="[0-9]*"/>
+					<div id="btcError"></div>
 				</td>
 				<td style="text-align:center;">OR</td>
 				<td class="usd-input-field" style="width:50%;">
@@ -678,7 +704,8 @@ jQuery( document ).ready(function() {
 		<table>
 			<tr>
 				<td class="digicard-input-field">
-					<input type="text" name="digicardno" id="digicardno" placeholder="Enter 16 Digit Card Number"/>
+					<input type="text" name="digicardno" id="digicardno" placeholder="Enter 16 Digit Card Number" maxlength="16" pattern="[0-9]*"/>
+					<div id="digicardError"></div>
 				</td>
 			</tr>
 		</table>

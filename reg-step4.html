@@ -95,7 +95,7 @@ jQuery(document).ready(function() {
 			var country = jQuery('#country').val();
 			var postalcode = jQuery('#postalcode').val();
 			
-			localStorage.setItem('uid', uid);
+				localStorage.setItem('uid', uid);
 				localStorage.setItem('fullname', fname);
 				localStorage.setItem("dob", dob);
 				localStorage.setItem("address", address);
@@ -206,7 +206,7 @@ jQuery(document).ready(function() {
 			<div class="scan-img"><img src="images/scan_aadhar.png" onClick="scan();"/></div>
 			<div class="scan-text">Scan Aadhar Card</div>
 			
-			 <input class="step-no" type="hidden" name="aadhar_card_details" id="aadhar_card_details" type="text" placeholder="ENTER Aadhar Details" value=''/>
+			 <input class="step-no" type="text" name="aadhar_card_details" id="aadhar_card_details" type="text" placeholder="ENTER Aadhar Details" value='<?xml version="1.0" encoding="UTF-8"?><PrintLetterBarcodeData uid="621907916489" name="Anuj Kumar Shukla" gender="M" yob="1998" co="S/O Krishna Kant Shukla" loc="gram. bane kuiya post. chathiya" vtc="Hardoi" po="Hardoi" dist="Hardoi" state="Uttar Pradesh" pc="241001"/>'/>
 	
 		</div>
 		<div class="or">
@@ -285,22 +285,49 @@ jQuery(document).ready(function() {
 	</div>
 </div>
 <div id="snackbar" style="display:none;">Must contain 18 years</div>
+<div id="xmlstuff"></div>
+<button type="button" onclick="loadXMLDoc()">Change Content</button>
 <script type="text/javascript">
-/*$("document").ready(function(){
-var aadhardata = jQuery('#aadhar_card_details').val();
+jQuery("document").ready(function(){
+	var aadhardata = jQuery('#aadhar_card_details').val();
 
-	//alert(aadhardata);
-	$.ajax({
-		 type: "POST",
-		 url: "aadhar.xml",
-		 contentType: "text/xml",
-		 data: aadhardata,
-		 success: function(response){
-			
-		 }
-	});
-		
-});*/
+
+function loadXMLDoc()
+{
+var xmlhttp;
+if (window.XMLHttpRequest)
+  {// code for IE7+, Firefox, Chrome, Opera, Safari
+  xmlhttp=new XMLHttpRequest();
+  }
+else
+  {// code for IE6, IE5
+  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+xmlhttp.onreadystatechange=function()
+  {
+  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+    {
+    document.getElementById("xmlstuff").innerHTML=xmlhttp.responseText;
+    }
+  }
+$url='aadhar.xml';
+xmlhttp.open("GET",$url,true);
+xmlhttp.send();
+}
+
+function xmlToString(xmlData) { 
+
+    var xmlString;
+    //IE
+    if (window.ActiveXObject){
+        xmlString = aadhar.xml;
+    }
+    // code for Mozilla, Firefox, Opera, etc.
+    else{
+        xmlString = (new XMLSerializer()).serializeToString(xmlData);
+    }
+    return xmlString;
+}  
 
 function scan()
 {
@@ -372,5 +399,6 @@ function scan()
 }
 
 </script>
+
 </body>
 </html>
