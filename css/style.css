@@ -845,7 +845,7 @@ nav:not(.mm-menu)
 }
 .menutop.mm-listitem {
 	background: #000;
-	padding: 20px 10px;
+	padding: 10px 10px;
 }		
 .profile-menu .mm-panel_has-navbar .mm-navbar{
 	display:none;
@@ -855,13 +855,13 @@ nav:not(.mm-menu)
 }
 .profile-menu .mm-listitem > span.profile-icon {
 	background: #9c27b0;
-	width: 80px;
-	height: 80px;
-	border-radius: 50%;
-	font-size: 59px;
-	padding: 30px 26px;
-	display: flex;
-	text-align: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    font-size: 35px;
+    padding: 16px 17px;
+    display: flex;
+    text-align: center;
 }
 .profile-menu .mm-listitem > span.name {
 	padding: 14px 10px 0px 10px;
@@ -880,11 +880,11 @@ nav:not(.mm-menu)
 	padding: 14px 0px 0px 20px;
 	color: #ff4444;
 	font-weight: 600;
-	letter-spacing: 0.5px;
-	font-family:Roboto;
+/* 	letter-spacing: 0.5px; */
+	font-family:sans-serif;
 }
 .profile-menu{
-	font-family:Roboto;
+	font-family:sans-serif;
 }
 .profile-menu .fa {
 	color: #737373;
@@ -1392,7 +1392,7 @@ a.green-transact-button  {
 .balance img{
 	
 	    width: 27px;
-    margin-bottom: -6px;
+    margin-bottom: -2px;
 }
 .live-market{
 	text-align:center; 
@@ -1403,7 +1403,7 @@ a.green-transact-button  {
 
 }.live-market img{
 	width: 27px;
-    margin-bottom: -6px;
+    margin-bottom: -2px;
 }
 .balance-footer{
 	background-color:#086a79;
