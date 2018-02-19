@@ -3,38 +3,7 @@
 <head>  
   <script type="text/javascript">
   window.onload = function () {
-  	$.ajax({
-	type: 'GET',
-	url: 'https://apiv2.bitcoinaverage.com/indices/global/history/BTCUSD?period=daily&?format=json',
-	dataType: 'json',
-	async: false,
-		success: function (data) {
-		var resGraph = data.length; 
-		//var arr = [];
-		var endRec = 10;
-		var x = '' ;
-		var y = '' ;
-			 for(i = 0, len = resGraph.length, graphData = "", rDate= "", resTime= "" ; i < endRec; i++){
-				
-				 
-				var rDate = new Date(data[i].time);
-				
-				var cHour = rDate.getHours();
-				var cMin = rDate.getMinutes();
-				var resTime = cHour + ':' + cMin ;
-				
-				var time=rDate.toLocaleDateString();
-				
-				if(i === endRec-1) {  //The last one
-					graphData += ( resTime + ',' + data[i].average) ;
-				 } else {
-					graphData += (resTime + ',' + data[i].average)+ ',';
-				 }
-				 var garray = graphData.split(",");
-				
-			 }
-		}
-	});
+  	
   
   
   
