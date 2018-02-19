@@ -1320,7 +1320,7 @@ a.red-history-button {
     background: url(../images/dark_red.png) no-repeat center;
 	background-size: 100% 90%;
 	float:right;
-	margin-right: 8%;
+	margin-right: 5%;
 	border: 0;
     color: #fff;
     font-size: 17px;
@@ -1348,10 +1348,10 @@ a.red-history-button {
 a.green-transact-button  {
     margin-top: 25px;
     background: url(../images/dark_green.png) no-repeat center;
-	background-size: 100% 100%;
+	background-size: 100% 90%;
 	float: left;
 	margin-right: 40px;
-	margin-left:8%;
+	margin-left:5%;
 	position:relative;
     border: 0;
     color: #fff;
@@ -1412,6 +1412,7 @@ a.green-transact-button  {
 	text-align:center;
 	margin-left:10px;
 	    font-family: sans-serif;
+		  font-weight: bold;
 
 }
 .live-footer{
@@ -1421,6 +1422,7 @@ a.green-transact-button  {
 	text-align:center;
 	padding-right:10px;
 	    font-family: sans-serif;
+		  font-weight: bold;
 
 }
 .live-footer img{
