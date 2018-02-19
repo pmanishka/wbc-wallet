@@ -103,7 +103,7 @@ body .container {
     padding: 14px 0px;
 	padding-left: 33%;
 }
-.logo .logo-img {
+.logo .logo-img1 {
     max-height: 75px;
     float: left;
     text-align: right;
@@ -111,8 +111,19 @@ body .container {
 	margin-bottom:12%;
 	
 	
+}.logo .logo-img {
+    max-height: 75px;
+    float: left;
+    text-align: right;
+    width: 24%;
+	
+	
 }
 .logo .logo-img img{
+	height:100%;
+	max-height:83px;
+
+}.logo .logo-img1 img{
 	height:100%;
 	max-height:83px;
 
@@ -356,12 +367,14 @@ input[type="button"].red-button {
 	margin-top: -2px;
 }
 input[type="button"].green-button  {
-    border: 0;
+        border: 0;
     color: #fff;
-    font-size: 17px;
-    font-weight: 500;
-    padding: 27px 25%;
-	font-weight: bold;
+    font-size: 15px;
+    font-family: sans-serif;
+    /* font-weight: 500; */
+    padding: 34px 25%;
+    font-weight: bold;
+    background-size: 95% 100%;
 }
 .congratulations-msg .msg span {
     color: #aefd36;
