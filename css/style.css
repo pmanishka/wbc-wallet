@@ -238,6 +238,7 @@ input[type="button"].red-button {
 .darkblue-button span {
     color: #fff;
     text-align: center;
+	font-size:13px;
 }
 .input-field {
     padding: 2% 2%;
