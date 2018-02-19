@@ -814,9 +814,12 @@ nav:not(.mm-menu)
 	float: left;
 }
 .header-card {
-	margin-left: 10px;
-	float: left;
-	width: 53%;
+	    margin-left: 10px;
+    float: left;
+    width: 53%;
+    font-family: sans-serif;
+    font-weight: 500;
+}
 }
 .header a:before,
 .header a:after
@@ -1229,6 +1232,7 @@ input[type="button"].green-submit-button {
     float: left;
     max-width: 90%;
     margin: 0 5%;
+	font-family:sans-serif;
 }
 .digi{
       text-align: left;
@@ -1320,7 +1324,8 @@ a.red-history-button {
 	border: 0;
     color: #fff;
     font-size: 17px;
-	padding: 30px;
+	padding: 30px 57px;
+	font-family:sans-serif;
 	
 }
 .green-transact-button {
@@ -1331,7 +1336,7 @@ a.red-history-button {
 	margin-right: 40px;
 	margin-left:11%;
 	position:relative;
-	    
+	font-family:sans-serif;    
 }
 .green-transact-button input[type="button"] {
     background: none;
@@ -1351,7 +1356,7 @@ a.green-transact-button  {
     border: 0;
     color: #fff;
     font-size: 17px;
-	padding: 30px;
+	padding: 30px 48px;
 }
 .price-chart{
 	    /* text-align: center; */
@@ -1379,12 +1384,24 @@ a.green-transact-button  {
 .balance{
 	text-align:center; 
 	width:50%;
-	font-size:23px;		
+	font-size:23px;	
+    font-family: sans-serif;
+	
+}
+.balance img{
+	
+	    width: 27px;
+    margin-bottom: -6px;
 }
 .live-market{
 	text-align:center; 
 	width:50%;
 	font-size:23px;
+	    font-family: sans-serif;
+
+}.live-market img{
+	width: 27px;
+    margin-bottom: -6px;
 }
 .balance-footer{
 	background-color:#086a79;
@@ -1392,6 +1409,8 @@ a.green-transact-button  {
 	height: 37px;
 	text-align:center;
 	margin-left:10px;
+	    font-family: sans-serif;
+
 }
 .live-footer{
 	background-color:#086a79;
@@ -1399,6 +1418,8 @@ a.green-transact-button  {
 	height: 37px;
 	text-align:center;
 	padding-right:10px;
+	    font-family: sans-serif;
+
 }
 .live-footer img{
 	
