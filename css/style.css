@@ -116,6 +116,7 @@ body .container {
     float: left;
     text-align: right;
     width: 24%;
+	margin-bottom:4%;
 	
 	
 }
@@ -278,7 +279,7 @@ input[type="button"].red-button {
     text-align: center;
 }
 .red-button {
-    margin-top: 25px;
+    margin-top: 20px;
     background: url(../images/dark_red.png) no-repeat center;
 	background-size: 95% 113%;
 	
@@ -340,7 +341,11 @@ input[type="button"].red-button {
 	padding-bottom: 15px;
 	text-align: center;
 	font-size: 19px;
-	margin-top: 0px;
+	margin-top: 9px;
+}
+.error-msg {
+    width: 100%;
+    float: left;
 }
 .inner-page #topbar{
 	padding:4% 2%;
@@ -348,10 +353,10 @@ input[type="button"].red-button {
 }
 .register-form {
     text-align: center;
-    margin-top: 40px;
+    margin-top: 5%;
 }
 .register-form .input-button {
-    margin-top: 13px;
+    margin-top: 10px;
    /*  margin-bottom: 40px; */
     float: left;
     background-size: 90% 100%;
