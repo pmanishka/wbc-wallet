@@ -346,6 +346,7 @@ input[type="button"].red-button {
 .error-msg {
     width: 100%;
     float: left;
+	    margin-top: -40px;
 }
 .inner-page #topbar{
 	padding:4% 2%;
@@ -700,7 +701,7 @@ div#CPasswordError {
 } */
 .otp-resend {
 	width: 100%;
-	margin-top: 30px;
+	margin-top: 4%;
 	max-width: 28%;
 	display: inline-block;
 	color: #5cc953;
@@ -2413,7 +2414,7 @@ textarea#queries {
     margin-right: 3%;
 }
 .spin-textbox {
-    margin-top: 18px;
+    margin-top: 10px;
 }
 .pin-textbox {
     margin-top: 18px;
