@@ -198,9 +198,9 @@ body .container {
     margin-bottom: 35px;
 }
 .mainpage-section img{
-	width:80%;
+	width:70%;
 	height:100%;
-/* 	margin-bottom:10px; */
+	margin-bottom:20%;
 	margin-top: 37px;
 }
 input[type="button"].red-button {
