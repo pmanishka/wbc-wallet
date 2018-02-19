@@ -144,7 +144,7 @@ jQuery( document ).ready(function() {
 													
 													var usdcalc =  usdval/usdvalrate;
 													//alert(usdcalc);
-													jQuery("#btc").val(usdcalc.toFixed(5));
+													jQuery("#btc").val(usdcalc);
 													
 													var currency_id = jQuery("#curr_id").val();
 													var username = jQuery("#username").val();
@@ -258,7 +258,7 @@ jQuery( document ).ready(function() {
 							
 							var usdcalc =  usdval/usdvalrate;
 							
-							jQuery("#btc").attr("value",usdcalc.toFixed(5));
+							jQuery("#btc").attr("value",usdcalc);
 							
 							
 							var currency_id = jQuery("#curr_id").val();
@@ -409,7 +409,7 @@ jQuery( document ).ready(function() {
 										var usdvalrate = (obj.rate) ;
 										
 										var usdcalc =  usdval/usdvalrate;
-										jQuery(".sendtodigiwallet #btc").val(usdcalc.toFixed(5));
+										jQuery(".sendtodigiwallet #btc").val(usdcalc);
 									}
 							});
 								
@@ -440,7 +440,7 @@ jQuery( document ).ready(function() {
 							var usdvalrate = (obj.rate) ;
 							var usdcalc =  usdval/usdvalrate;
 							
-							jQuery(".sendtodigiwallet #btc").attr("value",usdcalc.toFixed(5));
+							jQuery(".sendtodigiwallet #btc").attr("value",usdcalc);
 						
 							
 								$(".sendtodigiwallet #btc").keyup(function(){
@@ -484,7 +484,7 @@ jQuery( document ).ready(function() {
 			
 			if(!btcval){
 				jQuery("#btcError").html('Invaid amount');
-				jQuery("#digicardError").hide();
+				//jQuery("#digicardError").hide();
 				return false;
 			}
 			else if(!digicardnoval)
@@ -527,11 +527,15 @@ jQuery( document ).ready(function() {
 					  success: function(data) {
 							if(data['status'] == 1)
 							{
+								jQuery("#digicardError").hide();
+								jQuery("#btcError").hide();
 								var totalAmt = parseFloat(btcval) + parseFloat(charges);
 								if(totalAmt < net_btc_bal){
 									window.location='confirm_payment.html';
 								}
 							}else{
+								jQuery("#digicardError").hide();
+								jQuery("#btcError").hide();
 								$("#snackbar").fadeIn("slow", function () {
 									setTimeout(function () {
 										$("#snackbar").fadeOut("slow");

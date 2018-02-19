@@ -68,7 +68,6 @@ var spin =localStorage.getItem("pin");
 								
 								
 								if(btcval != null && usdval != null  && digicardnoval != null  && currency_id != null && currency_name != null && net_btc_bal != null && charges != null  && uid != null ){
-									//alert('test');
 									$.ajax({
 										  url: siteurl+"transferToDigiCard",
 										  type: 'POST',
