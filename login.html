@@ -13,7 +13,6 @@ jQuery.support.cors = true;
 jQuery( document ).ready(function() {
 
 sessionStorage.clear();
-
 if(window.sessionStorage.getItem("loggedIn") == 1) {
 	window.location='securitypin.html';
 }
@@ -48,11 +47,20 @@ else{
 				});
 				
 			}else{
+				if(user_id == '' && password == ''){
 					$("#snackbar").fadeIn("slow", function () {
-					setTimeout(function () {
-						$("#snackbar").fadeOut("slow");
-					}, 1000);
-				});
+						setTimeout(function () {
+							$("#snackbar").fadeOut("slow");
+						}, 1000);
+					});
+				}
+				else{
+					$("#wrongdetails").fadeIn("slow", function () {
+						setTimeout(function () {
+							$("#wrongdetails").fadeOut("slow");
+						}, 1000);
+					});
+				}
 			}
 		  },
 		  error: function() {
@@ -73,6 +81,9 @@ else{
 	<div id="top_header">
 		<div class="logo">
 			<div class="logo-img"><img src="images/logo-digi6.png"></div>
+			<div class="notification" style="float:right; margin-left:-9px;">
+			<span class="back"><a href="home.html"><img src="images/close.png" style="margin-right:10px;"/></a></span>
+		</div>
 		</div>
 	</div>
 	<div class="container">
@@ -98,5 +109,6 @@ else{
 </div>
 <div id="register-successfully" class="snackbar" style="display:none;">Register Successfully</div>
 <div id="snackbar" style="display:none;">Please Enter Details to login your account</div>
+<div id="wrongdetails" class="snackbar" style="display:none;">Invalid Email Id or Password, try again</div>
 </body>
 </html>
