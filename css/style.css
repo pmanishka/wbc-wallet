@@ -1324,7 +1324,7 @@ a.red-history-button {
 	border: 0;
     color: #fff;
     font-size: 17px;
-	padding: 30px 57px;
+	padding: 30px 40px;
 	font-family:sans-serif;
 	
 }
@@ -1356,7 +1356,7 @@ a.green-transact-button  {
     border: 0;
     color: #fff;
     font-size: 17px;
-	padding: 30px 48px;
+	padding: 30px 40px;
 }
 .price-chart{
 	    /* text-align: center; */
