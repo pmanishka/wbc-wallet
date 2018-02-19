@@ -1320,11 +1320,11 @@ a.red-history-button {
     background: url(../images/dark_red.png) no-repeat center;
 	background-size: 100% 90%;
 	float:right;
-	margin-right: 15%;
+	margin-right: 8%;
 	border: 0;
     color: #fff;
     font-size: 17px;
-	padding: 30px 40px;
+	padding: 30px 45px;
 	font-family:sans-serif;
 	
 }
@@ -1351,12 +1351,12 @@ a.green-transact-button  {
 	background-size: 100% 100%;
 	float: left;
 	margin-right: 40px;
-	margin-left:11%;
+	margin-left:8%;
 	position:relative;
     border: 0;
     color: #fff;
     font-size: 17px;
-	padding: 30px 40px;
+	padding: 30px 45px;
 }
 .price-chart{
 	    /* text-align: center; */

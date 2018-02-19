@@ -484,15 +484,20 @@ jQuery( document ).ready(function() {
 			
 			if(!btcval){
 				jQuery("#btcError").html('Invaid amount');
+				jQuery("#digicardError").hide();
 				return false;
 			}
 			else if(!digicardnoval)
             {
+				//alert('test');
 				jQuery("#digicardError").html('Please Enter Digi Card Number');
+				jQuery("#btcError").hide();
 				return false;
 			}
 			else if(digicardnoval.length<16)
 			{
+				//jQuery("#digicardError").html('');
+				jQuery("#btcError").hide();
 				$("#digicardError").html('Digi card number must be 16 digits');
 				return false;
 			}
@@ -514,11 +519,32 @@ jQuery( document ).ready(function() {
 				sessionStorage.setItem("charges", charges);
 				sessionStorage.setItem("uid", uid);
 				
+				$.ajax({
+					  url: siteurl+"getUserNameByCardNumber",
+					  type: 'POST',
+					  data: {q:'getUserNameByCardNumber',card_no:digicardnoval},
+					  crossDomain: true,   
+					  success: function(data) {
+							if(data['status'] == 1)
+							{
+								var totalAmt = parseFloat(btcval) + parseFloat(charges);
+								if(totalAmt < net_btc_bal){
+									window.location='confirm_payment.html';
+								}
+							}else{
+								$("#snackbar").fadeIn("slow", function () {
+									setTimeout(function () {
+										$("#snackbar").fadeOut("slow");
+									}, 5000);
+								});
+							}
+					  },
+					  error: function() {
+						alert('Error');
+					  }
+				});
 				
-				var totalAmt = parseFloat(btcval) + parseFloat(charges);
-				if(totalAmt < net_btc_bal){
-					window.location='confirm_payment.html';
-				}
+				
 				
 			/*}*/
 		});
@@ -718,5 +744,6 @@ jQuery( document ).ready(function() {
 		
 	</div>
 </div>
+<div id="snackbar" style="display:none;">Card Number not Exist</div>
 </body>
 </html>
