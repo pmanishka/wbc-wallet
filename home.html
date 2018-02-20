@@ -10,14 +10,14 @@ if(window.XDomainRequest){contentType = "text/plain";}
 jQuery.support.cors = true;
 
 function checkDevice(){
-		document.addEventListener("deviceready", onDeviceReady, false);
+	document.addEventListener("deviceready", onDeviceReady, false);
 }
 function onDeviceReady() {  
 	return true;  
 }
 
 jQuery( document ).ready(function() {
-	if(window.sessionStorage.getItem("loggedIn") == 1) {
+	if(window.localStorage.getItem("loggedIn") == 1) {
 		window.location='securitypin.html';
 	}
 });

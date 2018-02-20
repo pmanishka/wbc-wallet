@@ -12,12 +12,10 @@ if(window.XDomainRequest){contentType = "text/plain";}
 jQuery.support.cors = true;
 jQuery( document ).ready(function() {
 
-sessionStorage.clear();
-if(window.sessionStorage.getItem("loggedIn") == 1) {
+if(window.localStorage.getItem("loggedIn") == 1) {
 	window.location='securitypin.html';
 }
 else{
-	
 	jQuery('input[name="submit"]').click(function(){
 
 		var user_id=jQuery("#userid").val();
@@ -34,10 +32,10 @@ else{
 			if(data['status'] == 1)
 			{
 				//alert(data);
-				window.sessionStorage.setItem("loggedIn", 1);
-				sessionStorage.setItem("user_id", user_id);
-				sessionStorage.setItem("password", password);
-				sessionStorage.setItem("uid", data['details']['id']);
+				window.localStorage.setItem("loggedIn", 1);
+				window.localStorage.setItem("user_id", user_id);
+				window.localStorage.setItem("password", password);
+				window.localStorage.setItem("uid", data['details']['id']);
 
 				$("#snackbar").fadeIn("slow", function () {
 					setTimeout(function () {

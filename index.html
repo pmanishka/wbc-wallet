@@ -10,7 +10,9 @@ if(window.XDomainRequest){contentType = "text/plain";}
 jQuery.support.cors = true;
 jQuery(document).ready(function() {  
 	window.setTimeout(function() {
-		if(window.sessionStorage.getItem("loggedIn") == 1) {
+		
+		if(window.localStorage.getItem("loggedIn") == 1) {
+		//alert(localStorage.getItem("user_id"));
 			window.location='securitypin.html';
 		}
 		else{

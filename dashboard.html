@@ -25,10 +25,10 @@ if(window.XDomainRequest){contentType = "text/plain";}
 jQuery.support.cors = true;
 jQuery( document ).ready(function() {
 
-	if(window.sessionStorage.getItem("loggedIn") == 1) {
-		var userid = sessionStorage.getItem("user_id") ;
-		var password = sessionStorage.getItem("password") ;
-		var uid = sessionStorage.getItem("uid") ;
+	if(window.localStorage.getItem("loggedIn") == 1) {
+		var userid = localStorage.getItem("user_id") ;
+		var password = localStorage.getItem("password") ;
+		var uid = localStorage.getItem("uid") ;
 		//alert(uid);
 		
 		
