@@ -82,16 +82,14 @@ jQuery( document ).ready(function() {
 
 			$(this).addClass('current');
 			$("#"+tab_id).addClass('current');
-			if ($(".current").hasClass("send")) {
-				jQuery('.other-wallet').click(function(){
-					window.location='otherwallet.html';
-				});
-				jQuery('.digi-wallet').click(function(){
-					window.location='otherdigiwallet.html';
-				});
-			}
+			
 		});
-	
+		jQuery('.other-wallet').click(function(){
+			window.location='otherwallet.html';
+		});
+		jQuery('.digi-wallet').click(function(){
+			window.location='otherdigiwallet.html';
+		});
 		// BTC To USD
 		jQuery(".usd_address").empty();
 		$(".btc-input-field #btc").keyup(function(){
