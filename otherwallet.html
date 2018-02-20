@@ -362,6 +362,7 @@ jQuery( document ).ready(function() {
 			</tr>			
 			<tr>
 				<td class="payment-input-field" style="width:50%;">
+					<input type="hidden" name="paymentaddress" id="paymentaddress" placeholder="Payment Address" maxlength="34" value=""/>
 					<input type="text" name="payment_address" id="payment_address" placeholder="Payment Address" maxlength="34" value=""/>
 					<div class="paymentAddressError"></div>
 				</td>
@@ -429,9 +430,9 @@ function scan()
 {
     cordova.plugins.barcodeScanner.scan(
        function (result) {
-	    var payaddress= $("#payment_address").val(result.text);  
+	    var payaddress= $("#paymentaddress").val(result.text);  
 		var result=$(payaddress).val().split(':');
-		alert(result[1]);
+		jQuery("#payment_address").val(result[1]);
       },
       function (error) {
          var scan_error = "Scanning failed: " + error;
