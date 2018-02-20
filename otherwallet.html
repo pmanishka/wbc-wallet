@@ -302,7 +302,7 @@ jQuery( document ).ready(function() {
 	<div id="tab-2" class="tab-content current">
 		<table class="qrcode">
 			<tr>
-				<td class="qr-img"><img src="images/qr_scan.png"></td>
+				<td class="qr-img"><img src="images/qr_scan.png"  onClick="scan();"></td>
 			</tr>
 			<tr>
 				<td>&nbsp;</td>
@@ -326,7 +326,7 @@ jQuery( document ).ready(function() {
 				<td>&nbsp;</td>
 			</tr>
 			<tr>
-				<td class="withdrawal"><img src="images/withdrawal.png" onClick="scan();"></td>
+				<td class="withdrawal"><img src="images/withdrawal.png"></td>
 			</tr>
 			<tr>
 				<td>&nbsp;</td>
@@ -362,7 +362,7 @@ function scan()
 {
     cordova.plugins.barcodeScanner.scan(
        function (result) {
-	    $("#aadhar_card_details").val(result.text);  
+	    $("#payment_address").val(result.text);  
 		var aadhardata = result.text ;
  
 
