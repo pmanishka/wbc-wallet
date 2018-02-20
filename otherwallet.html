@@ -124,6 +124,44 @@ jQuery( document ).ready(function() {
 			});
 			
 		});
+		
+		
+		$(".send-transc .usd-input-field #usd").keyup(function(){
+			var btcval = jQuery(this).val();
+			//alert(btcval);
+			// Get BitPay Data
+			$.ajax({
+			type: 'GET',
+			url: 'https://bitpay.com/api/rates',
+			dataType: 'json',
+			async: false,
+				success: function (response) {
+					$.each(response, function(idx, obj) {
+						if(obj.code == 'USD'){
+							var usdval = (obj.rate) ;
+							jQuery('.send-transc .usd-input-field #usd').attr("value",btcval);
+							var btccval = jQuery('.send-transc  .usd-input-field #usd').val();
+							var bitcalc = btccval * usdval;
+							//alert(bitcalc);
+							jQuery(".send-transc .btc-input-field #btc").attr("value",bitcalc);
+							var currency_id = jQuery("#curr_id").val();
+							var username = jQuery("#username").val();
+							var currency_name = jQuery("#currency_name").val();
+								
+								
+							jQuery(".send-transc .btc-input-field #btc").keyup(function(){
+							//jQuery('.send-transc .usd-input-field #usd').attr("value","0");
+								var uusdval = jQuery('.send-transc .usd-input-field #usd').val();
+								var usdcalc =  uusdval/usdval;
+								jQuery(".send-transc .usd-input-field #usd").val(usdcalc);
+							});
+						}
+						
+					});
+				}
+			});
+			
+		});
 			
 		$.ajax({
 			  url: siteurl+"getSettings",
@@ -397,7 +435,7 @@ jQuery( document ).ready(function() {
 				</td>
 				<td style="text-align:center;">OR</td>
 				<td class="usd-input-field" style="width:50%;">
-					<input type="text" name="usd" id="usd" pattern="[0-9]*" decimal="true" />
+					<input type="text" name="usd" id="usd" pattern="[0-9]*" decimal="true" allow-multiple-decimals="false" />
 					<div class="usdError"></div>
 				</td>
 			</tr>

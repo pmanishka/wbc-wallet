@@ -130,7 +130,7 @@ jQuery( document ).ready(function() {
 		window.location='login.html';
 	}
 	
-	
+	var graphData = ''; //start off list
 	$.ajax({
 	type: 'GET',
 	url: 'https://apiv2.bitcoinaverage.com/indices/global/history/BTCUSD?period=daily&?format=json',
@@ -142,7 +142,7 @@ jQuery( document ).ready(function() {
 		var endRec = 10;
 		var x = '' ;
 		var y = '' ;
-			 for(i = 0, len = resGraph.length, graphData = "", rDate= "", resTime= "" ; i < endRec; i++){
+			 /*for(i = 0, len = resGraph.length, graphData = "", rDate= "", resTime= "" ; i < endRec; i++){
 				
 				 
 				var rDate = new Date(data[i].time);
@@ -165,18 +165,37 @@ jQuery( document ).ready(function() {
 				 } 
 					var garray = graphData.split(",");
 				
-			 }
+			 }*/
+			for (i = 1; i < resGraph;  i++ ) {
+			var rDate = new Date(data[i].time);
+				
+				var cHour = rDate.getHours();
+				var cMin = rDate.getMinutes();
+				var resTime = cHour + ':' + cMin ;
+
+				var time = rDate.getHours() ;
+				 if (i % 40== 0) {
+					   if(i != data.length){ 
+					   //alert(data[i].average);
+						   graphData += (time + ',' + data[i].average) + ',' ;
+					   }else{ //if this is the last array value, don't start a new ul
+						   graphData += (time + ',' + data[i].average) ;
+					   }
+				 }  //alert(graphData);
+				 var garray = graphData.split(",");
+				 //alert(garray);
+			}
 			
 			 //var gdata = ("["+ graphData + "]") ;
-			//alert(garray);
+		
 			
-			//alert(garray);
+			//alert(garray[12]);
 var rawData1 = [
     [parseFloat(garray[16]), parseFloat(garray[17])], [parseFloat(garray[14]), parseFloat(garray[15])], [parseFloat(garray[12]), parseFloat(garray[13])], [parseFloat(garray[10]), parseFloat(garray[11])], [parseFloat(garray[8]), parseFloat(garray[9])],
     [parseFloat(garray[6]), parseFloat(garray[7])], [parseFloat(garray[4]), parseFloat(garray[5])], [parseFloat(garray[2]), parseFloat(garray[3])], [parseFloat(garray[0]), parseFloat(garray[1])]
 ];
 
-
+//alert(rawData1);
 var dataSet = [
     {  data: rawData1, color: "#00aa00" }
 ];
@@ -195,17 +214,14 @@ var dataSet = [
 				axisLabelUseCanvas: true,
 				axisLabelFontSizePixels: 12,
 				axisLabelFontFamily: 'Verdana, Arial',
-				axisLabelPadding: 100,        
-				
+				axisLabelPadding: 100
 			},
 			yaxis: {
-				//color: "white",
-				//tickDecimals: 2,
+				lineColor: "#ff8f00",
 				axisLabel: "USD",
 				axisLabelUseCanvas: true,
 				axisLabelFontSizePixels: 12,
-				axisLabelFontFamily: 'Verdana, Arial',
-				axisLabelPadding: 5
+				axisLabelFontFamily: 'Verdana, Arial'
 			}
         };
 
