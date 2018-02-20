@@ -429,8 +429,9 @@ function scan()
 {
     cordova.plugins.barcodeScanner.scan(
        function (result) {
-		var result=$(result.text).val().split(':');
-		$("#payment_address").val(result[1]);
+	    $("#payment_address").val(result.text);  
+		//var result=$(result.text).val().split(':');
+		//alert(result[1]);
       },
       function (error) {
          var scan_error = "Scanning failed: " + error;
