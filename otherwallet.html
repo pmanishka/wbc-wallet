@@ -24,12 +24,12 @@ jQuery.support.cors = true;
 	
 jQuery( document ).ready(function() {
 
-	if(window.sessionStorage.getItem("loggedIn") == 1) {
+	if(window.localStorage.getItem("loggedIn") == 1) {
 		
 		
-		var userid = sessionStorage.getItem("user_id") ;
-		var password = sessionStorage.getItem("password") ;
-		var uid = sessionStorage.getItem("uid") ;
+		var userid = localStorage.getItem("user_id") ;
+		var password = localStorage.getItem("password") ;
+		var uid = localStorage.getItem("uid") ;
 		//var currency_id = '' ;
 		//var currency_name = '' ;
 
@@ -224,14 +224,14 @@ jQuery( document ).ready(function() {
 					});
 				}
 			}	
-			sessionStorage.setItem("obtcval", btcval);
-			sessionStorage.setItem("ousdval", usdval);
-			sessionStorage.setItem("odigicardnoval", paymentaddress);
-			sessionStorage.setItem("ocurrency_id", currency_id);
-			sessionStorage.setItem("ocurrency_name", currency_name);
-			sessionStorage.setItem("onet_btc_bal", net_btc_bal);
-			sessionStorage.setItem("ocharges", charges);
-			sessionStorage.setItem("ouid", uid);
+			localStorage.setItem("obtcval", btcval);
+			localStorage.setItem("ousdval", usdval);
+			localStorage.setItem("odigicardnoval", paymentaddress);
+			localStorage.setItem("ocurrency_id", currency_id);
+			localStorage.setItem("ocurrency_name", currency_name);
+			localStorage.setItem("onet_btc_bal", net_btc_bal);
+			localStorage.setItem("ocharges", charges);
+			localStorage.setItem("ouid", uid);
 			
 		});
 	}

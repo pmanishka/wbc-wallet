@@ -23,10 +23,10 @@ jQuery.support.cors = true;
 
 jQuery( document ).ready(function() {
 
-	if(window.sessionStorage.getItem("loggedIn") == 1) {
-		var userid = sessionStorage.getItem("user_id") ;
-		var password = sessionStorage.getItem("password") ;
-		var uid = sessionStorage.getItem("uid") ;
+	if(window.localStorage.getItem("loggedIn") == 1) {
+		var userid = localStorage.getItem("user_id") ;
+		var password = localStorage.getItem("password") ;
+		var uid = localStorage.getItem("uid") ;
 		//var currency_id = '' ;
 		//var currency_name = '' ;
 
@@ -509,14 +509,14 @@ jQuery( document ).ready(function() {
 				var charges = jQuery("#charges").val();
 				var uid = jQuery("#uid").val();
 				
-				sessionStorage.setItem("btcval", btcval);
-				sessionStorage.setItem("usdval", usdval);
-				sessionStorage.setItem("digicardnoval", digicardnoval);
-				sessionStorage.setItem("currency_id", currency_id);
-				sessionStorage.setItem("currency_name", currency_name);
-				sessionStorage.setItem("net_btc_bal", net_btc_bal);
-				sessionStorage.setItem("charges", charges);
-				sessionStorage.setItem("uid", uid);
+				localStorage.setItem("btcval", btcval);
+				localStorage.setItem("usdval", usdval);
+				localStorage.setItem("digicardnoval", digicardnoval);
+				localStorage.setItem("currency_id", currency_id);
+				localStorage.setItem("currency_name", currency_name);
+				localStorage.setItem("net_btc_bal", net_btc_bal);
+				localStorage.setItem("charges", charges);
+				localStorage.setItem("uid", uid);
 				
 				$.ajax({
 					  url: siteurl+"getUserNameByCardNumber",

@@ -19,20 +19,20 @@ function onDeviceReady() {
 
 jQuery( document ).ready(function() {
 
-	if(window.sessionStorage.getItem("loggedIn") == 1) {
-		var userid = sessionStorage.getItem("user_id") ;
-		var password = sessionStorage.getItem("password") ;
-		var uid = sessionStorage.getItem("uid") ;
+	if(window.localStorage.getItem("loggedIn") == 1) {
+		var userid = localStorage.getItem("user_id") ;
+		var password = localStorage.getItem("password") ;
+		var uid = localStorage.getItem("uid") ;
 		
 		// Get Other Digi Wallet Storage
-		var btcval = sessionStorage.getItem("btcval");
-		var usdval = sessionStorage.getItem("usdval");
-		var digicardnoval = sessionStorage.getItem("digicardnoval");
-		var currency_id = sessionStorage.getItem("currency_id");
-		var currency_name = sessionStorage.getItem("currency_name");
-		var net_btc_bal = sessionStorage.getItem("net_btc_bal");
-		var charges = sessionStorage.getItem("charges");
-		var uid = sessionStorage.getItem("uid");
+		var btcval = localStorage.getItem("btcval");
+		var usdval = localStorage.getItem("usdval");
+		var digicardnoval = localStorage.getItem("digicardnoval");
+		var currency_id = localStorage.getItem("currency_id");
+		var currency_name = localStorage.getItem("currency_name");
+		var net_btc_bal = localStorage.getItem("net_btc_bal");
+		var charges = localStorage.getItem("charges");
+		var uid = localStorage.getItem("uid");
 		
 		digicardnoval = digicardnoval.replace(/(\S{4})/g,"$1 ");
 		digicardnoval = digicardnoval.replace(/$/,"");   // if you do not want the final a
