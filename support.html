@@ -21,10 +21,10 @@ if(window.XDomainRequest){contentType = "text/plain";}
 jQuery.support.cors = true;
 jQuery( document ).ready(function() {
 
-	if(window.sessionStorage.getItem("loggedIn") == 1) {
-		var emailid = sessionStorage.getItem("user_id") ;
-		var password = sessionStorage.getItem("password") ;
-		var user_id = sessionStorage.getItem("uid") ;
+	if(window.localStorage.getItem("loggedIn") == 1) {
+		var emailid = localStorage.getItem("user_id") ;
+		var password = localStorage.getItem("password") ;
+		var user_id = localStorage.getItem("uid") ;
 
 		jQuery('.logout').hide();
 		jQuery('.log-out').click(function(){
