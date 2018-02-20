@@ -7,7 +7,7 @@
 
 <script src="js/jquery.min.js"></script>
 <script src="js/jquery.mmenu.all.js"></script>
-
+<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
 <script src="js/config.js"></script>
 <script type="text/javascript">
 $(function() {
@@ -82,14 +82,6 @@ jQuery( document ).ready(function() {
 
 			$(this).addClass('current');
 			$("#"+tab_id).addClass('current');
-			if ($(".current").hasClass("send")) {
-				jQuery('.other-wallet').click(function(){
-					window.location='otherwallet.html';
-				});
-				jQuery('.digi-wallet').click(function(){
-					window.location='otherdigiwallet.html';
-				});
-			}
 		});
 	
 	
@@ -114,19 +106,45 @@ jQuery( document ).ready(function() {
 							var currency_id = jQuery("#curr_id").val();
 							var username = jQuery("#username").val();
 							var currency_name = jQuery("#currency_name").val();
-
-								// Click on proceed button
-								jQuery('.receive input[class="green-submit-button"]').click(function(){
-									if(btccval > 0){
-										jQuery(this).hide();
-										//jQuery("#btc").prop('readonly', true);
-										//jQuery("#usd").prop('readonly', true);
-										// Get barcode
-										
-									}
-								});
+								
+								
+							jQuery(".send-transc .usd-input-field #usd").keyup(function(){
+							//jQuery('.send-transc .usd-input-field #usd').attr("value","0");
+								var uusdval = jQuery('.send-transc .usd-input-field #usd').val();
+								var usdcalc =  uusdval/usdval;
+								jQuery(".send-transc .btc-input-field #btc").val(usdcalc);
+							});
 						}
-						jQuery('.transact-button').show();
+						
+						//jQuery('.transact-button').show();
+						// Click on proceed button
+						jQuery('input[id="othertranscation"]').click(function(){
+						//alert('test');
+							var btcval = jQuery('.send-transc #btc').val();
+							var usdval = jQuery('.send-transc #usd').val();
+							var paymentaddress = jQuery('.send-transc #payment_address').val();
+							
+							
+							if(!btcval){
+								
+								jQuery("#btcError").html('Invaid amount');
+								return false;
+							}
+							else if(!paymentaddress)
+							{
+								//alert('test');
+								jQuery("#digicardError").html('Please Enter Digi Card Number');
+								jQuery("#paymentAddressError").hide();
+								return false;
+							}
+							else if(paymentaddress.length<16)
+							{
+								//jQuery("#digicardError").html('');
+								jQuery("#btcError").hide();
+								$("#paymentAddressError").html('Digi card number must be 16 digits');
+								return false;
+							}
+						});
 					});
 				}
 			});
@@ -258,6 +276,7 @@ jQuery( document ).ready(function() {
 					<input type="hidden" name="username" id="username" />
 					<input type="hidden" name="currency_name" id="currency_name" />
 					<input type="text" name="btc" id="btc" pattern="[0-9]*" />
+					
 				</td>
 				<td style="text-align:center;">OR</td>
 				<td class="usd-input-field" style="width:50%;">
@@ -300,13 +319,14 @@ jQuery( document ).ready(function() {
 			<tr>
 				<td class="payment-input-field" style="width:50%;">
 					<input type="text" name="payment_address" id="payment_address" placeholder="Payment Address"/>
+					<div class="paymentAddressError"></div>
 				</td>
 			</tr>
 			<tr>
 				<td>&nbsp;</td>
 			</tr>
 			<tr>
-				<td class="withdrawal"><img src="images/withdrawal.png"></td>
+				<td class="withdrawal"><img src="images/withdrawal.png" onClick="scan();"></td>
 			</tr>
 			<tr>
 				<td>&nbsp;</td>
@@ -322,6 +342,7 @@ jQuery( document ).ready(function() {
 			<tr>
 				<td class="btc-input-field" style="width:50%;">
 					<input type="text" name="btc" id="btc" pattern="[0-9]*"/>
+					<div class="btcError"></div>
 				</td>
 				<td style="text-align:center;">OR</td>
 				<td class="usd-input-field" style="width:50%;">
@@ -330,13 +351,35 @@ jQuery( document ).ready(function() {
 			</tr>
 		</table>
 		<div class="input-button">
-				<input type="button" name="submit" class="green-submit-button" value="Submit"/>
+				<input type="button" name="submit" id="othertranscation" class="green-submit-button" value="Submit"/>
 		</div>
 		</form>
 	</div>
-	
-		
 	</div>
 </div>
+<script>
+function scan()
+{
+    cordova.plugins.barcodeScanner.scan(
+       function (result) {
+	    $("#aadhar_card_details").val(result.text);  
+		var aadhardata = result.text ;
+ 
+
+		
+      },
+      function (error) {
+         var scan_error = "Scanning failed: " + error;
+		  navigator.notification.alert(
+						scan_error,
+						callBackFunctionFlag, 
+						'Confirm',
+						"OK"
+					);
+		  
+      }
+   );
+}
+</script>
 </body>
 </html>
