@@ -25,6 +25,8 @@ jQuery.support.cors = true;
 jQuery( document ).ready(function() {
 
 	if(window.sessionStorage.getItem("loggedIn") == 1) {
+		
+		
 		var userid = sessionStorage.getItem("user_id") ;
 		var password = sessionStorage.getItem("password") ;
 		var uid = sessionStorage.getItem("uid") ;
@@ -46,6 +48,7 @@ jQuery( document ).ready(function() {
 				var verifystatus = data['details']['emailverifystatus'];
 				var curr = data['currency'] ;
 				var username  = jQuery('#username').attr("value", data['details']['name']);
+				jQuery("input[name='btcbal']").attr("value",data['details']['net_btc_bal']);
 				//alert(username);
 				$.each(curr, function(idx, obj) {
 					if(obj.short_name == 'BTC'){
@@ -116,42 +119,83 @@ jQuery( document ).ready(function() {
 							});
 						}
 						
-						//jQuery('.transact-button').show();
-						// Click on proceed button
-						jQuery('input[id="othertranscation"]').click(function(){
-						//alert('test');
-							var btcval = jQuery('.send-transc #btc').val();
-							var usdval = jQuery('.send-transc #usd').val();
-							var paymentaddress = jQuery('.send-transc #payment_address').val();
-							
-							
-							if(!btcval){
-								
-								jQuery("#btcError").html('Invaid amount');
-								return false;
-							}
-							else if(!paymentaddress)
-							{
-								//alert('test');
-								jQuery("#digicardError").html('Please Enter Digi Card Number');
-								jQuery("#paymentAddressError").hide();
-								return false;
-							}
-							else if(paymentaddress.length<16)
-							{
-								//jQuery("#digicardError").html('');
-								jQuery("#btcError").hide();
-								$("#paymentAddressError").html('Digi card number must be 16 digits');
-								return false;
-							}
-						});
 					});
 				}
 			});
 			
 		});
 			
-		
+		$.ajax({
+			  url: siteurl+"getSettings",
+			  type: 'GET',
+			  data: {q:'getSettings'},
+			  crossDomain: true,   
+			  success: function(data) {
+					var charges = jQuery('.send-transc #charges').attr("value",data['dc_to_w'] );
+			  },
+			  error: function() {
+				alert('Error');
+			  }
+		});
+		jQuery("#uid").attr("value",uid);
+		// Click on proceed button
+		jQuery("#othertranscation").click(function(){
+			var btcval = jQuery('.send-transc #btc').val();
+			var usdval = jQuery('.send-transc #usd').val();
+			var paymentaddress = jQuery('input[name="payment_address"]').val()
+			//alert(usdval);
+			if(!paymentaddress)
+			{
+				jQuery(".paymentAddressError").html('Please Enter Payment Address');
+				jQuery(".usdError").hide();
+			}else if(paymentaddress.length<34)
+			{
+				jQuery(".usdError").hide();
+				$(".paymentAddressError").html('Payment Address must be 34 characters');
+				return false;
+			}else if(!usdval){
+				jQuery( ".usd-input-field #usd" ).focus();
+				return false;
+			}
+			
+			
+			var currency_id = jQuery("#curr_id").val();
+			var currency_name = jQuery("#currency_name").val();
+			var net_btc_bal = jQuery("#net_btc_bal").val();
+			var charges = jQuery("#charges").val();
+			var uid = jQuery("#uid").val();
+			
+			var totalAmt = parseFloat(btcval) + parseFloat(charges);
+			if(btcval != '' && paymentaddress != ''){
+				if(totalAmt < net_btc_bal){
+					jQuery('#othertranscation').hide();
+					jQuery('#confirmothertranscation').show();
+					jQuery('.terms').show();
+					$('.btc-input-field #btc').prop('readonly', true);
+					$('.usd-input-field #usd').prop('readonly', true);
+					$('#payment_address').prop('readonly', true);
+					jQuery('#confirmothertranscation').click(function(){	
+						 jQuery('#confirmationalert').show(function(){
+							jQuery('.yes').click(function(){
+								window.location='securitypin.html';
+							});
+							jQuery('.no').click(function(){
+								alert('test123');
+							});
+						 });
+					});
+				}
+			}	
+			sessionStorage.setItem("obtcval", btcval);
+			sessionStorage.setItem("ousdval", usdval);
+			sessionStorage.setItem("odigicardnoval", paymentaddress);
+			sessionStorage.setItem("ocurrency_id", currency_id);
+			sessionStorage.setItem("ocurrency_name", currency_name);
+			sessionStorage.setItem("onet_btc_bal", net_btc_bal);
+			sessionStorage.setItem("ocharges", charges);
+			sessionStorage.setItem("ouid", uid);
+			
+		});
 	}
 	else
 	{
@@ -159,6 +203,7 @@ jQuery( document ).ready(function() {
 	}
 
 });
+
 </script>
 </head>
 <body>
@@ -276,7 +321,6 @@ jQuery( document ).ready(function() {
 					<input type="hidden" name="username" id="username" />
 					<input type="hidden" name="currency_name" id="currency_name" />
 					<input type="text" name="btc" id="btc" pattern="[0-9]*" />
-					
 				</td>
 				<td style="text-align:center;">OR</td>
 				<td class="usd-input-field" style="width:50%;">
@@ -318,7 +362,7 @@ jQuery( document ).ready(function() {
 			</tr>			
 			<tr>
 				<td class="payment-input-field" style="width:50%;">
-					<input type="text" name="payment_address" id="payment_address" placeholder="Payment Address"/>
+					<input type="text" name="payment_address" id="payment_address" placeholder="Payment Address" maxlength="34" value="bitcoin:1Mhn5u9DTdBRbVvDJrniZgRagzaZQMfHZu"/>
 					<div class="paymentAddressError"></div>
 				</td>
 			</tr>
@@ -334,6 +378,13 @@ jQuery( document ).ready(function() {
 		</table>
 		<form>
 			<table class="btc send-transc">
+			<input type="hidden" name="curr_id" id="curr_id" />
+			<input type="hidden" name="uid" id="uid" />
+			<input type="hidden" name="currency_name" id="currency_name" />
+			<!--<input type="hidden" name="btcbal" id="btcbal" />-->
+			<input type="hidden" name="btcbal" id="net_btc_bal" />
+			<input type="hidden" name="charges" id="charges" />
+			
 			<tr>
 				<td style="text-align:center; width:50%;">BTC&nbsp;&nbsp;&nbsp;&nbsp;<img src="images/bitcoin_logo.png"/></td>
 				<td style="text-align:center;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
@@ -342,40 +393,53 @@ jQuery( document ).ready(function() {
 			<tr>
 				<td class="btc-input-field" style="width:50%;">
 					<input type="text" name="btc" id="btc" pattern="[0-9]*"/>
-					<div class="btcError"></div>
 				</td>
 				<td style="text-align:center;">OR</td>
 				<td class="usd-input-field" style="width:50%;">
 					<input type="text" name="usd" id="usd" pattern="[0-9]*" />
+					<div class="usdError"></div>
 				</td>
 			</tr>
 		</table>
+		<div class="terms" style="display:none;">
+			I accept the term and conditon and confirm the above mentioned payment address to make transaction
+		</div>
 		<div class="input-button">
-				<input type="button" name="submit" id="othertranscation" class="green-submit-button" value="Submit"/>
+			<input type="button" name="submit" id="othertranscation" class="green-submit-button" value="Submit"/>
+			<input type="button" name="submit" id="confirmothertranscation" class="red-submit-button" value="Cofirm" style="display:none;"/>
 		</div>
 		</form>
 	</div>
 	</div>
 </div>
+
+<div id="confirmationalert" style="display:none" >
+    <div class="popup">
+		<div class="message">Are you sure to make transaction ?</div>
+		<div class="confirm-msg">
+			<span class="yes">Yes</span>
+			<span class="no">No</span>
+		</div>
+	</div>
+</div>
+
+
 <script>
 function scan()
 {
     cordova.plugins.barcodeScanner.scan(
        function (result) {
-	    $("#payment_address").val(result.text);  
-		var aadhardata = result.text ;
- 
-
-		
+		var result=$(result.text).val().split(':');
+		$("#payment_address").val(result[1]);
       },
       function (error) {
          var scan_error = "Scanning failed: " + error;
 		  navigator.notification.alert(
-						scan_error,
-						callBackFunctionFlag, 
-						'Confirm',
-						"OK"
-					);
+				scan_error,
+				callBackFunctionFlag, 
+				'Confirm',
+				"OK"
+		);
 		  
       }
    );

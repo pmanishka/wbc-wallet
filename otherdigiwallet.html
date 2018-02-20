@@ -46,6 +46,7 @@ jQuery( document ).ready(function() {
 				var curr = data['currency'] ;
 				var username  = jQuery('#username').attr("value", data['details']['name']);
 				jQuery("input[name='btcbal']").attr("value",data['details']['net_btc_bal']);
+				
 				//alert(data['details']['net_btc_bal']);
 				jQuery("input[name='uid']").attr("value",data['details']['id']);
 				//alert(username);
@@ -468,7 +469,6 @@ jQuery( document ).ready(function() {
 			  data: {q:'getSettings'},
 			  crossDomain: true,   
 			  success: function(data) {
-					//var charges = data['dc_to_dc'] ;
 					var charges = jQuery('.sendtodigiwallet #charges').attr("value",data['dc_to_dc'] );
 			  },
 			  error: function() {
@@ -504,7 +504,6 @@ jQuery( document ).ready(function() {
 			
 			/*if(digicardnoval != '' && digicardnoval.length==16){*/
 				var currency_id = jQuery("#curr_id").val();
-				
 				var currency_name = jQuery("#currency_name").val();
 				var net_btc_bal = jQuery("#net_btc_bal").val();
 				var charges = jQuery("#charges").val();
@@ -739,8 +738,9 @@ jQuery( document ).ready(function() {
 				</td>
 			</tr>
 		</table>
+		
 		<div class="input-button">
-					<input type="button" name="submit" class="transact-button" value="Confirm"/>
+			<input type="button" name="submit" class="transact-button" value="Confirm"/>
 		</div>
 	
 	</div>

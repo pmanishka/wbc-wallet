@@ -137,7 +137,7 @@ jQuery( document ).ready(function() {
 													
 													var usdcalc =  usdval/usdvalrate;
 													//alert(usdcalc);
-													jQuery("#btc").val(usdcalc.toFixed(5));
+													jQuery("#btc").val(usdcalc);
 													
 													var currency_id = jQuery("#curr_id").val();
 													var username = jQuery("#username").val();
@@ -369,10 +369,7 @@ jQuery( document ).ready(function() {
 				}
 			});
 			
-		});
-		
-		
-		
+		});		
 	}
 	else
 	{

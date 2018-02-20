@@ -83,8 +83,36 @@ var spin =localStorage.getItem("pin");
 											alert('Error');
 										  }
 									});
-								}else{
-									//alert('test123');
+								}
+								// Other wallet
+								var obtcval = sessionStorage.getItem("obtcval");
+								var ousdval = sessionStorage.getItem("ousdval");
+								var odigicardnoval = sessionStorage.getItem("odigicardnoval");
+								var ocurrency_id = sessionStorage.getItem("ocurrency_id");
+								var ocurrency_name = sessionStorage.getItem("ocurrency_name");
+								var onet_btc_bal = sessionStorage.getItem("onet_btc_bal");
+								var ocharges = sessionStorage.getItem("ocharges");
+								var ouid = sessionStorage.getItem("ouid");
+								
+								if(obtcval != null && ousdval != null  && odigicardnoval != null  && ocurrency_id != null && ocurrency_name != null && onet_btc_bal != null && ocharges != null  && ouid != null ){
+									$.ajax({
+										  url: siteurl+"withdrawFromDC",
+										  type: 'POST',
+										  data: {q:'withdraw_dc',user_id:ouid,amount:obtcval,currency_id:ocurrency_id,withdraw_address:odigicardnoval,charges:ocharges,equal_usd:ousdval},
+										  crossDomain: true,   
+										  success: function(data) {
+											if(data['status'] == 1)
+											{
+												window.location='transact.html';
+											}
+										  },
+										  error: function() {
+											alert('Error');
+										  }
+									});
+								}
+								
+								else{
 									window.location='dashboard.html';
 								}
 						  }else{
