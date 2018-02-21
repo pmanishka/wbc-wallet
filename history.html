@@ -91,8 +91,8 @@ jQuery( document ).ready(function() {
 							var options = {month: 'short', year: 'numeric', day: 'numeric' };
 							var paymentdate = (date.toLocaleDateString('us-US',options));
 							//alert(paymentdate);
-							
-							jQuery('.history-result').append("<table class='support-result-info'><tr><td class='support-result-date'>"+paymentdate+"</td><td>&nbsp;</td><td class='request-result'>-"+data['digibook'][i]['amount']+" BTC</td></tr><tr><td class='support-result-content "+redclass+"'>"+withdarwval+""+status+"</td><td>&nbsp;</td></tr><tr><td>&nbsp;</td><td>&nbsp;</td><td class='request-result'></td></tr></table>");
+							alert(data['digibook'][i]['name']);
+							jQuery('.history-result').append("<table class='support-result-info'><tr><td class='support-result-date'>"+paymentdate+"</td><td>&nbsp;</td><td class='request-result'>-"+data['digibook'][i]['amount']+" BTC</td></tr><tr><td class='support-result-content "+redclass+"'>"+withdarwval+""+status+"</td><td>&nbsp;</td></tr><tr><td>"+data['digibook'][i]['name']+"</td><td>&nbsp;</td><td class='request-result'></td></tr></table>");
 							
 							
 						}
