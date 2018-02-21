@@ -21,10 +21,8 @@ jQuery.support.cors = true;
 
 var username = localStorage.getItem("username");
 var email = localStorage.getItem("email");
-//alert(email);
 
-
-mobiscroll.settings = {
+/*mobiscroll.settings = {
     theme: 'ios'
 };
 
@@ -35,6 +33,7 @@ $(function () {
 		  dateFormat: 'yy-mm-dd'
     });
 });
+*/
 function checkDevice(){
 		document.addEventListener("deviceready", onDeviceReady, false);
 }
@@ -75,7 +74,7 @@ jQuery(document).ready(function() {
 	
 	
 	jQuery('.red-button input[name="submit"]').click(function(){
-	
+
 		if ($('#register').valid()) {
 			var uid = jQuery('#uid').val();
 			var fname = jQuery('#fullname').val();
@@ -192,7 +191,7 @@ jQuery(document).ready(function() {
 <div id="main_wrapper" class="inner-page">
 	<div class="main-container">
 	<div id="topbar">
-		<!--<img src="images/back_arrow.png"/>--><span style="margin-left:25px;">Step 4</span>
+		<div class="header-card">Step 4</div>
 	</div>
 	<div id="top_header">
 		<div class="logo">
@@ -308,52 +307,14 @@ function scan()
        function (result) {
 	    $("#aadhar_card_details").val(result.text);  
 		var aadhardata = result.text ;
-		
-		$.ajax({
-			type: "GET",
-			url: "qrcode-reader.php",
-			success: function(response){
-			
-				var json = $.parseJSON(response);
-				$(json).each(function(i,val){
-					$.each(val,function(k,v){
-						  //console.log(k+" : "+ v);   
-							if(k == 'uid'){
-								var uid = v;
-								uid = uid.replace(/'/g,"");
-								jQuery('#uid').attr("value",uid);
-							}else if(k == 'name'){
-								var name = v;
-								name = name.replace(/'/g,"");
-								jQuery('#fullname').attr("value",name);
-							}else if(k == 'yob'){
-								var yob = v;
-								yob = yob.replace(/'/g,"");
-								jQuery('#dob').attr("value",yob);
-							}else if(k == 'loc'){
-								var loc = v;
-								loc = loc.replace(/'/g,"");
-								jQuery('#address').attr("value",loc);
-							}else if(k == 'vtc'){
-								var vtc = v;
-								vtc = vtc.replace(/'/g,"");
-								jQuery('#city').attr("value",vtc);
-							}else if(k == 'state'){
-								var state = v;
-								state = state.replace(/'/g,"");
-								jQuery('#state').attr("value",state);
-							}else if(k == 'pc'){
-								var pc = v;
-								pc = pc.replace(/'/g,"");
-								jQuery('#postalcode').attr("value",pc)
-							}else{
-								jQuery('#country').attr("value","India")
-							}
-					});
-				});
-			}
-        });		
-		  
+		//var str = $('#adharcard').val();	
+		xmlDoc = $.parseXML( aadhardata ),
+		$xml = $( xmlDoc ); 
+
+		$($xml).each(function(){
+			//alert($(xmlDoc).find("PrintLetterBarcodeData").attr('name'));
+			jQuery('#fullname').attr("value",$(xmlDoc).find("PrintLetterBarcodeData").attr('name'));
+		});
 		   
 
 		
