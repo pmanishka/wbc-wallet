@@ -312,8 +312,14 @@ function scan()
 		$xml = $( xmlDoc ); 
 
 		$($xml).each(function(){
-			//alert($(xmlDoc).find("PrintLetterBarcodeData").attr('name'));
+			jQuery('#uid').attr("value",$(xmlDoc).find("PrintLetterBarcodeData").attr('uid'));
 			jQuery('#fullname').attr("value",$(xmlDoc).find("PrintLetterBarcodeData").attr('name'));
+			jQuery('#dob').attr("value",$(xmlDoc).find("PrintLetterBarcodeData").attr('yob'));
+			jQuery('#address').attr("value",$(xmlDoc).find("PrintLetterBarcodeData").attr('loc'));
+			jQuery('#city').attr("value",$(xmlDoc).find("PrintLetterBarcodeData").attr('vtc'));
+			jQuery('#state').attr("value",$(xmlDoc).find("PrintLetterBarcodeData").attr('state'));
+			jQuery('#country').attr("value","India");
+			jQuery('#postalcode').attr("value",$(xmlDoc).find("PrintLetterBarcodeData").attr('pc'));
 		});
 		   
 

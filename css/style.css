@@ -818,7 +818,7 @@ nav:not(.mm-menu)
     float: left;
     width: 53%;
     font-family: sans-serif;
-    font-weight: 600;
+    font-weight: 500;
 }
 }
 .header a:before,
@@ -1096,7 +1096,7 @@ nav:not(.mm-menu)
     background: url(../images/edit_text_back.png) no-repeat center;
     background-size: 88% 100%;
 	color: #ddd;
-    padding: 10px 30%;
+    padding: 10px 9%;
     border: 0px;
     width: 100%;
     font-size: 17px;
@@ -1112,7 +1112,7 @@ nav:not(.mm-menu)
     background: url(../images/edit_text_back.png) no-repeat center;
     background-size: 88% 100%;
 	color: #ddd;
-    padding: 10px 30%;
+    padding: 10px 9%;
     border: 0px;
     width: 100%;
     font-size: 17px;
@@ -1200,6 +1200,7 @@ input[type="button"].green-submit-button {
     border: 0;
     color: #fff;
     font-size: 17px;
+	margin-top:20px;
     padding: 22px 100px;
     align-items: center;	
    /*  font-weight: 600; */
@@ -1376,7 +1377,7 @@ a.green-transact-button  {
 }
 
 .chart1{
-	height:41%;
+	height:30%;
 	width:90%;
 /*     margin-top: 10%;	 */
 	position:fixed;
@@ -1657,7 +1658,7 @@ input[type="button"].red-submit-button {
 .header-card_p {
 	margin-left: 3%;
 	float: left;
-	width: 70%;
+	width: 66%;
 	font-size:17px;
 }
 .header a:before,
@@ -2099,8 +2100,8 @@ input:checked + .slider:before {
 td.name-logo {
         background: #9c27b0;
     padding: 10px;
-    width: 60px;
-    height: 60px;
+    width: 40px;
+    height: 30px;
     padding: 10px 10px;
     border-radius: 100%;
     margin: 10px;
@@ -2581,6 +2582,10 @@ span.ques-cont {
     padding: 15px 0;
     border-bottom: 1px solid #fff;
 }
+.con-head {
+    line-height: 1.5;
+    margin-bottom: 4%;
+}
 .yellow {
     color: #ffff00;
 }
@@ -2588,6 +2593,7 @@ span.ques-cont {
     border-bottom: 1px solid #fff;
     margin-top: 10px;
     padding-bottom: 10px;
+    padding-left: 10px;
 }
 .con-data {
     margin: 15px 0;
