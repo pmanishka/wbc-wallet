@@ -10,14 +10,15 @@
 <script src="js/jquery.min.js"></script>
 
 <script src="js/config.js"></script>
-<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+
 
 <script type="text/javascript"> 
 function checkDevice(){
-		document.addEventListener("deviceready", onDeviceReady, false);
+    document.addEventListener("deviceready", onDeviceReady, false);
 }
-function onDeviceReady() {  
-	return true;  
+function onDeviceReady() 
+{  
+    return true;  
 }
 </script>
 <script type="text/javascript">
@@ -37,74 +38,38 @@ function onDeviceReady() {
     <div class="innerpage registerpage regmainsctn">
       <h1 class="header-title">REGISTER</h1>
       <div class="loginmainblock registerblock">
-        <ul class="tabs">
-          <li class="active"><a href="javascript:void(0);"><span>1</span></a></li>
-          <li><a href="javascript:void(0);"><span>2</span></a></li>
-        </ul>
-        <input class="step-no" name="her_pair" id="her_pair" maxlength="15" type="text" placeholder="ENTER HERPAIR NO."/>
-        <input class="submitbtn" onClick="validateHerPair();" type="submit" value="CONTINUE"/>
-        <div class="or">Or</div>
-        <input class="submitbtn" type="submit" onClick="scan();" value="SCAN BAR CODE"/>
-      </div>
+        
+        <input class="step-no" name="adharcard" id="adharcard" type="text" value='<?xml version="1.0" encoding="UTF-8"?><PrintLetterBarcodeData uid="621907916489" name="Anuj Kumar Shukla" gender="M" yob="1998" co="S/O Krishna Kant Shukla" loc="gram. bane kuiya post. chathiya" vtc="Hardoi" po="Hardoi" dist="Hardoi" state="Uttar Pradesh" pc="241001"/>'/>
+  
+		
+      </div><div class="xmlRes"></div>
     </div>
   </div>
 </div>
 
+<script type="text/javascript">
+jQuery(document).ready(function() {
+    //alert('test');
+    var str = $('#adharcard').val();
+    
+    /*
+    var res = str.replace('<?xml version="1.0" encoding="UTF-8"?>',"");
+    //var xmlString = (new XMLSerializer()).serializeToString(res);
+    var xmlDoc = $.parseXML(res);
+    alert($(xmlDoc).find("PrintLetterBarcodeData"));
+    var root = $(xmlDoc).find("uid");
+    */
+    
+    xmlDoc = $.parseXML( str ),
+    $xml = $( xmlDoc ); 
+
+
+
+
+    $($xml).each(function(){
+        alert($(xmlDoc).find("PrintLetterBarcodeData").attr('name'));
+    });
+});
+</script>
 </body>
-<script type="text/javascript">
-
-
-function validateHerPair(){
-	var url = siteurl + '?route=common/home/checkherpair';
-	
-	var user_her_pair = $('input[name="her_pair"]').val();
-	
-	jQuery.ajax({
-			 type: 'POST',
-			 url: url,
-			 data: {her_pair: user_her_pair},
-			 dataType: 'json',
-			 crossDomain: true,
-			 success: function(data){
-				$(".registerblock p").remove(); 
-				 
-				 if(data['success'])
-				 {				 
-				 	window.location = 'register2.html?herpair=' + data['success']['herpair'];
-				 }else if(data['error'])
-				 {				 
-				 						
-					navigator.notification.alert(
-						data['error']['herpair'],
-						callBackFunctionFlag, 
-						'Confirm',
-						"OK"
-					);
-				 }
-			}
-   		});	
-}
-</script>
-<script type="text/javascript">
-function scan()
-{
-    cordova.plugins.barcodeScanner.scan(
-       function (result) {
-		   
-		   $("#her_pair").val(result.text);          
-      },
-      function (error) {
-         var scan_error = "Scanning failed: " + error;
-		  navigator.notification.alert(
-						scan_error,
-						callBackFunctionFlag, 
-						'Confirm',
-						"OK"
-					);
-		  
-      }
-   );
-}
-
-</script>
 </html>

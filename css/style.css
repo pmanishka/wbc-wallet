@@ -74,7 +74,7 @@ body{
 body .container {
     float: left;
     width: 100%;
-	padding:11px 0 0px 0;
+	padding:8px 0 0px 0;
 	overflow:hidden;
 }
 #top_header {
@@ -279,7 +279,7 @@ input[type="button"].red-button {
     text-align: center;
 }
 .red-button {
-    margin-top: 20px;
+    /* margin-top: 17px; */
     background: url(../images/dark_red.png) no-repeat center;
 	background-size: 80% 100%;
 	
@@ -290,7 +290,7 @@ input[type="button"].red-button {
     color: #fff;
 	width:100%;
     font-size: 17px;
-	padding: 30px 60px;
+	padding: 25px 60px;
 }
 .forgot-password {
     text-align: right;
@@ -337,11 +337,11 @@ input[type="button"].red-button {
 .registertop {
     color: #d9fae2;
 	border-bottom: 1px solid #fff;
-	padding-top:15px;
-	padding-bottom: 15px;
+	padding-top:12px;
+	padding-bottom: 10px;
 	text-align: center;
 	font-size: 19px;
-	margin-top: 5px;
+
 }
 .error-msg {
     width: 100%;
@@ -495,6 +495,14 @@ margin-top:0px;
 	margin-left: 19px;
     -webkit-margin-after: 0%;
 }
+.btcfailed img {
+     width: 64%;
+    max-width: 53%;
+    margin-top: 6px;
+    margin-left: 19px;
+    padding-right: 5px;
+    -webkit-margin-after: 0%;
+}
 .addressfailed img {
        width: 80%;
     /* max-width: 73%; */
@@ -548,7 +556,7 @@ margin-top:0px;
 }
 div#passwordError {
     background: #000;
-    padding: 5px;
+    padding: 0px;
     max-width: 75%;
     float: right;
     text-align: left;
@@ -558,7 +566,7 @@ div#passwordError {
 }
 div#CPasswordError {
     background: #000;
-    padding: 5px;
+    padding: 0px;
     max-width: 75%;
     float: right;
     text-align: left;
@@ -567,7 +575,7 @@ div#CPasswordError {
     margin-top: 0px;
 }div#pinError {
     background: #000;
-    padding: 5px;
+    padding: 0px;
     max-width: 75%;
     float: right;
     text-align: left;
@@ -576,7 +584,7 @@ div#CPasswordError {
     margin-top: 0px;
 }div#cPinError {
     background: #000;
-    padding: 5px;
+    padding: 0px;
     max-width: 75%;
     float: right;
     text-align: left;
@@ -589,7 +597,8 @@ div#CPasswordError {
     left: 83%;
     border: solid transparent;
     content: " ";
-    position: absolute;
+    position: 287
+	absolute;
     border-bottom-color: #ff0000;
     border-width: 9px;
 }*/
@@ -1195,6 +1204,15 @@ nav:not(.mm-menu)
 	background-size: 60% 100%;
 	
 }
+.paymentAddressError {
+    background: #000;
+    padding: 0px;
+    max-width: 75%;
+    float: right;
+    text-align: left;
+    border-top: 2px solid #ff0000;
+    margin-right: 1%;
+}
 input[type="button"].green-submit-button {
    width:100%;
     border: 0;
@@ -1333,6 +1351,10 @@ a.red-history-button {
 	padding: 30px 50px;
 	font-family:sans-serif;
 	
+}
+.green{
+	color:#07f912 !important;
+	font-size:bold;
 }
 .green-transact-button {
     margin-top: 25px;
@@ -1518,7 +1540,7 @@ a.green-transact-button  {
     border: 0;
     color: #fff;
     font-size: 17px;
-	padding: 30px;
+	padding: 30px 99px;
 }
 
 .or_p {
@@ -2454,6 +2476,31 @@ textarea#queries {
 .spin-textbox {
     margin-top: 10px;
 }
+.spin-textbox1 .spin1 {
+    background: transparent;
+    border-bottom: 1px solid #fff;
+    border-top: 0;
+    border-left: 0;
+    color: #fff;
+    font-weight: bold;
+    width: 16%;
+    font-size: 26px;
+    padding: 5px 0px;
+    text-align: center;
+    border-right: 0;
+    margin-right: 3%;
+}
+.spin-textbox1 {
+    margin-top: 10px;
+	text-align:center;
+}
+.resendotp{
+	text-align:center;
+	font-size:15px;
+	font-family:sans-serif;
+	margin-top:7%;
+	font-weight:600;
+}
 .pin-textbox {
     margin-top: 18px;
 }
@@ -2937,4 +2984,32 @@ cursor:pointer}
   .popup{
     width: 70%;
   }
+}
+
+#btcError {
+  background: #000;
+    padding: 0px;
+    max-width: 75%;
+    float: right;
+    text-align: left;
+    border-top: 2px solid #ff0000;
+    margin-right: 9%;
+    margin-top: -31px;
+}
+#digicardError{
+	width:100%;
+	    margin-left: 42px;
+    margin-top: -46px;
+}
+.congratulations-msg1 .msg1 span {
+    color: #aefd36;
+}
+.congratulations-msg1 {
+      margin-top: 9%;
+    line-height: 2;
+    text-align: center;
+	
+}
+.congratulations-msg1 .msg1 img {
+    width: 50px;
 }

@@ -184,12 +184,12 @@ jQuery( document ).ready(function() {
 			//alert(usdval);
 			if(!paymentaddress)
 			{
-				jQuery(".paymentAddressError").html('Please Enter Payment Address');
+				jQuery(".paymentAddressError").html('Invalid Payment Address');
 				jQuery(".usdError").hide();
 			}else if(paymentaddress.length<34)
 			{
 				jQuery(".usdError").hide();
-				$(".paymentAddressError").html('Payment Address must be 34 characters');
+				$(".paymentAddressError").html('Invalid Payment Address');
 				return false;
 			}else if(!usdval){
 				jQuery( ".usd-input-field #usd" ).focus();
@@ -432,6 +432,11 @@ jQuery( document ).ready(function() {
 			<tr>
 				<td class="btc-input-field" style="width:50%;">
 					<input type="text" name="btc" id="btc" pattern="[0-9]*"/>
+					<div class="inputerror-msg1" style="display:none;">
+						<div class="btcfailed">
+							<img src="images/erroralert.png"/>
+						</div>
+					</div>
 				</td>
 				<td style="text-align:center;">OR</td>
 				<td class="usd-input-field" style="width:50%;">

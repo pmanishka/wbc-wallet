@@ -490,7 +490,7 @@ jQuery( document ).ready(function() {
 			else if(!digicardnoval)
             {
 				//alert('test');
-				jQuery("#digicardError").html('Please Enter Digi Card Number');
+				jQuery("#digicardError").show;
 				jQuery("#btcError").hide();
 				return false;
 			}
@@ -722,19 +722,27 @@ jQuery( document ).ready(function() {
 			<tr>
 				<td class="btc-input-field" style="width:50%;">
 					<input type="text" name="btc" id="btc" pattern="[0-9]*"/>
-					<div id="btcError"></div>
+
 				</td>
 				<td style="text-align:center;">OR</td>
 				<td class="usd-input-field" style="width:50%;">
 					<input type="text" name="usd" id="usd" pattern="[0-9]*"/>
 				</td>
 			</tr>
+			<tr>
+				<td class="btc-input-field" style="width:50%;">
+					<div id="btcError"></div>
+				</td>
+				<td style="text-align:center;">&nbsp;&nbsp;</td>
+				<td class="usd-input-field" style="width:50%;">
+				&nbsp;&nbsp;</td>
+			</tr>
 		</table>
 		<table>
 			<tr>
 				<td class="digicard-input-field">
 					<input type="text" name="digicardno" id="digicardno" placeholder="Enter 16 Digit Card Number" maxlength="16" pattern="[0-9]*"/>
-					<div id="digicardError"></div>
+					<div id="digicardError" style="display:none;"><img src="images/cardnumber.png"/></div>
 				</td>
 			</tr>
 		</table>

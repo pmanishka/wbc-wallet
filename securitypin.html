@@ -28,6 +28,13 @@ var spin =localStorage.getItem("pin");
 			jQuery('.logout').toggle( "slow" );
 		});
 		
+		
+		$("#login-successfully").fadeIn("slow", function () {
+			setTimeout(function () {
+				$("#login-successfully").fadeOut("slow");
+			}, 1000);
+		});
+				
 		// Get Login data
 		$.ajax({
 		  url: siteurl+"login",
@@ -129,12 +136,6 @@ var spin =localStorage.getItem("pin");
 					}
 				});
 			}
-			else{
-				//window.location='login.html';
-			}
-		  },
-		  error: function() {
-			alert('Error');
 		  }
 		});
 		
@@ -199,6 +200,7 @@ var spin =localStorage.getItem("pin");
 		</div>
 	</div>
 </div>
+<div id="login-successfully" class="snackbar" style="display:none;">Login Successfully</div>
 <div id="snackbar" style="display:none;">Enter the correct pin</div>
 </body>
 </html>
