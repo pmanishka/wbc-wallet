@@ -22,7 +22,7 @@ if(window.XDomainRequest){contentType = "text/plain";}
 jQuery.support.cors = true;
 	
 jQuery( document ).ready(function() {
-	//alert(localStorage.getItem("loggedIn"));
+	alert(localStorage.getItem("loggedIn"));
 	if(window.localStorage.getItem("loggedIn") == 1) {
 
 		var userid = localStorage.getItem("user_id") ;
