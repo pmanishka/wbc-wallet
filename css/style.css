@@ -290,7 +290,7 @@ input[type="button"].red-button {
     color: #fff;
 	width:100%;
     font-size: 17px;
-	padding: 30px 60px;
+	padding: 25px 60px;
 }
 .forgot-password {
     text-align: right;
@@ -589,7 +589,8 @@ div#CPasswordError {
     left: 83%;
     border: solid transparent;
     content: " ";
-    position: absolute;
+    position: 287
+	absolute;
     border-bottom-color: #ff0000;
     border-width: 9px;
 }*/
