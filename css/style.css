@@ -337,11 +337,11 @@ input[type="button"].red-button {
 .registertop {
     color: #d9fae2;
 	border-bottom: 1px solid #fff;
-	padding-top:15px;
-	padding-bottom: 15px;
+	padding-top:12px;
+	padding-bottom: 10px;
 	text-align: center;
 	font-size: 19px;
-	margin-top: 5px;
+
 }
 .error-msg {
     width: 100%;
