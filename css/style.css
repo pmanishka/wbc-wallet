@@ -290,7 +290,7 @@ input[type="button"].red-button {
     color: #fff;
 	width:100%;
     font-size: 17px;
-	padding: 20px 60px;
+	padding: 25px 60px;
 }
 .forgot-password {
     text-align: right;
@@ -493,6 +493,14 @@ margin-top:0px;
    width: 97%;
     /* max-width: 53%; */
 	margin-left: 19px;
+    -webkit-margin-after: 0%;
+}
+.btcfailed img {
+     width: 64%;
+    max-width: 53%;
+    margin-top: 6px;
+    margin-left: 19px;
+    padding-right: 5px;
     -webkit-margin-after: 0%;
 }
 .addressfailed img {
@@ -1196,6 +1204,15 @@ nav:not(.mm-menu)
 	background-size: 60% 100%;
 	
 }
+.paymentAddressError {
+    background: #000;
+    padding: 0px;
+    max-width: 75%;
+    float: right;
+    text-align: left;
+    border-top: 2px solid #ff0000;
+    margin-right: 1%;
+}
 input[type="button"].green-submit-button {
    width:100%;
     border: 0;
@@ -1334,6 +1351,10 @@ a.red-history-button {
 	padding: 30px 50px;
 	font-family:sans-serif;
 	
+}
+.green{
+	color:#07f912 !important;
+	font-size:bold;
 }
 .green-transact-button {
     margin-top: 25px;
@@ -1519,7 +1540,7 @@ a.green-transact-button  {
     border: 0;
     color: #fff;
     font-size: 17px;
-	padding: 30px;
+	padding: 30px 99px;
 }
 
 .or_p {
@@ -2455,6 +2476,31 @@ textarea#queries {
 .spin-textbox {
     margin-top: 10px;
 }
+.spin-textbox1 .spin1 {
+    background: transparent;
+    border-bottom: 1px solid #fff;
+    border-top: 0;
+    border-left: 0;
+    color: #fff;
+    font-weight: bold;
+    width: 16%;
+    font-size: 26px;
+    padding: 5px 0px;
+    text-align: center;
+    border-right: 0;
+    margin-right: 3%;
+}
+.spin-textbox1 {
+    margin-top: 10px;
+	text-align:center;
+}
+.resendotp{
+	text-align:center;
+	font-size:15px;
+	font-family:sans-serif;
+	margin-top:7%;
+	font-weight:600;
+}
 .pin-textbox {
     margin-top: 18px;
 }
@@ -2938,4 +2984,32 @@ cursor:pointer}
   .popup{
     width: 70%;
   }
+}
+
+#btcError {
+  background: #000;
+    padding: 0px;
+    max-width: 75%;
+    float: right;
+    text-align: left;
+    border-top: 2px solid #ff0000;
+    margin-right: 9%;
+    margin-top: -31px;
+}
+#digicardError{
+	width:100%;
+	    margin-left: 42px;
+    margin-top: -46px;
+}
+.congratulations-msg1 .msg1 span {
+    color: #aefd36;
+}
+.congratulations-msg1 {
+      margin-top: 9%;
+    line-height: 2;
+    text-align: center;
+	
+}
+.congratulations-msg1 .msg1 img {
+    width: 50px;
 }
