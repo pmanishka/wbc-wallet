@@ -1,4 +1,4 @@
-var siteurl = "http://10.0.0.66/Regular/cryptocurrency/api/";
+var siteurl = "https://www.4xwin.com/MobileAppDemo/";
 
 function gup(sParam) {
   var sPageURL = decodeURIComponent(window.location.search.substring(1)),
