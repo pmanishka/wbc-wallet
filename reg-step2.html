@@ -36,6 +36,7 @@ var username = localStorage.getItem("username");
 	
 	jQuery('.arrow-button input[name="submit"]').click(function(){
 		if ($('#mobileverify').valid()) {
+		 $('.arrow-button input[name="submit"]').attr("disabled", "disabled");
 			var mobile = jQuery('#mobileno').val();
 			jQuery('.mobileresult').empty();
 			$.ajax({
@@ -125,6 +126,7 @@ var username = localStorage.getItem("username");
 		if ($('#mobileverify').valid()) {
 			var mobile = jQuery('#mobileno').val();
 			jQuery('.mobileresult').empty();
+			
 			$.ajax({
 			  url: siteurl+"registerationMobileVerification",
 			  type: 'POST',
