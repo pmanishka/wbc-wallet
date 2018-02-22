@@ -431,7 +431,7 @@ jQuery( document ).ready(function() {
 			</tr>
 			<tr>
 				<td class="btc-input-field" style="width:50%;">
-					<input type="text" name="btc" id="btc" pattern="[0-9]*"/>
+					<input type="text" name="btc" id="btc" pattern="\d+(\.\d*)?"/>
 					<div class="inputerror-msg1" style="display:none;">
 						<div class="btcfailed">
 							<img src="images/erroralert.png"/>
@@ -440,7 +440,7 @@ jQuery( document ).ready(function() {
 				</td>
 				<td style="text-align:center;">OR</td>
 				<td class="usd-input-field" style="width:50%;">
-					<input type="text" name="usd" id="usd" pattern="[0-9]*" decimal="true" allow-multiple-decimals="false" />
+					<input type="text" name="usd" id="usd" pattern="\d+(\.\d*)?"/>
 					<div class="usdError"></div>
 				</td>
 			</tr>
