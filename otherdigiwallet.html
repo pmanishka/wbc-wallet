@@ -509,14 +509,14 @@ jQuery( document ).ready(function() {
 				var charges = jQuery("#charges").val();
 				var uid = jQuery("#uid").val();
 				
-				localStorage.setItem("btcval", btcval);
-				localStorage.setItem("usdval", usdval);
-				localStorage.setItem("digicardnoval", digicardnoval);
-				localStorage.setItem("currency_id", currency_id);
-				localStorage.setItem("currency_name", currency_name);
-				localStorage.setItem("net_btc_bal", net_btc_bal);
-				localStorage.setItem("charges", charges);
-				localStorage.setItem("uid", uid);
+				sessionStorage.setItem("btcval", btcval);
+				sessionStorage.setItem("usdval", usdval);
+				sessionStorage.setItem("digicardnoval", digicardnoval);
+				sessionStorage.setItem("currency_id", currency_id);
+				sessionStorage.setItem("currency_name", currency_name);
+				sessionStorage.setItem("net_btc_bal", net_btc_bal);
+				sessionStorage.setItem("charges", charges);
+				sessionStorage.setItem("uid", uid);
 				
 				$.ajax({
 					  url: siteurl+"getUserNameByCardNumber",
@@ -678,11 +678,11 @@ jQuery( document ).ready(function() {
 					<input type="hidden" name="curr_id" id="curr_id" />
 					<input type="hidden" name="username" id="username" />
 					<input type="hidden" name="currency_name" id="currency_name" />
-					<input type="text" name="btc" id="btc" pattern="\d+(\.\d*)?"/>
+					<input type="text" name="btc" id="btc" pattern="[0-9]*"/>
 				</td>
 				<td style="text-align:center;">OR</td>
 				<td class="usd-input-field" style="width:50%;">
-					<input type="text" name="usd" id="usd" pattern="\d+(\.\d*)?"/>
+					<input type="text" name="usd" id="usd" pattern="[0-9]*"/>
 				</td>
 			</tr>
 		</table>

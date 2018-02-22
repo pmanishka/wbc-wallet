@@ -8,6 +8,9 @@
 
 
 <script>
+var i;
+
+
 var contentType ="application/x-www-form-urlencoded; charset=utf-8";
 if(window.XDomainRequest){contentType = "text/plain";}
 jQuery.support.cors = true;
@@ -29,11 +32,11 @@ var spin =localStorage.getItem("pin");
 		});
 		
 		
-		$("#login-successfully").fadeIn("slow", function () {
+		/*$("#login-successfully").fadeIn("slow", function () {
 			setTimeout(function () {
 				$("#login-successfully").fadeOut("slow");
 			}, 1000);
-		});
+		});*/
 				
 		// Get Login data
 		$.ajax({
@@ -64,14 +67,14 @@ var spin =localStorage.getItem("pin");
 						  {
 								
 								//Transfer Digicard to Digicard
-								var btcval = localStorage.getItem("btcval");
-								var usdval = localStorage.getItem("usdval");
-								var digicardnoval = localStorage.getItem("digicardnoval");
-								var currency_id = localStorage.getItem("currency_id");
-								var currency_name = localStorage.getItem("currency_name");
-								var net_btc_bal = localStorage.getItem("net_btc_bal");
-								var charges = localStorage.getItem("charges");
-								var uid = localStorage.getItem("uid");
+								var btcval = sessionStorage.getItem("btcval");
+								var usdval = sessionStorage.getItem("usdval");
+								var digicardnoval = sessionStorage.getItem("digicardnoval");
+								var currency_id = sessionStorage.getItem("currency_id");
+								var currency_name = sessionStorage.getItem("currency_name");
+								var net_btc_bal = sessionStorage.getItem("net_btc_bal");
+								var charges = sessionStorage.getItem("charges");
+								var uid = sessionStorage.getItem("uid");
 								
 								
 								if(btcval != null && usdval != null  && digicardnoval != null  && currency_id != null && currency_name != null && net_btc_bal != null && charges != null  && uid != null ){
@@ -92,14 +95,14 @@ var spin =localStorage.getItem("pin");
 									});
 								}
 								// Other wallet
-								var obtcval = localStorage.getItem("obtcval");
-								var ousdval = localStorage.getItem("ousdval");
-								var odigicardnoval = localStorage.getItem("odigicardnoval");
-								var ocurrency_id = localStorage.getItem("ocurrency_id");
-								var ocurrency_name = localStorage.getItem("ocurrency_name");
-								var onet_btc_bal = localStorage.getItem("onet_btc_bal");
-								var ocharges = localStorage.getItem("ocharges");
-								var ouid = localStorage.getItem("ouid");
+								var obtcval = sessionStorage.getItem("obtcval");
+								var ousdval = sessionStorage.getItem("ousdval");
+								var odigicardnoval = sessionStorage.getItem("odigicardnoval");
+								var ocurrency_id = sessionStorage.getItem("ocurrency_id");
+								var ocurrency_name = sessionStorage.getItem("ocurrency_name");
+								var onet_btc_bal = sessionStorage.getItem("onet_btc_bal");
+								var ocharges = sessionStorage.getItem("ocharges");
+								var ouid = sessionStorage.getItem("ouid");
 								
 								if(obtcval != null && ousdval != null  && odigicardnoval != null  && ocurrency_id != null && ocurrency_name != null && onet_btc_bal != null && ocharges != null  && ouid != null ){
 									$.ajax({
@@ -143,32 +146,34 @@ var spin =localStorage.getItem("pin");
 	}
 	else
 	{
-		if(spin != ''){
-			jQuery(".spin").keyup(function () {
-				if (this.value.length == this.maxLength) {
-					var $next = $(this).next('.spin');
-					if ($next.length){
-						$(this).next('.spin').focus();
-					}
-					else{
-						$(this).blur();
-						var optcvalue='';
-							jQuery('.spin').each(function(){
-								optcvalue+=this.value;
+		if(window.sessionStorage.getItem("loggedIn") == 1){
+			if(spin != ''){
+				jQuery(".spin").keyup(function () {
+					if (this.value.length == this.maxLength) {
+						var $next = $(this).next('.spin');
+						if ($next.length){
+							$(this).next('.spin').focus();
+						}
+						else{
+							$(this).blur();
+							var optcvalue='';
+								jQuery('.spin').each(function(){
+									optcvalue+=this.value;
+								});
+							if(optcvalue == spin)
+							{
+								window.location='dashboard.html';
+							}else{
+								$("#snackbar").fadeIn("slow", function () {
+								setTimeout(function () {
+									$("#snackbar").fadeOut("slow");
+								}, 5000);
 							});
-						if(optcvalue == spin)
-						{
-							window.location='dashboard.html';
-						}else{
-							$("#snackbar").fadeIn("slow", function () {
-							setTimeout(function () {
-								$("#snackbar").fadeOut("slow");
-							}, 5000);
-						});
-					  }
-				   }
-				}
-			});
+						  }
+					   }
+					}
+				});
+			}
 		}
 	}
 });

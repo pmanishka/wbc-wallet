@@ -62,6 +62,7 @@ jQuery( document ).ready(function() {
 				var dcardval = jQuery('.history input[name="dcardno"]').attr('value',dcard);
 				
 				//Get History Data
+				$('.history-preloader').html('<div class="loading-text">Loading Transaction History</div><div class="loading-image"><img src="images/loading.gif"/></div><div class="loading-connect">Connecting to Internet</div>');
 				var dcardno = jQuery('input[name="dcardno"]').val();
 				$.ajax({
 					  url: siteurl+"getDigibookNewByUserId",
@@ -92,19 +93,12 @@ jQuery( document ).ready(function() {
 							var paymentdate = (date.toLocaleDateString('us-US'));
 
 							//alert(data['digibook'][i]['name']);
-							
+							$('.history-preloader').hide();
 							jQuery('.history-result').append("<table class='support-result-info'><tr><td class='support-result-date'>"+data['digibook'][i]['payment_date']+"</td><td>&nbsp;</td><td class='request-result green'>+ "+data['digibook'][i]['amount']+" BTC</td></tr><tr><td class='support-result-content "+redclass+"'>"+withdarwval+""+status+"</td><td>&nbsp;</td></tr><tr><td>Bitcoins Received from "+data['digibook'][i]['name']+"</td><td>&nbsp;</td><td class='request-result'></td></tr></table>");
 							
-							
 						}
-					  },
-					  error: function() {
-						alert('Error2');
 					  }
 				});
-				
-				
-				
 			}
 			else{
 				window.location='login.html';
@@ -123,10 +117,6 @@ jQuery( document ).ready(function() {
 		});
 		
 		// Get History
-	}
-	else
-	{
-		//window.location='login.html';
 	}
 
 });
@@ -229,6 +219,7 @@ jQuery( document ).ready(function() {
 	
 		<div class="history">
 			<input type="hidden" name="dcardno" />
+			<div class="history-preloader"></div>
 			<div class="history-result"></div>
 		</div>
 	
