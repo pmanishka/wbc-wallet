@@ -169,7 +169,11 @@ jQuery( document ).ready(function() {
 	});
 	
 	setTimeout(function(){ 
-		$('table.highchart').highchartTable(); 
+		$('table.highchart')
+			.bind('highchartTable.beforeRender', function(event, highChartConfig) {
+				highChartConfig.chart.backgroundColor = 'transparent';
+			})
+		.highchartTable();
 		jQuery('table.highchart').css("display","none");
 	}, 1000);
 	
