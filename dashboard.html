@@ -132,7 +132,7 @@ jQuery( document ).ready(function() {
 
   
 	
-  $.ajax({
+   $.ajax({
 	type: 'GET',
 	url: 'https://apiv2.bitcoinaverage.com/indices/global/history/BTCUSD?period=monthly&?format=json',
 	dataType: 'json',
@@ -140,39 +140,38 @@ jQuery( document ).ready(function() {
 		success: function (data) {
 		var resGraph = data.length; 
 		var rDate = '';
-		var average = '';
-		var endRec = resGraph;
 		var dpoint = '';
-		var nowUtc = '';
 		
+		var newdate = new Date();
+		var curdate = newdate.getDate();
+		var curyear = newdate.getFullYear();
+		var curmonth = newdate.getMonth()+1;
+			
+		if(curdate < 10){
+		  curdate='0'+curdate;
+		}
+		if(curmonth < 10){
+		   curmonth="0"+curmonth;
+		} 
+	
+		var fulldate = curyear + '-' + curmonth + '-' + curdate;
 			for (i = 1; i < resGraph;  i++ ) {
-				rDate = new Date(data[i].time);
+				var rDate = data[i].time.split(' ');
 				
-				var dateformat = moment(rDate).format("MM-DD-YYYY");
-				var datetimeformat = moment(rDate).format("HH:mm");
-				var dateres = datetimeformat ;
-				var resdateformat = dateformat;
-				
-				var curdate = new Date();
-				var curdateformat = moment(curdate).format("MM-DD-YYYY");
-				var cdateres = curdateformat ;
-				
-				average = data[i].average ;
-				
-				if(resdateformat == cdateres){
-					dpoint += jQuery('.highchart tbody').append('<tr><td>'+dateres+'</td><td>'+data[i].average+'</td></tr>') ;
+				if(rDate[0]==fulldate)
+				{
+					dpoint += jQuery('.highchart tbody').append('<tr><td>'+data[i].time+'</td><td>'+data[i].average+'</td></tr>') ;
 				}
-				
+
 			}
 			dpoint ;
 		}
 	});
 	
-	
-	/*setTimeout(function(){ 
+	setTimeout(function(){ 
 		$('table.highchart').highchartTable(); 
-		jQuery('table.highchart').css("display","none")
-	}, 1000);*/
+		jQuery('table.highchart').css("display","none");
+	}, 1000);
 	
 
 	
