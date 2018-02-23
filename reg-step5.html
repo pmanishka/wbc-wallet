@@ -33,7 +33,7 @@ jQuery(document).ready(function() {
             }
             else if(password.length<8)
             {
-                $("#passwordError").html('Not a valid Password Password should be minimum 8 characters, contains atleast 1 uppercase letter, 1 digit, 1 special character');
+                $("#passwordError").html('Not a valid Password. Password should be minimum 8 characters, contains atleast 1 uppercase letter, 1 digit, 1 special character');
                 $("#passwordError").show();
 				$("#CPasswordError").hide();
 				$("#cPinError").hide();
@@ -43,7 +43,7 @@ jQuery(document).ready(function() {
             }
             else if(password.length>=8 && !IsPassword(password))
             {
-                $("#passwordError").html('Not a valid Password Password should be minimum 8 characters, contains atleast 1 uppercase letter, 1 digit, 1 special character');
+                $("#passwordError").html('Not a valid Password. Password should be minimum 8 characters, contains atleast 1 uppercase letter, 1 digit, 1 special character');
                 $("#passwordError").show();
 				$("#CPasswordError").hide();
 				$("#cPinError").hide();
