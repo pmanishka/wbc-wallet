@@ -173,7 +173,7 @@ jQuery( document ).ready(function() {
         },
         chart: {
             type: 'line',
-			height: 300,
+			height: 220,
 			backgroundColor:'transparent'
         },
         title: {
@@ -183,6 +183,12 @@ jQuery( document ).ready(function() {
             className: 'highcharts-color-1',
 			lineColor: '#ff8f00',
 			lineWidth: 1,
+			title: {
+                text: 'BTC',
+				style: {
+					color: '#fff'
+				 }
+            },
 			labels: {
 				 style: {
 					color: '#fff'
@@ -194,7 +200,7 @@ jQuery( document ).ready(function() {
 			allowDecimals: true,
 			tickPixelInterval: 1,
             title: {
-                text: 'BTC',
+                text: 'USD',
 				style: {
 					color: '#fff'
 				 }
@@ -217,7 +223,8 @@ jQuery( document ).ready(function() {
         },
         series: [{
             yAxis: 0,
-			color: '#76ef13'
+			color: '#76ef13',
+			showInLegend: false,
         }]
     });
 	
@@ -225,10 +232,6 @@ jQuery( document ).ready(function() {
 	jQuery('table#datatable').css("display","none");
 	
 });
-
-
-
-
 
 </script>
 </head>
