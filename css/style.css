@@ -1152,11 +1152,11 @@ nav:not(.mm-menu)
 	   margin-bottom:20px;
 }
 .equal_usd img{
-	width:200px;
+	width:140px;
 	align-items:center;
 }
 .usd_data{
-	margin-top:20px;
+	margin-top:6%;
 }
 .usd-text{
 	color:#ffff00;
@@ -1468,9 +1468,8 @@ a.green-transact-button  {
     box-sizing: border-box;
     background: url(../images/dark_blue.png) no-repeat center;
 	padding: 30px;
-	background-size: 60% 80%;
+	background-size: 72% 80%;
 	margin-top:23px;
-	margin-bottom:20px;
 }
 .mobile-label_p{
 	margin-bottom:30px;
@@ -1478,7 +1477,7 @@ a.green-transact-button  {
 }
 .mobile-label_p label {
 	color: #fff;
-	font-size: 17px;
+	font-size: 15px;
 }
 .mobile-input-field_p #mobileno {
     width: 100%;
@@ -1515,8 +1514,8 @@ a.green-transact-button  {
 
 .mobile-verify_p {
     float: left;
-    width: 90%;
-    margin: 0 5%;
+    width: 70%;
+    margin: 0px 15%;
 }
 /* .pass-otp_p {
     text-align: center;
@@ -1578,7 +1577,7 @@ a.green-transact-button  {
 }
 .email-label_p label {
 	color: #fff;
-	font-size: 17px;
+	font-size: 15px;
 }
 .email-input-field_p #email {
     width: 100%;
@@ -1593,8 +1592,9 @@ a.green-transact-button  {
 	text-align:center;
 }
 .email-input-field_p {
-    width: 100%;
     float: left;
+    width: 70%;
+    margin: 0px 15%;
 }
 /* .pass-reset {
     text-align: center;
@@ -1620,9 +1620,11 @@ a.green-transact-button  {
     border: 0;
     color: #fff;
     width: 100%;
-    font-size: 17px;
+    font-size: 14px;
+    text-transform: uppercase;
     /* padding: 30px; */
     float: left;
+    font-weight: 400;
 }
 
 
