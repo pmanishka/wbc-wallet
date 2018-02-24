@@ -174,8 +174,9 @@ jQuery( document ).ready(function() {
         chart: {
             type: 'line',
 			height: 220,
-			width: 310,
-			backgroundColor:'transparent'
+			width: 317,
+			backgroundColor:'transparent',
+			minPadding: 0.2
         },
         title: {
             text: ''
@@ -201,13 +202,7 @@ jQuery( document ).ready(function() {
 			className: 'highcharts-color-0',
 			allowDecimals: true,
 			tickPixelInterval: 1,
-            title: {
-                text: 'USD',
-				style: {
-					color: '#fff',
-					fontSize : '9'
-				 }
-            },
+            title: false,
 			lineColor: '#ff8f00',
 			lineWidth: 1,
 			gridLineColor: 'red',
@@ -217,7 +212,12 @@ jQuery( document ).ready(function() {
 					color: '#fff'
 				 }
 			},
-        }],
+        }, {
+            opposite: true,
+            lineColor: '#ff0000',
+			lineWidth: 1,
+			title: false
+		}],
         tooltip: {
             formatter: function() {
                 return '<b>'+ this.series.name +'</b><br/>'+
@@ -226,7 +226,7 @@ jQuery( document ).ready(function() {
         },
         series: [{
             yAxis: 0,
-			color: '#76ef13',
+			color: '#25ff00',
 			showInLegend: false,
         }]
     });
@@ -345,7 +345,7 @@ jQuery( document ).ready(function() {
 			<thead>
 				<tr>
 					<th></th>
-					<th>Bitcoin</th>
+					<th>USD</th>
 				</tr>
 			</thead>
 			<tbody>
