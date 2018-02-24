@@ -7,9 +7,8 @@
 
 <script src="js/jquery.min.js"></script>
 
-<script src="js/highcharts.js" type="text/javascript"></script>
-<script src="js/jquery.highchartTable.js" type="text/javascript"></script>
-
+<script src="http://code.highcharts.com/highcharts.js"></script>
+<script src="http://code.highcharts.com/modules/data.js"></script>
 <script src="js/jquery.mmenu.all.js"></script>
 <script src="js/config.js"></script>
 <script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
@@ -130,10 +129,9 @@ jQuery( document ).ready(function() {
 	}
 
   
-	
-   $.ajax({
+ $.ajax({
 	type: 'GET',
-	url: 'https://apiv2.bitcoinaverage.com/indices/global/history/BTCUSD?period=monthly&?format=json',
+	url: 'https://apiv2.bitcoinaverage.com/indices/global/history/BTCUSD?period=daily&?format=json',
 	dataType: 'json',
 	async: false,
 		success: function (data) {
@@ -141,7 +139,7 @@ jQuery( document ).ready(function() {
 		var rDate = '';
 		var dpoint = '';
 		
-		/*var newdate = new Date();
+		var newdate = new Date();
 		var curdate = newdate.getDate();
 		var curyear = newdate.getFullYear();
 		var curmonth = newdate.getMonth()+1;
@@ -153,30 +151,78 @@ jQuery( document ).ready(function() {
 		   curmonth="0"+curmonth;
 		} 
 	
-		var fulldate = curyear + '-' + curmonth + '-' + curdate;*/
-			for (i = 1; i < 10;  i++ ) {
+		var fulldate = curyear + '-' + curmonth + '-' + curdate;
+				for (i = 1; i < 43200;  i++ ) {
+				
 				var rDate = data[i].time.split(' ');
 				
-				/*if(rDate[0]==fulldate)
-				{*/
-					dpoint += jQuery('.highchart tbody').append('<tr><td>'+rDate[1]+'</td><td>'+data[i].average+'</td></tr>') ;
-				/*}*/
+				
+				if ( i && (i % 1 === 0)) {
+					dpoint += jQuery('#datatable tbody').append('<tr><td>'+rDate[1]+'</td><td>'+data[i].average+'</td></tr>') ;
+				}
 
 			}
 			dpoint ;
 		}
 	});
 	
-	setTimeout(function(){ 
-		$('table.highchart')
-			.bind('highchartTable.beforeRender', function(event, highChartConfig) {
-				highChartConfig.chart.backgroundColor = 'transparent';
-			})
-		.highchartTable();
-		jQuery('table.highchart').css("display","none");
-	}, 1000);
-	
 
+	$('#chart1').highcharts({
+        data: {
+            table: document.getElementById('datatable')
+        },
+        chart: {
+            type: 'line',
+			height: 300,
+			backgroundColor:'transparent'
+        },
+        title: {
+            text: ''
+        },
+		xAxis: {
+            className: 'highcharts-color-1',
+			lineColor: '#ff8f00',
+			lineWidth: 1,
+			labels: {
+				 style: {
+					color: '#fff'
+				 }
+			},
+        },
+        yAxis: [{
+			className: 'highcharts-color-0',
+			allowDecimals: true,
+			tickPixelInterval: 1,
+            title: {
+                text: 'BTC',
+				style: {
+					color: '#fff'
+				 }
+            },
+			lineColor: '#ff8f00',
+			lineWidth: 1,
+			gridLineColor: 'red',
+			gridLineWidth: 1,
+			labels: {
+				 style: {
+					color: '#fff'
+				 }
+			},
+        }],
+        tooltip: {
+            formatter: function() {
+                return '<b>'+ this.series.name +'</b><br/>'+
+                    this.point.y +' '+ this.point.name.toLowerCase();
+            }
+        },
+        series: [{
+            yAxis: 0,
+			color: '#76ef13'
+        }]
+    });
+	
+	
+	jQuery('table#datatable').css("display","none");
 	
 });
 
@@ -287,19 +333,20 @@ jQuery( document ).ready(function() {
 		Live Price Chart - BTC <img src="images/arrow_down.png"/>
 			
 		</div>
-		<div class="chart1"> 
-			<table id="chart-container" class="highchart" data-graph-container-before="1" data-graph-type="line" data-graph-color-1="#7ce405" data-graph-datalabels-color="#fff" data-graph-datalabels-enabled="1" data-graph-datalabels-align="center" data-graph-height="200" data-graph-xaxis-title-text="Bitcoins">
-			  <thead>
-				  <tr>
-					  <th>BTC</th>
-					  <th>Live Chart BTC</th>
-				  </tr>
-			   </thead>
-			   <tbody>
-				 
-			  </tbody>
-			</table>
-		</div>
+		<div id="chart1" class="chart1"></div>
+
+		<table id="datatable">
+			<thead>
+				<tr>
+					<th></th>
+					<th>Bitcoin</th>
+				</tr>
+			</thead>
+			<tbody>
+				
+			</tbody>
+		</table>
+		
 		
 		<table class="dash-footer">
 		<tr>
