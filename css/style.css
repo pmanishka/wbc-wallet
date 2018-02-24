@@ -1467,9 +1467,9 @@ a.green-transact-button  {
     text-align: center;
     box-sizing: border-box;
     background: url(../images/dark_blue.png) no-repeat center;
-	padding: 30px;
-	background-size: 72% 80%;
-	margin-top:23px;
+    padding: 30px;
+    background-size: 72% 80%;
+    margin-top: 10px;
 }
 .mobile-label_p{
 	margin-bottom:30px;
@@ -1551,7 +1551,7 @@ a.green-transact-button  {
 	position: relative;
 	width: 100%;
 	float: left;
-	margin-bottom:36px;
+	margin-bottom:2%;
 }
 .or-text_p {
 	/* z-index: 999; */
