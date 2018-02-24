@@ -20,6 +20,7 @@
 	<preference name="StatusBarStyle" value="default" />	
 	<plugin name="cordova-plugin-camera" />
 	<plugin name="cordova-plugin-file-transfer" />
+	<plugin name="cordova-plugin-decimal-keyboard" />
 	
 	<gap:config-file platform="ios" parent="UIViewControllerBasedStatusBarAppearance" overwrite="true">
 	
