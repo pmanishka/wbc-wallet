@@ -87,9 +87,12 @@ jQuery( document ).ready(function() {
 <body>
 	<div id="main_wrapper">
 		<div class="main-container">
+		
+			<div class="rec-pass-container">
 			<div class="pass-rec">
 			<span>Password Recovery</span>
 			</div>
+			<div class="verification-form">
 			<form id="recover-by-mobile">
 				<div class="mobile-label_p">
 						<label>Enter Registered Mobile Number</label>
@@ -107,10 +110,12 @@ jQuery( document ).ready(function() {
 				<input type="button" name="submit" value="Send OTP"/>
 				</div>
 			</form>
+			</div>
 			<div class="or_p">
-			<div class="or-line_p"></div>
-			<div class="or-text_p">OR</div>
-		</div>
+				<div class="or-line_p"></div>
+				<div class="or-text_p">OR</div>
+			</div>
+		<div class="verification-form">
 		<form id="recover-by-email">
 		<div class="email-label_p">
 			<label>Enter Registered Email id</label>
@@ -121,9 +126,10 @@ jQuery( document ).ready(function() {
 		<div class="pass-reset">
 		<input type="button" name="submit" value="Reset Password"/>
 		</div>
-		</form>		
+		</form>
+		</div>		
 			
-
+	</div>
 </div>
 </div>
 <div id="mobilemsg" class="snackbar" style="display:none;">This mobile number is not registered</div>
