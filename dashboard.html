@@ -70,9 +70,14 @@ jQuery( document ).ready(function() {
 				dcard = dcard.replace(/(\S{4})/g,"$1 ");
 				dcard = dcard.replace(/$/,"");   // if you do not want the final a
 				var digicard = jQuery('.digi-num div').append(dcard);
-				var btcbal = jQuery('.balance-footer').append(data['details']['net_btc_bal']);
 				
 				
+				var hidebalance = localStorage.getItem("hidebalance");
+				if(hidebalance == 1){
+					var btcbal = jQuery('.balance-footer').append(data['details']['net_btc_bal']);
+				}else{
+					var btcbal = jQuery('.balance-footer').append('---------------------');
+				}
 			}
 			else{
 				window.location='login.html';
@@ -185,13 +190,7 @@ jQuery( document ).ready(function() {
             className: 'highcharts-color-1',
 			lineColor: '#ff8f00',
 			lineWidth: 1,
-			title: {
-                text: 'BTC',
-				style: {
-					color: '#fff',
-					fontSize : '9'
-				 }
-            },
+			title: false,
 			labels: {
 				 style: {
 					color: '#fff'
@@ -230,7 +229,6 @@ jQuery( document ).ready(function() {
 			showInLegend: false,
         }]
     });
-	
 	
 	jQuery('table#datatable').css("display","none");
 	
