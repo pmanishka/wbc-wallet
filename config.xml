@@ -10,7 +10,7 @@
 	<!--<preference name="phonegap-version" value="cli-6.5.0" />-->
 	<plugin name="cordova-plugin-device" spec="~1.1.6" />	
 	<plugin name="cordova-plugin-inappbrowser" source="npm" spec="~1.7.1" />
-	<plugin name="phonegap-plugin-barcodescanner" />
+	<!--<plugin name="phonegap-plugin-barcodescanner" />-->
 	<plugin name="cordova-plugin-splashscreen" />
 	<preference name="orientation" value="portrait" />
 	<plugin name="cordova-plugin-screen-orientation" source="npm" />
@@ -18,8 +18,8 @@
 	<plugin name="cordova-plugin-statusbar" source="npm" />
 	<preference name="StatusBarOverlaysWebView" value="false" />
 	<preference name="StatusBarStyle" value="default" />	
-	<plugin name="cordova-plugin-camera" />
-	<plugin name="cordova-plugin-file-transfer" />
+	<!--<plugin name="cordova-plugin-camera" />
+	<plugin name="cordova-plugin-file-transfer" />-->
 	<plugin name="cordova-plugin-decimal-keyboard" />
 	
 	<gap:config-file platform="ios" parent="UIViewControllerBasedStatusBarAppearance" overwrite="true">
