@@ -67,6 +67,7 @@ jQuery( document ).ready(function() {
 			{
 				window.localStorage.setItem("otp",data['otp']);
 				window.localStorage.setItem("user_id",data['user_id']);
+				window.location='recoverypassword.html';
 			}else if(data['status'] == 0){
 				$("#emailmsg").fadeIn("slow", function () {
 					setTimeout(function () {

@@ -38,6 +38,7 @@ var spin =localStorage.getItem("pin");
 		
 		
 		// Get Login data
+		//var uid ='' ;
 		$.ajax({
 		  url: siteurl+"login",
 		  type: 'POST',
@@ -73,7 +74,7 @@ var spin =localStorage.getItem("pin");
 								var currency_name = sessionStorage.getItem("currency_name");
 								var net_btc_bal = sessionStorage.getItem("net_btc_bal");
 								var charges = sessionStorage.getItem("charges");
-								var uid = sessionStorage.getItem("uid");
+								uid = sessionStorage.getItem("uid");
 								
 								
 								if(btcval != null && usdval != null  && digicardnoval != null  && currency_id != null && currency_name != null && net_btc_bal != null && charges != null  && uid != null ){
@@ -132,16 +133,33 @@ var spin =localStorage.getItem("pin");
 								window.location='securitypin.html';
 							});
 						  }
-					   }
+					  }
+						  
+					
 					}
 				});
-				
 			}
 		  }
 		});
 		//Don't Remember Pin
-		jQuery('.forgot-pin').click(function(){
-			window.location='reset-pin.html';
+		jQuery('input[name="reset-password"]').click(function(){
+		var getpass = jQuery('#password').val();
+		if(getpass == password){
+			window.location='newpin.html';
+		}
+		
+		//var rpin = JSON.stringify(resetpin);
+			/*$.ajax({
+			  url: siteurl+"updateProfile",
+			  type: 'POST',
+			  data: {q:'security_pin',detail:rpin}, 
+			  crossDomain: true,   
+			  success: function(data) {
+					if(data['status'] == 1)
+					{
+					}
+			   }
+			});*/
 		});
 		
 	}
@@ -184,26 +202,47 @@ var spin =localStorage.getItem("pin");
 
 <div id="main_wrapper">
 	<div class="main-container">
-		<div id="top_header_pin">
-			<div class="logo-pin">
-				<div class="logo-pin-img"><img src="images/logo-digi6.png"/></div>
-			<!-- 	<div class="logo-pin-text">Digi Wallet</div> -->
-			</div>
+			<div id="topbar">
+			<a href="#"><img src="images/back_arrow.png" style="float:left;"/></a> 
+		<div class="header-card">Security Pin</div>
+	</div>
+	<div id="top_header">
+		<div class="logo">
+			<div class="logo-img"><img src="images/logo-digi6.png"></div>
+			<!-- <div class="logo-text">Digi Wallet</div> -->
 		</div>
-		<div class="pin-container">
-			<div class="pin-verify">
-						<div class="pin-msg">Enter Securtiy Pin</div>
-						<div class="spin-textbox">
-							<input type="password" name="spin0" class="spin" maxlength=1 pattern="[0-9]*"/>
-							<input type="password" name="spin1" class="spin" maxlength=1 pattern="[0-9]*"/>
-							<input type="password" name="spin2" class="spin" maxlength=1 pattern="[0-9]*"/>
-							<input type="password" name="spin3" class="spin" maxlength=1 pattern="[0-9]*"/>
+	</div>
+		</div>
+		<div class="container">
+	<div class="reset-pin-header"><span>Enter Profile Password</span></div>
+		<form method="post" id="changepassword">
+				<div class="change-password">
+					
+					<div class="password-input-field">
+						<div class="field-left">
+							<img src="images/key.png" style="-webkit-logical-height: 30px;"/>
 						</div>
+						<div class="field-right field">
+							<input tabindex="1" size="40" type="password" name="password" id="password" placeholder="New Password" />
+							<label for="password" class="lbl-name">Password</label>
+							<div id="passwordError" style="display:none;"></div>
+						</div>					
+					</div>
+					<div>
+					<div style="float:right; margin-right:11%;">	
+						<div class="red-cancel-button">
+							<input type="button" name="reset-password" value="Reset PIN"/>
+						</div>
+					</div>
+					
+				</div>
+					<br><br><p id="validate-status"></p>
+				</div>
+				<div class="input-button">
+				<input type="button" name="submit" class="green-button-s forgot-pin" value="Don't Remember Password"/>
 			</div>
-			<div class="input-button">
-				<input type="button" name="submit" class="green-button-s forgot-pin" value="Don't Remember Pin"/>
-			</div>
-		</div>
+			</form>
+	</div>
 	</div>
 </div>
 <div id="login-successfully" class="snackbar" style="display:none;">Login Successfully</div>

@@ -3064,3 +3064,113 @@ cursor:pointer}
     float: left;
     margin: 7% 5%;
 }
+
+
+/* ---------------- Exchange -------------- */
+.top {
+    width: 100%;
+    float: left;
+    padding: 20px;
+}
+.middle {
+    width: 100%;
+    padding: 20px;
+    float: left;
+    background: url(../images/exchange_background.png) #fff 100% 100%;
+    /* background: #fff; */
+}
+.footer {
+    width: 100%;
+    float: left;
+    padding: 20px;
+}
+.section {
+    float: left;
+    width: 20%;
+    text-align: center;
+}
+.exc-balance {
+    text-align: center;
+    color: #000;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 22px;
+}
+.exc-balance-amount {
+    text-align: center;
+    color: #000;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 32px;
+    margin-top: 16px;
+}
+.btn-primary{
+	background:#558b2f;
+	float: left;
+}
+.btn-danger{
+	background:#e53935;
+	float: right;
+}
+.btn {
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+.sec-img {
+    width: 100%;
+    float: left;
+}
+.sec-img img {
+    width: 20px;
+}
+.sec-text {
+    font-size: 14px;
+    font-weight: 500;
+}
+.section a{color:#fff; text-decoration:none;}
+.btn-text {
+    float: left;
+    margin: 7px 0px;
+	text-transform: uppercase;
+}.btn-img {
+    float: left;
+    margin-right: 10px;
+}
+.exchange-btn{
+	width:100%;
+	float:left;
+	margin-top:15%;
+}
+.buy-sec {
+    width: 50%;
+    float: left;
+	text-align: center;
+}
+.sell-sec
+{
+    width: 50%;
+    float: left;
+	text-align: center;
+}
+.amt-heading {
+    font-size: 26px;
+    font-weight: bold;
+}
+.amt-btn {
+    margin: 20% 0% 0% 10%;
+}
+.red-btn{
+    background: url(../images/dark_red.png) no-repeat center;
+    background-size: 100% 90%;
+	font-family: sans-serif;
+	padding: 20% 30%;
+    max-width: 80%;
+    width: 100%;
+}
+.green-btn {
+    background: url(../images/dark_green.png) no-repeat center;
+    background-size: 100% 100%;
+    padding: 20% 30%;
+    max-width: 80%;
+    width: 100%;
+}

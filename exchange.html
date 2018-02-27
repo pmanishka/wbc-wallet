@@ -7,11 +7,8 @@
 
 <script src="js/jquery.min.js"></script>
 
-<script src="js/highcharts.js"></script>
-<script src="js/data.js"></script>
 <script src="js/jquery.mmenu.all.js"></script>
 <script src="js/config.js"></script>
-
 
 <script type="text/javascript">
 $(function() {
@@ -314,7 +311,7 @@ jQuery( document ).ready(function() {
 					</li>
 				</ul>
 				</nav>
-			<div class="header-card">Digi Card</div>
+			<div class="header-card">Exchange</div>
 			<div class="notification" style="float:right; margin-left:-9px;">
 				<a href="notifications.html"><img src="images/notification_title_menu.png"/></a>
 				<span class="back" style="display:none;"><a href="dashboard.html"><img src="images/close.png" style="margin-left:22px;"/></a></span>
@@ -322,57 +319,58 @@ jQuery( document ).ready(function() {
 		</div>
 	</div>
 	<div class="container">
-	<div class="digidash-line">
-		<div class="digi-header">
-			<div class="digi">
-				Your DIGI Card number</div>
-			<div class="digi-num">
-				<div></div>
+		<div class="top">
+			<div class="buy-sec">
+				<div class="rate">
+					<div class="amt-heading">$ 10247.32</div>
+					<div class="amt-text">Buy Rate</div>
+					<div class="amt-btn green-btn">BUY</div>
+				</div>
 			</div>
-			<div class="digi-text">
-				<div class="card_type"></div>
-			</div>
-		</div>
-	</div>
-		<div class="dash-button">
-			<div class="dash-green-button">
-				<a href="transact.html" class="green-transact-button">Transact</a>
-			</div>
-			<div class="dash-red-button">
-				<a href="history.html" class="red-history-button">History</a>
+			<div class="sell-sec">
+				<div class="rate">
+					<div class="amt-heading">$ 9000.32</div>
+					<div class="amt-text">Sell Rate</div>
+					<div class="amt-btn red-btn">SELL</div>
+				</div>
 			</div>
 		</div>
-		<div class="price-chart">
-		Live Price Chart - BTC <img src="images/arrow_down.png"/>
-			
+		<div class="middle">
+			<div class="exc-balance">Balance</div>
+			<div class="exc-balance-amount">$ 121.55</div>
+			<div class="exchange-btn">
+				<div class="exc-deposit btn btn-primary">
+					<div class="btn-img"><img src="images/send_white.png"></div>
+					<div class="btn-text">Deposit</div>
+				</div>
+				<div class="exc-withdraw btn btn-danger">
+					<div class="btn-img"><img src="images/recieve_white.png"></div>
+					<div class="btn-text">Withdraw</div>
+				</div>
+			</div>
 		</div>
-		<div id="chart1" class="chart1"></div>
-
-		<table id="datatable">
-			<thead>
-				<tr>
-					<th></th>
-					<th>USD</th>
-				</tr>
-			</thead>
-			<tbody>
-				
-			</tbody>
-		</table>
-		
-		
-		<table class="dash-footer">
-		<tr>
-			<td class="balance">Balance <img src="images/bitcoin_logo.png"/></td>
-			<td style="text-align:center;">&nbsp;</td>
-			<td class="live-market">Live Market <img src="images/dollar_icon.png"/></td>
-		</tr>
-		<tr>
-			<td class="balance-footer"></td>
-			<td></td>
-			<td class="live-footer">$ <span class="amount"></span></td>
-		</tr>
-		</table>
+		<div class="footer">
+			<div class="wallet section">
+				<div class="sec-img"><a href="wallet.html"><img src="images/walletwhite.png"></a></div>
+				<div class="sec-text"><a href="wallet.html">Wallet</a></div>
+			</div>
+			<div class="buy section">
+				<div class="sec-img"><a href="buy.html"><img src="images/buywhite.png"></a></div>
+				<div class="sec-text"><a href="buy.html">Buy</a></div>
+			</div>
+			<div class="home section">
+				<div class="sec-img"><a href="dashboard.html"><img src="images/home_white.png"></a></div>
+				<div class="sec-text"><a href="dashboard.html">Home</a></div>
+			</div>
+			<div class="sell section">
+				<div class="sec-img"><a href="sell.html"><img src="images/sale_white.png"></a></div>
+				<div class="sec-text"><a href="sell.html">Sell</a></div>
+			</div>
+			<div class="history section">
+				<div class="sec-img"><a href="history.html"><img src="images/history.png"></a></div>
+				<div class="sec-text"><a href="history.html">History</a></div>
+			</div>
+		</div>
 	</div>
 </div>
 </body>

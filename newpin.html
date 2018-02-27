@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Digi Wallet</title>
+<link rel="stylesheet" type="text/css" href="css/style.css">
+<script src="js/jquery.min.js"></script>
+<script src="js/config.js"></script>
+
+<script>
+var contentType ="application/x-www-form-urlencoded; charset=utf-8";
+if(window.XDomainRequest){contentType = "text/plain";}
+jQuery.support.cors = true;
+
+jQuery( document ).ready(function() {
+
+var spin =localStorage.getItem("pin");
+
+	if(window.localStorage.getItem("loggedIn") == 1) {
+	
+		// Check Session
+		var userid = localStorage.getItem("user_id") ;
+		var password = localStorage.getItem("password") ;
+		var uid = localStorage.getItem("uid") ;
+
+		jQuery('.logout').hide();
+		jQuery('.log-out').click(function(){
+			jQuery('.logout').toggle( "slow" );
+		});
+		
+	
+		$.ajax({
+		  url: siteurl+"login",
+		  type: 'POST',
+		  data: {q:'checklogin',user_id:userid,password:password}, 
+		  crossDomain: true,   
+		  success: function(data) {
+			if(data['status'] == 1)
+			{
+				
+			}
+		  }
+		});
+		//Don't Remember Pin
+		jQuery('#reset').click(function(){
+		var pin = jQuery('#pin').val();
+		var cpin=$('#cpin').val();
+			if(!pin)
+            {   
+                $("#pinError").html('Please Set PIN');
+                $("#pinError").show();
+				$("#CPasswordError").hide();
+				$("#passwordError").hide();
+				$("#cPinError").hide();
+                $("#pin").focus();
+                return false;
+            }
+            
+			else if(!cpin)
+            {
+                $("#cPinError").html('Please Confirm your PIN');
+                $("#cPinError").show();
+				$("#CPasswordError").hide();
+				$("#passwordError").hide();
+				$("#pinError").hide();
+                $("#cpin").focus();
+                return false;
+            } 
+			else if(cpin!=pin)
+            {
+                $("#cPinError").html('PIN Does not match');
+                $("#cPinError").show();
+				$("#CPasswordError").hide();
+				$("#passwordError").hide();
+				$("#pinError").hide();
+                $("#cpin").focus();
+                return false;
+            }
+		
+			var resetPin = {
+			  "id" : uid,
+			  "pin" : pin,
+			};
+			
+			var rdata = JSON.stringify(resetPin);
+			
+			$.ajax({
+			  url: siteurl+"updateProfile",
+			  type: 'POST',
+			  data: {q:'security_pin',detail:rdata}, 
+				  crossDomain: true,   
+				  success: function(data) {
+				  //alert(data);
+					$("#updatepin").fadeIn("slow", function () {
+					setTimeout(function () {
+							$("#updatepin").fadeOut("slow");
+							window.location='dashboard.html';
+					}, 1000);
+					});
+				 }
+			});
+		});
+		
+	}
+});
+
+</script>
+</head>
+<body>
+
+<div id="main_wrapper">
+	<<div class="main-container">
+			<div id="topbar">
+			<a href="#"><img src="images/back_arrow.png" style="float:left;"/></a> 
+		<div class="header-card">Security Pin</div>
+	</div>
+	<div id="top_header">
+		<div class="logo">
+			<div class="logo-img"><img src="images/logo-digi6.png"></div>
+			<!-- <div class="logo-text">Digi Wallet</div> -->
+		</div>
+	</div>
+		</div>
+	<div class="container">
+	<div class="reset-pin-header"><span>Enter Profile Password</span></div>
+		<form method="post" id="changepassword">
+				<div class="change-password">
+					
+					<div class="password-input-field">
+						<div class="field-left">
+							<img src="images/key.png" style="-webkit-logical-height: 30px;"/>
+						</div>
+						<div class="field-right field">
+							<input tabindex="1" size="40" type="password" name="pin" id="pin" placeholder="New Pin" />
+							<label for="pin" class="lbl-name">New Pin</label>
+							<div id="passwordError" style="display:none;"></div>
+						</div>					
+					</div>
+					<div class="password-input-field">
+						<div class="field-left">
+							<img src="images/key.png" style="-webkit-logical-height: 30px;"/>
+						</div>
+						<div class="field-right field">
+							<input tabindex="1" size="40" type="password" name="cpin" placeholder="Confirm Pin" id="cpin" />
+							<label for="cpin" class="lbl-name">Confirm Pin</label>
+							<div id="CPasswordError" style="display:none;"></div>
+						</div>	
+					</div><br><br><p id="validate-status"></p>
+				</div>
+				<div class="input-button">
+				<input type="button" name="submit" class="green-button-s forgot-pin" value="Reset" id="reset"/>
+			</div>
+			</form>
+	</div>
+	</div>
+<div id="updatepin" class="snackbar" style="display:none;">Update pin successfully</div>
+</body>
+</html>
