@@ -70,32 +70,35 @@ jQuery( document ).ready(function() {
 					  data: {q:'digibook',user_id:user_id,card_no:dcardno}, 
 					  crossDomain: true,   
 					  success: function(data) {
-						for (var i = 0; i < data['digibook'].length; i++) {
-							var withdarwval ='' ;
-							var status ='' ;
-							if(data['digibook'][i]['payment_for'] == 'withdrawfromdc'){
-								var withdarwval = "Withdrawal from DigiCard";
-							}else if(data['digibook'][i]['payment_for'] == 'deposit'){
-								var withdarwval = "Deposit";
-							}
-							
-							if(data['digibook'][i]['update_status'] == 1)
-							{	
+					  if(data['digibook'].length != 0){
+							for (var i = 0; i < data['digibook'].length; i++) {
+								var withdarwval ='' ;
 								var status ='' ;
-								var redclass = 'red' ;
-							}else{
-								var status = "<br/>(Pending for Approval)"; 
-								var redclass = '' ;
-							}
-							
-							var date = new Date(data['digibook'][i]['payment_date']);
-							var options = {month: 'short', year: 'numeric', day: 'numeric' };
-							var paymentdate = (date.toLocaleDateString('us-US'));
+								if(data['digibook'][i]['payment_for'] == 'withdrawfromdc'){
+									var withdarwval = "Withdrawal from DigiCard";
+								}else if(data['digibook'][i]['payment_for'] == 'deposit'){
+									var withdarwval = "Deposit";
+								}
+								
+								if(data['digibook'][i]['update_status'] == 1)
+								{	
+									var status ='' ;
+									var redclass = 'red' ;
+								}else{
+									var status = "<br/>(Pending for Approval)"; 
+									var redclass = '' ;
+								}
+								
+								var date = new Date(data['digibook'][i]['payment_date']);
+								var options = {month: 'short', year: 'numeric', day: 'numeric' };
+								var paymentdate = (date.toLocaleDateString('us-US'));
 
-							//alert(data['digibook'][i]['name']);
-							$('.history-preloader').hide();
-							jQuery('.history-result').append("<table class='support-result-info'><tr><td class='support-result-date'>"+data['digibook'][i]['payment_date']+"</td><td>&nbsp;</td><td class='request-result green'>+ "+data['digibook'][i]['amount']+" BTC</td></tr><tr><td class='support-result-content "+redclass+"'>"+withdarwval+""+status+"</td><td>&nbsp;</td></tr><tr><td>Bitcoins Received from "+data['digibook'][i]['name']+"</td><td>&nbsp;</td><td class='request-result'></td></tr></table>");
-							
+								//alert(data['digibook'][i]['name']);
+								$('.history-preloader').hide();
+								jQuery('.history-result').append("<table class='support-result-info'><tr><td class='support-result-date'>"+data['digibook'][i]['payment_date']+"</td><td>&nbsp;</td><td class='request-result green'>+ "+data['digibook'][i]['amount']+" BTC</td></tr><tr><td class='support-result-content "+redclass+"'>"+withdarwval+""+status+"</td><td>&nbsp;</td></tr><tr><td>Bitcoins Received from "+data['digibook'][i]['name']+"</td><td>&nbsp;</td><td class='request-result'></td></tr></table>");
+							}
+						}else{
+							jQuery('.history-result').append("<h3>No record found</h3>");
 						}
 					  }
 				});
