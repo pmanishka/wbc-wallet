@@ -74,9 +74,9 @@ jQuery( document ).ready(function() {
 				
 				var hidebalance = localStorage.getItem("hidebalance");
 				if(hidebalance == 1){
-					var btcbal = jQuery('.balance-footer').append(data['details']['net_btc_bal']);
-				}else{
 					var btcbal = jQuery('.balance-footer').append('---------------------');
+				}else{
+					var btcbal = jQuery('.balance-footer').append(data['details']['net_btc_bal']);
 				}
 			}
 			else{
