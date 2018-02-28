@@ -42,6 +42,7 @@ var spin =localStorage.getItem("pin");
 		});
 		//Don't Remember Pin
 		jQuery('#reset').click(function(){
+		//alert('test');
 		var pin = jQuery('#pin').val();
 		var cpin=$('#cpin').val();
 			if(!pin)
@@ -138,12 +139,12 @@ var spin =localStorage.getItem("pin");
 						<div class="field-right field">
 							<input tabindex="1" size="40" type="password" name="cpin" placeholder="Confirm Pin" id="cpin" />
 							<label for="cpin" class="lbl-name">Confirm Pin</label>
-							<div id="CPinError1" style="display:none;"></div>
+							<div id="cPinError1" style="display:none;"></div>
 						</div>	
 					</div><br><br><p id="validate-status"></p>
 				</div>
-				<div class="input-button">
-				<input type="button" name="submit" class="green-button-s forgot-pin" value="Reset" id="reset"/>
+				<div class="input-button1">
+				<input type="button" name="submit" class="green-button-s1 forgot-pin" value="Reset" id="reset"/>
 			</div>
 			</form>
 	</div>

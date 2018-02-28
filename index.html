@@ -12,11 +12,14 @@ jQuery(document).ready(function() {
 	window.setTimeout(function() {
 		
 		if(window.localStorage.getItem("loggedIn") == 1) {
-		//alert(localStorage.getItem("user_id"));
-			window.location='securitypin.html';
+			$("body").fadeOut(1000,function(){
+			   window.location='securitypin.html';
+			});
 		}
 		else{
-			window.location.href = 'home.html';
+			$("body").fadeOut(1000,function(){
+			   window.location.href = 'home.html';
+			});
 		}
 	}, 2300);
 });

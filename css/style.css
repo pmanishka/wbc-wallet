@@ -595,23 +595,31 @@ div#CPasswordError {
     margin-top: 0px;
 }
 div#pinError1 {
-    background: #000;
-    padding: 0px;
-    max-width: 75%;
+    position: fixed;
+    margin-top: 22px;
+    /* padding: 0 9px 0 3px; */
+    font-size: 16px;
+    width: 100%;
+    max-width: 42%;
+    right: 9%;
     float: right;
-    text-align: left;
+    text-align: center;
     border-top: 2px solid #ff0000;
-    margin-right: 6%;
-    margin-top: 0px;
+    color: #000;
+    background: #d7d1d1;
 }div#cPinError1 {
-    background: #000;
-    padding: 0px;
-    max-width: 75%;
+     position: fixed;
+    margin-top: 22px;
+    /* padding: 0 9px 0 3px; */
+    font-size: 16px;
+    width: 100%;
+    max-width: 42%;
+    right: 9%;
     float: right;
-    text-align: left;
+    text-align: center;
     border-top: 2px solid #ff0000;
-    margin-right: 6%;
-    margin-top: 0px;
+    color: #000;
+    background: #d7d1d1;
 }
 div#passwordError1 {
 	       position: fixed;
@@ -641,6 +649,21 @@ div#CPasswordError1 {
     border-top: 2px solid #ff0000;
     color: #000;
     background: #d7d1d1;
+}
+.npassError {
+	position: fixed;
+    margin-top: 79px;
+    /* padding: 0 9px 0 3px; */
+    font-size: 16px;
+    width: 100%;
+    max-width: 72%;
+    right: 9%;
+    float: right;
+    text-align: center;
+    border-top: 2px solid #ff0000;
+    color: #000;
+    background: #d7d1d1;
+	
 }
 /*.inputerror-msg:after {
    bottom: 44%;
@@ -2585,6 +2608,12 @@ textarea#queries {
 	text-align: center;
 /*     margin-top: 40px;
  */}
+ 
+.input-button1{
+	width:100%;
+	float:left;
+	text-align:center;
+}
  .green-button-s {
     background: url('../images/dark_green.png') no-repeat center;
 }
@@ -2599,6 +2628,22 @@ textarea#queries {
     width: 90%;
     /* font-weight: bold; */
     margin-top: 50%;
+    /* align-items: center; */
+}.green-button-s1 {
+    background: url('../images/dark_green.png') no-repeat center;
+	
+}
+ input[type="button"].green-button-s1  {
+   border: 0;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    background-size: 90% 100%;
+    padding: 30px 18%;
+    max-width: 600px;
+    width: 90%;
+    /* font-weight: bold; */
+    margin-top: 40%;
     /* align-items: center; */
 }
 .logout {

@@ -163,7 +163,26 @@ var spin =localStorage.getItem("pin");
 								});
 							if(optcvalue == spin)
 							{
-								window.location='dashboard.html';
+								var userid = sessionStorage.getItem("user_id");
+								var password = sessionStorage.getItem("password");
+								// Get Login data
+								$.ajax({
+									  url: siteurl+"login",
+									  type: 'POST',
+									  data: {q:'checklogin',user_id:userid,password:password}, 
+									  crossDomain: true,   
+									  success: function(data) {
+										if(data['status'] == 1)
+										{
+											$("body").fadeOut(1000,function(){
+											   window.location='dashboard.html';
+											});
+										}
+									  }
+								});
+		
+								
+								
 							}else{
 								$("#snackbar").fadeIn("slow", function () {
 								setTimeout(function () {
