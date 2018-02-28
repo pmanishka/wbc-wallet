@@ -4,7 +4,7 @@
 <title>Digi Wallet</title>
 <link rel="stylesheet" type="text/css" href="css/style.css">
 <link rel="stylesheet" href="css/jquery.mmenu.all.css" />
-
+<script src="js/decimal-keyboard.js"></script>
 <script src="js/jquery.min.js"></script>
 <script src="js/jquery.mmenu.all.js"></script>
 
@@ -721,12 +721,12 @@ jQuery( document ).ready(function() {
 			</tr>
 			<tr>
 				<td class="btc-input-field" style="width:50%;">
-					<input type="text" name="btc" id="btc" pattern="[0-9]*"/>
+					<input type="text" name="btc" id="btc" pattern="[0-9]*" decimal="true"/>
 
 				</td>
 				<td style="text-align:center;">OR</td>
 				<td class="usd-input-field" style="width:50%;">
-					<input type="text" name="usd" id="usd" pattern="[0-9]*"/>
+					<input type="text" name="usd" id="usd" pattern="[0-9]*" decimal="true"/>
 				</td>
 			</tr>
 			<tr>
