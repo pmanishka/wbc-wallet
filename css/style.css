@@ -557,21 +557,14 @@ margin-top:0px;
 	
 }
 div#passwordError {
-    background: #ffffffe0;
+   background: #000;
     padding: 0px;
-    max-width: 66%;
-    width: 100%;
+    max-width: 75%;
     float: right;
     text-align: left;
     border-top: 2px solid #ff0000;
     margin-right: 6%;
     margin-top: 0px;
-    font-size: 15px;
-    position: relative;
-    top: 69px;
-    color: #000;
-    /* left: 63%; */
-    padding: 9px;
 }
 div#CPasswordError {
     background: #000;
@@ -592,6 +585,37 @@ div#CPasswordError {
     margin-right: 6%;
     margin-top: 0px;
 }div#cPinError {
+    background: #000;
+    padding: 0px;
+    max-width: 75%;
+    float: right;
+    text-align: left;
+    border-top: 2px solid #ff0000;
+    margin-right: 6%;
+    margin-top: 0px;
+}
+div#pinError1 {
+    background: #000;
+    padding: 0px;
+    max-width: 75%;
+    float: right;
+    text-align: left;
+    border-top: 2px solid #ff0000;
+    margin-right: 6%;
+    margin-top: 0px;
+}div#cPinError1 {
+    background: #000;
+    padding: 0px;
+    max-width: 75%;
+    float: right;
+    text-align: left;
+    border-top: 2px solid #ff0000;
+    margin-right: 6%;
+    margin-top: 0px;
+}
+div#passwordError1 {
+}
+div#CPasswordError1 {
     background: #000;
     padding: 0px;
     max-width: 75%;

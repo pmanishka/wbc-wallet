@@ -36,7 +36,10 @@
     <param name="android-package" value="org.apache.cordova.device.Device" />
 	</feature>
 
-	
+	<feature name="DecimalKeyboard">
+		<param name="ios-package" value="CDVDecimalKeyboard" onload="true" />
+	</feature>
+			
 	<icon src="icon.png" />
 	<icon gap:platform="webos" src="res/icon/ios/Icon-180.png" />
 	<icon src="res/icon/android/ldpi.png" gap:platform="android" gap:density="ldpi" />

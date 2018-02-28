@@ -46,22 +46,18 @@ var spin =localStorage.getItem("pin");
 		var cpin=$('#cpin').val();
 			if(!pin)
             {   
-                $("#pinError").html('Please Set PIN');
-                $("#pinError").show();
-				$("#CPasswordError").hide();
-				$("#passwordError").hide();
-				$("#cPinError").hide();
+                $("#pinError1").html('Please Set PIN');
+                $("#pinError1").show();
+				$("#cPinError1").hide();
                 $("#pin").focus();
                 return false;
             }
             
 			else if(!cpin)
             {
-                $("#cPinError").html('Please Confirm your PIN');
-                $("#cPinError").show();
-				$("#CPasswordError").hide();
-				$("#passwordError").hide();
-				$("#pinError").hide();
+                $("#cPinError1").html('Please Confirm your PIN');
+                $("#cPinError1").show();
+				$("#pinError1").hide();
                 $("#cpin").focus();
                 return false;
             } 
@@ -108,7 +104,7 @@ var spin =localStorage.getItem("pin");
 <body>
 
 <div id="main_wrapper">
-	<<div class="main-container">
+	<div class="main-container">
 			<div id="topbar">
 			<a href="#"><img src="images/back_arrow.png" style="float:left;"/></a> 
 		<div class="header-card">Security Pin</div>
@@ -132,7 +128,7 @@ var spin =localStorage.getItem("pin");
 						<div class="field-right field">
 							<input tabindex="1" size="40" type="password" name="pin" id="pin" placeholder="New Pin" />
 							<label for="pin" class="lbl-name">New Pin</label>
-							<div id="passwordError" style="display:none;"></div>
+							<div id="pinError1" style="display:none;"></div>
 						</div>					
 					</div>
 					<div class="password-input-field">
@@ -142,7 +138,7 @@ var spin =localStorage.getItem("pin");
 						<div class="field-right field">
 							<input tabindex="1" size="40" type="password" name="cpin" placeholder="Confirm Pin" id="cpin" />
 							<label for="cpin" class="lbl-name">Confirm Pin</label>
-							<div id="CPasswordError" style="display:none;"></div>
+							<div id="CPinError1" style="display:none;"></div>
 						</div>	
 					</div><br><br><p id="validate-status"></p>
 				</div>
