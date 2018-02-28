@@ -143,23 +143,15 @@ var spin =localStorage.getItem("pin");
 		});
 		//Don't Remember Pin
 		jQuery('input[name="reset-password"]').click(function(){
-		var getpass = jQuery('#password').val();
-		if(getpass == password){
-			window.location='newpin.html';
-		}
-		
-		//var rpin = JSON.stringify(resetpin);
-			/*$.ajax({
-			  url: siteurl+"updateProfile",
-			  type: 'POST',
-			  data: {q:'security_pin',detail:rpin}, 
-			  crossDomain: true,   
-			  success: function(data) {
-					if(data['status'] == 1)
-					{
-					}
-			   }
-			});*/
+			var getpass = jQuery('#password').val();
+			if(getpass == password){
+				window.location='newpin.html';
+			}
+		});
+		jQuery('input[name="forgot-password"]').click(function(){
+			$("body").fadeOut(1000,function(){
+			   window.location.href = 'forgot.html';
+			});		
 		});
 		
 	}
@@ -239,7 +231,7 @@ var spin =localStorage.getItem("pin");
 					<br><br><p id="validate-status"></p>
 				</div>
 				<div class="input-button1">
-				<input type="button" name="submit" class="green-button-s1 forgot-pin" value="Don't Remember Password"/>
+				<input type="button" name="forgot-password" class="green-button-s1 forgot-pin" value="Don't Remember Password"/>
 			</div>
 			</form>
 	</div>
