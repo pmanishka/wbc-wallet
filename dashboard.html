@@ -157,13 +157,10 @@ jQuery( document ).ready(function() {
 		} 
 	
 		var fulldate = curyear + '-' + curmonth + '-' + curdate;
-				for (i = 1000; i > 1;  i-- ) {
-				//alert(i);
+			for (i = 1000; i > 1;  i-- ) {
 				var rDate = data[i].time.split(' ');
-				
-				//rDate[1] ;
-				if ( i && (i % 50 === 0)) {
-					//dpoint += jQuery('#datatable tbody').append('<tr><td>'+rDate[1]+'</td><td>'+data[i].average+'</td></tr>') ;
+
+				if ( i && (i % 2 === 0)) {
 					dpoint += jQuery('#datatable tbody').append('<tr><td>'+rDate[1]+'</td><td>'+data[i].average+'</td></tr>') ;
 				}
 
@@ -173,7 +170,7 @@ jQuery( document ).ready(function() {
 	});
 	
 
-	/*$('#chart1').highcharts({
+	$('#chart1').highcharts({
         data: {
             table: document.getElementById('datatable')
         },
@@ -229,9 +226,9 @@ jQuery( document ).ready(function() {
 			color: '#25ff00',
 			showInLegend: false,
         }]
-    });*/
+    });
 	
-	//jQuery('table#datatable').css("display","none");
+	jQuery('table#datatable').css("display","none");
 	
 });
 
